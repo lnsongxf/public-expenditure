@@ -1,4 +1,4 @@
-# Jupyter Notebook: Optimal Public Expenditure over the Business Cycle
+# Optimal Public Expenditure over the Business Cycle
 
 ## Overview
 
