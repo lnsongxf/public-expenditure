@@ -16,7 +16,7 @@ The notebook can be accessed on this [page](https://pascalmichaillat.github.io/p
 
 ## References
 
-* Pascal Michaillat, Emmanuel Saez. [Aggregate Demand, Idle Time, and Unemployment](https://www.pascalmichaillat.org/3.html). May 2015. Quarterly Journal of Economics, Volume 130, Issue 2, Pages 507–569.
+* Pascal Michaillat, Emmanuel Saez. [Aggregate Demand, Idle Time, and Unemployment](https://www.pascalmichaillat.org/3.html). May 2015. Quarterly Journal of Economics, volume 130, issue 2, pages 507–569.
 * Pascal Michaillat, Emmanuel Saez. [Optimal Public Expenditure with Inefficient Unemployment](https://www.pascalmichaillat.org/6.html). May 2019. Review of Economic Studies, volume 86, issue 3, pages 1301–1331.
 
 ## Authors
