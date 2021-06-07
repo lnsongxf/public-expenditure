@@ -1,8 +1,8 @@
-# Jupyter Notebook: Public Expenditure
+# Jupyter Notebook: Optimal Public Expenditure over the Business Cycle
 
 ## Overview
 
-This [Jupyter notebook](https://jupyter.org) computes the optimal level of public expenditure in a simple business-cycle matching model. 
+This [Jupyter notebook](https://jupyter.org) computes the optimal level of public expenditure in a simple matching model of the business cycle. 
 
 ## Model and simulations
 
