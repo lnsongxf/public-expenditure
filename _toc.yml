@@ -1,0 +1,8 @@
+# In _toc.yml
+- file: documents/notebook
+  sections:
+    - file: documents/data
+    - file: documents/calibration
+    - file: documents/multiplier
+    - file: documents/gap
+    - file: documents/stimulus
