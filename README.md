@@ -16,7 +16,7 @@ The notebook then computes the optimal stimulus spending in response to these sh
 
 The notebook can be accessed on this [page](https://pascalmichaillat.github.io/public-expenditure/docs/notebook.html). The notebook allows users to modify data sources, parameters values, functional forms, and recompute optimal stimulus pending over the business cycle.
 
-## Contributors
+## Authors
 
 * [Pascal Michaillat](https://www.pascalmichaillat.org)
 * [Haoyu Sheng](https://haoyusheng.net)
