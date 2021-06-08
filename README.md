@@ -1,7 +1,5 @@
 # Optimal Public Expenditure over the Business Cycle
 
-## Overview
-
 This [Jupyter Notebook](https://jupyter.org) computes the optimal level of public expenditure in a simple matching model of the business cycle. 
 
 The model features self-employed workers who sell their services on a matching market to other households and the government. 
