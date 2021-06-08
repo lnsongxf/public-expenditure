@@ -2,17 +2,17 @@
 
 ## Overview
 
-This [jupyter](https://jupyter.org) [book](https://jupyterbook.org/intro.html) computes the optimal level of public expenditure in a simple matching model of the business cycle. 
+This [Jupyter Notebook](https://jupyter.org) computes the optimal level of public expenditure in a simple matching model of the business cycle. 
 
 The model features self-employed workers who sell their services on a matching market to other households and the government. 
 
-The book calibrates the model to US data. The notebook simulates the model in response to aggregate-demand shocks and aggregate-supply shocks. 
+The notebook calibrates the model to US data. The notebook simulates the model in response to aggregate-demand shocks and aggregate-supply shocks. 
 
-The book then computes the optimal stimulus spending in response to these shocks.
+The notebook then computes the optimal stimulus spending in response to these shocks.
 
-## How to use the book
+## How to use the notebook
 
-The book can be accessed on this [page](https://pascalmichaillat.github.io/public-expenditure/docs/notebook.html). Through [binder](https://mybinder.org), the book allows users to modify data sources, parameters values, functional forms, and recompute optimal stimulus pending over the business cycle.
+The notebook can be accessed on this [page](https://pascalmichaillat.github.io/public-expenditure/notebooks/notebook.html). Through [binder](https://mybinder.org), the notebook allows users to modify data sources, parameters values, functional forms, and recompute optimal stimulus pending over the business cycle.
 
 ## References
 
