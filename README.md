@@ -16,6 +16,7 @@ The book can be accessed on this [page](https://pascalmichaillat.github.io/publi
 
 ## References
 
+* Pascal Michaillat. [A Theory of Countercyclical Government Multiplier](https://www.pascalmichaillat.org/2.html). January 2014. American Economic Journal: Macroeconomics, volume 6, issue 1, pages 190-217.
 * Pascal Michaillat, Emmanuel Saez. [Aggregate Demand, Idle Time, and Unemployment](https://www.pascalmichaillat.org/3.html). May 2015. Quarterly Journal of Economics, volume 130, issue 2, pages 507–569.
 * Pascal Michaillat, Emmanuel Saez. [Optimal Public Expenditure with Inefficient Unemployment](https://www.pascalmichaillat.org/6.html). May 2019. Review of Economic Studies, volume 86, issue 3, pages 1301–1331.
 
