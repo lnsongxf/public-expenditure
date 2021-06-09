@@ -12,7 +12,7 @@ The notebook then computes the optimal stimulus spending in response to these sh
 
 The notebook is `public-expenditure.ipynb`, available in this repository. Through [Binder](https://mybinder.org), the notebook allows users to modify data sources, parameters values, functional forms, and recompute optimal stimulus pending over the business cycle.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pascalmichaillat/public-expenditure/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pascalmichaillat/public-expenditure/main?filepath=public-expenditure.ipynb)
 
 
 ## References
