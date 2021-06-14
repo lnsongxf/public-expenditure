@@ -1,0 +1,872 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper,math}
+\bibliographystyle{bibliography}
+\def\bib{../../bibliography/keynes.bib}
+\def\pdf{../../figures/xhosios_202103.pdf}
+\available{https://www.pascalmichaillat.org/9.html}	
+\hypersetup{pdftitle={Beveridgean Unemployment Gap}}
+
+\def\W{\wh{\Wc}}
+
+\begin{document}
+
+\author{Pascal Michaillat, Emmanuel Saez}
+\title{Beveridgean Unemployment Gap
+\thanks{Michaillat: Brown University. Saez: University of California--Berkeley. We thank Regis Barnichon, Olivier Blanchard, Michael Boskin, Varanya Chaubey, Raj Chetty, Gabriel Chodorow-Reich, Richard Crump, Peter Diamond, Andrew Figura, Nathaniel Hendren, Damon Jones, Etienne Lehmann, Sephorah Mangin, Benjamin Schoefer, Alison Weingarden, Roberton Williams, and Owen Zidar for helpful comments and discussions. This work was supported by the Institute for Advanced Study and the Berkeley Center for Equitable Growth.}}
+\date{March 2021}
+
+\begin{titlepage}\maketitle
+
+This paper estimates the unemployment gap (the actual unemployment rate minus the efficient unemployment rate) using the sufficient-statistic approach from public economics. While lowering unemployment puts more people into work, it forces firms to post more vacancies and devote more resources to recruiting. This unemployment-vacancy tradeoff, governed by the Beveridge curve, determines the efficient unemployment rate. Accordingly, in any model with a Beveridge curve, the unemployment gap depends on three sufficient statistics: elasticity of the Beveridge curve, social cost of unemployment, and cost of recruiting. Applying this novel formula to the United States, we find that the efficient unemployment rate varies between $3.0\%$ and $5.4\%$ since 1951, and has been stable between $3.8\%$ and $4.6\%$ since 1990. As a result, the unemployment gap is countercyclical, reaching $6$ percentage points in deep slumps. Thus the US labor market is inefficient---especially inefficiently slack in slumps. The unemployment gap is in turn a crucial statistic to design labor-market and macroeconomic policies.
+
+\end{titlepage}\section{Introduction}
+
+\paragraph{Research question} Does the labor market operate efficiently? If not, how far from efficiency is it? To answer these questions, we measure the unemployment gap---the actual unemployment rate minus the efficient unemployment rate. A reliable measure of the unemployment gap is necessary to a good understanding of the labor market and the macroeconomy. It guides how we model the labor market and the macroeconomy; and it is a key determinant of optimal labor-market policies, such as unemployment insurance, and of optimal macroeconomic policies, including monetary and fiscal policy.
+
+\paragraph{Existing measures of the unemployment gap} Two measures of the unemployment gap are commonly used: the difference between the actual unemployment rate and its trend; and the difference between the actual unemployment rate and the non-accelerating-inflation rate of unemployment (NAIRU). But, although these two measures are easy to use, neither is an ideal measure of the unemployment gap because neither the unemployment-rate trend nor the NAIRU measure the efficient unemployment rate.
+
+\paragraph{Our measure of the unemployment gap} This paper proposes a new measure of the unemployment gap. The measure builds upon the theory of efficiency in modern labor-market models \eg{H90}. Such models feature both unemployed workers and job vacancies, each associated with welfare costs: more unemployment means fewer people at work so less output; more vacancies mean more work effort devoted to recruiting and also less output. Furthermore, these models feature a Beveridge curve: a negative relation between unemployment and vacancies. Because of the Beveridge curve, unemployment and vacancies cannot be simultaneously reduced: less unemployment requires more vacancies, and fewer vacancies create more unemployment. Our analysis resolves this unemployment-vacancy tradeoff, characterizing the efficiency point on the Beveridge curve.
+
+To develop an unemployment-gap measure that is usable for policy work, we follow the sufficient-statistic method from public economics \cp{C09}. A first advantage of the method is that it delivers a simple formula, which only involves three statistics. A second advantage is that the formula is easy to apply, because the three statistics are estimable. A third advantage is that the formula requires little theoretical structure. It applies to any labor market with a Beveridge curve, irrespective of the structure of the labor market, production, preferences, wage setting, and shocks; the relevant properties of the model are captured by the sufficient statistics. The formula therefore applies broadly because the Beveridge curve appears in many models, including the widely used Diamond-Mortensen-Pissarides (DMP) model \cp{EMR15}.
+
+We obtain the sufficient-statistic formula by solving the problem of a social planner who allocates labor between production, recruiting, and unemployment subject to the Beveridge curve. The formula gives the efficient unemployment rate as a function of actual unemployment and vacancy rates, and three statistics: the elasticity of the Beveridge curve, social cost of unemployment, and cost of recruiting.
+
+\paragraph{Application to the United States} We provide estimates of the three sufficient statistics for the United States. Using standard unemployment and vacancy data, we estimate the elasticity of the Beveridge curve. Although the Beveridge curve is stable for long periods of time, it is also subjects to sudden shifts. To address this issue, we use the method proposed by \ct{BP98,BP03}, which allows us to estimate the elasticity while permitting multiple structural changes. We estimate that the Beveridge curve indeed experiences several structural breaks between 1951 and 2019, but the Beveridge elasticity remains fairly stable, in the $0.84$--$1.02$ range. Next, we estimate the social cost of unemployment from the natural and field experiments analyzed by \ct{BM15} and \ct{MP19}. These experiments suggest that the value from home production and recreation during unemployment only replaces $26\%$ of the marginal product of labor---implying a substantial social cost of unemployment. Last, following \ct{V10}, we estimate the recruiting cost using evidence from the 1997 National Employer Survey. The survey indicates that firms allocate $3.2\%$ of labor to recruiting.
+
+Using the estimated statistics, we compute the efficient unemployment rate in the United States between 1951 and 2019. We find that the efficient unemployment rate averages $4.3\%$ between 1951 and 2019. It started around $3.5\%$ in the 1950s, climbed to reach $5.4\%$ in 1979, fell to $4.6\%$ in 1990, and remained in the $3.8\%$--$4.6\%$ range until 2019.
+
+Since the efficient unemployment rate is slow-moving while the actual unemployment rate is countercyclical, the unemployment gap is countercyclical. We infer that the US unemployment gap is almost never zero: the US labor market does not operate efficiently. In fact the unemployment gap is generally positive, averaging $1.4$ percentage points over 1951--2019, so the US labor market is generally inefficiently slack. In slumps, the unemployment gap is especially high, reaching for instance $6.2$ percentage points in 2010 in the aftermath of the Great Recession, so inefficiencies are exacerbated.
+
+\paragraph{Robustness} We explore the sensitivity of the efficient unemployment rate to alternative values of the sufficient statistics. We find that for a range of plausible estimates of the sufficient statistics, the unemployment gap remains within $1.2$ percentage points of our baseline unemployment gap. This means that our substantive conclusions---that the US labor market is almost always inefficient, generally inefficient slack, and especially inefficiently slack in slumps---are robust to alternative calibrations.
+
+\paragraph{Comparison with the \ct{H90} condition} Finally, we apply our sufficient-statistic formula to the DMP model, and compare it with the formula arising from the well-known Hosios condition. The two formulas might be different because they solve different planning problems: in the \name{H90} planning problem unemployment follows a differential equation, whereas in ours unemployment is always on the Beveridge curve. Yet, we find that when the discount rate is zero, the two formulas are the same. And when the discount rate is positive, the two formulas are not the same, but quantitatively they generate almost identical solutions.
+
+\section{Beveridgean model of the labor market}\label{s:model}
+
+We introduce the model of the labor market used to compute the unemployment gap. The model features both unemployed workers and job vacancies. The main ingredient is a Beveridge curve---a negative relation between unemployment and vacancies.
+
+\subsection{Notations}
+
+The unemployment rate is the number of unemployed workers divided by the size of the labor force; it is denoted by $u \in (0,1)$. The vacancy rate is the number of vacancies divided by the size of the labor force; it is denoted by $v\in (0,\infty)$. The labor market tightness is the number of vacancies per unemployed worker; it is denoted by $\t = v/u$. Last the employment rate is the number of employed workers divided by size of the labor force; it is denoted by $n\in (0,1)$. Since the labor force is the sum of all employed and unemployed workers, employment and unemployment rates are related by $n=1-u$.
+
+\subsection{Beveridge curve}
+
+Because of the structure of the labor market, unemployment and vacancy rates are related by a Beveridge curve:
+
+\begin{assumption}\label{a:v} The vacancy rate is given by a twice differentiable, strictly decreasing, and strictly convex function of the unemployment rate, denoted $v(u)$. \end{assumption}
+
+\begin{figure}[p]
+\subcaptionbox{Unemployment rate}{\includegraphics[scale=\sfig,page=1]{\pdf}}\hfill
+\subcaptionbox{Vacancy rate}{\includegraphics[scale=\sfig,page=2]{\pdf}}\vfig
+\subcaptionbox{Beveridge curve, 1951--1969}{\includegraphics[scale=\sfig,page=3]{\pdf}}\hfill
+\subcaptionbox{Beveridge curve, 1970--1989}{\includegraphics[scale=\sfig,page=4]{\pdf}}\vfig
+\subcaptionbox{Beveridge curve, 1990--2009}{\includegraphics[scale=\sfig,page=5]{\pdf}}\hfill
+\subcaptionbox{Beveridge curve, 2010--2019}{\includegraphics[scale=\sfig,page=6]{\pdf}}
+\caption{Beveridge curve in the United States, 1951--2019}
+\note{Panel~A: The unemployment rate is constructed by the \ct{UNRATE}. Panel~B: For 1951--2000, the vacancy rate is constructed by \ct{B10d}; for 2001--2019, the vacancy rate is the number of job openings divided by the civilian labor force, both measured by the \ct{CLF16OV,JTSJOL}. Unemployment and vacancy rates are quarterly averages of monthly series. The shaded areas are NBER-dated recessions. Panels~C--F: Unemployment and vacancy rates come from panels~A and B. The four panels focus on consecutive periods: 1951--1969 in panel~C, 1970--1989 in panel~D, 1990--2009 in panel~E, and 2010--2019 in panel~F.}
+\label{f:beveridge}\end{figure}
+
+\paragraph{Beveridge curve in the data} Many countries exhibit a Beveridge curve \cp{JPS90,NNO02,EMR15}, including the United States \cp{BD89,DS15,EMR15}. Our methodology would apply in any of these countries. 
+
+As an illustration, we construct the US Beveridge curve. For the unemployment rate, we use the standard measure constructed by the \ct{UNRATE} from the Current Population Survey. This unemployment rate is plotted in panel~A of figure~\ref{f:beveridge}; it averages $5.8\%$ over the period.
+
+For the vacancy rate, we use two different sources because there is no continuous national vacancy series over the period. For 1951--2000, we use the vacancy proxy constructed by \ct{B10d}. \name{B10d} starts from the help-wanted advertising index constructed by the Conference Board---a vacancy proxy proposed by \ct{A87} that has become standard \cp[p.~29]{S05}. He then corrects the Conference Board index, which is based on newspaper advertisements, to take into account the shift from print advertising to online advertising after 1995. Finally, he rescales the index into vacancies, and divides the vacancy number by the size of the labor force to obtain a vacancy rate. For 2001--2019, we obtain the vacancy rate from the number of job openings measured by the \ct{JTSJOL} in the Job Opening and Labor Turnover Survey, divided by the civilian labor force constructed by the \ct{CLF16OV} from the Current Population Survey. We then splice the two series to obtain a vacancy rate for 1951--2019. This vacancy rate is plotted in panel~B of figure~\ref{f:beveridge}; it averages $3.2\%$ over the period.
+
+The Beveridge curve appears in scatterplots of the unemployment and vacancy rates (panels~C--F of figure~\ref{f:beveridge}; for readability we separately plot the 1951--1969, 1970--1989, 1990--2009, and 2010--2019 periods). The Beveridge curve is stable for long periods, during which unemployment and vacancies move up and down along a clearly defined branch. Furthermore, until the mid-1980s, the Beveridge curve shifts outward at the end of each period of stability. After the mid-1980s, the Beveridge curve shifts back inward to positions that were typical in the 1960s and 1970s.
+
+\paragraph{Beveridge curve in macroeconomic models} Given the prevalence of the Beveridge curve in labor markets, it is unsurprising that many labor-market models feature a Beveridge curve \cp{EMR15}. These models are nested into our framework. 
+
+Nested models include models build around a matching function: the canonical DMP model \cp[chapter~1]{P00}, and its variants with rigid wages \cp{H05,HM08}, large firms \cp{CMW08,EM08}, and job rationing \cp{M09}. It is true that in many matching models, unemployment follows a law of motion, and the Beveridge curve is defined as the locus of unemployment and vacancies where the level of unemployment is steady. Yet \ct[p.~236]{Pi09} notes that
+\begin{quote}
+``Perhaps surprisingly at first, but on reflection not so surprisingly, we get a good approximation to the dynamics of unemployment if we treat unemployment as if it were always on the Beveridge curve.''
+\end{quote}
+Hence, many matching models assume that the Beveridge curve holds at all times, as we do here \eg{P86,P07,H05,Ha05,EMS09,LMS15}.\footnote{In section~\ref{s:dmp}, we apply our method to the DMP model and formally show that unemployment always remains close to the Beveridge curve (see in particular figure~\ref{f:accuracy}).}
+
+Even models without a matching function may feature a Beveridge curve: for instance, models of mismatch \cp{S07} and of stock-flow matching \cp{ES10}.
+
+Beside labor-market models, our framework also nests macroeconomic models in which labor and goods markets are combined into one market. In these models all workers are self-employed and sell labor services on a matching market. Such models include the monetary model of \ct{MS19} and the fiscal model of \ct{MS15}.
+
+\paragraph{Sources of fluctuations along the Beveridge curve} Over the business cycle, unemployment and vacancy rates move along the Beveridge curve (figure~\ref{f:beveridge}) . What causes such fluctuations? The source of fluctuations and mechanism depend on the model.
+
+In the DMP model, shocks to workers' bargaining power lead to fluctuations along the Beveridge curve \cp[table~6]{S05}.\footnote{Shocks to labor productivity also lead to fluctuations along the Beveridge curve, but these fluctuations are unrealistically small \cp[table~3]{S05}.} In the variants of the DMP model proposed by \ct{H05}, \ct{HM08}, and \ct{M09}, real wages are rigid, and shocks to labor productivity generate realistic fluctuations along the Beveridge curve. 
+
+In the mismatch model proposed by \ct{S07}, shocks to aggregate productivity also generate sizable fluctuations along the Beveridge curve. The same is true in the stock-flow matching proposed by \ct{ES10}. 
+
+Finally, in macroeconomic models, the fluctuations along the Beveridge curve are generated by aggregate demand shocks: shocks to households' discount rate or to their marginal utility of wealth \cp{MS19,MS15}.
+
+\subsection{Beveridge elasticity} 
+
+Plotted on a logarithmic scale, all branches of the Beveridge curve are close to linear, so each branch is close to isoelastic. A central statistic in measuring the unemployment gap is the elasticity of the Beveridge curve:
+
+\begin{definition} The Beveridge elasticity is the elasticity of the vacancy rate with respect to the unemployment rate along the Beveridge curve, normalized to be positive: 
+\begin{equation*}
+\e = -\odl{v(u)}{u}.
+\end{equation*}\end{definition}
+
+\subsection{Social welfare}
+
+The Beveridge curve governs the tradeoff between unemployment and vacancies. This  tradeoff is central to the welfare analysis because both unemployment and vacancies influence welfare.
+
+\begin{assumption}\label{a:w} Flow social welfare is a function of the employment rate, unemployment rate, and vacancy rate, denoted $\Wc(n,u,v)$. The function $\Wc$ is twice differentiable, strictly increasing in $n$, strictly decreasing in $v$, and less increasing in $u$ than $n$ (so $\pdx{\Wc}{u}<\pdx{\Wc}{n}$). As a result, the alternate welfare function $\W(u,v) = \Wc(1-u,u,v)$ is strictly decreasing in $u$ and $v$. Furthermore, the function $\W$ is quasiconcave.\end{assumption}
+
+Employed workers contribute to social welfare through market production, which is why $\pdx{\Wc}{n}>0$. Unemployed workers contribute to social welfare through home production and recreation \cp{AHK13}; this contribution is diminished if people suffer psychic pain from being unemployed \cp{Br15}. However, unemployed workers contribute less to welfare than employed workers, so $\pdx{\Wc}{u}<\pdx{\Wc}{n}$. Vacancies lower social welfare because labor and other resources must be diverted away from market production and toward recruiting to fill each vacancy. 
+
+The alternate welfare function $\W(u,v)$ is obtained from the welfare function $\Wc(n,u,v)$ by substituting the employment rate $n$ by $1-u$. The fact that the alternate welfare function decreases with the unemployment and vacancy rates captures the social costs of unemployment and vacancies. We assume that the alternate welfare function is quasiconcave to ensure that the social planner's problem is well behaved.
+
+\subsection{Social value of nonwork} 
+
+The effects of unemployment on welfare is given by the following statistic, which plays a key role in calculating the unemployment gap:
+
+\begin{definition} The social value of nonwork is the marginal rate of substitution between unemployment and employment in the welfare function:
+\begin{equation*}
+\z = \frac{\pdx{\Wc}{u}}{\pdx{\Wc}{n}}<1.
+\end{equation*}
+The social cost of unemployment is 
+\begin{equation*}
+\frac{(\pdx{\Wc}{n})-(\pdx{\Wc}{u})}{\pdx{\Wc}{n}} = 1 - \z>0.
+\end{equation*}
+\end{definition}
+
+The social value of nonwork $\z$ measures the marginal contribution of unemployed workers to welfare, relative to that of employed workers. It is below $1$ because unemployed workers' contribute less than employed workers (assumption~\ref{a:w}). The social cost of unemployment $1-\z>0$ measures the welfare loss from having a person unemployed rather than employed. Such loss comprises foregone market production and the psychological pain of being unemployed rather employed, net of the value of home production and recreation when unemployed.
+
+\subsection{Recruiting cost} 
+
+The effects of vacancies on welfare is given by the following statistic, which is also key in calculating the unemployment gap:
+
+\begin{definition} The recruiting cost is minus the marginal rate of substitution between vacancies and employment in the welfare function:
+\begin{equation*}
+\k = -\frac{\pdx{\Wc}{v}}{\pdx{\Wc}{n}} > 0.
+\end{equation*}\end{definition}
+
+The recruiting cost $\k$ measures the number of workers allocated to each vacancy for recruiting. These workers are tasked with writing and advertising the job vacancy; reading applications and finding suitable candidates; interviewing and evaluating selected candidates; and drafting and negotiating job offers.
+
+\section{Efficient unemployment rate and unemployment gap}
+
+We solve the problem of a social planner who chooses the unemployment and vacancy rates to maximize welfare subject to the Beveridge-curve constraint. The solution gives the efficient unemployment rate. We then represent efficiency in a Beveridge diagram to understand the tradeoffs at play. Finally, we derive sufficient-statistic formulas for the efficient unemployment rate and unemployment gap.
+
+\subsection{Social planner's problem}
+
+We define efficiency as the solution to the problem of a social planner who is subject to the Beveridge-curve constraint:
+
+\begin{definition} The efficient unemployment and vacancy rates, denoted $u^*$ and $v^*$, maximize social welfare $\W(u,v)$ subject to the Beveridge-curve constraint $v=v(u)$. The efficient labor market tightness is $\t^* = u^* / v^*$, and the unemployment gap is $u-u^*$.\end{definition}
+
+The social planner's problem is similar in several ways to that introduced by \ct{H90}: the social planner maximizes welfare by allocating resources between production, recruiting, and unemployment; and the social planner is subject to a Beveridge-curve constraint (equation~(3) in \inp{H90}). But the social planner's problem here is also more general: first, it applies to any labor market with a Beveridge curve, not just to those with a matching function; and second, it applies to any quasiconcave welfare function, not just to linear ones.
+
+\paragraph{Comparison of the planning and decentralized solutions} The planning solution is described by two variables, unemployment and vacancies, given by two equations: the Beveridge curve, and the first-order condition of the planner's problem. By contrast, the decentralized solution is usually given by three variables: unemployment, vacancies, and wage. These three variables are usually given by three equations: the Beveridge curve; a wage equation; and an equation describing vacancy creation, such as the free-entry condition of the DMP model. 
+
+Moreover, in many Beveridgean models, unlike in Walrasian models, there is no guarantee that the decentralized solution overlaps with the planning solution. This is because most wage mechanisms do not ensure efficiency. For instance, in the DMP model, the wage is determined in a situation of bilateral monopoly, so a range of wages is theoretically possible. A wage mechanism picks one wage among those possible. There is only an infinitesimal chance that the wage picked is the one wage that ensures efficiency, so there is no theoretical reason to believe that the unemployment gap is zero \cp[chapter~8]{P00}.
+
+\subsection{Representation of efficiency in a Beveridge diagram}
+
+We now represent labor-market efficiency in a Beveridge diagram. This representation illustrates the tradeoffs facing the social planner.
+
+\paragraph{Beveridge diagram} The Beveridge diagram features unemployment rate on the $x$-axis and vacancy rate on the $y$-axis. It is depicted in figure~\ref{f:theory}, panel~A.
+
+In the diagram the Beveridge curve $v(u)$ is downward-sloping and convex. It gives the locus of unemployment and vacancy rates that are feasible in the economy. 
+
+The diagram also features an isowelfare curve: the locus of unemployment and vacancy rates such that social welfare $\W(u,v)$ remains constant at some level (the equivalent of an indifference curve for a utility function or an isoquant for a production function). Since $\W(u,v)$ is decreasing in unemployment and vacancies, the points inside the isowelfare curve yield higher welfare, so the green area delineated by the isowelfare curve is an upper contour set of $\W(u,v)$. Since the function $\W$ is quasiconcave, its upper contour sets are convex.
+
+\begin{figure}[t]
+\subcaptionbox{Efficient unemployment rate}{\includegraphics[scale=\sfig,page=7]{\pdf}}\hfill
+\subcaptionbox{Inefficient unemployment rates}{\includegraphics[scale=\sfig,page=8]{\pdf}}
+\caption{Efficient unemployment rate and unemployment gaps}
+\note{The Beveridge curve has slope $v'(u)$. The isowelfare curve has slope $-(1-\z)/\k$, where $\z$ is the social value of nonwork and $\k$ is the recruiting cost. The tangency of the Beveridge and isowelfare curves gives the efficient labor-market allocation. Other allocations along the Beveridge curve are inefficient.}
+\label{f:theory}\end{figure}
+
+\paragraph{Efficiency condition} The efficient unemployment and vacancy rates can easily be found in the Beveridge diagram. First, they have to lie on the Beveridge curve. Second, since both unemployment and vacancies impose a welfare cost, they must lie on the isowelfare curve that is as close to the origin as possible. The closest that the isowelfare curve can be while remaining in contact with the Beveridge curve is at the tangency point with the Beveridge curve. This is where the efficient unemployment and vacancy rates are found. The efficient tightness is also visible on the diagram: it is the slope of the origin line going through the tangency point.
+
+The slope of the isowelfare curve is minus the marginal rate of substitution between unemployment and vacancies in the welfare function $\W(u,v)$:
+\begin{equation*}
+-\frac{\pdx{\W}{u}}{\pdx{\W}{v}} = -\frac{(\pdx{\Wc}{u})-(\pdx{\Wc}{n})}{\pdx{\Wc}{v}} = -\frac{1-(\pdx{\Wc}{u})/(\pdx{\Wc}{n})}{-(\pdx{\Wc}{v})/(\pdx{\Wc}{n})} = -\frac{1-\z}{\k}.
+\end{equation*}
+The efficient unemployment rate is found at the point where the Beveridge curve, with slope $v'(u)$, is tangent to isowelfare curve, with slope $-(1-\z)/\k$. This yields a first result:
+
+\begin{proposition}\label{p:plan} In a Beveridge diagram, efficiency is achieved at the point where the Beveridge curve is tangent to an isowelfare curve. Hence, the efficient unemployment rate is implicitly defined by 
+\begin{equation}
+v'(u)  = - \frac{1-\z}{\k},
+\label{e:tangent}\end{equation}
+where $\z<1$ is the social value of nonwork and $\k>0$ is the recruiting cost.\end{proposition}
+
+Formula \eqref{e:tangent} simply says that when the labor market operates efficiently, welfare costs and benefits from moving one worker from employment to unemployment are equalized. When one worker moves from employment to unemployment, the reduction in welfare is the social cost of unemployment, $1-\z$. Having one more unemployed worker also means having $-v'(u)>0$ fewer vacancies. Each vacancy reduces welfare by the recruiting cost, $\k$, so welfare improves by $-v'(u) \k$ through the reduction in recruiting activity. When welfare costs and benefits are equalized, we have $1-\z = - v'(u) \k$, which is equivalent to \eqref{e:tangent}.
+
+\paragraph{Deviations from efficiency} There is no guarantee that the labor market operates efficiently (figure~\ref{f:theory}, panel~B). The labor market may be above the efficiency point, where unemployment is too low, vacancies are too high, tightness is too high, and the unemployment gap is negative. It may also be below the efficiency point, where unemployment is too high, vacancies are too low, tightness is too low, and the unemployment gap is positive. As both situations are inefficient, they lie on a worse isowelfare curve than the efficiency point.
+
+\begin{figure}[t!]
+\subcaptionbox{Increase in social cost of unemployment}{\includegraphics[scale=\sfig,page=9]{\pdf}}\hfill
+\subcaptionbox{Increase in recruiting cost}{\includegraphics[scale=\sfig,page=10]{\pdf}}\vfig
+\subcaptionbox{Compensated increase in Beveridge elasticity}{\includegraphics[scale=\sfig,page=11]{\pdf}}
+\caption{Comparative statics for the efficient unemployment rate}
+\note{Panel~A: The efficient unemployment rate decreases when the social cost of unemployment increases. Panel~B: The efficient unemployment rate increases when the recruiting cost increases. Panel~C: The efficient unemployment rate increases when the Beveridge elasticity increases, keeping welfare constant.}
+\label{f:comparativestatics}\end{figure}
+
+\paragraph{Comparative statics} We use the Beveridge diagram to derive several comparative-static results about the efficient unemployment rate (figure~\ref{f:comparativestatics}). 
+
+We first consider an increase in the social cost of unemployment, from $1-\z$ to $\s \cdot(1-\z)$ with $\s>1$. The isowelfare curve becomes steeper everywhere. In particular, at the previous efficiency point, the isowelfare curve is steeper than the Beveridge curve. This indicates that the new efficiency point is above the old one on the Beveridge curve, so the efficient unemployment rate is lower than previously (panel~A). Intuitively, when unemployment is more costly, the unemployment-vacancy tradeoff becomes less favorable to unemployment, and the efficient unemployment rate decreases.
+
+We then consider an increase in recruiting cost, from $\k$ to $\s\cdot \k$ with $\s>1$. The isowelfare curve is now everywhere flatter. Following the opposite logic as in the previous case, the efficient unemployment rate is now lower (panel~B). Intuitively, when recruiting is more costly, the unemployment-vacancy tradeoff becomes more favorable to unemployment, so the efficient unemployment rate increases. 
+
+Finally we consider a compensated increase in the Beveridge elasticity (analogous to a compensated price increase in the context of Hicksian demand). This is an increase in the Beveridge elasticity compensated by a change in the position of the curve so that the new Beveridge curve remains tangent to the same isowelfare curve. Formally, the Beveridge curve changes from $v(u)$ to $\vs \cdot (v(u))^\s$, where $\vs >0$ and $\s>1$. The Beveridge elasticity increases from $\e$ to $\s \cdot \e$. Such a change steepens the Beveridge curve (panel~C). At the previous efficiency point, the Beveridge curve is steeper than the isowelfare curve. This indicates that the new efficiency point is to the right of the old one on the isowelfare curve, and that the Beveridge curve must shift out to maintain welfare at the same level at efficiency (formally, $\vs>1$). Overall, the efficient unemployment rate is higher than previously. The intuition is simple: a rise in unemployment triggers a larger drop in vacancies, so the unemployment-vacancy tradeoff is more favorable to unemployment, and the efficient unemployment rate increases. 
+
+The following corollary summarizes these comparative statics:
+
+\begin{corollary} An increase in the social cost of unemployment lowers the efficient unemployment rate and raises the efficient vacancy rate. An increase in the recruiting cost raises the efficient unemployment rate and lowers the efficient vacancy rate. And a compensated increase in the Beveridge elasticity (increase in elasticity keeping welfare constant) raises the efficient unemployment rate and lowers the efficient vacancy rate.\end{corollary}
+
+\subsection{Efficient tightness}
+
+We aim to obtain a sufficient-statistic formula for the unemployment gap. As an intermediate step, we rework the efficiency condition \eqref{e:tangent} to obtain a sufficient-statistic formula for the efficient tightness.
+
+We begin by introducing the Beveridge elasticity: 
+\begin{equation*}
+\e = - \frac{u}{v} \cdot v'(u)\quad\text{so}\quad \e\t = - v'(u). 
+\end{equation*}
+With this result, we can re-express \eqref{e:tangent} as $\t = (1-\z)/(\k\e)$. 
+
+In panel~B of figure~\ref{f:theory}, we see that any point on the Beveridge curve above the efficiency point has $- v'(u) > (1-\z)/\k$, and any point below it has $- v'(u) < (1-\z)/\k$. Using again $\e\t = - v'(u)$, we infer that any point above the efficiency point satisfies $\t> (1-\z)/(\k\e)$; and any point below the efficiency point has $\t < (1-\z)/(\k\e)$.
+
+Hence we can assess the efficiency of tightness from three sufficient statistics:
+
+\begin{proposition}\label{p:theta} Consider a point on the Beveridge curve with tightness $\t$, Beveridge elasticity $\e$, recruiting cost $\k$, and social value of nonwork $\z$. Then tightness is inefficiently high if $\t > (1-\z)/(\k\e)$,  inefficiently low if $\t < (1-\z)/(\k\e)$, and efficient if 
+\begin{equation}
+\t = \frac{1-\z}{\k \e}.
+\label{e:theta}\end{equation}\end{proposition}
+
+Since the statistics $\e$, $\k$, and $\z$  generally depend on tightness $\t$, formula~\eqref{e:theta} only characterizes the efficient tightness implicitly. This limitation is typical of the sufficient-statistic approach \cp{C09}. It will complicate the task of computing the unemployment gap. 
+
+\subsection{Unemployment gap}
+
+To compute the unemployment gap, we need to address the endogeneity of the sufficient statistics in \eqref{e:theta}. We use a workaround developed by \ct{K18}:
+
+\begin{assumption}\label{a:constant} The Beveridge elasticity ($\e$), recruiting cost ($\k$), and social value of nonwork ($\z$) do not depend on the unemployment and vacancy rates.\end{assumption}
+
+How realistic is this assumption? Panels~C--F in figure~\ref{f:beveridge} suggest that the Beveridge curve is isoelastic, so the assumption on the Beveridge elasticity seems valid in US data. We do not have comparable evidence on the recruiting cost and social value of nonwork, but at least in the DMP model, these two statistics are independent of the unemployment and vacancy rates.
+
+Under assumption~\ref{a:constant}, we obtain a simple formula for the unemployment gap. The assumption implies that the Beveridge curve is isoelastic:
+\begin{equation}
+ v(u)=v_0 \cdot u^{-\e},
+\label{e:iso}\end{equation}
+where the parameter $v_0>0$ determines the location of the curve. On the Beveridge curve, tightness is related to unemployment by 
+\begin{equation*}
+\t = \frac{v(u)}{u} = v_0 \cdot u^{-(1+\e)}\quad\text{and}\quad \t^* = v_0 \cdot (u^*)^{-(1+\e)}. 
+\end{equation*}
+We can therefore link the unemployment gap to the tightness gap:
+\begin{equation}
+\frac{u^*}{u} = \bp{\frac{\t}{\t^*}}^{1/(1+\e)}.
+\label{e:link}\end{equation}
+Under assumption~\ref{a:constant}, formula \eqref{e:theta} gives $\t^* = (1-\z)/(\k\e)$, which yields the following proposition:
+
+\begin{proposition}\label{p:u} Under assumption~\ref{a:constant}, the efficient unemployment rate ($u^*$) can be measured from current unemployment rate ($u$), vacancy rate ($v$), Beveridge elasticity ($\e$), recruiting cost ($\k$), and social value of nonwork ($\z$):
+\begin{equation}
+\frac{u^*}{u} = \bp{\frac{\k \e}{1-\z}\cdot\frac{v}{u}}^{1/(1+\e)},
+\label{e:u}\end{equation}
+from which the unemployment gap $u-u^*$ follows.
+\end{proposition} 
+
+The proposition gives an explicit formula for the unemployment gap, expressed in terms of observable sufficient statistics. The formula is valid in any Beveridgean model, irrespective of the structure of the labor and product markets, production, preferences, and wage setting. Another advantage of the formula is that we do not need to keep track of all the shocks disturbing the labor market---shocks to labor productivity, wages, preferences, labor-force participation, matching function, job separations, and so on. We only need to observe the sufficient statistics.\footnote{Without assumption~\ref{a:constant}, we could still obtain a formula for the unemployment gap, but it would require three additional statistics: the elasticities of $\e$, $\k$, and $\z$ with respect to the unemployment rate \cp{K18}.}
+
+\section{Unemployment gap in the United States, 1951--2019}\label{s:usa}
+
+We apply formula \eqref{e:u} to measure the unemployment gap in the United States over the 1951--2019 period. The first step is to estimate the sufficient statistics: Beveridge elasticity, recruiting cost, and social value of nonwork.
+
+\subsection{Beveridge elasticity ($\e$)} 
+
+We estimate the Beveridge elasticity with linear regressions of log vacancy rate on log unemployment rate. The data are displayed in figure~\ref{f:beveridge}. The sample contains $T = 276$ observations, since data are quarterly from 1951Q1 to 2019Q4. Since the Beveridge curve shifts over time, we need to allow for structural breaks in the estimation. We therefore use the algorithm proposed by \ct{BP98,BP03} to estimate linear models with multiple structural changes.
+
+\paragraph{Statistical model}  The statistical model that we estimate has $m$ breaks, and $m+1$ regimes. It is given by 
+\begin{equation}
+ \ln(v(t)) = \b_j + \e_j \cdot \ln(u(t)) + z(t)  \qquad t = T_{j-1}+1, \ldots,T_j
+\label{e:bp}\end{equation} 
+for $j = 1, \ldots, m+1$. The observed dependent variable is the log of the vacancy rate, $\ln(v(t))$; the observed independent variable is the log of the unemployment rate, $\ln(u(t))$; $z(t)$ is the error at time $t$; $\b_j$ is the intercept of the linear model in regime $j$; $\e_j$ is the Beveridge elasticity in regime $j$; and $T_1,\ldots,T_m$ are the $m$ break points (we use the convention that $T_0=0$ and $T_{m+1}=T$).   
+
+The regression coefficients $\b_1,\ldots,\b_{m+1}$ and $\e_1,\ldots,\e_{m+1}$, and the break points $T_1,\ldots,T_m$, are unknown. They are jointly estimated with the Bai-Perron algorithm. The regression coefficients are estimated by least-squares while the break points are estimated by minimizing the sum of squared residuals. The algorithm also provides confidence intervals for the break dates and regression coefficients under various hypotheses about the structure of the data and the errors across regimes. Finally, the algorithm offers several ways to test for structural changes and to determine the number of breaks, $m$. 
+
+\paragraph{Algorithm setup} Before proceeding to the estimation, we make several modeling choices and calibrate the parameters of the algorithm. First,  we allow for autocorrelation in the errors, and different variances of the errors across regimes. To obtain standard errors robust to autocorrelation and heteroskedasticity, the algorithm follows the method proposed by \ct{A91}, using a quadratic kernel with automatic bandwidth selection based on an AR(1) approximation. We also allow different distributions of the independent and dependent variables (unemployment and vacancy rates) across regimes. Next, we set the trimming parameter to $\e=0.15$, as suggested by \ct[p.~15]{BP03}; hence each regime has at least $\e \times T = 0.15 \times 276 = 41$ observations. As required by \ct[p.~14]{BP03}, we set the maximum number of breaks to $M=5$.
+
+\paragraph{Existence and number of breaks} We first consider statistical tests for the existence of structural breaks. The algorithm provides supF tests of no structural break versus $m$ breaks, for $m=1,\ldots,5$. All such tests reject the null hypothesis of no breaks at the $1\%$ significance level. The algorithm also provides two double-maximum tests of no structural break versus an unknown number of breaks below the upper bound $M=5$. Again, both tests reject the null hypothesis of no breaks at the $1\%$ significance level. Given these results, it is clear that at least one break is present.
+
+To determine the number of structural breaks, we consider two information criteria: the Bayesian Information Criterion proposed by \ct{Y88}, and the modified Schwarz criterion proposed by \ct{LWZ97}. Both information criterion select 5 breaks. 
+
+\paragraph{Break dates} Next we estimate the 5 break dates. The algorithm finds that the breaks in the Beveridge curve occur in 1961Q1, 1971Q4, 1989Q1, 1999Q2, and 2009Q3. The break dates are precisely estimated as all their $95\%$ confidence intervals cover less than $2.5$ years. The 6 branches of the Beveridge curve delineated by the break dates, together with the $95\%$ confidence intervals for the dates, are represented on figure~\ref{f:regimes}. 
+
+\begin{figure}[p]
+\subcaptionbox{First branch: 1951Q1--1961Q1}{\includegraphics[scale=\sfig,page=12]{\pdf}}\hfill
+\subcaptionbox{Second branch: 1961Q2--1971Q4}{\includegraphics[scale=\sfig,page=13]{\pdf}}\vfig
+\subcaptionbox{Third branch: 1972Q1--1989Q1}{\includegraphics[scale=\sfig,page=14]{\pdf}}\hfill
+\subcaptionbox{Fourth branch: 1989Q2--1999Q2}{\includegraphics[scale=\sfig,page=15]{\pdf}}\vfig
+\subcaptionbox{Fifth branch: 1999Q3--2009Q3}{\includegraphics[scale=\sfig,page=16]{\pdf}}\hfill
+\subcaptionbox{Sixth branch: 2009Q4--2019Q4}{\includegraphics[scale=\sfig,page=17]{\pdf}}
+\caption{Beveridge-curve branches in the United States, 1951--2019}
+\note{The Beveridge curve comes from figure~\ref{f:beveridge}. The structural breaks in the Beveridge curve are estimated with the \ct{BP98,BP03} algorithm. The 5 estimated break dates delineate the 6 Beveridge-curve branches. The wide, transparent lines depict the 95\% confidence interval for each break date.}
+\label{f:regimes}\end{figure}
+
+\paragraph{Beveridge elasticity} Finally, we estimate the Beveridge elasticities in the 6 different regimes. We find that from 1951 to 2019, the Beveridge elasticity fluctuated between $0.84$ and $1.02$, averaging $0.91$. So overall, the elasticity remains quite stable over time. The elasticities are fairly precisely estimated. The standard errors---corrected for autocorrelation in the error term, as well as heterogeneity in the data and error term across regimes---vary between $0.06$ and $0.15$. The elasticities and their $95\%$ confidence intervals are displayed in figure~\ref{f:epsilon}.\footnote{Any temporary deviation from the balanced-flow assumption in the data appears in the error term. This is why we allow the error term to be autocorrelated and heteroskedastic. \ct{AC20} refine the analysis by imposing more structure on labor-market flows. The extra structure allows them to quantify how much out-of-balance flows contribute to movements in unemployment and vacancies. With this information, they are able to estimate the Beveridge elasticity more finely.}
+
+The fit of the linear model with structural changes is good---$R^2 = 0.91$---which confirms that unemployment and vacancies travel in the vicinity of an isoelastic curve that occasionally shifts.
+
+\begin{figure}[t]
+\includegraphics[scale=\sfig,page=18]{\pdf}
+\caption{Beveridge elasticity and 95\% confidence interval in the United States, 1951--2019}
+\note{The Beveridge elasticity is estimated by applying the \ct{BP98,BP03} algorithm to the log vacancy and unemployment rates from figure~\ref{f:beveridge}. The standard errors used to compute the 95\% confidence interval are corrected for autocorrelation in the errors, as well as heterogeneity in the data and errors across regimes. The shaded areas are NBER-dated recessions.}
+\label{f:epsilon}\end{figure}
+
+\paragraph{Comparison with estimates of the matching elasticity} Our estimates of the Beveridge elasticity are consistent with the estimates of the matching elasticity obtained by the literature studying the matching function. 
+
+In a DMP model, the Beveridge elasticity is related to the matching elasticity $\h$ by \eqref{e:edmp}. Inverting this equation, we express the matching elasticity as a function of the Beveridge elasticity and prevailing unemployment rate:
+\begin{equation}
+\h = \frac{1}{1+\e}\bp{\e-\frac{u}{1-u}}.
+\label{e:eta}\end{equation}
+Over the 1951--2019 period, the average Beveridge elasticity is $\e=0.91$ and the average unemployment rate is $u=5.8\%$. The matching elasticity consistent with these values is 
+\begin{equation*}
+\h = \frac{1}{1+0.91}\bp{0.91-\frac{0.058}{1-0.058}} = 0.44.
+\end{equation*}
+
+This value is in the range of estimates of the matching elasticity obtained with aggregate US data. Depending on the estimation method and specification, \ct[table~1]{BD89} estimate $\h$ in the $0.32$--$0.60$ range and \ct[table~1]{BlF97} in the $0.54$--$0.76$ range. \ct[p.~32]{S05} estimate $\h=0.72$, and \ct[p.~638]{RS10} estimate $\h=0.58$. Finally, \ct[p.~444]{BJP11} find a lower estimate: $\h=0.30$. Hence, the range of US estimates for $\h$ is $0.30$--$0.76$. The value of $\h=0.44$ implied by our estimate of the Beveridge elasticity is squarely in that range.
+
+\subsection{Social value of nonwork ($\z$)}
+
+To measure the social value of nonwork, we rely on the revealed-preference estimates provided by \ct{BM15} and \ct{MP19}. 
+
+\paragraph{Raw estimates} Using military administrative data covering 1993--2004, \name{BM15} study how servicemembers' reenlistment choice is influenced by unemployment. This choice allows them to estimate the dollar value of the utility loss caused by higher unemployment during the transition to civilian life, and compare it to the earnings loss caused by higher unemployment. They find that during unemployment home production, recreation, and public benefits offset between $13\%$ and $35\%$ of lost earnings. 
+
+Using a large field experiment, \name{MP19} study how unemployed job applicants choose between randomized wage-hour bundles. These choices imply that the value of home production and recreation during unemployment amounts to $58\%$ of predicted earnings. 
+
+\paragraph{Translating raw estimates into social values of nonwork} Next, we translate these estimates into social values of nonwork. To simplify, we ignore the fact that unemployed workers are imperfectly insured so employed and unemployed workers value consumption differently.\footnote{\ct{LS20} provide revealed-preference evidence on the difference between the marginal values of consumption for unemployed and employed workers. This evidence could be used to measure the social value of nonwork when unemployed workers are imperfectly insured. \ct{LMS15} attempt to measure such social value of nonwork, with the aim of evaluating the tightness gap when unemployed workers are imperfectly insured. The task is complicated, so they are only able to sign the tightness gap in a semi-structural model. Unlike here, they cannot represent efficiency diagrammatically; obtain simple sufficient-statistic expressions for the efficient tightness and unemployment; and measure the tightness and unemployed gaps empirically.} By ignoring insurance issues, we can directly measure workers' contribution to welfare from their productivity, at home or at work. For unemployed workers in particular, the contribution to social welfare should not include unemployment benefits, which are just transfers.
+
+The first step to translating the estimates is to express the estimates relative to the marginal product of labor rather than earnings. The marginal product of labor is higher than earnings for several reasons. First, the wage paid by firms is usually lower than the marginal product of labor. In a matching model the wedge amounts to the share of workers allocated to recruiting, so the marginal product is about $3\%$ higher than the wage \cp[equation~(1)]{LMS10}. In a monopsony model, the wedge depends on the elasticity of the labor supply, and the marginal product may be $25\%$ higher than the wage \cp[p.~121]{MP19}. Second, the wage received by workers is lower than that paid by firms because of employer-side payroll taxes, which amount to $7.7\%$. Third, \name{MP19} discount predicted earnings by $6\%$ to capture the wage penalty incurred by workers who recently lost their jobs; we undo the discounting because the penalty does not seem to apply to the marginal product of labor \cp{DV11}. To conclude, to obtain a marginal product of labor, \name{BM15}'s earnings have to be adjusted by a factor between $1.03\times 1.077 = 1.11$ and $1.25 \times 1.077 = 1.35$, and \name{MP19}'s earnings by a factor between $1.03\times 1.077 \times 1.06 = 1.18$ and $1.25 \times 1.077 \times 1.06 = 1.43$. Accordingly, to obtain a value relative to the marginal product of labor, \name{BM15}'s estimates must be adjusted by a factor between $1/1.35 = 0.74$ and $1/1.11 = 0.90$, and \name{MP19}'s estimates must be adjusted by a factor between $1/1.43 = 0.70$ and $1/1.18 = 0.85$. 
+
+The second step only applies to \name{BM15}'s estimates, from which we subtract the value of public benefits. All servicemembers are eligible to unemployment insurance (UI). \ct[pp.~1585--1586]{CK16} find that UI benefits amount to $21.5\%$ of the marginal product of labor. But this quantity has to be reduced for several reasons: the UI takeup rate is only $65\%$; UI benefits and consumption are taxed, imposing a factor of $0.83$; the disutility from filing for benefits imposes a factor of $0.47$; and UI benefits expire, imposing another factor of $0.83$. In sum, the average value of UI benefits to servicemembers is $21.5 \times 0.65 \times 0.83 \times 0.47 \times 0.83 = 5\%$ of the marginal product of labor. Servicemembers are also eligible to other public benefits, which \name{CK16} quantify at $2\%$ of the marginal product of labor. Hence, to account for benefits, we subtract $5\%+2\% =7\%$ of the marginal product of labor from \name{BM15}'s estimates.
+
+Combining these two steps, we find that \name{MP19}'s estimates imply a social value of nonwork between $0.58 \times 0.70 = 0.41$ and $0.58 \times 0.85 = 0.49$; and that \name{BM15}'s estimates imply a social value of nonwork between $(0.13 \times 0.74)-0.07 = 0.03$ and $(0.35 \times 0.90)-0.07 = 0.25$. The range of plausible values for the social value of nonwork therefore is $0.03$--$0.49$; we set the statistic to its midrange value, $\z=0.26$.
+
+\paragraph{Fluctuations of the social value of nonwork}  In some models, the productivities of unemployed and employed workers do not move in tandem over the business cycle, which generates fluctuations in the social value of nonwork. However, \ct[pp.~1599--1604]{CK16} find no evidence of such fluctuations in US data. Instead, they establish that the utility derived by unemployed workers from recreation and home production moves proportionally to labor productivity---which implies that the social value of nonwork is acyclical. Accordingly, we keep the social value of nonwork constant over the business cycle. The social value of nonwork could also exhibit medium-run fluctuations, but we omit them by lack of evidence.
+
+\paragraph{Other possible contributors to the social value of nonwork} Measuring the social value of nonwork is complex. Here we rely on revealed-preference evidence to measure this statistic. This evidence captures the value of nonwork that transpires from  people's choices on the labor market. 
+
+While the revealed-preference approach is the gold standard to elicit how people value nonwork, it might miss other contributors to the social cost of unemployment that do not affect people's choices. For instance, it has often been postulated that higher local unemployment rates lead to higher crime rates (a negative social externality). If unemployment generates a substantial increase in crime, the social cost of unemployment should be increased accordingly.
+
+Many empirical studies have tried to measure the unemployment-crime relationship. The overall picture is murky: some studies find strong effects of unemployment on crime, but others do not. The surveys by \ct{C87} and \ct{Fr99} conclude that unemployment stimulates crime, but not overwhelmingly so. In a meta-analysis of 214 empirical studies, \ct{PC05} identify unemployment has one of the top macro-predictors of crime, but they warn that this result may not be robust because it is driven by a few studies finding very large effects. 
+
+If the unemployment-crime relationship was strong, the social cost of unemployment could be larger than that given by the revealed-preference approach. The current literature suggests that such relationship exists, but it may not be strong, so that our estimate of the social cost of unemployment may be a good first approximation.
+
+\subsection{Recruiting cost ($\k$)}
+
+Following \ct{V10}, we measure the recruiting cost from the National Employer Survey conducted by the \ct{NES}. The survey asked thousands of establishments in 1997 about their recruiting and training practices \cp{Cap01}. All the establishments have at least 20 employees and belong to manufacturing and non-manufacturing industries.
+
+In the survey's public-use files, $2007$ establishments reported the percentage of labor costs devoted to recruiting. The mean response was $3.2\%$. Assuming that all workers are paid the same, we infer that firms allocate on average $3.2\%$ of their labor to recruiting: $\k v = 3.2\% \times (1-u)$. In 1997, the average vacancy rate is $3.3\%$ and the average unemployment rate is $4.9\%$ (figure~\ref{f:beveridge}). So the recruiting cost in 1997 is $\k =  3.2\% \times (1-4.9\%) / 3.3\% = 0.92$.
+
+Unfortunately there is no other comprehensive measure of recruiting cost in the United States. However, in labor-market models, the recruiting cost is usually not assumed to be time-varying \eg{P00}. Following this tradition, we assume that the recruiting cost remains at its 1997 value over the entire 1951--2019 period. 
+
+This lack of data is not ideal to assess past unemployment gaps, but it could easily be remedied in the future. To measure the fluctuations of the recruiting cost, the Bureau of Labor Statistics would only need to add a new question into the Job Opening and Labor Turnover Survey---asking firms to report the number of man-hours devoted to recruiting in addition to the number of vacancies.
+
+\subsection{Unemployment gap}
+
+We now use our estimates of the Beveridge elasticity, recruiting cost, and social value of nonwork, as well as our unemployment and vacancy series, to measure the unemployment gap in the United States between 1951 and 2019.
+
+\begin{figure}[t!]
+\subcaptionbox{Efficient and actual tightness}{\includegraphics[scale=\sfig,page=19]{\pdf}}\hfill
+\subcaptionbox{Efficient and actual unemployment rate}{\includegraphics[scale=\sfig,page=20]{\pdf}}\vfig
+\subcaptionbox{Unemployment gap}{\includegraphics[scale=\sfig,page=21]{\pdf}}\hfill
+\subcaptionbox{Alternative unemployment measures}{\includegraphics[scale=\sfig,page=22]{\pdf}}
+\caption{Unemployment gap in the United States, 1951--2019}
+\note{Panel~A: The actual tightness is the vacancy rate from figure~\ref{f:beveridge} divided by the unemployment rate from figure~\ref{f:beveridge}; the efficient tightness is computed from \eqref{e:theta} with $\k=0.92$, $\z = 0.26$, and $\e$ from figure~\ref{f:epsilon}. Panel~B: The actual unemployment rate comes from figure~\ref{f:beveridge};  the efficient unemployment rate is computed from \eqref{e:u} with $\k=0.92$, $\z = 0.26$, $\e$ from figure~\ref{f:epsilon}, and the unemployment and vacancy rates from figure~\ref{f:beveridge}. Panel~C: The unemployment gap is the difference between the actual and efficient unemployment rates from panel~B. Panel~D: The efficient unemployment rate comes from panel~B; NAIRU and trend unemployment rates come from \ct[figure~8B]{CEG19}; the natural unemployment rate is constructed by the \ct{NROU}. The shaded areas are NBER-dated recessions.}
+\label{f:gap}\end{figure}
+
+\paragraph{Efficient tightness} We begin by computing the efficient tightness using formula \eqref{e:theta} (figure~\ref{f:gap}, panel~A). The efficient tightness fluctuates over time between $0.79$ and $0.96$, mirroring the movements of the Beveridge elasticity. Since actual and efficient tightness almost never coincide, the US labor market almost never operates efficiently. 
+
+Compared to its efficient level, actual tightness is almost always too low. During the period, the actual tightness averages $0.62$ while the efficient tightness averages $0.89$. There are only four episodes when tightness was inefficiently high: 1951--1953, during the Korean war; 1965--1970, at the peak of the Vietnam war; in 1999--2000, during the dot-com bubble; and in 2018--2019. Hence, the US labor market is inefficiently slack most of the time. 
+
+\paragraph{Efficient unemployment rate} Next we compute the efficient unemployment rate from formula \eqref{e:u} (figure~\ref{f:gap}, panel~B). The efficient unemployment rate averages $4.3\%$ between 1951 and 2019. It hovered around $3.5\%$ in the 1950s, rose to $4.5\%$ in the 1960s, and climbed to reach $5.4\%$ in 1979. The steady increase of the efficient unemployment rate between 1951 to 1979 was caused by a steady outward shift of the Beveridge curve (figure~\ref{f:regimes}). Then, the efficient unemployment rate declined to reach $4.6\%$ in 1990. The decline was caused by an inward shift of the Beveridge curve (figure~\ref{f:regimes}, panels~C--D). The efficient unemployment rate then remained stable through the 1990s, 2000s, and 2010s, hovering between $3.8\%$ and $4.6\%$. 
+
+Interestingly the efficient unemployment rate did not increase after the Great Recession---despite the outward shift of the Beveridge curve (figure~\ref{f:regimes}, panels~E--F). This is because the Beveridge curve also became flatter after 2009: it fell from $1.0$ to $0.84$ (figure~\ref{f:epsilon}). The flattening offset the outward shift, leaving the efficient unemployment rate almost unchanged.
+
+\paragraph{Unemployment gap} Measuring the distance between the actual and the efficient unemployment rate, we obtain the unemployment gap (figure~\ref{f:gap}, panel~C). 
+The US labor market is almost never efficient, as the unemployment gap is almost never equal to $0$.
+
+The US unemployment rate is generally inefficiently high: between 1951 and 2019, the unemployment gap averages $1.4$ percentage points. The unemployment gap is sharply countercyclical, which means that inefficiencies are exacerbated in slumps. The gap is close to zero at business-cycle peaks: sometimes negative (for instance, $-1.1$ points in 1969 and $-0.5$ point in 2019), and sometimes positive (for instance, $0.4$ point in 1979 and $0.3$ point in 2007). And the unemployment gap is highly positive at business-cycle troughs: for instance, $6.1$ points in 1982, $3.2$ points in 1992, and $6.2$ points in 2009. Unsurprisingly, the largest unemployment gaps occurred after the Volcker recession and Great Recession.
+
+\paragraph{Relaxing assumption~\ref{a:constant}} Although assumption~\ref{a:constant} is required to obtain precise values of the unemployment gap, it is possible to determine whether unemployment is inefficiently high or low without the assumption. Indeed, unemployment is inefficiently high whenever tightness is inefficiently low: $\t < (1-\z)/(\k\e)$. Conversely, unemployment is inefficiently low whenever tightness is inefficiently high: $\t > (1-\z)/(\k\e)$. But from \eqref{e:u}, we know that $\t < (1-\z)/(\k\e)$ whenever actual unemployment is above the efficiency line; and $\t > (1-\z)/(\k\e)$ whenever actual unemployment is below the efficiency line. Hence, even if assumption~\ref{a:constant} does not hold, the graph in panel~C of figure~\ref{f:gap} continues to be informative: it indicates whether unemployment is inefficiently high or low. In other words, without assumption~\ref{a:constant}, the size of the unemployment gap given by the graph may not be correct; but the sign of the unemployment gap remains valid.
+
+\paragraph{Comparisons with other unemployment gaps} To provide some context, we compare our efficient unemployment rate to three other unemployment measures that are commonly used to construct unemployment gaps: trend unemployment, NAIRU, and the natural rate of unemployment, which features prominently in policy discussions \cp{D09}. 
+
+These measures do not generally capture the efficient unemployment rate. In most models average unemployment is not efficient, so extracting the tend from the unemployment series does not provide a measure of efficient unemployment (\inp[chapter~8]{P00}; \inp{Hall05}). As for the NAIRU, obtained by estimating a Phillips curve, it was never meant to indicate labor-market efficiency \cp{R97}. The natural rate of unemployment blends trend and NAIRU considerations \cp[appendix~B]{Sh18}; therefore, it cannot be expected to measure labor-market efficiency.
+
+Our estimate of efficient unemployment is compared to the unemployment trend, the NAIRU, and the natural rate of unemployment in figure~\ref{f:gap}, panel~D. The unemployment trend and NAIRU are constructed by \ct[figure~8B]{CEG19} using state-of-the-art techniques. The natural rate of unemployment is constructed by the \ct{NROU}. The main similarity between the four measures is that they are slow-moving. As the actual unemployment rate is sharply countercyclical, the unemployment gap constructed with either measure will be countercyclical. Another similarity is that the four unemployment measures were higher in the 1970s and 1980s, and lower after that. The main difference is that our measure is lower than the three others. On average the efficient unemployment rate is $1.6$ percentage points below the natural rate of unemployment, $1.2$ points below the NAIRU, and $1.5$ points below trend unemployment. As a result, the unemployment gap constructed with the efficient unemployment rate will be higher than that constructed with the three other unemployment measures. However, the four measures converge in the 2010s, and as of 2019, they are close: between $4.0\%$ and $4.5\%$.
+
+\subsection{Alternative calibrations of the sufficient statistics}
+
+\begin{figure}[t!]
+\subcaptionbox{Beveridge elasticity: $\e$ in 95\% confidence interval}{\includegraphics[scale=\sfig,page=23]{\pdf}}\hfill
+\subcaptionbox{Social value of nonwork: $0.03 < \z < 0.49$}{\includegraphics[scale=\sfig,page=24]{\pdf}}\vfig
+\subcaptionbox{Recruiting cost: $0.61 <\k < 1.23$}{\includegraphics[scale=\sfig,page=25]{\pdf}}
+\caption{Efficient unemployment rate in the United States for a range of calibrations}
+\note{The panels reproduce panel~B of figure~\ref{f:gap}, and add the ranges of efficient unemployment rates obtained when the sufficient statistics span ranges of plausible values (pink areas). Panel~A: 95\% confidence interval of $\e$ obtained from figure~\ref{f:epsilon}; top pink line obtained with the top-range value of $\e$; bottom pink line obtained with the bottom-range value of $\e$. Panel~B: Top pink line obtained with $\z=0.49$; bottom pink line obtained with $\z=0.03$.  Panel~C: Top pink line obtained with $\k=1.23$; bottom pink line obtained with $\k=0.61$.}
+\label{f:range}\end{figure}
+
+We explore the sensitivity of the efficient unemployment rate and unemployment gap to alternative calibrations of the sufficient statistics. 
+
+\paragraph{Beveridge elasticity} We begin by reconstructing the efficient unemployment rate when the Beveridge elasticity takes any value in its 95\% confidence interval (figure~\ref{f:range}, panel~A). When the estimated elasticity is higher, the efficient unemployment rate is also higher. Hence, when the Beveridge elasticity is at the top end of its 95\% confidence interval, the efficient unemployment rate follows the same pattern as under the baseline calibration, but is on average $0.5$ percentage point higher (top pink line). And when the Beveridge elasticity is at the bottom end of its 95\% confidence interval, the efficient unemployment rate follows the same pattern as under the baseline calibration, but is on average $0.6$ point lower (bottom pink line). For any Beveridge elasticity inside the confidence interval, the efficient unemployment rate is somewhere between these two extremes (pink band).
+
+To summarize, when the estimated elasticity $\e$ spans its 95\% confidence interval, the efficient unemployment rate remains contained in a band whose width averages $1.1$ percentage points, and is always below $2.2$ points. Furthermore, since vacancy data from the Job Opening and Labor Turnover Survey have become available (2001), estimates of the Beveridge elasticity have become more precise. As a result, since 2001, the band of possible efficient unemployment rates has narrowed to a width of $0.7$ point.
+
+\paragraph{Social value of nonwork} Next we reconstruct the efficient unemployment rate when the social value of nonwork spans the range of values given by \ct{BM15} and \ct{MP19} (figure~\ref{f:range}, panel~B). First, we consider an estimate at the low end of the range: $\z=0.03$. Under this calibration, the efficient unemployment rate follows the same pattern as under the baseline calibration but is on average $0.6$ percentage point lower (bottom pink line). Next, we consider an estimate at the high end of the range: $\z=0.49$, which is also consistent with estimates used in macro-labor literature \cp[equation~(30)]{CK16}. The efficient unemployment rate follows again the same pattern as under the baseline calibration, but it is on average $0.9$ point higher (top pink line).
+
+Hence, around our baseline calibration of $\z=0.26$, the efficient unemployment rate is fairly insensitive to the precise value of $\z$. For any $\z$ in the $0.03$--$0.49$ range, the efficient unemployment rate remains contained in a band that is never wider than $1.9$ percentage points (pink band). This is reassuring as the range of plausible values for $\z$ is quite broad.
+
+\paragraph{Recruiting cost} We do not have enough evidence to construct an interval of empirically plausible values for the recruiting cost. Instead we construct an artificial interval, and examine the sensitivity of the efficient unemployment rate to alternative values of the recruiting cost. We consider recruiting costs between two thirds and four thirds of our estimate, so between $2/3\times 0.92 = 0.61$ and $4/3\times 0.92 = 1.23$. When the low-end recruiting cost ($\k=0.61$), the efficient unemployment rate follows the same pattern as under the baseline calibration but is on average $0.8$ percentage point lower (bottom pink line). In contrast, with the high-end recruiting cost ($\k=1.23$), the efficient unemployment rate follows the same pattern as under the baseline calibration but is on average $0.7$ point higher (top pink line).
+
+\paragraph{Conclusion} For any plausible estimate of the sufficient statistics, the unemployment gap never departs from the baseline by more than 1 percentage point. This means that our substantive findings---that the US labor market is almost always inefficient, generally inefficient slack, and especially inefficiently slack in slumps---are robust to alternative calibrations.
+
+\paragraph{Aside on some macro-labor calibrations of the social value of nonwork} Our baseline calibration implies that the social value of nonwork is much lower than labor productivity; in contrast, some macro-labor papers argue that the two are very close. A well-known calibration, due to \ct{HagM08}, is $\z= 0.96$. Such a calibration has a drastic impact: it pushes the efficient unemployment rate above $14\%$, and sometimes as high as $26\%$, with an average value of $20.2\%$ (figure~\ref{f:hm}). Under this calibration, unemployment is always inefficiently low---even at the peak of the Great Recession. This result seems implausible, suggesting that such calibration understates the social cost of unemployment.
+
+\begin{figure}[t]
+\includegraphics[scale=\sfig,page=26]{\pdf}
+\caption{US unemployment gap when the social value of nonwork is $\z=0.96$}
+\note{The figure reproduces panel~B of figure~\ref{f:gap} using $\z=0.96$ instead of $\z = 0.26$, as in \ct{HagM08}.}
+\label{f:hm}\end{figure}
+
+\subsection{Inverse-optimum sufficient statistics}
+
+To provide further perspective, we compute the values of the sufficient statistics that arise under the assumption that US unemployment is efficient at all time. Such inverse-optimum sufficient statistics are commonly computed in public economics to understand the conditions under which current policy would be optimal \eg{H20}. Here, the distance between the inverse-optimum values of the statistics and their calibrated values is another measure of the distance between current labor market conditions and efficiency.
+
+\paragraph{Beveridge elasticity} We start with the inverse-optimum Beveridge elasticity. Proposition~\ref{p:theta} shows that the value of the Beveridge elasticity under which actual tightness $\t$ is efficient, given the other sufficient statistics, is
+\begin{equation}
+\e^* = \frac{1-\z}{\k\t}.
+\label{e:epsilon}\end{equation}
+To support labor market efficiency, the Beveridge elasticity would have to be strongly countercyclical, varying between $0.5$ in booms and $5.0$ during the Great Recession (figure~\ref{f:inverseoptimum}, panel~A). Furthermore, the Beveridge elasticity would need to be much higher than estimated, with an average value of $1.6$ instead of $0.9$. In sum, the inverse-optimum Beveridge elasticity is generally far above the $95\%$ confidence interval for the estimated Beveridge elasticity.
+
+\begin{figure}[t!]
+\subcaptionbox{Beveridge elasticity}{\includegraphics[scale=\sfig,page=27]{\pdf}}\hfill
+\subcaptionbox{Social value of nonwork}{\includegraphics[scale=\sfig,page=28]{\pdf}}\vfig
+\subcaptionbox{Recruiting cost}{\includegraphics[scale=\sfig,page=29]{\pdf}}
+\caption{Inverse-optimum sufficient statistics}
+\note{Panel~A: Inverse-optimum elasticity obtained from \eqref{e:epsilon}; calibrated elasticity obtained from figure~\ref{f:epsilon}. Panel~B: Inverse-optimum value of nonwork obtained from \eqref{e:zeta}; calibrated value of nonwork is $\z = 0.26$. Panel~C: Inverse-optimum recruiting cost obtained from \eqref{e:kappa}; calibrated recruiting cost is $\k = 0.92$. The shaded areas are NBER-dated recessions.}
+\label{f:inverseoptimum}\end{figure}
+
+\paragraph{Social value of nonwork} Next, we consider the inverse-optimum social value of nonwork. Proposition~\ref{p:theta} indicates that the social value of nonwork under which actual tightness is efficient is
+\begin{equation}
+\z^* = 1-\k\e\t.
+\label{e:zeta}\end{equation}
+To sustain efficiency, the social value of nonwork would need to be immensely countercyclical, as low as $-0.32$ in booms and as high as $0.88$ during the Great Recession, with an average value of $0.48$ (figure~\ref{f:inverseoptimum}, panel~B). Under the inverse-optimum social value of nonwork, recessions would merely be vacations.
+
+\paragraph{Recruiting cost} Last, we turn to the inverse-optimum recruiting cost. Again, from proposition~\ref{p:theta}, the value of the recruiting cost under which actual tightness is efficient is
+\begin{equation}
+\k^* = \frac{1-\z}{\e\t}.
+\label{e:kappa}\end{equation}
+To support labor market efficiency, the recruiting cost would have to be strongly countercyclical, varying between $0.5$ in booms and $5.5$ during the Great Recession, with an average value of $1.7$ (figure~\ref{f:inverseoptimum}, panel~C). Since the inverse-optimum recruiting cost is ten times higher in slumps than in booms, unemployment is continuously efficient only if recruiting demands ten times more labor in bad times than in good times, which seems implausible. 
+
+\section{Application to the DMP model}\label{s:dmp}
+
+The DMP model is the most widely used of all Beveridgean models of the labor market. Here we show how our sufficient-statistic formula for efficiency can be applied to the canonical DMP model presented in \ct[chapter~1]{P00}. We also compare the allocation given by our formula to that given by the well-known \ct{H90} condition. 
+
+\subsection{Beveridge curve}
+
+\paragraph{Matching function} Following common practice, we assume a Cobb-Douglas matching function
+\begin{equation}
+m(u,v)=\o u^{\h}v^{1-\h},
+\label{e:cobbdouglas}\end{equation}
+where $\o>0$ is the matching efficacy and $\h\in(0,1)$ is the matching elasticity.
+
+\paragraph{Dynamics of the unemployment rate} The unemployment rate evolves according to the following differential equation:
+\begin{equation}
+\dot{u}(t) = \l [1-u(t)] - m(u(t),v(t)),
+\label{e:udot}\end{equation}
+where $\l$ is the job-separation rate. The term $\l [1-u(t)]$ gives the number of workers who lose or quit their jobs and enter unemployment during a unit time. The term $m(u(t),v(t))$ gives the number of unemployed workers who find a job during a unit time. The difference between the inflows into unemployment and outflows from unemployment gives the change in the unemployment rate, $\dot{u}$.
+
+The differential equation \eqref{e:udot} can expressed as a simple first-order homogeneous linear differential equation:
+\begin{equation}
+\dot{u}(t) + (\l+f) [u(t)- u^b] = 0,
+\label{e:de}\end{equation}
+where $f = m(u,v)/u = \o \t^{1-\h}$ is the job-finding rate, and 
+\begin{equation}
+u^b = \frac{\l}{\l+f}
+\label{e:ubar}\end{equation}
+is the Beveridgean unemployment rate---the unique unemployment rate at which inflows into unemployment equal outflows from unemployment, for given job-finding and job-separation rates. The Beveridgean unemployment rate is the critical point of differential equation~\eqref{e:de}.
+
+We solve this differential equation by treating $\l$ and $f$ as parameters. The solution is
+\begin{equation}
+u(t) - u^b = [u(0) - u^b] e^{-(\l+f)t}.
+\label{e:ut}\end{equation}
+
+\paragraph{Half-life of the deviation from Beveridgean unemployment} Equation \eqref{e:ut} shows that the distance between the unemployment rate $u(t)$ and the Beveridgean unemployment rate $u^b$ decays at an exponential rate. In the United States, labor-market flows are large, so the rate of decay $\l+f$ is really fast. On average between 1951 and 2019, the job-separation rate is $\l = 3.4\%$ per month, and the job-finding rate is $f = 58.7 \%$ per month (appendix~\ref{a:dmp}. Hence, the rate of decay is $\l+f = 62.1 \%$ per month, and the half-life of the deviation from the Beveridgean unemployment rate, $u(t)-u^b$, is $\ln(2)/0.621 = 1.1$ month. Since about $50\%$ of the deviation evaporates within one single month---and about $90\%$ within one quarter---the unemployment rate is always close the Beveridgean unemployment rate, as previously noted by \ct[p.~88]{EMS09}.
+
+In practice, the unemployment rate is almost indistinguishable from the Beveridgean unemployment rate (see figure~\ref{f:accuracy}; see also \inp[figure~1]{Ha05}). The correlation between the two series is $0.982$. While the maximum absolute distance between the two series is $1.5$ percentage points, the average absolute distance is only $0.2$ point, and the average distance is $0.01$ point. 
+
+\begin{figure}[t!]
+\includegraphics[scale=\sfig,page=30]{\pdf}
+\caption{Accuracy of the Beveridgean model}
+\note{The actual unemployment rate comes from figure~\ref{f:beveridge}. The Beveridgean unemployment rate is constructed from \eqref{e:ubar}, using the job-separation and job-finding rates from figure~\ref{f:cps}. The shaded areas are NBER-dated recessions.}
+\label{f:accuracy}\end{figure}
+
+\paragraph{Beveridge curve} Given such short half-life, it is accurate to assume that inflows into unemployment equal outflows from unemployment at all times: $\l (1-u) = m(u,v)$. Then the labor market is always on the Beveridge curve
+\begin{equation}
+v(u) = \bp{\frac{\l}{\o}\cdot\frac{1-u}{u^{\h}}}^{1/(1-\h)}.
+\label{e:v}\end{equation}
+The function $v(u)$ satisfies assumption~\ref{a:v}; in particular, it is strictly convex (appendix~\ref{a:proofs}).
+
+\paragraph{Beveridge elasticity} From the Beveridge curve \eqref{e:v}, we obtain the Beveridge elasticity:
+\begin{equation}
+\e = \frac{1}{1-\h}\bp{\h+\frac{u}{1-u}}.
+\label{e:edmp}\end{equation}
+The Beveridge elasticity is closely related to the matching elasticity, $\h$.
+
+As the unemployment rate $u$ is an order of magnitude smaller than the matching elasticity $\h$, the term $u/(1-u)$ is an order of magnitude smaller than the term $\h$. To a first-order approximation, the Beveridge elasticity is therefore given by
+\begin{equation}
+\e \approx \frac{\h}{1-\h}.
+\label{e:eapprox}\end{equation}
+Hence, the Beveridge elasticity is approximately constant, in line with what assumption~\ref{a:constant} postulates.  
+
+\subsection{Social welfare}
+
+\paragraph{Welfare function} The labor force is composed of $L$ workers. Employed workers have a productivity $p>0$. Unemployed workers have a productivity $p\cdot z <p$, where $z < 1$ is the relative productivity of unemployed workers.\footnote{\ct{P00} initially specifies the productivity of unemployed workers as constant---independent of the productivity of employed workers (p.~13). But he also considers the specification that we use here (p.~74), and other specifications in which the productivity of unemployed workers is proportional to that of employed workers (p.~21 and p.~72). We opt to model the productivity of unemployed workers as proportional to that of employed workers to be consistent with the evidence presented by \ct{CK16}.} Firms incur a resource cost $p\cdot c$ for each vacancy that they post. Finally, workers' utility function is linear, so the welfare function is
+\begin{equation}
+\Wc(n,u,v) = p \bp{n  + z u - c v} L.
+\label{e:w}\end{equation}
+The welfare function satisfies assumption~\ref{a:w}. In particular, because it is linear, the welfare function is quasiconcave.
+
+\paragraph{Social value of nonwork and recruiting cost} From the social welfare function \eqref{e:w}, the social value of nonwork $\z$ and recruiting cost $\k$ take a simple form:
+\begin{equation}
+\z = z \quad\text{and}\quad \k = c.
+\label{e:zkdmp}\end{equation}
+
+\subsection{Efficiency condition}
+
+We now combine the values of the sufficient statistics with the efficiency condition \eqref{e:theta} to determine the efficient tightness in the DMP model. 
+
+\paragraph{Simplified formula} Using \eqref{e:theta} with the approximate expression of the Beveridge elasticity given by \eqref{e:eapprox}, we obtain a simple expression for the efficient tightness:
+\begin{equation}
+\t^* =  \frac{1-\h}{\h} \cdot \frac{1-z}{c}.
+\label{e:thetadmpapprox}\end{equation}
+The efficient tightness depends only on the shape of the matching function, $\h$, the recruiting cost, $c$, and the relative difference in productivity between employed and unemployment workers, $1-z$.
+
+\paragraph{Exact formula} We can also use \eqref{e:theta} with the exact expression of the Beveridge elasticity, given by \eqref{e:edmp}, to obtain a more accurate formula for the efficient  tightness:
+\begin{equation*}
+\t =  \frac{1-\h}{\h+u/(1-u)}\cdot \frac{1-z}{c}.
+\end{equation*}
+On the Beveridge curve, labor flows are balanced, so $\l (1-u) = f(\t) u $, where $f(\t) = \o \t^{1-\h}$ is the job-finding rate. This means that $u/(1-u) =\l/f(\t)$. Accordingly, the efficient tightness is implicitly defined by
+\begin{equation}
+\h\t^* + \frac{\l}{q(\t^*)} = (1-\h) \frac{1-z}{c},
+\label{e:thetadmpexact}\end{equation}
+where $q(\t) = \o \t^{-\h}$ is the vacancy-filling rate.\footnote{The left-hand side of \eqref{e:thetadmpexact} is continuous and strictly increasing from $0$ to $\infty$ when $\t^*$ goes from $0$ to $\infty$. Since the right-hand side is a positive number, there exists a unique $\t^*$ that satisfies \eqref{e:thetadmpexact}.}
+
+\subsection{Relation to the Hosios condition}
+
+In the DMP model, workers negotiate their wages with firms via Nash bargaining. And when workers' bargaining power $\b$ equals the matching elasticity $\h$, the labor market is guaranteed to operate efficiently; that is, when $\b=\h$, the decentralized solution coincides with the planning solution \cp{H90}.\footnote{\name{H90} proves the result by assuming that the discount rate is zero and therefore that the social planner maximizes steady-state welfare \cp[p.~281]{H90}. But the result continues to hold when the discount rate is positive and the social planner maximizes the present-discounted sum of flow social welfare \cp[chapter~8.1]{P00}.}
+
+We now examine how the tightness $\t^*$ given by the efficiency condition \eqref{e:thetadmpexact} relates to the tightness $\t^h$ arising from the Hosios condition. These two tightnesses may differ because they solve different planning problems. In our planning problem the Beveridge curve holds at all times, whereas in the \name{H90} planning problem the unemployment rate follows differential equation \eqref{e:udot}.
+
+\paragraph{Tightness under the Hosios condition} In the DMP model, tightness is given by the job-creation curve
+\begin{equation}
+(1-\b)(1-z) - \bs{\frac{r+\l}{q(\t)} + \b\t} c = 0,
+\label{e:jobcreation}\end{equation}
+where $r$ is the discount rate, and $\b$ is workers' bargaining power \cp[equation~(1.24)]{P00}. This expression holds even if the labor market is temporarily away from the Beveridge curve \cp[chapter~1.7]{P00}. It is obtained by combining the wage equation, which describes the wages obtained by Nash bargaining, and the free-entry condition, which says that vacancies are created until all profit opportunities are exploited.
+
+When the Hosios condition holds, $\b=\h$, so the tightness satisfies
+\begin{equation}
+\h\t^h + \frac{r+\l}{q(\t^h)} = (1-\h)\frac{1-z}{c}.
+\label{e:thetahosios}\end{equation}
+
+\paragraph{Comparison with our efficiency condition} Comparing \eqref{e:thetahosios} with \eqref{e:thetadmpexact}, we find our efficiency condition is very accurate in the DMP model---even though it abstracts from unemployment dynamics:
+
+\begin{proposition}\label{p:hosios} In the DMP model with zero discount rate, the tightness given by the efficiency condition \eqref{e:theta} ($\t^*$) is exactly the same as the tightness given by the Hosios condition ($\t^h$). In the DMP model with positive discount rate, the two tightnesses are not exactly the same, but the difference is minor as long as the discount rate ($r$) is small. To a first-order approximation,
+\begin{equation*}
+\frac{\t^*-\t^h}{\t^*} = \frac{r}{\h (\l+f)}. 
+\end{equation*}
+Under the calibration in \ct[table~2]{S05}, the relative deviation between the two tightnesses is commensurate to the quarterly discount rate $r$:
+\begin{equation*}
+\frac{\t^*-\t^h}{\t^*} = 0.96\times r = 1.1\%. 
+\end{equation*}\end{proposition}
+
+The proof of the proposition is relegated to the appendix~\ref{a:proofs}, but the intuition is simple. When the discount rate is zero, equations \eqref{e:thetadmpexact} and \eqref{e:thetahosios} are the same, so they give the same tightness. When the discount rate is positive, the two tightnesses are not exactly the same, but the difference is small in practice. 
+
+\subsection{Illustration of the results in a Beveridge diagram}
+
+We now illustrate the efficiency properties of the DMP model in a Beveridge diagram (figure~\ref{f:dmp}). 
+
+\paragraph{Efficiency} We combine our representation of labor-market efficiency with the standard representation of the DMP model's solution. We first plot the Beveridge curve in the DMP model, given by \eqref{e:v}. To find the efficient labor-market allocation, we add an isowelfare curve. Because the welfare function is given by \eqref{e:w}, the isowelfare curve is linear with slope $-(1-z)/c$. The efficient allocation is the point on the Beveridge curve that is tangent to the isowelfare curve.
+
+The solution of the DMP model is given by the intersection of the Beveridge curve and job-creation curve, which is given by \eqref{e:jobcreation}. Since the job-creation curve determines a tightness $\t$, independent of unemployment or vacancies, it is represented by a ray through the origin, whose slope is $\t$. 
+
+When the labor market operates efficiently, the job-creation curve runs through the efficiency point on the Beveridge curve (panel~A). Such job-creation curve appears when the Hosios condition holds, so workers' bargaining power satisfies $\b = \h$.\footnote{Our efficiency condition only exactly overlaps with the Hosios condition when the discount rate is zero; when the discount rate is positive, the conditions differ but the difference is minuscule.}
+
+\paragraph{Unemployment gaps} When the Hosios condition does not hold, the labor market is inefficient. For instance, if workers' bargaining power is too high ($\b > \h$), the job-creation curve is too low: unemployment is too high, vacancies are too low, and the unemployment gap is positive (panel~B). Conversely, if workers' bargaining power is too low ($\b < \h$), the job-creation curve is too high: unemployment is too low, vacancies are too high, and the unemployment gap is negative (panel~C).
+
+\paragraph{Business cycles under bargaining-power shocks}  Section~\ref{s:usa} shows that in US business cycles, the efficient unemployment rate remains stable, while the actual unemployment rate is sharply countercyclical, which generates countercyclical fluctuations in the unemployment gap. Such patterns are easily generated in the DMP model with shocks to workers' bargaining power (\inp[table~6]{S05} ; \inp{JK15}). Under such shocks, the job-creation curve rotates up and down, while the Beveridge and isowelfare curves are fixed. Accordingly, unemployment and vacancies travel up and down the Beveridge curve, while the efficient allocation remains constant.
+
+\paragraph{Business cycles under labor-productivity shocks} Another way to generate the patterns observed during US business cycles is to replace bargained wages by a fixed wage and to introduce shocks to labor productivity \cp{H05}. In such model, tightness is given by the job-creation curve
+\begin{equation}
+1 - \frac{w}{p} - \frac{(r+\l)c}{q(\t)} = 0,
+\label{e:jobcreationhall}\end{equation}
+where $w>0$ is the fixed wage. This expression is obtained by inserting a fixed wage into the DMP model's free-entry condition \cp[equation~(1.22)]{P00}. The fixed-wage model's solution is given by this job-creation curve and the Beveridge curve \eqref{e:v}. 
+
+When labor productivity is low, the unit labor cost $w/p$ is high, so the tightness given by the job-creation curve \eqref{e:jobcreationhall} is low (as in figure~\ref{f:dmp}, panel~B). Conversely, when productivity is high, the unit labor cost $w/p$ is low, so the tightness given by \eqref{e:jobcreationhall} is high (as in figure~\ref{f:dmp}, panel~C). At the same time, the Beveridge and isowelfare curves are unaffected by productivity. Thus, productivity shocks will generate the same fluctuations in the fixed-wage model as bargaining-power shocks in the DMP model.
+
+\begin{figure}[t!]
+\subcaptionbox{Efficient unemployment rate}{\includegraphics[scale=\sfig,page=31]{\pdf}}\hfill
+\subcaptionbox{Positive unemployment gap}{\includegraphics[scale=\sfig,page=32]{\pdf}}\vfig
+\subcaptionbox{Negative unemployment gap}{\includegraphics[scale=\sfig,page=33]{\pdf}}
+\caption{Efficient unemployment rate and unemployment gaps in the DMP model}
+\note{The Beveridge curve is given by \eqref{e:v}. The isowelfare curve has slope $-(1-z)/c$, where $z$ is the relative productivity of unemployment workers, and $c$ is the recruiting cost. The job-creation curve is given by \eqref{e:jobcreation}. 
+The tangency of the Beveridge and isowelfare curve gives the efficient labor-market allocation. The intersection of the Beveridge and job-creation curves gives the DMP model's solution. The slope of the job-creation curve is determined by workers' bargaining power $\b$ and the matching elasticity $\h$. Job creation is efficient when $\b = \h$ (Hosios condition, panel~A); job creation is inefficiently low when $\b > \h$ (panel~B); and job creation is inefficiently high when $\b < \h$ (panel~C).}
+\label{f:dmp}\end{figure}
+
+\subsection{Robustness and accuracy of the sufficient-statistic formula}
+
+Using the structure provided by the DMP model, we numerically assess the robustness and accuracy of the sufficient-statistic formula \eqref{e:u}. We calibrate the DMP model to US data, 1951--2019, and compare the efficient unemployment rate given by \eqref{e:u} to various alternatives. These computations confirm that despite its apparent simplicity, formula \eqref{e:u} provides a robust and accurate measure of the efficient unemployment rate, and of the unemployment gap.
+
+\paragraph{Baseline sufficient-statistic formula} We start by computing the efficient unemployment rate given by our sufficient-statistic formula in the context of the DMP model. 
+
+First, we translate the sufficient statistics in formula \eqref{e:theta} in terms of parameters of the DMP model. We obtain formula \eqref{e:thetadmpapprox}.
+
+Second, we calibrate the parameters to match the evidence presented in section~\ref{s:usa}. The parameters are related to the sufficient statistics by \eqref{e:eapprox} and \eqref{e:zkdmp}. We therefore set $\h = \e/(1+\e)$, with $\e$ given by figure~\ref{f:epsilon}; $z = \z = 0.26$; and $c = \k = 0.92$. We obtain the efficient tightness from formula \eqref{e:thetadmpapprox} and these parameter values.
+
+Third, we compute the efficient unemployment rate $u^*$ from the efficient tightness $\t^*$ and formula \eqref{e:link}, which can be written 
+\begin{equation}
+u^* = \bp{\frac{\t}{\t^*}}^{1-\h} u.
+\label{e:linkdmp}\end{equation}
+This efficient unemployment rate gives the baseline plotted in all four panels of figure~\ref{f:robust}.
+
+\paragraph{Nonneutral productivity fluctuations} When we apply our sufficient-statistic formula to the United States, we calibrate the social value of nonwork and recruiting cost to be constant (section~\ref{s:usa}). These two sufficient statistics are also constant in the DMP model when unemployed workers' productivity and vacancy cost are proportional to labor productivity $p$ (equation \eqref{e:zkdmp}). While such proportionality necessarily holds in the long run, it is sometimes assumed to fail in the short run \eg{S05}. In that case, the sufficient statistics and efficient unemployment rate respond to short-run productivity fluctuations. We quantify this response here.
+
+To introduce productivity fluctuations that are nonneutral in the short run but neutral in the long run, we assume that unemployed workers' productivity and the vacancy cost are proportional to the trend of labor productivity, $\bar{p}$, instead of actual labor productivity. Under this alternative specification, the welfare function becomes 
+\begin{equation}
+\Wc(n,u,v) = \bp{p n + \bar{p} z u - \bar{p} c v} L,
+\end{equation}
+so the social value of nonwork and recruiting cost become
+\begin{equation}
+\z = \frac{z}{\hat{p}} \quad\text{and}\quad \k = \frac{c}{\hat{p}},
+\end{equation}
+where $\hat{p} = p/\bar{p}$ is detrended labor productivity. Formula \eqref{e:thetadmpapprox} therefore becomes
+\begin{equation}
+\t^* =  \frac{1-\h}{\h} \cdot \frac{\hat{p}-z}{c}.
+\label{e:thetadmpapproxp}\end{equation}
+
+Next we measure labor productivity $p$ from the real output per worker constructed by the \ct{PRS85006163}, and we compute the trend of productivity $\bar{p}$ using a HP filter (figure~\ref{f:p}, panel~A). We then construct detrended labor productivity $\hat{p} = p / \bar{p}$ (figure~\ref{f:p}, panel~B).
+
+Finally, we assess the impact of nonneutral productivity fluctuations on the efficient unemployment rate. Using \eqref{e:thetadmpapproxp}, the same parameter values as for the baseline, and the series for detrended productivity in figure~\ref{f:p}, we compute a new series for efficient tightness. We then translate it into an efficient unemployment rate using \eqref{e:linkdmp}. We obtain the series in panel~A of figure~\ref{f:robust}.
+
+The efficient unemployment rates with and without nonneutral productivity fluctuations are indistinguishable. The correlation between the two series is $0.997$; the maximum absolute distance between the two series is $0.13$ percentage point. Hence, introducing nonneutral productivity fluctuations has virtually no effect on the efficient unemployment rate. This is not very surprising: \ct{S05} shows that the efficient tightness and unemployment rate barely respond to productivity shocks.
+
+\begin{figure}[t!]
+\subcaptionbox{Nonneutral productivity fluctuations}{\includegraphics[scale=\sfig,page=34]{\pdf}}\hfill
+\subcaptionbox{Endogenous Beveridge elasticity}{\includegraphics[scale=\sfig,page=35]{\pdf}}\vfig
+\subcaptionbox{Unemployment dynamics}{\includegraphics[scale=\sfig,page=36]{\pdf}}\hfill
+\caption{Alternative estimates of the efficient unemployment rate}
+\note{The baseline efficient unemployment rate comes from figure~\ref{f:gap}, panel~B. Panel~A: The alternative efficient unemployment rate incorporates nonneutral fluctuations in labor productivity; it is constructed by combining \eqref{e:thetadmpapproxp} and \eqref{e:linkdmp}. Panel~B: The alternative efficient unemployment rate accounts for the endogeneity of the Beveridge elasticity in the DMP model; it is constructed by solving \eqref{e:thetadmpexact2} and then using \eqref{e:ub2}. Panel~C: The alternative efficient unemployment rate accounts for the dynamics of unemployment in the DMP model; it is constructed by solving \eqref{e:thetahosios2} and then using \eqref{e:ut2}. The shaded areas are NBER-dated recessions.}
+\label{f:robust}\end{figure}
+
+\paragraph{Endogenous sufficient statistics} When we derive formula \eqref{e:u}, we assume that the sufficient statistics do not depend on the unemployment and vacancy rates (assumption~\ref{a:constant}). Yet in the DMP model, the Beveridge elasticity depends on the unemployment rate (equation~\eqref{e:edmp}). We now recompute the efficient unemployment rate, accounting for the endogeneity of the elasticity.
+
+We start from formula \eqref{e:theta}, which is valid even if the sufficient statistics are endogenous. Using \eqref{e:eta}, we express the formula in terms of parameters of the DMP model.  We obtain formula \eqref{e:thetadmpexact}, which can be rewritten as
+\begin{equation}
+\h\t^* + \frac{\l}{\o} (\t^*)^{\h} = (1-\h) \frac{1-z}{c},
+\label{e:thetadmpexact2}\end{equation}
+
+Second, we calibrate the parameters in \eqref{e:thetadmpexact2}. As in the baseline calculation, we set $z = 0.26$ and $c = 0.92$. We calibrate the matching elasticity $\h$ to a different value on each interval during which the Beveridge curve is stable (figure~\ref{f:regimes}). On each interval, we use formula \eqref{e:eta}, the value of the Beveridge elasticity on that interval (figure~\ref{f:epsilon}), and the average unemployment rate on that interval (figure~\ref{f:alpha}, panel~A). The resulting matching elasticity is plotted in panel~B of figure~\ref{f:alpha}. Finally, we calibrate the ratio $\l/\o$. On the Beveridge curve, the ratio, unemployment rate, and tightness are related by \eqref{e:ubar}, which implies $\l/\o = \t^{1-\h} u/(1-u)$. We construct a series for $\l/\o$ from this relation.
+
+Third, we compute the efficient tightness from formula \eqref{e:thetadmpexact2} and the parameter values. 
+
+Fourth, we compute the efficient unemployment rate $u^*$ from the efficient tightness $\t^*$ and formula \eqref{e:ubar}, which can be written 
+\begin{equation}
+u^* = \frac{(\l/\o)}{(\l/\o)+(\t^*)^{1-\h}}.
+\label{e:ub2}\end{equation}
+(Here we cannot use \eqref{e:linkdmp} because we are not assuming that the Beveridge curve is isoelastic.) The resulting efficient unemployment rate is plotted in panel~B of figure~\ref{f:robust}.
+
+This efficient unemployment rate and the baseline are extremely close to each other. The correlation between the two series is $0.995$; the maximum absolute distance between the two series is $0.18$ percentage point. Hence, accounting for the endogeneity of the Beveridge elasticity that appears in the DMP model has almost no effect on the efficient unemployment rate.
+
+\paragraph{Unemployment dynamics} We derive formula \eqref{e:u} under the assumption that the Beveridge curve holds at all times (assumption~\ref{a:v}). In contrast in the DMP model, unemployment dynamics are given by differential equation \eqref{e:udot}. When unemployment dynamics are accounted for, the efficient tightness satisfies \eqref{e:thetahosios}, which arises from the Hosios condition. We now examine how unemployment dynamics affect the efficient unemployment rate. 
+
+First, we rewrite \eqref{e:thetahosios} as
+\begin{equation}
+\h\t^h + \frac{\l + r}{\o} (\t^h)^{\h} = (1-\h) \frac{1-z}{c},
+\label{e:thetahosios2}\end{equation}
+
+Second, we calibrate the parameters in \eqref{e:thetahosios2} exactly the parameters in \eqref{e:thetadmpexact2}, with the exception of $\l$ and $\o$. Indeed, since we do not assume that unemployment is always the Beveridge curve, we cannot use that curve to measure $\l$ and $\o$. Instead, we use the method proposed by \ct{S12} to compute $\l$ and $\o$ (appendix~\ref{a:dmp}). The resulting parameter values are plotted in figure~\ref{f:cps}. We also set $r = 0.012$, which corresponds to an annual discount rate of $5\%$, as in \ct[table~2]{S05}.
+
+Third, we compute the Hosios tightness $\t^h$ from \eqref{e:thetahosios2} and the parameter values.
+
+Fourth, we compute the Hosios unemployment rate $u^h$ from the Hosios tightness $\t^h$ and the solution to differential equation \eqref{e:udot}, which is given by \eqref{e:ut}. We initialize $u^h(1)= u(1)$; we then construct the unemployment rate recursively, by iterating
+\begin{equation}
+u^h(t+1) = u^b(\t^h(t)) + [u^h(t) - u^b(\t^h(t))] e^{-[\l+f(\t^h(t))]},
+\label{e:ut2}\end{equation}
+where $f(\t^h(t)) = \o (\t^h(t))^{1-\h}$ and $u^b(\t^h(t)) =\l/[\l + f(\t^h(t))]$. (We cannot use \eqref{e:linkdmp} or \eqref{e:ub2} because we are not assuming that unemployment is on the Beveridge curve.) The resulting Hosios unemployment rate is plotted in panel~C of figure~\ref{f:robust}.
+
+The Hosios unemployment rate is close to the baseline efficient unemployment rate, although not as close as the previous series. The correlation between these two series is $0.887$. And while the maximum absolute distance between the two series is $0.92$  percentage point, the average absolute distance is only $0.19$ point, and the average distance is only $0.05$ point. 
+
+Actually the source of the distance between the two series is not the tightnesses, but the formulas used to convert tightness into unemployment, \eqref{e:linkdmp} and \eqref{e:ut2}. In particular, the fluctuations in the parameters $\l$ and $\o$ (see figure~\ref{f:cps}) introduce additional volatility in the Hosios unemployment rate, especially at the onset of recessions.
+
+\section{Summary and Implications}
+
+To conclude, we summarize the results of the paper and discuss some of their implications.
+
+\subsection{Summary}
+
+This paper develops a new method to measure the unemployment gap---the difference between the actual and the socially efficient unemployment rate. We consider a labor-market model with only one structural element: a Beveridge curve relating unemployment and vacancies. This Beveridgean framework covers many modern labor-market models, including the DMP model. We show that the unemployment gap can be measured from current unemployment and vacancy rates, and three sufficient statistics: the elasticity of the Beveridge curve, cost of recruiting, and social cost of unemployment. 
+
+We apply our unemployment-gap formula to the United States, 1951--2019. We find that the US unemployment gap is countercyclical: the gap is close to zero in booms but is highly positive in slumps. We infer that the US unemployment rate is generally inefficiently high, and such inefficiency worsens in slumps. 
+
+\subsection{Implications for labor-market models}
+
+Our Beveridgean model of the labor market is quite general, so it allows for a broad range of assumptions. But the evidence presented in the paper is not consistent with all of them. In particular, given that the unemployment rate is almost always inefficient, and sometimes sharply so, it might not be accurate to model the labor market as always efficient.
+
+\paragraph{Nash bargaining with Hosios condition} In the DMP model, it is customary to set workers' bargaining power at the level given by the Hosios condition \eg{MP94,S05,CR08}. This choice is convenient because the bargaining power is difficult to estimate empirically \cp[p.~229]{P00}. But such calibration implies that unemployment is efficient at all times---which is at odds with this paper's findings. Instead, researchers working with DMP models should embrace the use of rigid wages proposed by \ct{H05}. Rigid wages generate realistic, countercyclical fluctuations in the unemployment gap.
+
+\paragraph{Competitive search} In the DMP model matching is random. A popular alternative are models with directed search, in which jobseekers target submarkets that offer appealing employment conditions. Most of these models apply the competitive-search equilibrium developed by \ct{M97}. This equilibrium concept is popular because it is theoretically appealing and very tractable. But because it predicts that unemployment is efficient at all times, it may not provide an accurate description of the labor market. This inaccuracy is particularly costly when the model is used to address policy questions.
+
+\subsection{Implications for policy}
+
+The finding that the unemployment gap is countercyclical has a range of policy implications.
+
+\paragraph{Distance from full employment}  Many governments are mandated to stabilize their economy at full employment. For instance, in the United States, the 1978 Humphrey-Hawkins Full Employment Act mandates that the government maintains the economy at full employment using monetary and fiscal policy. Because achieving zero unemployment is physically impossible, reaching full employment should not be interpreted as bringing unemployment to zero. Rather, it should be interpreted as reaching a socially efficient amount of unemployment. Viewed in this light, the mandate of US policymakers is to close the unemployment gap. Policymakers could therefore use our unemployment-gap measure---which can be calculated in real time---to monitor how far the economy still is from full employment. 
+
+\paragraph{Optimal monetary policy} Governmental mandates to eliminate the unemployment gap are consistent with optimal policy design if the government has access to stabilization policies that do not create secondary distortions. Monetary policy is such a policy when the divine coincidence holds---when closing the unemployment gap also brings inflation to its desired level \cp{BG07}. 
+
+For instance, \ct{MS19} develop a monetary model with unemployment and fixed inflation. In that model the central bank's optimal policy is to adjust the nominal interest rate to eliminate the unemployment gap. As the unemployment gap is countercyclical, and a reduction in interest rate lowers the unemployment rate \cp{BB92,C12}, it is optimal to lower interest rates in bad times, when the unemployment gap is high, and to raise them in good times, as the unemployment gap turns negative.
+
+\paragraph{Optimal fiscal policy} If the government only has access to stabilization policies that create secondary distortions---for instance because the zero lower bound is binding so conventional monetary policy is unavailable---it is not optimal to eliminate the unemployment gap any more. Nevertheless, the unemployment gap remains a key input into optimal policy design.
+
+Government spending is a policy that falls in this category. It can bring the unemployment rate closer to its efficient level; but in doing so it distorts households' consumption basket, as it increases the consumption of public goods at the expense of the consumption of private goods \cp{MW11}. In a model with unemployment and government spending, \ct{MS15} indeed find that optimal government spending deviates from the \ct{S54} rule to reduce, but not eliminate, the unemployment gap. What fraction of the unemployment gap should be eliminated depends on the unemployment multiplier and the elasticity of substitution between public and private consumption---which measure the welfare cost of deviating from the Samuelson rule. Since the unemployment gap is countercyclical, and an increase in government spending reduces the unemployment rate \cp{Ra13}, the optimal government-spending formula derived by \name{MS15} implies that optimal government spending is countercyclical.\footnote{When the divine coincidence fails, monetary policy also falls in this category. For example, \ct{BG08} embed a rigid-wage DMP model into a New Keynesian model. The divine coincidence fails in that model, so there is a tradeoff between closing the unemployment gap and bringing inflation to its target. Yet, the unemployment gap is a useful statistic for policymaking. \ct[p.~23]{BG08} find that a simple, linear monetary-policy rule responding to inflation and the unemployment gap achieves almost the same welfare as the optimal policy. According to that almost-optimal rule, the nominal interest rate should fall when the unemployment gap increases.}
+
+\paragraph{Optimal unemployment insurance} Even policies that aim to alleviate the cost of unemployment without directly reducing unemployment should be adjusted when the labor market departs from efficiency. Unemployment insurance is one such policy. \ct{LMS10} show that when the labor market does not operate efficiently, optimal unemployment insurance deviates from the \ct{B78}-\ct{C06} level so as to bring labor market tightness closer to its efficient level. At the same time, most of the evidence suggests that an increase in unemployment insurance raises tightness \cp[section~3]{LMS15}. Our finding that the tightness gap is sharply procyclical therefore implies that the optimal generosity of unemployment insurance is countercyclical.
+
+\paragraph{Policies for disaggregated labor markets} This paper computes the unemployment gap for the entire US labor market, but the method could also be applied to disaggregated labor markets. For instance, with the local unemployment rates provided by the Bureau of Labor Statistics and the local job vacancies measured from private-sector data by \ct{CFH20}, it would be possible to construct local Beveridge curves and estimate local Beveridge elasticities. The data from the 1997 NES contain industry information for firms, so it would be possible to compute local recruiting cost by reweighting the NES data with local industrial compositions. Finally, we could assume that the social cost of unemployment is similar everywhere. Then we could compute local unemployment gaps and use them to guide local policies. Measuring local unemployment gaps would be helpful, for example, to target government spending to areas that need it most. They would also be helpful to tailor  unemployment insurance to local labor-market conditions.
+
+The same approach could also be applied to other disaggregated labor markets, such as labor markets for different education levels.  With sufficient statistics by education level, it would be possible to compute unemployment gaps for each education level, and to customize labor market policies to each education-specific submarket. Policies that could be targeted to each submarket include employment subsidies, hiring subsidies, and firing taxes. These policies effectively modulate labor demand \cp[chapter~9]{P00}. They could therefore be tailored to each submarket to eliminate their respective unemployment gaps.
+
+\bibliography{\bib}
+
+\newpage
+\appendix
+
+\section{Proofs}\label{a:proofs}
+
+This appendix provides proofs that were omitted in the main text.
+
+\subsection{Proof that the DMP model's Beveridge curve is strictly convex}
+
+The DMP model's Beveridge curve is given by \eqref{e:v}:
+\begin{equation*}
+v(u) = \bp{\frac{\l}{\o}\cdot\frac{1-u}{u^{\h}}}^{1/(1-\h)}.
+\end{equation*}
+Note that $(1-u)/u^{\h} = u^{-\h}-u^{1-\h}$. Hence the first derivative of the Beveridge curve is
+\begin{equation*}
+v'(u)= \frac{v(u)^{\h}}{1-\h} \cdot \frac{\l}{\o} \cdot \bs{-\h u^{-\h-1}-(1-\h) u^{-\h}}.
+\end{equation*}
+Reshuffling terms, we obtain
+\begin{equation*}
+v'(u) = -\frac{\l}{\o} \bs{\frac{v(u)}{u}}^{\h}\bp{1+\frac{\h}{1-\h}\cdot\frac{1}{u}}.
+\end{equation*}
+
+We verify that $v'(u)<0$, so the Beveridge curve is indeed strictly decreasing. 
+
+Since $v(u)$ is strictly decreasing in $u\in(0,1)$, so is the second factor in the expression, $[v(u)/u]^{\h}$. The third factor in the expression is also of course strictly decreasing in $u\in(0,1)$. Since the second and third factors are positive, their product is strictly decreasing in $u$. Given that $-\l/\o<0$, $v'(u)$ is actually strictly increasing in $u$. This indicates that the Beveridge curve is strictly convex.
+
+\subsection{Proof of proposition~\ref{p:hosios}}
+
+\paragraph{Definition of auxiliary function} First, we introduce a bivariate auxiliary function:
+\begin{equation}
+F(r,\t) = \h\t + \frac{r+\l}{q(\t)},
+\label{e:F}\end{equation}
+where $r\geq 0$ is the discount rate, $\t>0$ is the labor market tightness, and $q(\t) = \o \t^{-\h}$ is the vacancy-filling rate. Note that for any $r$, the function $F(r,\t)$ is strictly in $\t$.
+
+From \eqref{e:thetahosios}, we know that the tightness given by the Hosios condition, $\t^h$, satisfies
+\begin{equation*}
+F(r,\t^h) = (1-\h)\frac{1-z}{c}.
+\end{equation*}
+And from \eqref{e:thetadmpexact}, we know that the tightness given by our efficiency condition, $\t^*$, satisfies
+\begin{equation*}
+F(0,\t^*) = (1-\h)\frac{1-z}{c}.
+\end{equation*}
+We infer that 
+\begin{equation}
+F(r,\t^h) = F(0,\t^*).
+\label{e:FF}\end{equation}
+
+\paragraph{Zero discount rate} We begin by considering a zero discount rate. In that case, \eqref{e:F} implies that $F(0,\t^h) = F(0,\t^*)$, so that $\t^h=\t^*$. We conclude that in the DMP model with zero discount rate, the tightness given by the Hosios condition is the same as the tightness given by the efficiency condition \eqref{e:theta}.
+
+\paragraph{Positive discount rate} Next we consider a positive discount rate. We assess the gap between the tightnesses $\t^h$ and $\t^*$ by linearizing the function $F(r,\t)$ around $(0,\t^*)$. Up to a second-order term, the function $F(r,\t)$ satisfies
+\begin{equation}
+F(r,\t) = F(0,\t^*)+ \pd{F}{r} \cdot r + \pd{F}{\t}\cdot (\t-\t^*),
+\label{e:Flinear}\end{equation}
+where the partial derivatives are evaluated at $(0,\t^*)$. Using the definition of $F$ given by \eqref{e:F}, we compute the partial derivatives at $(0,\t^*)$:
+\begin{align*}
+\pd{F}{r} &= \frac{1}{q(\t^*)} \\
+\pd{F}{\t} &= \h +  \frac{\l}{q(\t^*)}\cdot \frac{\h}{\t^*}.
+\end{align*}
+
+We now use the expressions of the partial derivatives to evaluate \eqref{e:Flinear} at $(r,\t^h)$:
+\begin{equation*}
+F(r,\t^h) = F(0,\t^*)+ \frac{r}{q(\t^*)}  + \h  \bs{\t^* + \frac{\l}{q(\t^*)} }\frac{\t^h-\t^*}{\t^*}
+\end{equation*}
+Given that $F(r,\t^h) = F(0,\t^*)$, we easily obtain the relative difference between $\t^h$ and $t^*$:
+\begin{equation}
+\frac{\t^*-\t^h}{\t^*} = \frac{r}{\h \cdot\bp{f +\l}},
+\label{e:difference}\end{equation}
+where $f = \t^* q(\t^*) $ is the job-finding rate at $\t^*$. 
+
+\paragraph{Applying the \name{S05} calibration} Last, we evaluate the relative difference between $\t^h$ and $t^*$ using the calibration provided by \ct[table~2]{S05}: $\h = 0.72$, $r = 0.012$ per quarter, $\l = 0.1$ per quarter, and $f = 1.35$ per quarter.  Using these numbers and \eqref{e:difference}, we conclude that the difference between $\t^h$ and $t^*$ is
+\begin{equation*}
+\frac{\t^*-\t^h}{\t^*} = \frac{r}{0.72 \times \bp{1.35 + 0.1}} = 0.96 \times r = 1.1\%.
+\end{equation*}
+
+\begin{figure}[t]
+\subcaptionbox{Labor productivity and trend}{\includegraphics[scale=\sfig,page=37]{\pdf}}\hfill
+\subcaptionbox{Detrended labor productivity}{\includegraphics[scale=\sfig,page=38]{\pdf}}
+\caption{Labor productivity in the United States, 1951--2019}
+\note{Panel~A: Labor productivity is the index of real output per worker constructed by the \ct{PRS85006163}. The trend of productivity is produced by a HP filter with smoothing parameter 1600. Panel~B: Detrended labor productivity is labor productivity divided by its trend. The shaded areas are NBER-dated recessions.}
+\label{f:p}\end{figure}
+
+\section{Calibration of the DMP model}\label{a:dmp}
+
+This appendix calibrates parameters of the DMP model of section~\ref{s:dmp} using US data, 1951--2019. We use the parameter values to compute the efficient unemployment rates displayed in figure~\ref{f:robust}.
+
+\subsection{Labor productivity}
+
+To apply the sufficient-statistic formula, we need a detrended measure of labor productivity. Following \ct{S05}, we measure labor productivity as the real output per worker constructed by the \ct{PRS85006163} (figure~\ref{f:p}, panel~A).  We compute the trend of productivity using a HP filter. Since the productivity series has quarterly frequency, we set the filter's smoothing parameter to 1600 \cp{RU02}. We then compute detrended labor productivity by dividing labor productivity by its trend (figure~\ref{f:p}, panel~B).
+
+\begin{figure}[t]
+\subcaptionbox{Average unemployment rate}{\includegraphics[scale=\sfig,page=39]{\pdf}}\hfill
+\subcaptionbox{Matching elasticity}{\includegraphics[scale=\sfig,page=40]{\pdf}}
+\caption{Matching elasticity in the United States, 1951--2019}
+\note{Panel~A: Obtained by averaging the unemployment rate from figure~\ref{f:beveridge} over each interval identified in figure~\ref{f:regimes}. Panel~B: Computed using \eqref{e:eta}, the Beveridge elasticity from figure~\ref{f:epsilon}, and the average unemployment rate in panel~A. The shaded areas are NBER-dated recessions.}
+\label{f:alpha}\end{figure}
+
+\subsection{Matching elasticity} 
+
+We compute one matching elasticity for each interval during which the Beveridge curve is stable, as identified in figure~\ref{f:regimes}.  To compute the matching elasticity on each interval, we use \eqref{e:eta}, the value of the Beveridge elasticity on that interval (given in figure~\ref{f:epsilon}), and the average value of the unemployment rate on that interval (given in panel~A of figure~\ref{f:alpha}). The resulting matching elasticity is plotted in panel~B of figure~\ref{f:alpha}; it averages $0.44$ over the period. 
+
+\begin{figure}[t!]
+\subcaptionbox{Labor market tightness}{\includegraphics[scale=\sfig,page=41]{\pdf}}\hfill
+\subcaptionbox{Quarterly job-finding rate}{\includegraphics[scale=\sfig,page=42]{\pdf}}\vfig
+\subcaptionbox{Matching efficacy}{\includegraphics[scale=\sfig,page=43]{\pdf}}\hfill
+\subcaptionbox{Quarterly job-separation rate}{\includegraphics[scale=\sfig,page=44]{\pdf}}
+\caption{Matching efficacy and job-separation rate in the United States, 1951--2019}
+\note{Panel~A: Obtained from panel~A in figure~\ref{f:gap}. Panel~B: Constructed from \eqref{e:Ft} and \eqref{e:f}. Panel~C: Constructed from \eqref{e:mu}. Panel~D: Constructed from \eqref{e:s}. The shaded areas are NBER-dated recessions.}
+\label{f:cps}\end{figure}
+
+\subsection{Matching efficacy} 
+
+With the Cobb-Douglas matching function \eqref{e:cobbdouglas}, the job-finding rate is $f = \o \t^{1-\h}$. We already have measures of the tightness $\t$ (figure~\ref{f:cps}, panel~A) and matching elasticity $\h$ (figure~\ref{f:alpha}, panel~B). We therefore need a measure of the job-finding rate to infer the matching efficacy: 
+\begin{equation}
+\o = \frac{f}{\t^{1-\h}}.
+\label{e:mu}\end{equation}
+
+To compute the job-finding rate, we apply the method developed by \ct[pp.~130--133]{S12}. We first construct the monthly job-finding probability:
+\begin{equation}
+F(t)=1-\frac{u(t+1)-u^{s}(t+1)}{u(t)},
+\label{e:Ft}\end{equation}
+where $u(t)$ is the number of unemployed persons in month $t$, and $u^{s}(t)$ is the number of persons who have been unemployed for less than 5 weeks in month $t$ \cp{UEMPLT5,UNEMPLOY}. Assuming that unemployed workers find a job according to a Poisson process with monthly arrival rate $f(t)$, we infer the job-finding rate from the job-finding probability:
+\begin{equation}
+f(t)=-\ln(1-F(t)).
+\label{e:f}\end{equation}
+We multiply the monthly rate by 3 to translate it into a quarterly rate. The resulting quarterly job-finding rate is plotted in panel~B of figure~\ref{f:cps}; it averages $1.76$ over the period.
+
+Finally, we construct the matching efficacy using \eqref{e:mu} and our measures of the job-finding rate, tightness, and matching elasticity. The resulting matching efficacy is plotted in panel~C of figure~\ref{f:cps}; it averages $2.38$ over the period.
+
+\subsection{Job-separation rate} 
+
+To compute the job-separation rate, we apply the method developed by \ct[pp.~130--133]{S12}. The monthly job-separation rate $\l(t)$ is implicitly defined by
+\begin{equation}
+u(t+1) = \bc{1-e^{-[f(t)+\l(t)]}}\frac{\l(t)}{f(t)+\l(t)} h(t) + e^{-[f(t)+\l(t)]} u(t),
+\label{e:s}\end{equation}
+where $f(t)$ is the monthly job-finding rate (given by \eqref{e:f}), and $h(t)$ and $u(t)$ are the numbers of persons in the labor force and in unemployment \cp{CLF16OV,UNEMPLOY}. Each month $t$, we solve~\eqref{e:s} to compute $\l(t)$. We then multiply the monthly rate by 3 to translate it into a quarterly rate. The resulting quarterly job-separation rate is plotted in panel~D of figure~\ref{f:cps}; it averages $0.10$ over the period.
+
+\end{document}
