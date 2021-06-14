@@ -1,0 +1,513 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\def\path{../}
+
+\usepackage{graphicx,subfigure,caption} 
+\usepackage{textcomp,mathptmx,amsmath,amsthm,amssymb,amsfonts,latexsym}
+\usepackage{booktabs}
+\usepackage{enumerate,setspace,secdot,titlesec}
+\usepackage[hyphens]{url}
+\urlstyle{rm}
+\usepackage[margin=1in]{geometry}
+\setstretch{1.5}
+\addtolength{\belowcaptionskip}{.1in}
+\renewcommand{\thesubfigure}{Panel \Alph{subfigure}.}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\sectiondot{subsection}
+\titleformat*{\section}{\centering\large\bfseries}
+\titleformat*{\subsection}{\centering\large\itshape}
+\titleformat*{\paragraph}{\itshape}
+\captionsetup{labelsep=period}
+\usepackage{natbib}
+\bibliographystyle{aea}
+\setlength{\bibsep}{0pt}
+\setcitestyle{aysep={}}
+\usepackage[pdftex,hypertexnames=false,hyperfootnotes=false]{hyperref}
+\newcommand{\brc}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\pre}[1]{\left( #1 \right)}
+\newcommand{\brk}[1]{\left[ #1 \right]}
+\newcommand{\fignotes}[1]{\centering\parbox[c]{\textwidth}{\footnotesize \textit{Notes:} #1}}
+\newcommand{\tabnotes}[1]{\centering\parbox[c]{\textwidth}{\footnotesize\vspace*{.1in} \textit{Notes:} #1}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\derwrt}[3]{\frac{\partial #1}{\partial #2}\bigg\vert_{#3}}
+\def \D{{\Delta}}
+\def \e{{\epsilon}}
+\def \o{{\omega}}
+\def \g{{\gamma}}
+\def \t{{\theta}}
+\def \l{{\lambda}}
+\def \k{{\kappa}}
+\def \z{{\zeta}}
+\def \a{{\alpha}}
+\def \p{{\psi}}
+\def \f{{\phi}}
+\def \r{{\rho}}
+
+\begin{document}
+
+\title{A Macroeconomic Approach to Optimal\\Unemployment Insurance: Applications}
+\author{Camille Landais, Pascal Michaillat, Emmanuel Saez
+\thanks{Camille Landais: Department of Economics, London School of Economics, Houghton Street, London, WC2A 2AE, UK (email: \nolinkurl{c.landais@lse.ac.uk}). Pascal Michaillat: Department of Economics, Brown University, Box B, Providence, RI 02912, USA (email: \nolinkurl{pascal_michaillat@brown.edu}). Emmanuel Saez: Department of Economics, University of California--Berkeley, 530 Evans Hall \#3880, Berkeley, CA 94720, USA (email: \nolinkurl{saez@econ.berkeley.edu}). We thank Daron Acemoglu, George Akerlof, Varanya Chaubey, Raj Chetty, Peter Diamond, Yuriy Gorodnichenko, Philipp Kircher, Etienne Lehmann, Robert Shimer, Johannes Spinnewijn, and participants at seminars and conferences for helpful discussions and comments. This work was supported by the Center for Equitable Growth at the University of California--Berkeley, the British Academy, the Economic and Social Research Council [grant number ES/K008641/1], the Institute for New Economic Thinking, and the Sandler Foundation.}}
+\date{\today}
+
+\maketitle\begin{abstract} 
+
+In the United States, unemployment insurance (UI) is more generous when unemployment is high. This paper examines whether this policy is desirable. The optimal UI replacement rate is the Baily-Chetty replacement rate plus a correction term measuring the effect of UI on welfare through labor market tightness. Empirical evidence suggests that tightness is inefficiently low in slumps and inefficiently high in booms, and that an increase in UI raises tightness. Hence, the correction term is positive in slumps but negative in booms, and optimal UI is indeed countercyclical. Since there remains some uncertainty about the empirical evidence, the paper provides a thorough sensitivity analysis. (JEL: E24, E32, H21, J65)
+
+\end{abstract}\newpage
+
+In the United States, unemployment insurance (UI) is more generous when unemployment is high. This policy started as an exceptional measure after the 1957--1958 recession and became a permanent program in 1970. Despite its long history, the policy remains debated. This paper examines whether the policy is desirable from a welfare perspective.
+
+We conduct the welfare analysis in a matching model. We extend the static model from a companion paper \citep{LMS10} into a dynamic model better suited for quantitative applications (Section~\ref{sec:model}). The model features most effects discussed in the policy debate: the effects of UI on job search, on wages, on job vacancies, and on aggregate unemployment.\footnote{UI may also affect aggregate demand. This effect does not feature here but is studied by \citet{K16}.} The optimal generosity of UI is given by a sufficient-statistic formula: the optimal replacement rate equals the Baily-Chetty replacement rate, a well-researched entity, plus a correction term measuring the effect of UI on social welfare through labor market tightness. 
+
+Since little is known about the correction term in the optimal UI formula, the bulk of the analysis consists in studying how this term fluctuates over the business cycle. The correction term is the product of two factors: the effect of tightness on welfare and the effect of UI on tightness. We begin by estimating the first factor (Section~\ref{sec:efficiency}) before estimating the second (Section~\ref{sec:wedge}). Then, we multiply these factors and add the product to the Baily-Chetty replacement rate in order to obtain the optimal UI replacement rate in the United States (Section~\ref{sec:applications}).
+
+We start the analysis by estimating the first factor in the correction term: the effect of tightness on welfare. This is equivalent to assessing whether tightness is inefficiently low or inefficiently high at any point in time. In theory, the \citet{H90} condition should tell us this. Yet, evaluating the Hosios condition has appeared to be prohibitively complicated: the difficulty lies in measuring workers' bargaining power every month or quarter. So we proceed with a criterion that is mathematically equivalent to the Hosios condition but formulated with statistics that are easier to measure. The criterion is that the effect of tightness on welfare is positive whenever the marginal social cost of unemployment is higher than its marginal social value.  
+
+Two social costs of unemployment are relevant to the effect of tightness on welfare. The first is a fiscal cost: unemployed workers deplete the government budget (they receive benefits) whereas employed workers contribute to it (they pay taxes). To assess the fiscal cost, we measure the generosity of UI. In our model, UI benefits last forever, so the generosity of UI is governed by the level of benefits. In the Unites States, things are more complicated because the duration of UI benefits is finite and adjusted over the business cycle. To synthesize the actual generosity of UI---both level and duration of benefits---we construct an effective replacement rate by averaging the replacement rate among all eligible unemployed workers, whether or not their benefits have expired. This effective replacement rate averages 42 percent.
+
+The second social cost of unemployment is a utility cost: unemployed workers consume less than employed workers and incur a nonpecuniary cost. Although this nonpecuniary cost is often neglected in economic models, it is visible in the data---those who lose their job see their well-being fall more than those who lose an equal amount of income but remain employed. In fact, using reported well-being and revealed preferences, we estimate this nonpecuniary cost at 30 percent of the utility provided by an average wage.
+
+To measure the effect of tightness on welfare, the marginal social costs of unemployment are compared to its marginal social value, which is to reduce firms' recruiting costs. This social value is high when firms devote a large share of their workforce to recruiting and when the unemployment rate is low. To measure the share of the workforce devoted to recruiting, we use firm surveys conducted by the Census Bureau and Bureau of Labor Statistics (BLS). We find that the share of recruiters in the workforce averages 2.3 percent and is procyclical.
+
+Overall, we find that tightness has a positive effect on welfare in bad times but a negative effect in good times---that is, tightness is inefficiently low in bad times but inefficiently high in good times. This is because the marginal costs of unemployment are broadly acyclical while the marginal value of unemployment is procyclical.
+
+We then turn to the second factor in the correction term: the effect of UI on tightness. The literature has focused on the effect of UI on unemployment, estimating either the microelasticity or the macroelasticity of unemployment with respect to UI. But the effect of UI on tightness cannot be inferred from either elasticity alone: it can only be inferred by comparing them. Indeed, UI has a positive effect on tightness whenever the macroelasticity is smaller than the microelasticity. To see why, imagine an increase in UI. Jobseekers search less, which raises unemployment by an amount measured by the microelasticity. Tightness also adjusts in equilibrium, further affecting unemployment, which increases by an overall amount measured by the macroelasticity. Now, imagine that tightness has gone up. For a given search effort, jobseekers find jobs more easily, which partially offsets the increase in unemployment caused by lower search effort. In that case, the macroelasticity is indeed smaller than the microelasticity.
+
+To measure the effect of UI on tightness, we therefore compare microelasticity and macroelasticity estimates. Since microelasticity estimates from administrative data are larger than available macroelasticity estimates, it seems that UI raises tightness.  Measuring tightness directly in data from a large employment website, \citet{M14} also finds that UI raises tightness. In addition, an increase in UI seems to improve the prospects of uninsured jobseekers, suggesting that tightness rises when UI goes up. Overall, then, current evidence points to a positive effect of UI on tightness.
+
+With the Baily-Chetty replacement rate and the two factors from the correction term in hand, we compute the optimal UI replacement rate. At this stage we face a problem common to optimal policy formulas expressed with sufficient statistics: the statistics are implicit functions of the policy, so the formulas cannot be used to solve for the policy. To address this issue, we leverage empirical evidence and express all the statistics in our formula, including labor market variables, as functions of UI. This allows us to compute optimal UI using only the formula, without specifying a structural model.
+
+Because the first factor (the effect of tightness on welfare) is countercyclical and the second factor (the effect of UI on tightness) is positive, the correction term is countercyclical.  Our optimal UI formula then implies that the optimal replacement rate is countercyclical: as low as 33 percent in booms and as high as 50 percent in slumps. How does this compare to the generosity of UI in the United States? We find that the generosity of UI is close to optimal on average, that the benefit extensions after the 1990--1991 and 2008--2009 recessions were warranted, but that the elimination of benefit extensions in 2014 came prematurely.
+
+
+Finally, since the estimates of some sufficient statistics in the optimal UI formula remain uncertain, we provide a thorough sensitivity analysis. In particular, we consider scenarios where macroelasticity equals microelasticity and where macroelasticity is larger than microelasticity. In the first scenario, the optimal UI replacement rate is acyclical; in the second, it is procyclical. These scenarios overlap with two other papers that study the business-cycle fluctuations of optimal UI. \citet{KN10} use a Baily-Chetty model, so they consider the scenario where macroelasticity equals microelasticity. \citet{MR11} use a standard matching model, with Nash bargaining and linear production function, so they consider the scenario where macroelasticity is larger than microelasticity.
+
+\section{Optimal UI in a Dynamic Model}\label{sec:model}
+
+We conduct the analysis in a dynamic model that extends the static model from a companion paper \citep{LMS10}. Despite some differences in the derivation, the optimal UI formula remains the same as in the static model.
+
+\subsection{The Model}
+
+Here is a brief presentation of the model; the companion paper gives more details and intuition. The model is set in continuous time. There is a measure 1 of identical workers and a measure 1 of identical firms. At time $t$, the number of employed workers is $l(t)$ and the number of unemployed workers is $u(t)=1-l(t)$. Each firm posts $v(t)$ vacancies to recruit workers. Each unemployed worker searches for a job with effort $e(t)$. The matching function $m$ determines the number of worker-firm matches formed at any time: $m(t)=m(e(t)\cdot u(t),v(t))$, where $m(t)$ is the number of workers who find a job, $e(t)\cdot u(t)$ is aggregate job-search effort, and $v(t)$ is aggregate vacancies. The matching function has constant returns to scale and is differentiable and increasing in both arguments. The labor market tightness $\t(t)$ is defined as the ratio of aggregate vacancies to aggregate job-search effort: $\t(t)=v(t)/(e(t)\cdot u(t))$. The job-finding rate per unit of search effort is $f(\t(t))=  m(t)/(e(t)\cdot u(t))= m(1,\t(t))$ and the job-finding rate is $e(t)\cdot f(\t)$. The vacancy-filling rate is $q(\t(t))=m(t)/v(t) = m\pre{1/\t(t),1}$. We denote by $1-\eta$ and $-\eta$ the elasticities of $f$ and $q$ with respect to $\t$. We refer to $\eta\in(0,1)$ as the matching elasticity. Worker-firm matches separate for exogenous reasons at a rate $s>0$. Technically, employment is a state variable with law of motion 
+\begin{equation*}
+\dot{l}(t)=e(t)\cdot f(\t(t))\cdot (1-l(t))-s\cdot l(t).
+\end{equation*} 
+If $e$ and $f(\t)$ remain constant over time, employment converges to the steady-state level  
+\begin{equation}
+l=\frac{e\cdot f(\t)}{s+e\cdot f(\t)}.
+\label{eq:l}\end{equation}
+In the United States, employment reaches this steady-state level quickly because labor market flows are large. In fact, \citet[Figure~1]{Ha05} shows that the employment rate obtained from~\eqref{eq:l} and the actual employment rate are indistinguishable. Therefore, as \citet{H05} and \citet{P07} do, we simplify the analysis by ignoring the transitional dynamics of employment and assuming that employment is a jump variable that depends on search effort and tightness according to~\eqref{eq:l}. Because the transitional dynamics of employment are ignored, firms, workers, and the government maximize static objectives at each instant.\footnote{The behavior of firms, workers, and the government approximates well their dynamic behavior---the behavior constrained by the law of motion of employment---as long as the job-separation rate, $s$, is much higher than the interest rate. This condition is satisfied in the United States, where $s$ is about 3 percent per month.} Thus, the dynamic model behaves as a succession of static models, and optimal UI in the dynamic model can be described with a simple, static formula. To simplify notation, we now omit the time index $t$.
+
+The representative firm employs $l$ workers in total: $n$ workers who produce output and $l-n$ workers who recruit other workers by posting vacancies. All workers are paid a real wage $w$. The firm's production function is $y(n)$. The production function is differentiable, increasing, and concave. Since~\eqref{eq:l} holds, labor market flows are balanced: the number of new hires equals the number of job losers. Thus, the number of vacancies $v$ posted by a firm with $l$ employees satisfies $v\cdot q(\t) = s\cdot l$, or $v=s\cdot l/ q(\t)$. Posting a vacancy requires $\r$ recruiters, so the number of recruiters in a firm with $l$ employees is $ \r \cdot s\cdot l/q(\t)$, and the number of producers in the firm is  $n=l\cdot \pre{1-s\cdot \r/q(\t)}$. The firm's recruiter-producer ratio $\tau(\t)$ therefore satisfies 
+\begin{equation}
+\tau(\t)= \frac{s\cdot\r}{q(\t)-s\cdot \r}.
+\label{eq:taucps}\end{equation} 
+The numbers of employees and producers are related by $l=\brk{1+\tau(\t)}\cdot n$.
+
+The firm sells its output on a perfectly competitive market. Taking $\t$ and $w$ as given, the firm chooses $l$ to maximize profits $y(l/\brk{1+\tau(\t)})- w \cdot l$. The labor demand $l^{d}(\t,w)$ gives the profit-maximizing number of employees. It is implicitly defined by the first-order condition
+\begin{equation*}
+y'\pre{\frac{l}{1+\tau(\t)}}= \brk{1+\tau(\t)}\cdot w. 
+\end{equation*} 
+
+The UI program provides consumption $c^e$ to employed workers and consumption $c^u<c^{e}$ to unemployed workers. The generosity of UI is measured by the replacement rate 
+\begin{equation*}
+R \equiv 1-\frac{c^e-c^u}{w}. 
+\end{equation*}
+The government faces the budget constraint
+\begin{equation}
+y(n)=(1-l)\cdot c^{u}+l\cdot c^{e}.
+\label{eq:budget}\end{equation}
+
+Employed workers consume $c^{e}$, which yields utility $U(c^{e})$. The function $U$ is differentiable, increasing, and concave.  Unemployed workers consume $c^{u}$ plus an amount $h$ produced at home. They derive utility $U(c^{u}+h)$ from their consumption. The disutility from home production is $\l(h)$. The function $\l$ is differentiable, increasing, convex, and $\l(0)=0$. The disutility from job search is $\p(e)$. The function $\p$ is differentiable, increasing, convex, and $\p(0)=0$. In addition, unemployed workers suffer a disutility from unemployment $z$.\footnote{The disutility from work is normalized to zero. With a nonzero disutility from work, $z$ would be redefined as the disutility from unemployment net of the disutility from work.} Accordingly, the utility of an unemployed worker is $U(c^{u}+h)-z-\l(h)-\p(e)$.
+
+Taking $c^{u}$ as given, unemployed workers choose $h$ to maximize $U(c^{u}+h)-\l(h)$. The home-production supply $h^{s}(c^u)$ gives the optimal level of home production. It is implicitly defined by the first-order condition
+\begin{equation}
+\l'(h)=U'\pre{c^{u}+h}.
+\label{eq:hs}\end{equation}
+The total consumption of unemployed workers is $c^{h}=c^{u}+h^{s}(c^{u})$; it only depends on $c^u$.
+
+Taking $\t$, $c^{e}$, $c^{h}$, and $h$ as given, the representative worker chooses $e$ to maximize expected utility
+\begin{equation}
+\frac{e\cdot f(\t)}{s+e\cdot f(\t)}\cdot U(c^{e})+\frac{s}{s+e\cdot f(\t)}\cdot \brk{U(c^{h})-z-\l(h)-\p(e)}.
+\label{eq:sw}\end{equation}
+The effort supply $e^{s}(f(\t),\D U)$ gives the optimal job-search effort. It is implicitly defined by the first-order condition
+\begin{align}
+\p'(e)& =\frac{f(\t)}{s+e\cdot f(\t)}\cdot \brk{\D U + \p(e)},\label{eq:es}\\
+\text{where}\quad \D U &\equiv U(c^{e})-U(c^{h})+z+\l(h).\label{eq:DU}
+\end{align}
+Moreover, the labor supply
+\begin{equation*}
+l^{s}(\t,\D U)=\frac{e^{s}(f(\t),\D U)\cdot f(\t)}{s+e^{s}(f(\t),\D U)\cdot f(\t)}
+\end{equation*}
+gives the number of workers who have a job when job search is optimal.
+
+Becoming unemployed imposes a utility cost $\D U+\p(e)$. This utility cost can be written $U(c^{e})-U(c^{h})+Z$, where 
+\begin{equation}
+Z \equiv z +\l(h)+\p(e)
+\label{eq:Z}\end{equation} 
+is the total nonpecuniary cost of unemployment. To measure the total utility cost of unemployment (pecuniary and nonpecuniary) with a dimensionless number (not with utils), we define
+\begin{align}
+K & = \frac{U(c^e)-U(c^h)+Z}{w  \cdot  \f}\label{eq:ru}\\
+\text{where}\quad \frac{1}{\f} & = \frac{l}{U'(c^{e})}+\frac{1-l}{U'(c^{h})}.\label{eq:phi}
+\end{align}
+The utility cost of unemployment is $U(c^e)-U(c^h)+Z$. As $\f$ is the harmonic mean of marginal utilities in the population, $\f\cdot w$ is the average marginal utility provided by a wage. Accordingly, $K$ measures the utility cost of unemployment as a fraction of the utility provided by a wage. The cost $K$ will play an important role in the optimal UI formula.
+
+We can now describe the equilibrium of the model. The equilibrium is parametrized by $\D U$. In equilibrium, wages are given by a wage schedule $w(\t,\D U)$, and tightness equalizes labor supply and demand:
+\begin{equation*}
+l^{s}(\t,\D U)=l^{d}(\t,w(\t,\D U)).
+\end{equation*}
+This equation defines the equilibrium level of tightness as an implicit function of $\D U$, denoted $\t(\D U)$.  Once tightness is determined, it is simple to obtain the other variables: $l$ is determined by $l=l^s(\t,\D U)$, $e$ by $e=e^s(f(\t),\D U)$, $n$ by $n=l/(1+\tau(\t))$, $w$ by $w=w(\t,\D U)$, $c^{e}$ and $c^u$ by~\eqref{eq:budget} and~\eqref{eq:DU}, $h$ by $h=h^s(c^{u})$, and $c^h$ by $c^h=c^u+h$. 
+
+\subsection{The Optimal UI Formula}
+
+Having described the equilibrium, we now present the optimal UI formula. At any point in time, the government chooses $\D U$ to maximize social welfare, given by~\eqref{eq:sw}, subject to its budget constraint, given by~\eqref{eq:budget}, and the equilibrium constraints. The  formula is obtained from the first-order condition of the maximization problem. (The formula is derived in Online Appendix~A.) 
+
+Three elasticities enter the optimal UI formula: the microelasticity of unemployment with respect to UI
+\begin{equation*}
+\e^m \equiv \frac{\D U}{1-l} \cdot \derwrt{l^{s}}{\D U}{\t},
+\end{equation*}
+which measures how job-search effort responds to UI; the discouraged-worker elasticity
+\begin{equation*}
+\e^{f} \equiv  \frac{f(\t)}{e}\cdot \derwrt{e^{s}}{f}{\D U},
+\end{equation*}
+which measures how job-search effort responds to labor market conditions; and the macroelasticity of unemployment with respect to UI
+\begin{equation*}
+\e^M \equiv \frac{\D U}{1-l} \cdot \frac{dl}{d\D U},
+\end{equation*}
+which measures how the unemployment rate responds to UI. Then, the formula expresses the optimal UI replacement rate with sufficient statistics:
+\begin{equation}\medmuskip=1mu 
+R = \underbrace{\frac{l \cdot \D U}{\e^{m}\cdot  w} \cdot \brk{\frac{1}{U'(c^{e})}-\frac{1}{U'(c^{h})}}}_{\text{Baily-Chetty replacement rate}}+\underbrace{\brk{1-\frac{\e^{M}}{\e^{m}}}}_{\text{elasticity wedge}} \cdot  \underbrace{\frac{1}{1+\e^f}  \cdot  \brk{K+\pre{1+\e^{f}}\cdot  R-\frac{\eta}{1-\eta} \cdot \frac{\tau(\t)}{u}}}_{\text{efficiency term}}.
+\label{eq:optimal}\end{equation}
+This formula is identical to the formulas in our companion paper (formula~(23) and its extensions in Section V) once the formulas are expressed with the appropriate sufficient statistics. In particular, $\tau(\t)$ is replaced by $\tau(\t)/u$ here because the correct sufficient statistic is $\tau(\t)$ divided by the elasticity of the function $e\cdot f(\t)\mapsto l$. In the static model, the function is defined by $l=e\cdot f(\t)$ and has an elasticity of $1$. In the dynamic model, the function is defined by~\eqref{eq:l} and has an elasticity of $1-l=u$.
+
+The formula shows that the optimal UI replacement rate equals the Baily-Chetty replacement rate plus a correction term: the product of the elasticity wedge and efficiency term. The Baily-Chetty replacement rate is the optimal replacement rate in partial equilibrium, when labor market tightness does not respond to UI. The correction term is the adjustment required to obtain the optimal replacement rate in general equilibrium, when tightness responds to UI.
+
+The two factors in the correction term have clear economic interpretations. The efficiency term measures the effect of tightness on welfare. It shows that an increase in tightness raises welfare whenever the marginal social cost of unemployment is high relative to its marginal social value. The marginal social cost of unemployment has two components: the utility cost of being unemployed relative to being employed, measured by $K$, and the fiscal cost of having one more unemployed worker, measured by $R$. The marginal social value of unemployment is the reduction in recruiting costs that higher unemployment makes possible; it is measured by $\brk{\eta/(1-\eta)} \cdot \brk{\tau(\t)/u}$. The elasticity wedge measures the effect of UI on tightness. An increase in UI raises tightness whenever the elasticity wedge is positive---that is, whenever the macroelasticity of unemployment with respect to UI ($\e^M$) is smaller than the microelasticity ($\e^m$). Thus, the correction term measures the effect of UI on welfare through tightness. 
+
+\section{The Effect of Labor Market Tightness on Social Welfare}\label{sec:efficiency}
+
+Whenever the efficiency term is positive, an increase in labor market tightness raises welfare. Here we apply this empirical criterion to evaluate the effect of tightness on welfare in the United States. Our main task is to estimate the novel statistics in the efficiency term: recruiter-producer ratio, UI replacement rate, and nonpecuniary cost of unemployment. (In the empirical work throughout the paper, we use seasonally adjusted monthly data series, and we plot quarterly averages of monthly series.)
+
+\subsection{Recruiter-Producer Ratio ($\tau$)}
+ 
+We construct three alternative measures of recruiter-producer ratio. None of them is perfect, but they paint a consistent picture.  The first measure is the most transparent. It is based on the size of the recruiting industry, denoted $rec$. The official name of the recruiting industry is ``employment placement agencies and executive search services,'' and its North American Industry Classification System (NAICS) code is 56131. This industry comprises firms listing employment vacancies and referring or placing applicants for employment, and firms providing executive search, recruitment, and placement services.  The number of workers in the industry is computed by the BLS from the Current Employment Statistics (CES) survey since 1990. On average, there are 280,700 workers in the industry.
+
+\begin{figure}[t] \centering
+\subfigure[Alternative measures of recruiter-producer ratio]{\includegraphics[scale=0.22,page=1]{\path graphs/ui_applications_graphs_aej.pdf}}
+\subfigure[Recruiter-producer ratio and unemployment]{\includegraphics[scale=0.22,page=2]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\caption{Unemployment Rate and Recruiter-Producer Ratio in the United States, 1990--2014}
+\fignotes{Panel~A: The recruiter-producer ratio depicted by the solid line is constructed from~\eqref{eq:tau1} using CES data on the size of the recruiting industry (NAICS \# 56131). The recruiter-producer ratio depicted by the dashed line is constructed from~\eqref{eq:tau2} and vacancy-filling and job-separation rates from JOLTS data. The recruiter-producer ratio depicted by the dotted line is constructed from~\eqref{eq:tau3} and vacancy-filling and job-separation rates from CPS data. Panel~B: The unemployment rate comes from CPS data. The recruiter-producer ratio is a synthetic measure that combines the three measures in panel~A. The shaded areas represent the recessions identified by the National Bureau of Economic Research (NBER).} 
+\label{fig:tau}\end{figure}
+
+Of course workers of the recruiting industry only constitute a small fraction of all the workers allocated to recruiting in the economy. To measure the total amount of labor devoted to recruiting, we scale up $rec$ by a factor $8.4$. The scaling factor is chosen to ensure that firms devote 2.5 percent of their labor to recruiting in 1997, thus matching the evidence from the 1997 National Employer Survey. In this survey, the Census Bureau asked 4,500 establishments about their recruiting process, and found that firms spend 2.5 percent of their labor costs on recruiting \citep{V10}. Unfortunately, outside of the National Employer Survey, we cannot observe workers who are not in the recruiting industry but spend time recruiting for their firm; scaling-up $rec$ is a crude way to account for them. Because the scaling factor is constant over time, we implicitly assume that the share of recruiting outsourced to recruiting firms is constant over the business cycle---in reality it could fluctuate. 
+
+Finally, we construct the recruiter-producer ratio as
+\begin{equation}
+\tau=\frac{8.4 \times  rec}{l-8.4 \times rec},
+\label{eq:tau1}\end{equation}
+where $l$ is the number of workers in all private industries in CES data. This recruiter-producer ratio is the solid line in Figure~\ref{fig:tau}, panel~A. The matching model predicts that when the labor market is slack, it is easy to fill vacancies, so the share of the workforce devoted to recruiting is low. But there is a concern that the matching model does not properly describe the recruiting process: in bad times, firms may struggle to sift through the large number of applications that they receive, which could raise the number of workers devoted to recruiting. Our measure of recruiter-producer ratio, however, offers new support for the prediction of the matching model. It shows that the share of labor devoted to recruiting is indeed lower in bad times than in good times: $\tau$ is as low as 1.7 percent after the Great Recession in 2009 and as high as 2.9 percent during the dot-com boom in 2000. An advantage of this evidence is that it does not assume any structure on the labor market and does not require vacancy data.
+
+Our first measure of recruiter-producer ratio has one limitation: it assumes that firms outsource a constant fraction of their recruiting over the business cycle. Since we cannot evaluate this assumption, we construct two additional measures of recruiter-producer ratio that do not rely on it. The drawback of these two measures is that they require assumptions about the structure of the labor market and more data series.
+
+To construct a second measure of recruiter-producer ratio, we use~\eqref{eq:taucps}, which relates $\tau$ to the vacancy-filling rate, $q$, the job-separation rate, $s$, and the vacancy-posting cost, $\r$, in the matching model:
+\begin{equation}
+\tau= \frac{s\cdot\r}{q-s\cdot \r}.
+\label{eq:tau2}\end{equation}
+We measure $s$ and $q$ in data constructed by the BLS from the Job Opening and Labor Turnover Survey (JOLTS): we measure $s$ by the separation rate in nonfarm industries; and we measure $q$ by $h/v$, where $h$ and $v$ are the number of hires and number of vacancies in nonfarm industries. Then, we assume that $\r$ is constant and calibrate it to ensure that this measure of $\tau$ averages 2.6 percent in 2001, like the first measure. On average in 2001, $s=0.041$ and $q=1.23$, so we set $\r=(1.23/0.041)\times 0.026/(1+0.026)=0.79$. The second measure of $\tau$ is the dashed line in Figure~\ref{fig:tau}, panel~A. It is procyclical because the vacancy-filling rate is countercyclical. 
+
+This second measure of recruiter-producer ratio is only available for 2001--2014, while the first measure is available for 1990--2014. We now construct a third measure that is also available for 1990--2014. The drawback of this third measure is that the vacancy-filling and job-separation rates are measured only indirectly. To construct this third measure, we use again
+\begin{equation}
+\tau= \frac{s\cdot\r}{q-s\cdot \r},
+\label{eq:tau3}\end{equation}
+and we rely on data generated by the BLS from the Current Population Survey (CPS). We construct $s$ from CPS data  following \citet{S12} (see Online Appendix~B). We compute $q$ using $q=f/\t=\pre{e\cdot f}/\pre{v/u}$, where $e\cdot f$ is constructed from CPS data as in \citet{S12} (see Online Appendix~B), $u$ is the number of unemployed workers in CPS data, and $v$ is the help-wanted advertising index of \citet{B10}, rescaled into a number of vacancies. The Barnichon index combines the online and print help-wanted advertising indexes constructed by the Conference Board, which are standard proxies for vacancies. We scale up the Barnichon index so that its average value over 2001--2014 matches the average number of vacancies in JOLTS data. (JOLTS data are not available before December 2000, so we could not use them to measure vacancies since 1990.) The index averages 80 over 2001--2014; the average number of vacancies in JOLTS data over the same period is 3.7 million; hence, we multiply the index by $3.7\times 10^{6}/80= 4.6\times 10^{4}$ to obtain a proxy for the number of vacancies since 1990. Finally, we set $\r$ to ensure that the average value of $\tau$ in 1997 is the same as in the National Employer Survey: 2.5 percent. On average in 1997, $s=0.028$ and $q=0.85$, so we set $\r=(0.85/0.028)\times 0.025/(1+0.025)=0.77$. This third measure of $\tau$ is the dotted line in Figure~\ref{fig:tau}, panel~A. It is procyclical because the vacancy-filling rate is countercyclical.
+
+Despite being constructed from independent sources, the three measures of recruiter-producer ratio are very close. Hence, we summarize the information they contain by combining them into a synthetic measure.  We construct the synthetic measure by averaging the two available measures over 1990--2000 and averaging the three measures over 2001--2014. The synthetic measure is displayed in Figure~\ref{fig:tau}, panel~B.  It averages 2.3 percent and is procyclical. It peaks at 3.1 percent in the 2000 boom, and bottoms at 1.6 percent in the 2009 slump. We will use this synthetic measure to construct the efficiency term.
+
+In Figure~\ref{fig:tau}, panel~B, we also compare the synthetic measure to the unemployment rate in CPS data. The unemployment rate averages 6.1 percent and is countercyclical. It falls to 3.8 percent in 2000 and peaks at 10.0 percent in 2009. The recruiter-producer ratio $\tau$ is procyclical and the unemployment rate $u$ is countercyclical, so the ratio $\tau/u$ featuring in the efficiency term is strongly procyclical. On average, $\tau=0.023$ and $u=0.061$ so $\tau/u=0.023/0.061=0.38$; but in 2000, $\tau/u$ reaches 0.81, and in 2009, $\tau/u$ falls to 0.16.
+
+\subsection{UI Replacement Rate ($R$)}
+ 
+The UI program in the United States is much more complex than in our model. In the model, UI indefinitely provides benefits at a replacement rate $R$. In the United States, UI benefits replace around 50 percent of prior wages, but only up to a maximum level and for a limited time. The duration of benefits is 26 weeks in normal times, and it is extended when unemployment goes up. The Extended Benefits program automatically extends duration by 13 weeks in states where the unemployment rate is above 6.5 percent and by 20 weeks in states where the unemployment rate is above 8 percent. Duration is often further extended after severe recessions: for example, in the wake of the Great Recession, the Emergency Unemployment Compensation program extended duration to 99 weeks.
+
+To map the data to our model, we summarize the generosity of UI in the United States with an effective replacement rate. The effective replacement rate gives the average replacement rate among all unemployed workers who are currently eligible to UI, or who were eligible to UI earlier in the current unemployment spell. It synthesizes the level and duration of benefits; in particular, when benefit duration increases, a larger share of jobseekers receive UI, and the effective replacement rate rises. The effective replacement rate is constructed in Online Appendix~C and plotted in Figure~\ref{fig:replacement}.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=3]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Effective UI Replacement Rate in the United States, 1990--2014}
+\fignotes{The effective UI replacement rate is constructed in Online Appendix~C. It is computed as the average replacement rate among all unemployed workers who are currently eligible to UI or were eligible to UI earlier in their current unemployment spell. The shaded areas represent the recessions identified by the NBER.}
+\label{fig:replacement}\end{figure}
+
+While the nominal replacement rate of UI is about 50 percent, the effective replacement rate only averages 42 percent, because benefits have a finite duration, and jobseekers who exhaust their benefits have a replacement rate of zero. And while the nominal replacement rate is constant over time, the effective replacement rate rises after each recession of the 1990--2014 period. The reason is that the potential duration of benefits was extended after each recession---more precisely, benefit duration was extended more than unemployment duration increased. After the 2001 and 2008--2009 recessions, the effective replacement rate even reached 50 percent, implying that almost no eligible jobseekers exhausted their benefits during their unemployment spell. When the UI extensions expired in January 2014, the effective replacement rate plunged to 28 percent, the lowest in the period. This is because the many jobseekers who had been unemployed for a long time all lost their benefits at that point.
+
+\subsection{Nonpecuniary Cost of Unemployment ($Z$)}
+
+The nonpecuniary cost of unemployment measures the difference between the well-being of an unemployed worker and that of an employed worker with the same consumption level. It is high if unemployed workers suffer high mental or physical health costs, or if home production or job search are costly compared to employment. It is low if unemployed workers enjoy leisure.
+
+In well-being surveys, \citet{TMO03} find that even after controlling for income and other personal characteristics, being unemployed is very costly. In the US General Social Survey (GSS), they find that becoming unemployed is as painful as divorcing or dropping from the top to the bottom income quartile (Table~5). In the Euro-barometer survey, they are able to quantify the cost of unemployment. They find that becoming unemployed is as bad as losing \$3,500 of income a year (p.~819). In the countries and years in their data, the average GDP per capita is \$7,809 and the average unemployment rate is 8.6 percent (Table~6). With a labor share of 0.7, the average wage per worker is $w=0.7\times \$7809/(1-0.086)=\$5,980$. Since the average marginal utility of \$1 in the population is $\f$, they find a nonpecuniary cost of unemployment of $Z=(3500/5980)\times w \times \f=0.6 \times w \times \f$. 
+
+Other studies using well-being surveys find even larger estimates of $Z$.\ Using the GSS, \citet[p.~1373, p.~1382]{BO04} find that becoming unemployed is as bad as losing \$60,000 of income a year. The average yearly income in their data is below \$20,000, so they estimate a huge nonpecuniary cost of unemployment: $Z\geq 3 \times w \times \f$. Using the German Socio-Economic Panel, \citet{WW98} also find that the nonpecuniary cost of unemployment is much larger than the pecuniary cost. 
+
+One potential issue with estimates of $Z$ from well-being surveys is that they are not based on observed choices. \citet{BM15} address this limitation. They study how servicemembers' choice between reenlisting and exiting the military is affected by the unemployment rate in the local labor market where they would enter. Using rich military personnel records, they find that servicemembers would forgo 1.5 percent in reenlistment earnings to avoid an unemployment rate higher by one percentage point. With log utility, this choice implies that $0.01 \times \brk{\ln(c^e/c^h)+Z}=0.015\times \f\times w$, or $Z =\brk{1.5-\ln(c^e/c^h)/(\f\times w)}\times \f\times w$. With a consumption drop upon unemployment below 20 percent (Online Appendix~D) and a labor share above 0.5, we find that $\ln(c^e/c^h)/(\f\times w)\leq 0.5$, which implies $Z\geq \f\times w$.\footnote{With a consumption drop upon unemployment below 20 percent, $1-c^h/c^e\leq 0.2$ so $c^e/c^h\geq 1/0.8$. With log utility, $1/\f=l \cdot c^e + (1-l)\cdot c^h\leq c^e$ so $1/(\f \cdot w)\leq c^e/w$. With a labor share $\a\geq 0.5$, we infer from Online Appendix~E that $c^e/w\leq l/\a + (1-l)\leq 1/\a \leq 2$. Combining these results, we have  $\ln(c^e/c^h)/(\f\times w)\leq - 2\times \ln(0.8) \leq 0.5$.} This estimate of $Z$ is larger than the estimate from Di Tella, MacCulloch, and Oswald.
+
+In sum, workers suffer a possibly large nonpecuniary cost of unemployment. This finding contrasts with the typical calibration in economic models: there, unemployed workers derive utility from consumption and additional utility from leisure, which amounts to setting $Z<0$. To reach a compromise between the typical calibration and the evidence above, we set $Z=0.3 \times \f\times w$. This is the mid-point between $Z=0$ \citep[as in][]{S05}, and $Z=0.6 \times \f\times w$ \citep[as in][]{TMO03}. We will also consider the cases $Z=0$ and $Z=0.6\times \f\times w $ in the sensitivity analysis of Section~\ref{sec:applications}.
+
+Finally, we assume that $Z$ does not depend on labor market conditions. It is true that people often get used to  traumatic events, returning to a normal level of well-being after an initial period of adaptation \citep[p.~429]{KKS04}. If there was adaptation to unemployment, the average value of $Z$ could be lower when unemployment is higher, because then unemployment spells last longer so unemployed workers are more habituated to unemployment. But adaptation does not occur with unemployment: people remain unhappy for a long time after losing their job \citep{WW98,LCG04}. Hence, it seems reasonable to assume that $Z$ is independent of the average duration of unemployment.
+
+\subsection{The Efficiency Term}
+
+With the evidence collected in this section and evidence from the literature, we construct the efficiency term between 1990 and 2014. We only summarize the construction here: the evidence from the literature is described in Online Appendix~D and the derivations are in Online Appendix~E.
+
+We begin by estimating the utility cost of unemployment, $K$. We set the consumption drop upon unemployment to 12 percent and the coefficient of relative risk aversion to 1. These estimates combined with our estimate of the nonpecuniary cost of unemployment imply that $K = 0.46$. This means that a worker who becomes unemployed loses 46 percent of the utility provided by a wage.
+
+Of course, the utility cost of unemployment depends on the generosity of UI, as it affects the consumption of unemployed workers and job search. The cost $K = 0.46$ is an average value, achieved when the UI replacement rate takes its average value $R=0.42$. For a generic $R$, we find that
+\begin{equation}
+K=0.46-1.32\times (R-0.42).
+\label{eq:rulin}\end{equation}
+When UI becomes more generous, it is less costly to be unemployed because the consumption drop upon unemployment and job search are reduced.
+
+Finally, we set the discouraged-worker elasticity to $\e^{f}=0$ and the matching elasticity to $\eta=0.6$. We obtain
+\begin{equation}
+\text{efficiency term = }  0.88 - 0.32\times (R-0.42) - 1.5 \times \frac{\tau}{u}.
+\label{eq:efflin}\end{equation}
+We then compute the efficiency term using the time series for $\tau/u$ and $R$ from Figures~\ref{fig:tau} and~\ref{fig:replacement}. The efficiency term is plotted in Figure~\ref{fig:efficiency}.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=4]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Efficiency Term in the United States, 1990--2014}
+\fignotes{The efficiency term is constructed using~\eqref{eq:efflin}. When the efficiency term is zero, labor market tightness is at its efficient level; when it is positive, labor market tightness is inefficiently low; and when it is negative, labor market tightness is inefficiently high. The shaded areas represent the recessions identified by the NBER.}
+\label{fig:efficiency}\end{figure}
+
+Normally the efficiency term is slightly positive: it averages 0.3 over 1990--2014. In bad times it is very positive: it reaches 0.5 in 1992, in the wake of the 1990--1991 recession, 0.4 in 2003,  after the 2001 recession, and 0.6 in 2009, at the end of the Great Recession. It is only negative in very good times: it falls below 0 between 1999 and 2001, during the dot-com bubble, with a trough at -0.2 in 2000. This pattern implies that the labor market is inefficiently slack during slumps and inefficiently tight only during strong booms. On average the labor market seems a bit too slack.
+
+The efficiency term is countercyclical mostly because the ratio $\tau/u$ is procyclical. The ratio $\tau/u$ fluctuate more widely than the replacement rate ($\tau/u$ varies between 0.16 and 0.74 while $R$ varies between 0.28 and 0.5), and the coefficient in front of $\tau/u$ is larger than that in front of the replacement rate (1.5 against 0.32), so that $\tau/u$ drives most of the fluctuations of the efficiency term. We have seen that $\tau/u$ governs the marginal social value of unemployment, which is to reduce the resources that firms devote to recruiting. Hence, the efficiency term is countercyclical because the reduction in recruiting costs achieved by adding one unemployed worker is high in booms and low in slumps.
+
+There remains some uncertainty about the estimates of the statistics in the efficiency term, so Section~\ref{sec:applications} will provide a sensitivity analysis illustrating how the results change with alternative values of the nonpecuniary cost of unemployment, matching elasticity, consumption drop upon unemployment, and coefficient of relative risk aversion. These statistics affect the level of the efficiency term, but not its cyclical behavior. The takeaway of Figure~\ref{fig:efficiency} is therefore not the level of the efficiency term but its sharp countercyclical fluctuations. These fluctuations imply that an increase in tightness yields a much larger welfare gain in slumps than in booms.
+
+\section{The Effect of UI on Labor Market Tightness}\label{sec:wedge}
+
+An increase in UI raises tightness whenever the macroelasticity of unemployment with respect to UI ($\e^{M}$) is smaller than the microelasticity ($\e^{m}$), or equivalently, whenever the elasticity wedge ($1-\e^{M}/\e^{m}$) is positive. Here we apply this criterion to evaluate the effect of UI on tightness. We start by comparing estimates of the macroelasticity and microelasticity obtained in various studies. Next, we review estimates of the elasticity wedge obtained directly from the response of tightness to UI. Finally, we review evidence on the various channels through which UI may affect tightness.
+
+\subsection{Microelasticity and Macroelasticity of Unemployment with Respect to UI}
+
+We review estimates of the microelasticity and macroelasticity of unemployment with respect to UI. Then we compare their magnitudes to calculate the elasticity wedge. 
+
+\paragraph{Estimates of the Microelasticity ($\e^m$).} The ideal experiment to estimate the microelasticity is to offer more generous UI benefits to a randomly selected small subset of jobseekers and compare unemployment durations between treated and control jobseekers. In practice, the microelasticity is estimated by comparing individuals with different benefits in the same labor market while controlling for individual characteristics. We only consider studies estimating the microelasticity from variations in the potential duration (not the level) of UI benefits because all the studies estimating the macroelasticity use this type of variations.\footnote{Most studies measure the elasticity of unemployment duration or the elasticity of the exit rate from unemployment with respect to UI. These elasticities are nearly identical to the elasticity of the unemployment rate with respect to UI. Indeed, the exit rate from unemployment is $e\cdot f(\t)$; the average duration of unemployment is $1/(e\cdot f(\t))$; and he unemployment rate is $u=s/(s+e\cdot f(\t))$ with $s\ll e\cdot f(\t)$, so $u\approx s/(e\cdot f(\t))$.}
+
+A large literature estimates the microelasticity and provides compelling evidence that a worker who receives more generous UI stays unemployed longer \citep{KM02,CF12}. \citet{KM90} provide high-quality estimates of the microelasticity by exploiting variations in the potential duration of benefits in the Continuous Wage and Benefit History (CWBH) dataset, which is an administrative dataset covering twelve US states from 1978 to 1983. In Table~3, they find that reducing benefit duration from 39 to 35 weeks lowers unemployment duration from 18.4 to 17.6 weeks, so that $\e^m= \brk{(18.4-17.6)/18.4}/\brk{(35-39)/39}=0.42$. They also find that reducing benefit duration from 39 to 26 weeks lowers unemployment duration from 18.4 to 16.2 weeks, so that $\e^m= \brk{(18.4-16.2)/18.4}/\brk{(35-26)/39}=0.36$. In Table~4, with a different empirical specification, they find $\e^m=0.53$ and $\e^m=0.43$. Hence, overall, they obtain microelasticities in the range 0.36--0.53. Using a regression kink design on the same dataset, \citet{L11} estimates microelasticities in the range 0.41--0.85 (Table~3, column~(1), row ``$\e_B$'').
+
+\paragraph{Estimates of the Macroelasticity ($\e^M$).} The ideal experiment to estimate the macroelasticity is to offer more generous UI benefits to all individuals in a randomly selected subset of isolated labor markets, and compare unemployment rates between treated and control labor markets. In practice the macroelasticity is estimated by exploiting quasi-exogenous variations in UI benefits across comparable labor markets. Since it requires exogenous variations in UI across comparable labor markets instead of exogenous variations across comparable individuals within a labor market, estimating the macroelasticity is more difficult than estimating the microelasticity. As a result, few estimates of the macroelasticity are available.
+
+\citet{CarL00} provides an early estimate of the macroelasticity. They use a natural experiment in New Jersey, where UI benefits were extended from 26 to 39 weeks in 1996 for political and not economic reasons, minimizing the need to control for other aggregate shocks and the endogeneity of policy. They estimate that the extension reduced the exit rate from unemployment by 16.6 percent (p.~136 and Table~6, column~(2)). This translates into a macroelasticity $\e^M= 0.166/\brk{(39-26)/26} = 0.32$.
+
+Several papers use the UI extensions enacted in the United States between 2008 and 2012 to estimate the macroelasticity. Exploiting the extensions is challenging because they occurred in response to a rise in unemployment. Thus, when measuring the effect of UI on unemployment, these papers face a severe endogeneity problem.
+
+To address the endogeneity issue, \citet{HKM13} compare border counties straddling states with different benefit durations. They find that permanently increasing benefit duration from 26 to 99 weeks would increase the unemployment rate from 5 percent to 9.1 percent (p.~14). This translates into a macroelasticity $\e^M= \brk{(9.1-5)/5}/\brk{(99-26)/26} = 0.29$. 
+
+But this relatively large estimate has been challenged by subsequent studies. For instance, \citet{DBB16} show that the key identifying assumption of \citet{HKM13}---economic smoothness at border counties straddling two states---does not seem to hold, because individuals cross state borders to search for jobs in the high-benefit state. Using a more flexible regression discontinuity approach, they find that permanently increasing benefit duration from 26 to 99 weeks would only increase the unemployment rate from 5 percent to 6.1 percent (p.~4). This  translates into a smaller macroelasticity: $\e^M=\brk{(6.1-5)/5}/\brk{(99-26)/26}= 0.08$. \citet{C15}, \citet{AI14}, and \citet{BDG16} also replicate the estimation of \citet{HKM13} and find that the results are sensitive to specification and time period.
+
+Two other studies address the endogeneity issue by exploiting variations in UI due to measurement error in real-time state unemployment rates, which are used to trigger UI extensions. \citet{C15} uses differences between real-time state unemployment rates and definitive state unemployment rates, obtained after revisions. He finds that an increase in UI caused by measurement error raises employment growth, although he cannot rule out zero effect. This implies that the macroelasticity is at most zero. \citet{CK16} use variations between real-time state unemployment rates and state unemployment rates obtained after correction of exogenous sampling errors in the CPS. They estimate that raising benefit duration from 26 to 99 weeks would increase the unemployment rate by at most 0.3 percentage point (p.~4). The average unemployment rate in 2008, when UI extensions were enacted, was 5.8 percent; this estimate therefore translates into a minuscule macroelasticity: $\e^M=\brk{0.3/5.8}/\brk{(99-26)/26}=0.02$. There is a concern, however, that the measurement-error approach does not completely solve the endogeneity issue \citep{HMM16}.
+
+\paragraph{Mixed Estimates.} \citet{R11}, \citet{FV13}, and \citet{V14} study the effects of the UI extensions during the Great Recession, without trying to disentangle micro and macro effects. They use CPS data.\footnote{These studies rely on lower-quality, survey data because higher-quality, administrative data have not yet been made accessible to researchers.} They rely on variations in benefit duration across states and over time, thus estimating a mixture of microelasticity and macroelasticity. \citet[Table~3, columns~1--5]{R11} finds that the UI extensions reduced the exit rate from unemployment by 1.7--2.3 percentage points from a base of 22.4 percent. Since the potential duration of benefits increased from 26 to 65 weeks in 2010 (p.~145), his finding translates into a mixed elasticity of $(2/22.4)/\brk{(65-26)/26}=0.06$. \citet{FV13} find that a one-month increase in benefit duration raises unemployment duration by 0.06 month (Table~6, column~(1)). Their estimate is one third of that from \citet{KM90} (p.~901), so it implies a mixed elasticity of $0.45/3 = 0.15$. Last, \citet{V14} finds that a 10-week increase in benefit duration leads to a 1.5-week increase in unemployment duration. The average unemployment duration in his data is 28.2 weeks, and the average benefit duration is 74.2 weeks (Table~2, column~(1)), so the estimated effect translates into a mixed elasticity $(1.5/28.2)/(10/74.2)=0.39$. Taken together, the three studies provide an average mixed elasticity of 0.2.
+
+\paragraph{Implied Estimates of the Elasticity Wedge ($1-\e^M/\e^m$).} The microelasticity estimates obtained in administrative data are in the 0.4--0.8 range. In contrast, macroelasticity estimates are in the 0--0.3 range. (\citet[p.~31]{HKM13} indeed note that their macroelasticity estimate, while large, is lower than the microelasticity estimates obtained in administrative data by \citet{KM90} and others.) Hence, available evidence suggests that the macroelasticity is smaller than the microelasticity, and that the elasticity wedge is positive. A lower bound on the elasticity wedge is $1-\e^M/\e^m = 1-0.3/0.4 = 0.25$, and an upper bound is $1-\e^M/\e^m = 1-0.1/0.6 = 0.8$. 
+
+One way to obtain a negative elasticity wedge would be to compare the large macroelasticity obtained by \citet{HKM13} with the small elasticity obtained by \citet{R11}, \citet{FV13}, and \citet{V14}. The implied elasticity wedge would be $1-\e^M/\e^m = 1- 0.29/0.2 = - 0.45$. Yet, this negative wedge would be difficult to interpret because Rothstein, Farber, and Valletta estimate a mixture of microelasticity and macroelasticity. 
+
+Comparing microelasticities to macroelasticities obtained in different contexts is not ideal, however, because elasticities may vary over the business cycle or across policy variations. It is better to estimate microelasticity and macroelasticity in the same context. This is what \citet{JM15} do. They study an unexpected 16-week reduction in benefit duration in Missouri in 2011. Implementing a regression discontinuity design in administrative data, they find that a jobseeker whose benefits are shortened by one month finds a job 0.3 month earlier, which translates into a microelasticity between 0.37 and 0.78 (p.~30). Then, with a difference-in-difference estimator taking other US states as control, they find a reduction in the Missouri unemployment rate commensurate to that implied by the microelasticity  (p.~34). This finding implies that the macroelasticity equals the microelasticity, or $1-\e^M/\e^m = 0$.
+
+\subsection{Response of Tightness to UI}
+
+It is usually impossible to measure labor market tightness because job-search effort is unobservable. In these circumstances, comparing microelasticity and macroelasticity of unemployment with respect to UI is a natural avenue to estimate the effect of UI on tightness. Yet, using data on vacancies and job applications from \url{CareerBuilder.com} (a major employment website), \citet{M14} is able to measure tightness over time and thus directly estimate the effect UI on tightness. She looks at the UI extensions implemented in the United States between 2008 and 2011. With an event-study approach, she finds that the extensions reduced the number of job applications---a proxy for aggregate search effort---but had no effect on the number of vacancies. Since tightness is the ratio of vacancies to aggregate search effort, the increase in UI raised tightness, and the elasticity wedge is positive. The elasticity wedge reported by Marinescu is $1-\e^{M}/\e^{m} = 0.4$ (p.~31).
+
+Another way to measure the effect of UI on tightness is a double-randomization experiment where the treatment is receiving more generous UI benefits: (i) some randomly selected labor markets are treated and some are not, and (ii) within treated labor markets, a randomly selected subset of jobseekers are treated. Control jobseekers in treated markets are only affected by the change in tightness in their labor market. Hence, if the unemployment duration of control jobseekers in treated markets is shorter than that of control jobseekers in control markets, tightness has gone up, and the elasticity wedge is positive. 
+
+Two US studies employ a design conceptually similar to a double randomization, with the practical limitation that the treatment (receiving UI) is not randomly assigned. \citet{L93} studies the spillovers between insured and uninsured jobseekers. In CPS microdata, he finds that when UI increases, insured jobseekers search less, but uninsured jobseekers find jobs faster (p.~79). This implies a positive elasticity wedge. Moreover, in state unemployment data, he finds that when UI increases, the unemployment rate of insured jobseekers goes up, but the unemployment rate of uninsured jobseekers goes down in such a way the aggregate unemployment rate does not change (Table~5, columns~1--3). This suggests that the macroelasticity is 0 and the elasticity wedge is 1. \citet{FV13} observe similar spillovers: after the UI extensions of the 2008--2012 period, uninsured jobseekers find a job faster (p.~894), implying a positive elasticity wedge.
+
+Evidence from other countries also points to a positive elasticity wedge. \citet{LLZ12} estimate the elasticity wedge in administrative data from Austria. They use a natural experiment offering the desired design: the Regional Extended Benefit Program implemented in 1988--1993. The treatment is an increase in benefit duration from 52 to 209 weeks for eligible unemployed workers in a subset of regions. They find that ineligible unemployed workers in treated labor markets experienced significantly lower unemployment duration, which implies a positive elasticity wedge. The reported elasticity wedge is $1-\e^{M}/\e^{m} = 0.21$ (p.~3567).
+
+\subsection{Rat-Race and Job-Creation Channels}
+
+In matching models, UI affects tightness through the rat-race and job-creation channels \citep[Figure~4]{LMS10}. Several papers study these two channels, providing additional evidence about the effect of UI on tightness.
+
+A good way to determine whether the rat-race channel is present is to examine whether an increase in search effort by some jobseekers, induced for example by job-search programs, reduces the job-finding probability of the other jobseekers in the same labor market. This strategy has been implemented in two European countries. \citet{CDG12} analyze a large-scale randomized experiment in France. Some young educated jobseekers are treated by receiving job-search assistance. The experiment has a double-randomization design: (i) some areas are treated and some are not, (ii) within treated areas some jobseekers are treated and some are not. They find that treated jobseekers have a higher job-finding probability than control jobseekers in the same area, and critically, that control jobseekers in treated areas have a lower job-finding probability than control jobseekers in control areas. \citet{GMK12} obtain similar results from a smaller-scale experiment with the same design in Denmark. They find that control jobseekers in treated regions find jobs more slowly than jobseekers in control regions. Both studies find that the presence of jobseekers who search intensely hurts the prospects of other jobseekers in the same labor market. This finding suggests that the number of jobs in the labor market is somewhat limited and that the rat-race channel operates. In fact, the results from France translate into an elasticity wedge $1-\e^{M}/\e^{m}=0.4$.\footnote{Let $e^{C}$ be the effort of control jobseekers, $e^{T}>e^C$ the effort of treated jobseekers, $f^C$ the job-finding rate in control areas, and $f^T$ the job-finding rate in treated areas. \citet[Table~IX, panel~B, column~1]{CDG12} find that treated jobseekers face a higher job-finding probability than control jobseekers in the same area: $\brk{e^{T}-e^{C}}\cdot f^T=0.057$. But control jobseekers in treated areas face a lower job-finding probability than control jobseekers in control areas: $e^{C}\cdot \brk{f^T-f^C}=-0.021$. Therefore the job-finding probability of treated jobseekers in treated areas is higher than that of control jobseekers in control areas by only $\brk{e^{T}\cdot f^T}-\brk{e^{C}\cdot f^C}=0.057-0.021=0.036$. As $\e^{m}$ is proportional to $\brk{e^{T}-e^{C}}\cdot f^T$ and $\e^{M}$ to $\brk{e^{T}\cdot f^T}-\brk{e^{C}\cdot f^C}$, the implied elasticity wedge is $1-\e^{M}/\e^{m}=1-0.036/0.057=0.4$.}
+
+A good way to measure the job-creation channel is to investigate whether higher UI leads to higher wages. Several studies estimate the effect of UI on wages in US data and find no effect. \citet[p.~21]{JM15} find that re-employment earnings do not change after a cut in the duration of UI benefits. \citet[p.~23]{M14} finds that benefit duration does not affect wages advertised by firms. Finally, in high-frequency survey data on more than 6,000 unemployed workers in New Jersey, \citet[p.~175]{KM16} find no relationship between reported reservation wages and the generosity of UI. The results are similar outside of the United States: for example, using administrative data from Austria, \citet[p.~1514]{CCW07} find that extended UI benefits do not affect wages in subsequent jobs. As UI does not seem to affect wages, the job-creation channel is likely to be small.
+
+\subsection{The Elasticity Wedge}
+
+Estimates of the microelasticity obtained in administrative data are at least as large as available estimates of the macroelasticity, suggesting that the elasticity wedge is positive. Comparing the estimates yields a lower bound on the elasticity wedge of $1-\e^M/\e^m = 0$ and an upper bound of $1-\e^M/\e^m = 0.8$. Furthermore, by measuring directly the response of labor market tightness to UI, \citet{M14} obtains an estimate that falls in the middle of this range: $1-\e^{M}/\e^{m}=0.4$. The finding that an increase in UI improves the prospects of uninsured jobseekers offer furthers support for a positive elasticity wedge. Last, there is empirical evidence in favor of the rat-race channel but not in favor of the job-creation channel. Based on all this evidence, we set the average value of the elasticity wedge to $1-\e^{M}/\e^{m}=0.4$.
+
+Having studied the average value of the elasticity wedge, we examine how the elasticity wedge varies with labor market conditions. Some evidence obtained in the United States suggests that the elasticity wedge is higher in bad times than in good times. \citet{V14} finds that uninsured jobseekers find jobs more rapidly after the UI extensions of the Great Recession, but this spillover is only present in states with high unemployment (p.~18). This result suggests that an increase in UI raises tightness when unemployment is high but not otherwise, which means that the elasticity wedge is positive when unemployment is high but closer to zero otherwise. \citet{T17} obtains additional evidence by exploiting variations in job-search requirements across US states and over time. He finds that when search requirements are more stringent, UI recipients search more and find jobs faster (pp.~21--25). But increasing search effort has a smaller effect on the unemployment rate in bad times than in good times (pp.~25--32). This finding implies that the elasticity wedge is larger in bad times. Evidence from European countries also suggests that the elasticity wedge is larger in bad times: \citet[p.~3590]{LLZ12} find that the elasticity wedge is larger in slack labor markets; \citet[pp.~565--567, p.~575]{CDG12} find that the rat-race channel is stronger in areas and periods with high unemployment.
+
+\begin{figure}[t] \centering
+\subfigure[High elasticity wedge in a slump]{\includegraphics[scale=0.22,page=5]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Low elasticity wedge in a boom]{\includegraphics[scale=0.22,page=6]{\path graphs/ui_applications_graphs_aej.pdf}}
+\caption{Countercyclicality of the Elasticity Wedge in the Job-Rationing Model}
+\fignotes{The figure depicts labor demand (LD) and labor supply (LS) as a function of labor market tightness. It shows the effect of a more generous UI on labor supply and depicts the microelasticity $\e^m$ and macroelasticity $\e^M$. These elasticities describe the partial-equilibrium ($\e^m$) and general-equilibrium ($\e^M$) responses of employment to UI. Comparing $\e^m$ and $\e^M$ gives the elasticity wedge: $1-\e^{M}/\e^{m}$. The two panels contrast a slump, which is an equilibrium with low labor demand, to a boom, which is an equilibrium with high labor demand.}
+\label{fig:meca}\end{figure}
+
+The empirical evidence indicates that the elasticity wedge increases when labor market conditions deteriorate, but it is not precise enough to quantify the increase. We rely on more structural evidence to do that. We use the job-rationing model of \citet{M09}, which it is consistent with a positive elasticity wedge and the rat-race channel. (The model is presented in Section~IV.D, and the derivations are in Online Appendix~E.) In the model, the elasticity wedge is
+\begin{equation}
+1-\frac{\e^{M}}{\e^{m}}=1\bigg/\pre{1+\frac{\eta}{1-\eta}\cdot\frac{\a}{1-\a}\cdot\frac{1}{1+\e^{f}}\cdot \frac{\tau(\t)}{u}}>0,
+\label{eq:wedge}\end{equation} 
+where the parameter $\a$ comes from the production function $y(n)=a\cdot n^{\a}$. Since the ratio $\tau/u$ is procyclical (see Figure~\ref{fig:tau}), this elasticity wedge is countercyclical, in line with the evidence. 
+
+The mechanism generating a countercyclical elasticity wedge in the job-rationing model is illustrated in Figure~\ref{fig:meca}. Imagine that UI becomes more generous. Since the microelasticity is positive, jobseekers search less (the labor supply curve shifts inward). If the tightness did not respond, firms would want to employ the same number of workers as before, but they would not be able to because the lower search effort reduces the number of workers that firms are able to hire (labor demand is higher than labor supply at the current tightness). Firms would respond to the shortage of new hires by posting more vacancies (a movement along the labor supply curve).  In a slump (panel~A), the matching process is congested by search effort since there are many jobseekers and few vacancies. Hence, the extra vacancies are filled with high probability and employment comes back around its initial level. Accordingly, the macroelasticity is much smaller than the microelasticity. Conversely, in a boom (panel~B), the matching process is congested by vacancies. Hence, the extra vacancies are filled with low probability and employment does not grow much. In this case, the macroelasticity is only slightly smaller than the microelasticity.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=7]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Elasticity Wedge in the United States, 1990--2014}
+\fignotes{The elasticity wedge is constructed using~\eqref{eq:wedgelin}. The elasticity wedge is positive whenever the macroelasticity of unemployment with respect to UI is smaller than the microelasticity of unemployment with respect to UI. A positive elasticity wedge indicates that an increase in UI raises labor market tightness. The shaded areas represent the recessions identified by the NBER.} 
+\label{fig:wedge}\end{figure}
+
+Using~\eqref{eq:wedge}, we compute the derivative of $1-\e^{M}/\e^{m}$ with respect to $\tau/u$. This derivative is obviously negative. We calibrate the parameters of the model so that $1-\e^{M}/\e^{m}=0.4$ when $\tau/u$ takes its average value of 0.38. This requires $\pre{\eta\cdot \a}/\brk{(1-\eta) \cdot (1-\a) \cdot (1+\e^f)} = 4$. Using this number, we find that the derivative of $1-\e^{M}/\e^{m}$ with respect to $\tau/u$ is $-0.65$ when $\tau/u=0.38$. Thus, the linear approximation of the elasticity wedge around its average value is
+\begin{equation}
+1-\frac{\e^{M}}{\e^{m}}= 0.4 - 0.65\times \pre{\frac{\tau}{u}-0.38}.
+\label{eq:wedgelin}\end{equation}
+This equation says that the elasticity wedge is 0.4 when $\tau/u=0.38$ and that the wedge is lower when $\tau/u$ is higher (which happens in good times).
+
+From equation~\eqref{eq:wedgelin} and the time series for $u$ and $\tau$ in Figure~\ref{fig:tau}, we construct a time series for the elasticity wedge. The time series is displayed in Figure~\ref{fig:wedge}. The elasticity wedge fluctuates in a countercyclical fashion around 0.4. At the end of the 1990--1991 recession, the wedge reached 0.49; at the end of the Great Recession, it reached 0.54; but in the boom of 2000, it fell to 0.17. The behavior of the elasticity wedge has the following economic interpretation. When UI becomes more generous, the increase in unemployment caused by lower search effort is partially offset by a reduction in unemployment caused by higher tightness (positive elasticity wedge). Furthermore, the offset is large in bad times but small in good times (countercyclical elasticity wedge).
+
+Undoubtedly, there remains significant uncertainty about the exact value of the elasticity wedge. By comparing the macroelasticity obtained by \citet{HKM13} with the mixed elasticities obtained by \citet{R11}, \citet{V14}, and \citet{FV13}, it is even possible to obtain a negative elasticity wedge, around $1-\e^{M}/\e^{m}=-0.4$. Hence, to accommodate the range of possible estimates, we will also consider the cases $1-\e^{M}/\e^{m}=0$ and $1-\e^M/\e^m=-0.4$ in the sensitivity analysis of Section~\ref{sec:applications}.
+
+\section{Applications of the Optimal UI Formula}\label{sec:applications}
+
+We have found that an increase in tightness yields larger welfare gains in slumps than in booms, and that an increase in UI raises tightness. Combining this evidence with available knowledge about the Baily-Chetty replacement rate, we determine the optimal UI replacement rate in the United States between 1990 and 2014. Since there remains uncertainty about the estimates of some of the statistics in the optimal UI formula, we provide a comprehensive sensitivity analysis illustrating how the results change with different estimates. 
+
+\subsection{The Welfare Effect of a Small Change in UI}
+
+We begin with an exercise typical in the literature \citep[for example,][]{C08}: evaluating our optimal UI formula at the current replacement rate. If the formula holds, the current replacement rate is optimal. If it does not hold, we can determine whether the current replacement rate is too high or too low.
+
+We aim to compare the right-hand and left-hand sides of formula~\eqref{eq:optimal} at the current UI. The replacement rate, efficiency term, and elasticity wedge at current UI are plotted in Figures~\ref{fig:replacement},~\ref{fig:efficiency}, and~\ref{fig:wedge}. The last thing to do is compute the Baily-Chetty replacement rate at current UI. The Baily-Chetty replacement rate is well researched, so we have estimates for its key statistics: we set the coefficient of relative risk aversion to 1, the consumption drop upon unemployment to 12 percent, and the microelasticity of unemployment duration with respect to benefit level to 0.4 (see Online Appendix~D). Thus we find that
+\begin{equation}\medmuskip=1mu 
+\text{Baily-Chetty replacement rate}=4.6\times \brk{0.46-1.32\times (R-0.42)}\times \brk{0.12-0.26\times (R-0.42)}
+\label{eq:bclin}\end{equation}
+(see Online Appendix~E). The Baily-Chetty replacement rate depends on the UI replacement rate, $R$, because $R$ affects the consumption drop upon unemployment. On the other hand, the Baily-Chetty replacement rate does not depend on labor market conditions, because labor market conditions do not seem to affect consumption drop upon unemployment and microelasticity of unemployment duration with respect to benefit level. We compute the Baily-Chetty replacement rate with~\eqref{eq:bclin} and the time series for $R$ in Figure~\ref{fig:replacement}.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=8]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Welfare Effect of a Small UI Increase in the United States, 1990--2014}
+\fignotes{The welfare effect of a small increase in UI equals the Baily-Chetty replacement rate $+$ the elasticity wedge $\times$ the efficiency term  - the current replacement rate. The Baily-Chetty replacement rate is constructed using~\eqref{eq:bclin}. The elasticity wedge is constructed using~\eqref{eq:wedgelin} and depicted in Figure~\ref{fig:wedge}. The efficiency term is constructed using~\eqref{eq:efflin} and depicted in Figure~\ref{fig:efficiency}. The current replacement rate is constructed in Online Appendix~C and depicted in Figure~\ref{fig:replacement}. When the welfare effect is positive, the current replacement rate is too low. When the welfare effect is negative, the current replacement rate is too high. The shaded areas represent the recessions identified by the NBER.}
+\label{fig:marginal}\end{figure}
+
+Figure~\ref{fig:marginal} displays the difference between the right-hand side and the left-hand side of formula~\eqref{eq:optimal}. When the difference is positive, a small increase in UI raises welfare and the current replacement rate is too low. When it is negative, a small increase in UI reduces welfare and the current replacement rate is too high. As the average difference is broadly zero, UI in the United States is close to optimal on average between 1990 and 2014. Nevertheless, there are two periods when UI seems suboptimal. First,  UI was too generous in 1997--2001, during the dot-com boom. Second, while the increase in UI during the Great Recession was broadly optimal, UI was inefficiently low after 2013. Since unemployment duration was high after the Great Recession, many jobseekers lost their benefits when benefit duration was reduced to normal levels in 2014. This lead to a dramatic reduction in the generosity of UI, which fell below the level warranted by our formula.
+
+\subsection{The Optimal UI Replacement Rate}
+
+We now use our optimal UI formula to compute the optimal replacement rate over the business cycle. Here, a technical challenge arises: optimal policy formulas expressed with sufficient statistics cannot be used to solve for the optimal policy, because the statistics are implicit functions of the policy and economic conditions. To address this issue, we extend the method of \citet{G97} and express all the statistics in our formula as a function of UI and labor market conditions. We also take into account the effect of UI on labor market conditions. With this approach we can compute optimal UI using solely our formula, without specifying a structural model.
+
+We have expressed all the statistics as functions of the replacement rate $R$ and the ratio $\tau/u$, which describes labor market conditions. Yet, as $R$ changes, it affects $u$ and $\t$ and therefore $\tau(\t)/u$. To solve for the optimal $R$, we have to link $\tau/u$ to $R$. In Online Appendix~E, we derive a linear relation between $\tau/u$ and $R$:
+\begin{equation}
+\frac{\tau}{u}=\frac{\hat{\tau}}{\hat{u}} + 0.01 \times \pre{R-\hat{R}},
+\label{eq:tauu}\end{equation}
+where $\hat{R}$ and $\hat{\tau}/\hat{u}$ are the observed values of $R$ and $\tau/u$. Here the response of $\tau/u$ to $R$ is very small (the derivative is 0.01), but this result is not general: under some of the calibrations in the sensitivity analysis, the response is stronger.
+
+We now rewrite formula~\eqref{eq:optimal} using~\eqref{eq:efflin},~\eqref{eq:wedgelin}, and~\eqref{eq:bclin}, and~\eqref{eq:tauu}: 
+\begin{align}
+R  = 4.6 &\times \brk{0.46-1.32\times (R-0.42)} \times \brk{0.12-0.26\times (R-0.42)}\label{eq:formula}\\
+&+\brk{0.4-0.65 \times \pre{\frac{\hat{\tau}}{\hat{u}}-0.38+ 0.01 \times \pre{R-\hat{R}}}}\nonumber\\
+&\times \brk{0.88-0.32\times (R-0.42)-1.5\times \pre{\frac{\hat{\tau}}{\hat{u}} + 0.01 \times \pre{R-\hat{R}}}}.\nonumber
+\end{align}
+Then, we use this formula and the series for $\hat{\tau}/\hat{u}$ and $\hat{R}$ plotted in Figures~\ref{fig:tau} and~\ref{fig:efficiency} to solve for the optimal $R$ between 1990 and 2014. The optimal replacement rate is displayed on Figure~\ref{fig:optimal}, together with the effective replacement rate in the United States. 
+
+The generosity of UI in the United States is close to optimal on average: the effective replacement rate in the United States averages 42 percent while the optimal replacement rate averages 40 percent. Additional evidence is necessary to cement this finding, however, because the optimal replacement rate is sensitive to the values of statistics that have not yet been precisely estimated.
+
+Moreover, the effective replacement rate in the United States seems to be adjusted nearly optimally when recessions occur. After the 1990--1991 recession the replacement rate rose to 47 percent, which was close to the optimum of 46 percent. And after the Great Recession the replacement rate rose to 50 percent, which was the optimum. An exception is the 2001 recession: then the replacement rate reached 50 percent, whereas the optimum was only 41 percent.
+
+In contrast, UI in the United States was excessively generous during the dot-com boom and insufficiently generous after the Great Recession. At the peak of the boom in 2000, the effective replacement rate remained around 45 percent, while the optimum fell to 33 percent. And after the Great Recession, the effective replacement rate collapsed to 28 percent, while the optimum remained around 40 percent.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=9]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Optimal UI Replacement Rate in the United States, 1990--2014}
+\fignotes{The optimal UI replacement rate (solid line) is obtained by solving formula~\eqref{eq:formula}. The effective UI replacement rate in the United States (dashed line) is constructed in Online Appendix~C. The shaded areas represent the recessions identified by the NBER.}
+\label{fig:optimal}\end{figure}
+
+
+\subsection{Sensitivity Analysis}
+
+There remains uncertainty about the estimates of some the statistics in the optimal UI formula, so we explore the sensitivity of the optimal replacement rate to the values of several key statistics. The results are presented in Figure~\ref{fig:sensitivity}: in each panel, we plot the benchmark optimal replacement rate from Figure~\ref{fig:optimal} (solid line) and two alternative optimal replacement rates obtained by changing the value of one statistic (dotted and dashed lines). The cyclicality of the optimal replacement rate is affected only by the sign of the elasticity wedge, but its level is affected by the values of all the statistics. (The derivations are relegated to Online Appendix~F.)
+
+\paragraph{Elasticity Wedge ($1-\e^{M}/\e^{m}$).} The optimal UI formula shows that the sign of the elasticity wedge determines the cyclicality of the optimal replacement rate. Indeed, the correction term in the formula is procyclical with a negative wedge, acyclical with a zero wedge, and countercyclical with a positive wedge. Since the Baily-Chetty replacement rate does not depend on the state of the labor market (see expression~\eqref{eq:bclin}), the fluctuations of the correction term directly translate into fluctuations of the optimal replacement rate. This is what we see in panel~A. The panel displays the optimal replacement rates obtained with a zero elasticity wedge, a negative elasticity wedge of $-0.4$, and the benchmark elasticity wedge from Figure~\ref{fig:wedge}---this benchmark has a positive average value of 0.4 and is countercyclical. When the elasticity wedge is positive, the optimal replacement rate is countercyclical, varying between 33 percent in bad times and 50 percent in good times. When the elasticity wedge is zero, the optimal replacement rate is constant at 35 percent. And when the elasticity wedge is negative, the optimal replacement rate becomes procyclical, varying between 27 percent in bad times and 39 percent in good times. 
+
+\begin{figure}[p!] \centering
+\subfigure[Elasticity wedge]{\includegraphics[scale=0.22,page=10]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Microelasticity of unemployment]{\includegraphics[scale=0.22,page=11]{\path graphs/ui_applications_graphs_aej.pdf}}
+\subfigure[Nonpecuniary cost of unemployment]{\includegraphics[scale=0.22,page=12]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Matching elasticity]{\includegraphics[scale=0.22,page=13]{\path graphs/ui_applications_graphs_aej.pdf}}
+\subfigure[Coefficient of relative risk aversion]{\includegraphics[scale=0.22,page=14]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Consumption drop upon unemployment]{\includegraphics[scale=0.22,page=15]{\path graphs/ui_applications_graphs_aej.pdf}}
+\caption{Sensitivity of the Optimal UI Replacement Rate to the Value of Six Key Statistics}
+\fignotes{The figure applies to the US labor market for the 1990--2014 period. The optimal UI replacement rates are constructed by solving formulas akin to formula~\eqref{eq:formula}. These formulas are derived in Online Appendix~F. The shaded areas represent the recessions identified by the NBER.}
+\label{fig:sensitivity}\end{figure}
+
+\paragraph{Microelasticity of Unemployment Duration with Respect to Benefit Level ($\e^{m}_{b}$).} A high microelasticity $\e^{m}_{b}$ and thus a high microelasticity $\e^{m}$ yield a low Baily-Chetty replacement rate and thus a low optimal replacement rate. This is what we see in panel~B. The panel displays the optimal replacement rates obtained with a low microelasticity $\e^{m}_{b}=0.2$, a high microelasticity $\e^{m}_{b}=0.6$, and the benchmark microelasticity $\e^{m}_{b}=0.4$. With $\e^{m}_{b}=0.2$, the optimal replacement rate is higher than the benchmark: 48 percent on average, with a minimum of 43 percent and a maximum of 55 percent. With $\e^{m}_{b}=0.6$, the optimal replacement rate is lower:  36 percent on average, with a minimum of 28 percent and a maximum of 46 percent.
+
+\paragraph{Nonpecuniary Cost of Unemployment ($Z$).} A high nonpecuniary cost of unemployment yields a high utility cost of unemployment, $K$, and thus a high efficiency term. Since the elasticity wedge is positive, this yields a high correction term and thus a high optimal replacement rate. This is what we see in panel~C. The panel displays the optimal replacement rates obtained with a low nonpecuniary cost $Z=0$, a high nonpecuniary cost $Z=0.6\times \f\times w $, and the benchmark nonpecuniary cost $Z=0.3\times \f\times w $. With $Z=0$, the optimal replacement rate is lower than the benchmark: 38 percent on average, with a minimum of 35 percent and a maximum of 42 percent. With $Z=0.6\times \f\times w $, the optimal replacement rate is higher: 45 percent on average, with a minimum of 35 percent and a maximum of 58 percent.
+
+\paragraph{Matching Elasticity ($\eta$).} A high matching elasticity yields a high $\brk{\eta/(1-\eta)}\cdot (\tau/u)$ and thus a low efficiency term. As the elasticity wedge is positive, this yields a low correction term and a low optimal replacement rate. This is what we see in panel~D. The panel displays the optimal replacement rates obtained with a low matching elasticity $\eta=0.5$, a high matching elasticity $\eta=0.7$, and the benchmark matching elasticity $\eta=0.6$. With $\eta=0.5$, the optimal replacement rate is higher than the benchmark: 43 percent on average, with a minimum of 36 percent and a maximum of 52 percent. With $\eta=0.7$, the optimal replacement rate is lower: 36 percent on average, with a minimum of 30 percent and a maximum of 47 percent.
+
+\paragraph{Coefficient of Relative Risk Aversion ($\g$).} A high coefficient of relative risk aversion yields a large gap between marginal utilities, $1/U'(c^e)-1/U'(c^h)$. Thus, it yields high Baily-Chetty and optimal replacement rates. This is what we see in panel~E. The panel displays the optimal replacement rates obtained with a low risk aversion $\g=0.5$, a high risk aversion $\g=2$, and the benchmark risk aversion $\g=1$. With $\g=0.5$, the optimal replacement rate is lower than the benchmark: 32 percent on average, with a minimum of 23 percent and a maximum of 44 percent. With $\g=2$, the optimal replacement rate is higher:  49 percent on average, with a minimum of 44 percent and a maximum of 55 percent.
+
+\paragraph{Consumption Drop Upon Unemployment ($1-c^{h}/c^{e}$).} A high consumption drop upon unemployment yields large gap between marginal utilities, $1/U'(c^e)-1/U'(c^h)$, and utility cost of unemployment, $K$. Thus, it yields high Baily-Chetty replacement rate, high efficiency term, and high correction term (since the elasticity wedge is positive). As a result, it leads to a high optimal replacement rate. This is what we see in panel~F. The panel displays the optimal replacement rates obtained with a low consumption drop $1-c^{h}/c^{e}=0.05$, a high consumption drop $1-c^{h}/c^{e}=0.2$, and the benchmark consumption drop $1-c^{h}/c^{e}=0.12$. With $1-c^{h}/c^{e}=0.05$, the optimal replacement rate is lower than the benchmark: 31 percent on average, with a minimum of 25 percent and a maximum of 41 percent. With $1-c^{h}/c^{e}=0.2$, the optimal replacement rate is higher:  49 percent on average, with a minimum of 42 percent and a maximum of 58 percent.
+
+\subsection{Accuracy}
+
+The optimal UI formula~\eqref{eq:formula} relies on several approximations. To check its accuracy, we simulate a fully specified, structural matching model, and we verify that in the model, solving~\eqref{eq:formula} yields a similar policy as solving the exact optimal UI formula~\eqref{eq:optimal}. 
+
+The matching model used in the simulations is the job-rationing model from \citet{M09}. This model generates a positive elasticity wedge and is therefore consistent with our preferred estimate of $1-\e^{M}/\e^{m}=0.4$, unlike other matching models: the standard model from \citet{P00} generates a negative wedge and the fixed-wage model from \citet{H05} generates a zero wedge \citep[Section IV]{LMS10}. Furthermore, because real wages are somewhat rigid in the job-rationing model, technology shocks generate inefficient fluctuations in tightness, consistent with the fluctuations of the efficiency term in Figure~\ref{fig:efficiency}.\footnote{Technology shocks are a conventional and convenient way to generate business cycles in matching models, but these models can also accommodate aggregate demand shocks \citep{MS13}. Matching the evidence in Figure~\ref{fig:efficiency} requires labor demand shocks---whether these are aggregate demand or technology shocks is unimportant.}
+
+To obtain the job-rationing model, we specialize the generic matching model from Section~\ref{sec:model}. First, we specify a concave production function: $y(n)=a\cdot n^{\a}$. The parameter $a$ measures the technology of the firm, and the parameter $\a \in(0,1)$ captures decreasing marginal returns to labor. Second, we specify a wage schedule that is independent of UI and partially rigid with respect to technology: $w=\o\cdot a^{1-\z}$. The parameter $\o$ governs the wage level, and the parameter $\z\in(0,1]$ measures the rigidity of wages with respect to technology. Under these assumptions, labor demand is
+\begin{equation}
+l^{d}(\t,a)=\brk{\frac{\a}{\o}\cdot \frac{a^{\z}}{\pre{1+\tau(\t)}^{\a}}}^{1/(1-\a)}.
+\label{eq:jr}\end{equation}
+Labor demand is decreasing in tightness because when tightness is higher, hiring a worker requires more recruiters and is therefore less profitable. Labor demand is increasing in technology because when technology rises, wages increase less than proportionally (by wage rigidity), so hiring a worker is more profitable. Labor demand is independent of UI because wages are. 
+
+We calibrate the model to match the empirical evidence presented in the paper. (The calibration is relegated to Online Appendix~G.) We compare three UI programs: in the first, the replacement rate remains constant at 42 percent, the average US value; in the second, the replacement rate solves the approximate optimal UI formula~\eqref{eq:formula} using the ratio $\hat{\tau}/\hat{u}$ observed when $\hat{R}=0.42$; and in the third, the replacement rate solves the exact optimal UI formula~\eqref{eq:optimal}. The first program is a simplified version of the UI program in the US. The second program is the program that would be implemented by a policymaker living under the first program and using formula~\eqref{eq:formula}. The third program is the optimal UI program in the model. Under each program, we compute equilibria spanning the business cycle: a slump is an equilibrium with low technology and thus low labor demand and high unemployment; a boom is an equilibrium with high technology and thus high labor demand and low unemployment.
+
+\begin{figure}[t] \centering
+\includegraphics[scale=0.22,page=16]{\path graphs/ui_applications_graphs_aej.pdf}\quad
+\includegraphics[scale=0.22,page=17]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Accuracy of the Approximate Optimal UI Formula}
+\fignotes{This figure compares equilibria where the replacement rate is set at 42 percent (dotted line), set using the exact optimal UI formula~\eqref{eq:optimal} (solid line), and set using the approximate optimal UI formula~\eqref{eq:formula} (dashed line). The equilibria are parametrized by various levels of technology. The results are obtained by simulating the job-rationing model from \citet{M09} with the calibration presented in Online Appendix~G.}
+\label{fig:UI}\end{figure}
+
+The main results are displayed in Figure~\ref{fig:UI}. (Additional results are provided in Online Appendix~H.) When technology increases from 0.96 to 1.03 and the replacement rate remains constant, the unemployment rate falls from 10.0 percent to 4.5 percent. As already noted by \citet{M09}, the modest amount of wage rigidity observed in microdata---which we use to calibrate the wage schedule---generates large fluctuations in unemployment. Of course, the unemployment rate responds when the replacement rate adjusts from its original level of 42 percent to the levels given by formulas~\eqref{eq:optimal} and~\eqref{eq:formula}. In slumps these levels are above 42 percent so unemployment rises above its original level; in booms these levels are below 42 percent so unemployment falls below its original level. The responses of the unemployment rate are small, however, because the macroelasticity of unemployment with respect to UI is not large, especially in slumps.
+
+As unemployment falls, the replacement rate given by the approximate formula~\eqref{eq:formula} falls from 53 percent to 33 percent. At the same time, the replacement rate given by the exact formula~\eqref{eq:optimal} falls from 54 percent to 34 percent. In fact, the deviation between the two replacement rates is always below 2 percentage points. Hence, despite the approximations required to derive it, formula~\eqref{eq:formula} is quite accurate.
+
+\subsection{The Welfare Gains from Optimal UI}
+
+To conclude the analysis, we use the simulations of the job-rationing model to assess the welfare gains achieved by moving from two natural starting points---the Baily-Chetty replacement rate and the average US replacement rate of 42 percent---to the optimal replacement rate. At each stage of the business cycle, we use~\eqref{eq:sw} to compute the welfare gain $\D SW$ achieved by switching to the optimal policy. To make the welfare gains more concrete, we compare them with welfare gains from reducing unemployment. Moving one worker from unemployment to employment increases welfare by $\pre{U(c^{e})-U(c^{h})+Z}$, so the welfare gain achieved by moving all unemployed workers to employment is $u\times\pre{U(c^{e})-U(c^{h})+Z}$. Thus, we compute $\D SW^u = \D SW/\brk{u\times\pre{U(c^{e})-U(c^{h})+Z}}$. A welfare gain $\D SW^{u}$ of 1 percent corresponds to the welfare gain achieved by moving 1 percent of the unemployed workers to employment.
+
+The main results are displayed in Figure~\ref{fig:gains}. (Additional results are provided in Online Appendix~H.) The left-hand panel displays the replacement rate of 42 percent, the Baily-Chetty replacement rate, and the optimal replacement rate, over the business cycle. The corresponding unemployment rates  are displayed in Figure~\ref{fig:UI} (the unemployment rate in the Baily-Chetty case is not displayed but virtually the same). While the optimal replacement is  countercyclical, the Baily-Chetty replacement rate is slightly procyclical. In addition, the Baily-Chetty replacement rate is lower: it averages 35 percent while the optimal replacement rate averages 40 percent. The cyclical behaviors of the Baily-Chetty and optimal replacement rates are different because the correction term in the optimal UI formula is countercyclical. Their average levels are different because the correction term is positive on average.
+
+The right-hand panel shows the welfare gains achieved by switching to optimal UI. In good times, moving from the Baily-Chetty replacement rate to the optimal replacement rate generates no welfare gain because the Baily-Chetty replacement rate is approximately optimal. But in bad times, it generates sizable welfare gains because the Baily-Chetty replacement rate is well below the optimal replacement rate. When the unemployment rate is 10 percent, for instance, the Baily-Chetty replacement rate is below the optimum by more than 20 percentage points and the welfare gain is about 4.3 percent---that is, switching to optimal UI is equivalent to reducing unemployment by 4.3 percent, or 0.4 percentage points.
+
+
+\begin{figure}[t!] \centering
+\includegraphics[scale=0.22,page=18]{\path graphs/ui_applications_graphs_aej.pdf}\quad
+\includegraphics[scale=0.22,page=19]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Welfare Gains from Optimal UI}
+\fignotes{The left-hand panel depicts a replacement rate of 42 percent (dotted line), the Baily-Chetty replacement rate (dashed line), and the optimal replacement rate (solid line). The optimal replacement rate is computed using formula~\eqref{eq:optimal} and the Baily-Chetty replacement rate using the expression in~\eqref{eq:optimal}. The right-hand panel describes the welfare gains achieved by moving from a replacement rate of 42 percent to the optimal replacement rate (dashed line) and from the Baily-Chetty replacement rate to the optimal replacement rate (solid line). The welfare gains are measured in terms of unemployment: a gain of 1 percent corresponds to the welfare gain achieved by moving 1 percent of unemployed workers from unemployment to employment. The equilibria are parametrized by various levels of technology. The results are obtained by simulating the job-rationing model from \citet{M09} with the calibration in Online Appendix~G.}
+\label{fig:gains}\end{figure}
+
+In normal times, a replacement rate of 42 percent is approximately optimal so moving to the optimal replacement rate generates no welfare gains. But in good and bad times, it generates modest gains. When the unemployment rate is 10 percent, the optimal replacement rate is 12 percentage points above 42 percent  and the welfare gain is 1.9 percent. When the unemployment rate is 4.5 percent, the optimal replacement rate is 8 percentage points below 42 percent and the welfare gain is 0.8 percent. 
+
+Finally, we compute the average welfare gains achieved by switching to optimal UI. We calculate them using the empirical distribution of the unemployment rate over 1990--2014. Given that both the replacement rate of 42 percent and the Baily-Chetty replacement rate are close to optimal when the unemployment rate is about average, the average gains are small. Moving from 42 percent to the optimal replacement rate generates an average welfare gain of 0.5 percent, and moving from the Baily-Chetty replacement rate to the optimal replacement rate generates an average welfare gain of 0.8 percent.
+
+\section{Summary and Additional Applications}\label{sec:ccl}
+
+We have explored how the optimal generosity of UI varies over the business cycle in the United States. The analysis is based on the sufficient-statistic formula developed in a companion paper. The formula says that the optimal UI replacement rate is the Baily-Chetty replacement rate plus a correction term that measures the effect of UI on welfare through labor market tightness. Using median estimates of the statistics in the formula, we have found that tightness is inefficiently low in slumps and inefficiently high in booms, and that an increase in UI raises tightness. Thus, the correction term is countercyclical, making the optimal replacement rate countercyclical. These results may obviously need to be amended as new estimates become available.
+
+In matching models, the level of labor market tightness can be efficient or inefficient. But we have found that tightness is inefficiently low in slumps and inefficiently high in booms. This finding implies that the stabilization of the labor market remains incomplete.
+
+We have also found that the macroelasticity of unemployment with respect to UI is smaller than the microelasticity. Indirectly, this finding points to the policies that would be useful to improve labor market stabilization. Typical matching models predict that policies stimulating labor supply (such as search requirements, search monitoring, or placement assistance) are effective in reducing unemployment in slumps, and that policies stimulating labor demand (such as public employment) are not. But these models also make the counterfactual prediction that the macroelasticity is at least as large as the microelasticity \citep{LMS10}. The matching model of \citet{M09}, on the other hand, predicts that the macroelasticity is smaller than the microelasticity, so it may offer a better description of the labor market. According to this model, labor-demand policies would be more effective than labor-supply policies in reducing unemployment in bad times \citep{M09,M12}.
+
+Furthermore, we have measured the share of the workforce allocated to recruiting and the nonpecuniary cost of unemployment. These measures  might be useful to design other macroeconomic policies because they provide a way to measure the unemployment gap \citep{MS16}. In turn, the unemployment gap is a key determinant of the optimal level of several policies: monetary policy \citep{MS16}, government debt \citep{MS14}, and the provision of public goods \citep{MS15}.
+
+Finally, we have computed the optimal replacement rate of UI using solely a sufficient-statistic formula---without specifying a structural model. Our approach was to leverage empirical evidence to express the sufficient statistics as functions of UI and labor market conditions, and to describe how labor market conditions are affected by changes in UI. We believe that this formula-based approach could be applied to other policies.
+
+\bibliography{\path bibliography/ui}
+
+\end{document}
