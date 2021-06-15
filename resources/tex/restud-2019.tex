@@ -1,0 +1,573 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{paper}
+\begin{document}
+
+\title{Optimal Public Expenditure\\with Inefficient Unemployment}
+\author{Pascal Michaillat, Emmanuel Saez%
+\thanks{Michaillat: Brown University. Saez: University of California--Berkeley. We thank George Akerlof, Steven Coate, Emmanuel Farhi, Mikhail Golosov, Roger Gordon, Yuriy Gorodnichenko, Henrik Kleven, Botond Koszegi, Michael Peters, David Romer, Daniel Wilson, many seminar participants, and anonymous referees for helpful discussions and comments. This work was supported by the Center for Equitable Growth at the University of California--Berkeley, the British Academy, the Economic and Social Research Council [grant number ES/K008641/1], the Institute for New Economic Thinking, and the Sandler Foundation.}}
+\date{\today}
+
+\begin{titlepage}\maketitle\begin{abstract}\setstretch{1.1}
+
+This paper proposes a theory of optimal public expenditure when unemployment is inefficient. The theory is based on a matching model. Optimal public expenditure deviates from the Samuelson rule to reduce the unemployment gap (the difference between current and efficient unemployment rates). Such optimal ``stimulus spending'' is described by a formula expressed with three sufficient statistics: the unemployment gap, the unemployment multiplier (the decrease in unemployment achieved by increasing public expenditure), and the elasticity of substitution between public and private consumption. When unemployment is inefficiently high and the multiplier is positive, the formula yields the following results. (a) Optimal stimulus spending is positive and increasing in the unemployment gap. (b) Optimal stimulus spending is zero for a zero multiplier, increasing in the multiplier for small multipliers, largest for a moderate multiplier, and decreasing in the multiplier beyond that. (c) Optimal stimulus spending is zero if extra public goods have no value, it becomes larger as the elasticity of substitution increases, and it completely fills the unemployment gap if extra public goods are as valuable as extra private goods.
+
+\end{abstract}\end{titlepage}\begin{bibunit}\section{Introduction}
+
+The theory of optimal public expenditure developed by \ct{S54} is a cornerstone of public economics. This theory shows that public goods should be provided to the point where the marginal rate of substitution between public and private consumption equals their marginal rate of transformation. While the theory has been expanded in numerous directions since its inception, one question has not been answered: how is the theory modified in the presence of unemployment, especially when unemployment is inefficient? This question is relevant because public expenditure is one of the main tools used by governments to tackle high unemployment.\footnote{See \ct{KV12} for a survey of the public-economic literature on optimal public expenditure. In macroeconomics, many papers estimate or simulate the effect of public expenditure on output, but only a handful (discussed in section~\ref{sec:formula}) study optimal public expenditure. These papers, however, do not feature unemployment.}
+
+In this paper, we expand Samuelson's theory to situations with inefficient unemployment. We begin in section~\ref{sec:model} by embedding Samuelson's theory into a matching model of the economy. This allows us to introduce inefficient unemployment into the analysis. Indeed, in a matching model, there is always some unemployment: not all labor services on offer are sold. Furthermore, productive efficiency usually fails: unemployment may be inefficiently high, when the price of labor services is too high, or inefficiently low, when the price is too low. When unemployment is inefficiently high, too many workers are idle; when unemployment is inefficiently low, too much labor is devoted to recruiting instead of producing.
+
+In section~\ref{sec:formula}, we find that when unemployment is efficient, the Samuelson rule remains valid; but when unemployment is inefficient, optimal public expenditure deviates from the Samuelson rule to bring unemployment closer to its efficient level. We denote the deviation of public expenditure from the Samuelson rule as ``stimulus spending.'' We describe optimal stimulus spending with a formula expressed in terms of three sufficient statistics: (a) the unemployment gap, which is the difference between current and efficient unemployment rates; (b) the unemployment multiplier, which measures the reduction in unemployment achieved by increasing public expenditure; and (c) the elasticity of substitution between public and private consumption, which describes the utility derived from additional public consumption.\footnote{See \ct{C09} for an overview of the sufficient-statistic approach to optimal policy analysis.}
+
+Being expressed with sufficient statistics, our formula applies to a broad range of matching models, irrespective of the specification of the utility function, aggregate demand, and price mechanism. Furthermore, our formula addresses a common problem of sufficient-statistic formulas. The sufficient statistics usually are implicit functions of policy, so the formulas cannot explicitly characterize the optimal policy. We resolve this issue in two steps. First, we express our statistics as explicit functions of stimulus spending. Then, we back out optimal stimulus spending as a function of statistics independent of policy. The resulting explicit formula yields several results. (Here we discuss the case with positive unemployment multiplier and positive unemployment gap, but the paper considers all the cases.)
+
+The first result is that when unemployment multiplier and unemployment gap are positive, optimal stimulus spending is positive. This result is simple to understand. By construction, at the Samuelson rule, an increase in public expenditure has no first-order effect on welfare when we ignore its effect on unemployment. Now, when the unemployment multiplier is positive, an increase in public expenditure lowers unemployment; and when the unemployment gap is positive, unemployment is inefficiently high, so lowering unemployment raises welfare. Hence, overall, an increase in public expenditure generates a positive first-order effect on welfare. It is therefore optimal to increase public expenditure above the Samuelson rule. Further, since the unemployment gap measures the welfare gain from reducing unemployment, optimal stimulus spending is increasing in the unemployment gap.
+
+The second result is that optimal stimulus spending is zero for a zero multiplier, increasing in the multiplier for small multipliers, maximized for a moderate multiplier, and decreasing in the multiplier for larger multipliers. The intuition is the following. When the multiplier is small, optimal stimulus spending is determined by how much public expenditure reduces the unemployment gap. A larger multiplier means a larger reduction, so it warrants more stimulus spending. When the multiplier is large, this logic breaks down: it becomes optimal to fill the unemployment gap nearly entirely. As less spending is required to fill the gap when the multiplier is larger, optimal stimulus spending is decreasing in the multiplier.
+
+The third result is that optimal stimulus spending is increasing in the elasticity of substitution between public and private consumption. This result is natural: a higher elasticity of substitution means that extra public goods are more valuable, making stimulus spending more desirable. There are two interesting limit cases: zero elasticity and infinite elasticity. With zero elasticity, extra public goods are useless. As public consumption always crowds out private consumption, it is never optimal to provide public goods beyond the Samuelson rule. With infinite elasticity, public and private goods are interchangeable. It is therefore optimal to maximize the sum of public and private consumption. This is achieved by filling the unemployment gap entirely. 
+
+In addition, we establish that our formula remains the same whether the taxes used to finance public expenditure are distortionary or not. Nevertheless, distortionary taxation alters the design of stimulus spending. When taxes are nondistortionary, the unemployment multiplier and the output multiplier (the increase in output achieved by increasing public expenditure) are equal, so they can be used interchangeably in our formula. But with distortionary taxation, the unemployment and output multipliers are no longer the same, so the output multiplier cannot be used in our formula. Indeed, with distortionary taxation, raising taxes reduces labor supply, which reduces output but not unemployment. Hence, the output multiplier is smaller than the unemployment multiplier. With a strong labor-supply response, it is even possible for the output multiplier to be negative when the unemployment multiplier is positive. Accordingly, neither the size nor the sign of the output multiplier are useful to design stimulus spending. This point is important because the output multiplier plays a prominent role in the stimulus debate.
+
+ Since our sufficient statistics are estimable, we can use the formula to generate policy recommendations. As an illustration, in section~\ref{sec:application}, we apply the formula to the Great Recession in the United States. Estimates of the unemployment multiplier fall between 0.2 and 1, and according to research on state-dependent multipliers, they could be larger in bad times. (An unemployment multiplier of $x$ means that raising public expenditure by one percent of GDP reduces unemployment by $x$ percentage points). Estimates of the elasticity of substitution between public and private consumption fall between 0.5 and 2. Given this uncertainty, we compute optimal stimulus spending for a range of multipliers and elasticities of substitution. For example, with an elasticity of substitution of 1 (Cobb-Douglas utility), we obtain the following results. Optimal stimulus spending is large even with a small multiplier of 0.2: about 2.8 percentage points of GDP. It is largest for a modest multiplier of 0.4: about 3.7 points of GDP. It then decreases for larger multipliers. It falls to about 1.9 points of GDP when the multiplier reaches 1.5. Of course, optimal stimulus spending has a different impact on unemployment with small and large multipliers: it has almost no effect on unemployment with a multiplier of 0.2, but it almost fills the unemployment gap with a multiplier of 1.5.
+
+Finally, in section~\ref{sec:simulation}, we calibrate and simulate a specific matching model. This exercise suggests that the matching model describes business cycles well: in response to aggregate-demand shocks, the model generates countercyclical fluctuations in unemployment rate and unemployment multiplier. We also find that although our formula is obtained using several first-order approximations, it remains accurate for sizable business-cycle fluctuations.
+
+\section{A Matching Model of Inefficient Unemployment}\label{sec:model}
+
+We present the model used for the analysis. The model combines the public-expenditure framework of \ct{S54} with the matching framework of \ct{MS13}. Because of the matching structure, the model features unemployment, and the rate of unemployment is generally inefficient.
+
+\subsection{Informal Description}
+
+The model is not standard, so to help readers understand its properties, we begin by describing it informally. In the analysis the demand side of the model is completely generic; here for concreteness we use a specific demand side.
+
+In the model, there are people and a government. People perform services for pay: they garden, cook, clean, educate children, cut hair, do administrative work, and so on. People are very much like P.G. Wodehouse's butler, Jeeves: they can do everything. Since nobody can be their own butler, however, people work as butlers for others and use the income to hire their butlers. This assumption captures the fact that a modern economy is based on market exchange rather than home production.
+
+Beside purchasing services, people buy land, which provides utility and is a vehicle for saving. As land is in fixed supply, the tradeoff between services and land determines aggregate demand for services. The relevant price is the price of services in terms of land.
+
+People are hired by other people and the government. The people hired by other people produce private services (cleaning or cooking) while those hired by the government produce public services (tending public spaces or policing the streets). People value both public and private services. The government finances its expenditure by levying a tax.
+
+People are hired on a matching market. This means that while people are available to work for forty hours a week, they are  not working the whole time. For simplicity, we assume that everybody is idle for the same number of hours each week. Since unemployment is equally spread over the population, everybody has the same consumption, and insurance is not an issue.
+
+This also means that people and the government need to post help-wanted ads to hire services. Posting ads requires labor: workers have to create the ads, read applications, and interview applicants. The time devoted to recruiting by these human-resource workers depends on the number of positions to be filled and the time spent filling each position. The services supplied by human-resource workers are not consumed---in the sense that they do not provide utility---but they are necessary to hire other workers whose services are consumed (provide utility).
+
+Once hired, everyone is paid the same price for their services. People work for an employer for a while, until the relationship stops. As services are sold by the hour, people usually work for several employers at the same time.
+
+The state of the services market is described by a tightness variable---the ratio of help-wanted ads to unemployment. When tightness is higher, it is easier to find work but harder to recruit workers. Consequently, the unemployment rate is lower, and employers devote a larger share of their workforce to recruiting. 
+
+There is an efficient tightness, which maximizes the amount of services that are consumed (provide utility). When tightness is inefficiently low, workers are unemployed for too many hours, so the amount of services consumed is too low. When tightness is inefficiently high, too many hours are devoted to human-resource tasks, so the amount of services consumed is too low as well.
+
+In this economy, two variables---tightness and price---equalize demand and supply. If the price is high, demand for services is low (as land is relatively more attractive). If tightness were high, people would find work easily and the supply of services would be high. But then demand could not equal supply. Hence, tightness must be low in equilibrium. If instead the price is low, demand is high, and tightness must be high. Effectively, for any price, tightness adjusts to equalize demand and supply. The price can be determined in many ways---bargained between employer and worker, fixed by a social norm, or set by government regulation---but once the price mechanism is specified, the equilibrium is unique. There is no guarantee, however, that the price ensures efficiency.
+
+What happens then when the government hires more workers? In the simple situation where public hiring affects neither private demand nor price, public hiring mechanically stimulates aggregate demand, which raises tightness. In good times, tightness is too high, so raising tightness further reduces total consumption. Consequently, public consumption crowds out private consumption more than one-for-one. If tightness is efficient, raising tightness has no effect on total consumption, so crowding out is exactly one-for-one. Finally, in bad times, tightness is too low, so raising tightness increases total consumption, and crowding out is less than one-for-one. In this simple case, therefore, public expenditure is more desirable in bad times than in good times.
+
+\subsection{Supply Side}
+
+We now formally describe the model. We start with the supply side. 
+
+The model is dynamic and set in continuous time. The economy consists of a government and a measure one of identical households. Households are self-employed: they produce services and sell them on a matching market.\footnote{The model can easily be modified to introduce firms hiring their workers on a matching market and selling their production on another matching market \see[sec.~3]{MS13}.} There are two types of services: private services, purchased by households, and public services, purchased by the government and provided to all households. Public and private services are bought on the same matching market at the same price $p$.
+
+Each household has a productive capacity $k>0$; the capacity indicates the maximum amount of services that could be sold at any point in time. (Here $k$ is exogenous, but in section~\ref{sec:supply} we show that the results are unchanged when $k$ is chosen by households to maximize utility.) Since there is a measure one of households, the aggregate capacity in the economy is $k$. 
+
+Because of the matching process, not all available services are sold at any point in time, so there is always some unemployment. At time~$t$, households sell $C(t)$ services to other households and $G(t)$ services to the government. Output $Y(t)$ is the sum of all sales:
+\begin{equation*}
+Y(t)=C(t)+G(t).
+\end{equation*}
+As households cannot sell their entire capacity, $Y(t)<k$. The unemployment rate is the share of aggregate capacity that is idle: $u(t) = \bs{k-Y(t)}/k$.
+
+Services are sold through long-term relationships. Once a seller and a buyer have matched, the seller serves the buyer at each instant until the relationship ends. Relationships separate at rate $s>0$, for exogenous reasons. Since $Y(t)$ services are committed to existing relationships at time~$t$, the amount of services available for purchase at time $t$ is $k-Y(t)$.  
+
+To buy new services, households and the government advertise a total of $v(t)$ vacancies. (In section~\ref{sec:demand}, we explain how households and the government form their demand for services.) A Cobb-Douglas matching function taking as arguments available services and vacancies determines the rate $h(t)$ at which new long-term relationships are formed: 
+\begin{equation*}
+h(t)=\o v(t)^{1-\eta} \bs{k-Y(t)}^{\eta},
+\end{equation*} 
+where $\eta\in(0,1)$ is the matching elasticity, and $\o>0$ is the matching efficacy.
+
+With constant returns to scale in matching, the rates at which sellers and buyers form new relationships is determined by the market tightness, $x(t)$. The market tightness is the ratio of the matching function's two arguments: $x(t) = v(t)/\bs{k-Y(t)}$.  Each of the $k-Y(t)$ available services is sold at rate $f(x(t)) = h(t)/\bs{k-Y(t)}= \o x(t)^{1-\eta}$, and each of the $v(t)$ vacancies is filled at rate $q(x(t))= h(t)/v(t)= \o  x(t)^{-\eta}$. The selling rate $f(x)$ is increasing in $x$, and the buying rate $q(x)$ is decreasing in $x$. Hence, when tightness is higher, it is easier to sell services but harder to buy them.
+
+In such a model, output follows the law of motion $\dot{Y}(t)=f(x(t))  \bs{k-Y(t)}-s  Y(t)$. The term $f(x(t))  \bs{k-Y(t)}$ is the number of new relationships forming at time~$t$; the term $s Y(t)$ is the number of existing relationships separating at time~$t$. If $f(x)$ and $s$ are constant over time, output converges to the steady-state level 
+\begin{equation}
+Y(x,k)=\frac{f(x)}{f(x)+s} k.
+\label{eq:Yx}\end{equation} 
+The unemployment rate is $u=1-Y/k$, so the steady-state unemployment rate is
+\begin{equation}
+u(x)=\frac{s}{s+f(x)}.
+\label{eq:ux}\end{equation}
+The function $Y(x,k)$ is positive and increasing in $x$ and $k$, and its elasticity with respect to $x$ is $(1-\eta)  u(x)$. The function $u(x)$ is positive and decreasing in $x$, and its elasticity with respect to $x$ is $-(1-\eta)\bs{1-u(x)}$. Hence, when tightness is higher, output is higher and unemployment is lower.
+
+In the United States, labor market flows are large, so unemployment reaches its steady-state level quickly. In fact, \ct[fig.~1]{Ha05} shows that the unemployment rate obtained from \eqref{eq:ux} is indistinguishable from the actual employment rate. Thus, as Hall does, we ignore the transitional dynamics of output and unemployment and assume that the two variables satisfy \eqref{eq:Yx} and \eqref{eq:ux} at all times. To simplify the analysis further, we abstract from transitional dynamics and randomness at the seller's level: we assume that at all times a seller exactly sells a share $1-u(x)$ of her capacity $k$; the remaining share $u(x)$ is idle.
+
+Posting a vacancy costs $\rho>0$ services per unit of time. These services are devoted to matching with appropriate suppliers of services. Matching services do not directly provide utility to households, so we distinguish between services purchased and services providing utility. Households purchase $C(t)$ services and the government purchases $G(t)$ services. We refer to $C(t)$ as private expenditure and to $G(t)$ as public expenditure. But households only derive utility from $c(t)<C(t)$ private services and $g(t)<G(t)$ public services; $c(t)$ and $g(t)$ are computed by subtracting the matching services used by the households and the government from $C(t)$ and $G(t)$. We refer to $c(t)$ as private consumption, to $g(t)$ as public consumption, and to $y(t)=c(t)+g(t)$ as total consumption.
+
+The wedge between expenditure and consumption is determined by tightness. As we did with sellers, we abstract from transitional dynamics and randomness at the buyer's level. This means that by posting $v_0$ vacancies, a buyer establishes exactly $v_0  q(x)$ new matches at any point in time.  It also means that a buyer is always in a situation where the same number of relationships form and separate. So if a buyer wants to continuously purchase $Y_0$ services, $s  Y_0$ new matches must be continuously created to replace the matches that have separated. This requires $v_0 = s   Y_0/q(x)$ vacancies and $\rho  v_0 = \rho  s   Y_0/q(x)$ matching services. Hence, only $y_0 = Y_0  - \rho   s Y_0 /q(x)$ of the services purchased are actually consumed. This relation can be rewritten $Y_0 = \bs{1+\tau(x)} y_0$, where 
+\begin{equation}
+\tau(x) = \frac{\rho  s}{q(x)-\rho  s}.
+\label{eq:taux}\end{equation}
+is the wedge between consumption and expenditure caused by matching. The matching wedge $\tau(x)$ is positive and increasing for $x\in[0,x^{m})$, where $x^{m}>0$ is defined by $q(x^{m})=\rho  s$ and $\lim_{x\to x^{m}}\tau(x)=+\infty$. The elasticity of $\tau(x)$ with respect to $x$ is $\bs{1+\tau(x)} \eta$. Hence, when tightness is higher, the matching wedge is larger.
+
+The reasoning holds for any consumption $y_0$. Thus, if a household or the government desire to consume one service, they need to purchase $1+\tau(x)$ services---one service for consumption plus $\tau(x)$ services for matching. Hence, private consumption is related to private expenditure by $c=C/\bs{1+\tau(x)}$ and public consumption to public expenditure by $g=G/\bs{1+\tau(x)}$. Accordingly, total consumption is a function of tightness and capacity:
+\begin{equation}
+y(x,k)  =  \frac{1-u(x)}{1+\tau(x)} k.
+\label{eq:yx}\end{equation}
+The function $y(x,k)$ is positive for $x\in[0,x^{m})$ and $k>0$. We refer to $y(x,k)$ as aggregate supply; it plays a central role in the analysis because it gives the amount of services consumed for a given tightness. Equation~\eqref{eq:yx} shows that aggregate supply is less than aggregate capacity because some services are not sold ($u(x)>0$) and some are used for matching instead of consumption ($\tau(x)>0$).
+
+In such a matching model the rate of unemployment is generally inefficient---because prices generally fail to maintain productive efficiency \cp[pp.~525--529]{MS13}. The formal definition of efficiency is the following:
+
+\begin{defn} Tightness and unemployment are efficient if they maximize total consumption for a given aggregate productive capacity. The efficient tightness is denoted by $x^{*}$ and the efficient unemployment rate by $u^{*}$.\end{defn}
+
+Equation~\eqref{eq:yx} implies that the elasticity of $y(x,k)$ with respect to $x$ is $(1-\eta)  u(x)-\eta \tau(x)$. This elasticity is $1-\eta>0$ for $x=0$, strictly decreasing in $x$, and $-\infty$ at $x=x^{m}$. Thus, there is a unique $x^*$ where the elasticity is zero. Since the partial derivative of $y(x,k)$ with respect to $x$ is positive for $x<x^*$, zero at $x^*$, and negative for $x^*$, the tightness $x^*$ maximizes $y(x,k)$ for a given $k$. Efficient tightness and unemployment are therefore characterized as follows:
+
+\begin{lem} The efficient tightness $x^{*}$ is implicitly defined by
+\begin{equation}
+(1-\eta)  u(x^{*}) - \eta   \tau(x^{*}) = 0.
+\label{eq:xstar}\end{equation} 
+The efficient unemployment rate is given by $u^{*}=u(x^{*})$.\end{lem}
+
+An increase in tightness has two opposite effects on consumption: it increases consumption by reducing the amount of unsold services; and it decreases consumption by raising the amount of services devoted to matching. When \eqref{eq:xstar} is satisfied, the increase in tightness reduces unsold services as much as it increases matching services, which indicates that consumption is maximized. 
+
+\begin{figure}[p]\centering
+\includegraphics[scale=0.3,page=1]{\path graphs/policy_20180514.pdf}
+\caption{Supply Side and Unemployment Gap ($u-u^*$)}
+\fig{Notes}{The curve $Y(x,k)$ represents output supplied as a function of tightness $x$; it is given by \eqref{eq:Yx}. The curve $y(x,k)$ represents total consumption supplied as a function of tightness; it is given by \eqref{eq:yx}. The unemployment rate is given by $u=1-Y(x,k)/k$. Efficient tightness $x^*$ and efficient unemployment rate $u^*$ maximize total consumption.}
+\label{fig:gap}\end{figure}
+
+\begin{figure}[p]\centering
+\includegraphics[scale=0.3,page=2]{\path graphs/policy_20180514.pdf}
+\caption{Equilibrium and Unemployment Multiplier ($m$)}
+\fig{Notes}{The curves $Y(x,k)$ and $y(x,k)$ are the same as in figure~\ref{fig:gap}. The curve $c(x,p(x,g),g)+g$ represents total consumption demanded as a function of tightness $x$, for a public consumption $g$; and $c(x,p(x,g'),g')+g'$ is the same curve after an increase in public consumption from $g$ to $g'>g$. Equilibrium tightness $x(g)$ equalizes aggregate demand and supply: when $x=x(g)$, then $c(x,p(x,g),g)+g = y(x,k)$. Equilibrium unemployment rate $u(g)$ is given by $u(g)=1-Y(x(g),k)/k$. The unemployment multiplier $m$ is defined by \eqref{eq:m}.}
+\label{fig:multiplier}\end{figure}
+
+To measure how far from productive efficiency the economy operates, we introduce a first sufficient statistic:
+
+\begin{defn} The unemployment gap is $u-u^{*}$.\end{defn}
+
+The unemployment gap is positive when unemployment is inefficiently high and negative when unemployment is inefficiently low. Equation \eqref{eq:xstar} is useful to determine the sign of the unemployment gap: when the unemployment rate $u$ is high relative to the matching wedge $\tau$, such that $u/\tau > \eta/(1-\eta)$, tightness is inefficiently low, so the unemployment gap is positive.
+
+Figure~\ref{fig:gap} summarizes the supply side of the model. It depicts how total consumption and output depend on tightness. It also depicts the efficient tightness and positive, zero, and negative unemployment gaps.
+
+\subsection{Demand Side and Equilibrium: General Case}\label{sec:demand}
+
+We turn to the demand side and equilibrium of the model. While it is necessary to specify the supply side to compute social welfare and study optimal policy, the sufficient-statistic approach makes it unnecessary to specify demand side and equilibrium. We therefore keep them generic and look for sufficient statistics to summarize their relevant features.
+
+The representative household derives instantaneous utility $\Uc\bp{c,g}$ from public and private consumption, where the function $\Uc$ is strictly increasing in $c$ and $g$ and concave. The marginal rate of substitution between public and private consumption is
+\begin{equation*}
+MRS_{gc} = \frac{\dertx{\Uc}{g}}{\dertx{\Uc}{c}}>0.
+\end{equation*}
+We assume that $\Uc$ is such that $MRS_{gc}$ is a decreasing function of $g/c$; for example, $\Uc$ could be a constant-elasticity-of-substitution utility function. We also assume that $MRS_{gc}(0)> 1$.
+
+To measure how the marginal rate of substitution varies with $g/c$, we introduce a second sufficient statistic:
+\begin{defn} The elasticity of substitution between public and private consumption, denoted $\e$, is given by
+\begin{equation*}
+\frac{1}{\e} = -\dlnt{MRS_{gc}}{g/c}.
+\end{equation*}\end{defn}
+The elasticity of substitution is positive because $MRS_{gc}$ is decreasing in $g/c$. When $\e<1$ public and private services are gross complements; when $\e=1$ public and private services are independent; and when $\e>1$ public and private services are gross substitutes.\footnote{The Cobb-Douglas function $\Uc(c,g)=c^{1-\g}  g^{\g}$ has $\e=1$.}
+
+The elasticity of substitution has two interesting limits: $\e\to 0$ and $\e\to+\infty$. When $\e\to 0$, public and private consumption are perfect complements. A certain number of public services are needed for a given level of private consumption, but beyond that, additional public services have zero value and the marginal rate of substitution falls to zero. At this point, public workers dig and fill holes. When $\e\to+\infty$, the public and private consumption are perfect substitutes. The marginal rate of substitution is constant at 1, such that households are equally happy to consume private or public services.\footnote{The Leontief function $\Uc(c,g)=\min\bc{c, g}$ has $\e=0$. The linear function $\Uc(c,g)=c+g$ has $\e\to+\infty$.}
+
+We assume that households save what they do not spend. We also assume that the asset used for saving is in fixed supply. Consequently, there are no predetermined variables in the model, and the equilibrium immediately converges to its steady-state position.\footnote{Technically, for the equilibrium to immediately converge to steady state, the dynamical system representing the equilibrium must be a source. The dynamical systems of the model in section~\ref{sec:land} and the other models in online appendix~\ref{app:demand} have this property. This is a common requirement: it is equivalent to requiring that the equilibrium is determinate, which is done in any welfare analysis.} Since the equilibrium is always in steady state, the social welfare associated with the equilibrium is simply $\Uc(c,g)$.
+
+Having introduced a second good in the economy---the asset---we can be more precise about the price $p$: it is the price of services relative to the asset.
+
+The household chooses how much to spend and save to maximize utility. As a result, the household demands a quantity $c(x,p,g)$ of consumption.  The demand depends negatively on the price $p$ because a higher price makes consumption of services more costly relative to saving. The demand depends negatively on tightness $x$ because a higher tightness makes purchasing services more difficult. Finally, the demand depends on public consumption $g$ because public consumption may affect the marginal utility of private consumption. To consume $c(x,p,g)$ services, the household purchases a total of $C(x,p,g)=\bs{1+\tau(x)} c(x,p,g)$ services; the extra $\tau(x) c(x,p,g)$ services are used for matching.\footnote{To purchase $C(x,p,g)$ services, households post $s C(x,p,g)/q(x)$ vacancies.}
+
+Next, the government demands an amount $g$ of consumption. This requires the purchase of $G= \bs{1+\tau(x)} g$ services.\footnote{To purchase $G$ services, the government posts $s G/q(x)$ vacancies.} The government balances its budget at all time with a lump-sum tax $T=G$. The total demand for consumption then is $g+c(x,p,g)$. We refer to $c(x,p,g)$ as private demand and to $g+c(x,p,g)$ as aggregate demand.\footnote{We express demand in terms of consumption because consumption matters for welfare and aggregate supply~\eqref{eq:yx} is expressed with consumption. We could equivalently describe demand in terms of expenditure.}
+
+Finally, we specify a price mechanism: $p=p(x,g)$. The price of services appears as a function of tightness $x$ and public consumption $g$; but since $x$ and $g$ determine all other variables in a feasible allocation, the price could be any function of any variable---it is as generic as possible. The price mechanism generally fails to maintain efficiency. Hence, policies correcting prices could be useful to bring unemployment closer to its efficient level.\footnote{In some contexts, monetary policy could be such a policy (see online appendix~\ref{app:demand}).} To capture this possibility, we assume that the function $p(x,g)$ embeds all such policies. If price policies ensure that unemployment is always efficient, our analysis trivially applies. Our analysis is more interesting when price policies cannot keep unemployment at its efficient level; it explores how public expenditure can improve welfare, taking all price policies as given.
+
+Given the price mechanism and public expenditure, tightness adjusts to equalize aggregate supply and aggregate demand:
+\begin{equation}
+y(x,k)=c(x,p(x,g),g)+g.
+\label{eq:xg}\end{equation}
+This equation implicitly defines equilibrium tightness as a function $x(g)$ of public consumption. Figure~\ref{fig:multiplier} shows how $x(g)$ is given by the intersection of the aggregate-demand and aggregate-supply curves. The information about $x(g)$ relevant to the policy analysis is conveyed by a third sufficient statistic:
+
+\begin{defn} The unemployment multiplier is given by
+\begin{equation}
+m = - y \dert{u}{g}.
+\label{eq:m}\end{equation}\end{defn}
+
+The unemployment multiplier measures the percentage-point decrease in unemployment rate observed when public consumption increases by one percent of total consumption.
+
+As unemployment is determined by tightness (through \eqref{eq:ux}), the unemployment multiplier is determined by the response of tightness to public consumption. As showed in figure~\ref{fig:multiplier}, public consumption affects tightness by shifting the aggregate-demand curve. This shift occurs through a mechanical channel, as public consumption directly contributes to aggregate demand; a private-demand channel, as public consumption may affect private demand in various ways (for instance, by altering the marginal utility of private consumption); and a price channel, as public consumption may affect the price of services and thus private demand. Depending on the relative strength of these channels, the multiplier may be negative, positive, below one, or above one.
+
+\subsection{Demand Side and Equilibrium: An Example with Land}\label{sec:land}
+
+To provide an example of demand side, we describe a model in which households save using land, as in \ct{I05} and \ct{LWZ13}. This example illustrates how demand-side parameters influence the sufficient statistics. Online appendix~\ref{app:land} contains the derivations, and online appendix~\ref{app:demand} provides other examples. 
+
+The representative household purchases a quantity $l(t)$ of land. Land is traded on a perfectly competitive market and is in fixed supply, $l_{0}$. In equilibrium the land market clears so $l(t)=l_{0}$.
+
+The household derives utility from holding land, for instance from the housing services it provides. The household's instantaneous utility function is $\Uc\bp{c(t),g(t)}+\Vc(l(t))$, where $\Vc$ is strictly increasing and concave. We use a constant-elasticity-of-substitution specification for $\Uc$:
+\begin{equation}
+\Uc(c,g)=\bs{(1-\g)^{\frac{1}{\e}}  c^{\frac{\e-1}{\e}}+\g^{\frac{1}{\e}}  g^{\frac{\e-1}{\e}}}^{\frac{\e}{\e-1}}.
+\label{eq:U}\end{equation}
+The parameter $\g\in(0,1)$ indicates the value of public services relative to private services, and the parameter $\e>0$ gives the elasticity of substitution between public and private consumption. The household's utility at time $0$ is 
+\begin{equation}
+\int_{0}^{+\infty}e^{-\d  t}  \bs{ \Uc\bp{c(t),g(t)} + \Vc(l(t))} dt,
+\label{eq:utility}\end{equation}
+where $\d>0$ is the time discount rate. The law of motion of the household's land holding is
+\begin{equation}
+\dot{l}(t)=p(t)  \bs{1-u(x(t))}  k - p(t)  \bs{1+\tau(x(t))}  c(t) - T(t).
+\label{eq:budget}\end{equation}
+In the law of motion, $p(t)  \bs{1-u(x(t))}  k$ is the household's labor income, $p(t)  \bs{1+\tau(x(t))}  c(t)$ is its spending on services, and $T(t)$ is the lump-sum tax financing public expenditure.
+
+The household takes $l(0)$ and the paths of $x(t)$, $g(t)$, $p(t)$, and $T(t)$ as given. It chooses the paths of $c(t)$ and $l(t)$ to maximize \eqref{eq:utility} subject to \eqref{eq:budget}. Setting up an Hamiltonian, we obtain the following optimality conditions:
+\begin{align}
+\der{\Uc}{c}(c(t),g(t)) & = \l(t)  p(t)  \bs{1+\tau(x(t))}\label{eq:foc1}\\
+\Vc'(l(t)) & = \d  \l(t)-\dot{\l}(t),\label{eq:foc2}
+\end{align}
+where $\l(t)$ is the costate variable associated with land.
+
+Given public consumption $g$, an equilibrium consists of paths for $x(t)$, $c(t)$, $l(t)$, $p(t)$, and $\l(t)$ that satisfy five equations: \eqref{eq:foc1}, \eqref{eq:foc2}, $p(t)=p(x(t),g)$, $l(t)=l_{0}$, and $y(x(t)) = c(t)+g$. The fifth equation imposes that supply equals demand on the services market. All the variables can be recovered from the costate variable $\l(t)$, so the equilibrium reduces to a dynamical system of dimension one, with variable $\l(t)$. As $\l(t)$ is nonpredetermined and the dynamical system is a source, the equilibrium jumps to its steady-state position at $t=0$. Hence, the equilibrium is always in steady state.
+
+In section~\ref{sec:demand}, we introduce a generic private demand, $c(x,p,g)$, and a generic price mechanism, $p(x,g)$. Here, we compute private demand in the model with land and propose a possible price mechanism. To compute the equilibrium, we would then plug private demand and price mechanism into \eqref{eq:xg}, which would allow us to compute equilibrium tightness. Next, we would use tightness and various supply-side relationships to compute the other variables.
+
+To compute private demand, we combine \eqref{eq:foc1} and \eqref{eq:foc2}:
+\begin{equation}
+\der{\Uc}{c}(c,g)=\bs{1+\tau(x)} p \frac{\Vc'(l_{0})}{\d}.
+\label{eq:foc12}\end{equation}
+The equation says that the household is indifferent between purchasing one private service, which costs $\bs{1+\tau(x)} p$ units of land and yields utility $\dertx{\Uc}{c}$, and purchasing $\bs{1+\tau(x)} p$ units of land, which costs the same amount and yields utility $\Vc'(l_{0})/\d$ over a lifetime. We then combine \eqref{eq:foc12} with \eqref{eq:U} and find that private demand $c$ is implicitly defined by​
+\begin{equation}
+\bc{(1-\g)+\g^{\frac{1}{\e}} \bs{(1-\g) \frac{g}{c}}^{\frac{\e-1}{\e}}}^{\frac{1}{\e-1}}=\bs{1+\tau(x)}  p   \frac{\Vc'(l_{0})}{\d}.
+\label{eq:ad}\end{equation}
+If the marginal utility of land goes up or the time discount rate goes down, households desire to save more and consume less, which depresses private demand. With price rigidity, such a negative demand shock leads to lower tightness and higher unemployment.
+
+The price mechanism that we propose is rigid---in the sense that it does not respond to demand shocks---and yields a simple expression for the multiplier:
+\begin{equation}
+p(g)= p_{0} \cdot \bc{(1-\g)+\g^{\frac{1}{\e}} \bs{(1-\g)\frac{g}{y^*-g}}^{\frac{\e-1}{\e}}}^{\frac{1-r}{\e-1}},
+\label{eq:p}\end{equation}
+where $p_{0}>0$ governs the price level, $y^*$ is the efficient level of total consumption, and $r$ determines the effect of public consumption on prices. If $r<1$, the price is increasing in $g$; if $r=1$, the price is fixed; and if $r>1$, the price is decreasing in $g$ (which seems less realistic). 
+
+The parameter $r$ is the main determinant of the unemployment multiplier:
+\begin{equation}
+m=\frac{(1-u^*) r}{(1-\g)\e}.
+\label{eq:mcalib}\end{equation}
+The multiplier is positive, except if $r<0$---in that case, an increase in public consumption raises the price of services so much that it reduces private demand more than one-for-one.\footnote{Expression \eqref{eq:mcalib} is valid when unemployment is efficient and public expenditure is optimal. Otherwise the multiplier admits another expression, slightly more complicated but with the same properties.} Besides, the multiplier depends on $\e$ and $\g$ because these parameters affect the shape of the aggregate-demand curve. In particular, when $\e \to \infty$, the multiplier is zero. The reason is that the utility function \eqref{eq:U} is linear in $c$ and $g$ when $\e \to \infty$, so the marginal utility $\dertx{\Uc}{c}$ is constant. Given that $p(g)= p_{0} \cdot \bp{\dertx{\Uc}{c}}^{1-r}$, the price is also constant. Hence, according to the demand equation \eqref{eq:foc12}, tightness is not affected by public consumption. (In the diagram of figure~\ref{fig:multiplier}, the aggregate-demand curve would be horizontal and independent of $g$.) As a result, public consumption does not affect unemployment.
+
+
+\subsection{Comparison with the Diamond-Mortensen-Pissarides Model}
+
+Our model shares many features with the standard matching model---the Diamond-Mortensen-Pissarides (DMP) model. Such features include the matching function, random search, long-term relationships, hiring through vacancies, fixed productive capacity, and the central role of market tightness. But it also differs from the DMP model on various aspects. Here we describe the differences and explain how they make our model more suited to the analysis of optimal public expenditure. Our reference is the textbook version of the DMP model, developed by \ct{P00}.
+
+First, our model is more general than the DMP model, making it more suited to the sufficient-statistic approach. The price mechanism is more general: it is not restricted to Nash bargaining. This generalization allows for a broader range of multipliers and unemployment gaps. Functional forms are also more general, allowing for a downward-sloping demand curve in the $(y,x)$ plan. With such a demand curve, public spending usually affects tightness, and public consumption does not usually crowd out private consumption one-for-one. In contrast, in the DMP model, the demand curve is horizontal in the $(y,x)$ plan. Hence, public spending does not usually affect tightness, and public consumption usually crowds out private consumption one-for-one \cp{M12}.
+
+Second, our formulation of the efficiency condition is more general. In the DMP model the \ct{H90} condition says that unemployment is efficient when workers' bargaining power equals the matching elasticity. Our efficiency condition, given by \eqref{eq:xstar}, is more general than the Hosios condition because it is not tied to Nash bargaining: it applies to any price mechanism. Instead of giving the bargaining power leading to efficiency, our condition gives the relationship satisfied by observable variables (unemployment and matching wedge) when unemployment is efficient.
+
+Several additional, cosmetic differences make our matching model closer to the Walrasian model---the workhorse model in public economics. These differences make it easier to use public-economic tools and to compare our findings with canonical public-economic results.
+
+First, we model a service economy instead of a labor market: services are traded instead of labor; the trading price is the price of services instead of the real wage; buyers are households (and the government) instead of firms; and sellers are self-employed workers instead of jobseekers.
+
+Second, the Beveridge curve is recast as an aggregate-supply curve and the job-creation condition as an aggregate-demand curve.\footnote{In \ct{P00}, the Beveridge curve is equation~(1.5) and the job-creation condition is equation~(1.9). In this paper, the aggregate-supply curve is \eqref{eq:yx} and in the example with land the aggregate-demand curve is \eqref{eq:ad}.} The aggregate-supply curve is mathematically equivalent to the Beveridge curve, and the aggregate-demand curve to the job-creation condition, but our curves are closer to the Walrasian concepts of supply and demand.
+
+Third, the condition determining equilibrium tightness is recast as a supply-equals-demand condition. In fact, it is useful to think of tightness as another price: in equilibrium both actual price and tightness ensure that supply equals demand \cp[pp.~526--529]{MS13}. The matching framework can thus be seen as a generalization of the Walrasian framework---where only the price equalizes supply and demand. But unlike in the Walrasian model, where productive efficiency is respected whenever supply equals demand, equilibria in the matching model are generally inefficient. 
+
+Fourth, since we use the supply-demand formalism, the graphical representation of the equilibrium is different. In the DMP model the equilibrium is the intersection of the Beveridge and job-creation curves in an (unemployment, vacancy) plan. In our model the equilibrium is the intersection of the aggregate-supply and aggregate-demand curves in a (output, tightness) plan.\footnote{In \ct{P00}, the equilibrium is depicted in figure~1.2. Here, the equilibrium is depicted in figure~\ref{fig:multiplier}.}
+
+Fifth, the recruiting cost takes a different form. In the DMP model, the vacancy-posting cost is measured in terms of final good, so there are effectively two goods in the economy---labor and final good. This complicates the welfare analysis. Here the cost is measured in terms of services, so there is a single good in the economy. This simplifies the welfare analysis: once consumption is defined as output net of recruiting services, welfare solely depends on consumption.
+
+Sixth, while the DMP model focuses on atomistic workers and vacancies, our model studies households selling and buying many services. This brings the model closer to the Walrasian framework, in which agents buy and sell many goods. Furthermore, since households buy and sell many services, we can avoid heterogeneity across households and hence purge the welfare analysis from insurance problems.
+
+\section{A Sufficient-Statistic Formula for Optimal Public Expenditure}\label{sec:formula}
+ 
+We use our matching model to derive a sufficient-statistic formula for optimal public expenditure. The main implication of the formula is that whenever unemployment is inefficient, optimal public expenditure deviates from the Samuelson rule to reduce the unemployment gap.
+
+\subsection{Derivation}\label{subsec:derivation}
+
+We determine the public consumption $g$ that maximizes welfare $\Uc(c,g)$. In equilibrium, $c=y(x,k)-g$ and $x=x(g)$. Thus, the optimal $g$ maximizes $\Uc\bp{y(x(g),k)-g,g}$. The first-order condition of the maximization is
+\begin{equation}
+0=\der{\Uc}{g}-\der{\Uc}{c}+\der{\Uc}{c} \cdot \der{y}{x}\cdot \dert{x}{g}.
+\label{eq:focsw}\end{equation}
+We assume that the maximization problem is well behaved: $g\mapsto \Uc(y(x(g),k)-g,g)$ admits a unique extremum, and the extremum is an interior maximum. Under this assumption, \eqref{eq:focsw} is a necessary and sufficient condition for optimality. Equation \eqref{eq:focsw} shows that an increase in public consumption affects welfare through three channels: it mechanically raises welfare (first right-hand-side term); for a given level of total consumption, it reduces private consumption one-for-one, which lowers welfare (second right-hand-side term); and it affects tightness and thus total consumption, which further changes private consumption (third right-hand-side term). 
+
+Dividing \eqref{eq:focsw} by $\dertx{\Uc}{c}$, we obtain the following lemma:
+
+\begin{lem} Optimal public expenditure satisfies
+\begin{equation}
+\underbrace{1=MRS_{gc}}_{\text{Samuelson rule}}+\underbrace{\der{y}{x}\cdot \dert{x}{g}}_{\text{correction}}.
+\label{eq:exact}\end{equation}\end{lem}
+
+Equation~\eqref{eq:exact} shows that in a matching model the Samuelson rule needs to be corrected. The correction term is the effect of public consumption on tightness, $dx/dg$, times the effect of tightness on total consumption, $\dertx{y}{x}$, so it measures the effect of public consumption on total consumption, $dy/dg$. The correction term is positive whenever an increase in public consumption leads to an increase in total consumption.\footnote{Formula~\eqref{eq:exact} is closely related to the optimal unemployment-insurance formula in \ct[eq.~(23)]{LMS10}. The two formulas show that in matching models standard optimal policy formulas need to be corrected with a term that is positive whenever the policy improves welfare through tightness.} 
+
+A first insight from \eqref{eq:exact} is that at the optimum, public consumption must be crowding out private consumption ($dc/dg<0$). Indeed, since $MRS_{gc}>0$, \eqref{eq:exact} imposes that $dy/dg<1$ and $dc/dg = dy/dg-1 <0$. Our theory allows for either crowding in or crowding out of private consumption by public consumption; but if there is crowding in ($dc/dg>0$), public consumption cannot be optimal. From a situation of crowding in, the government can improve welfare by increasing public consumption until it starts crowding out private consumption. Crowding out necessarily happens at some point because once unemployment is efficient, total consumption is maximized and crowding out is one-for-one.
+
+A second insight from \eqref{eq:exact} is that the Samuelson rule, which was originally derived in a neoclassical model, remains valid in a model with unemployment as long as unemployment is efficient. Indeed, when unemployment is efficient, consumption is maximized ($\dertx{y}{x}=0$), so the correction term is zero.
+
+When unemployment is inefficient, consumption is below its maximum ($\dertx{y}{x}\neq 0$), and optimal public spending may deviate from the Samuelson rule. To describe such deviation, we decompose public spending in two components:
+
+\begin{defn} Samuelson spending $(g/c)^{*}$ is given by the Samuelson rule: $MRS_{gc}((g/c)^{*})=1$. Stimulus spending is given by $g/c-(g/c)^{*}$.\end{defn}
+
+Since $MRS_{gc}(0)> 1$ and $MRS_{gc}$ is decreasing in $g/c$, Samuelson spending is well defined. 
+
+Next, we express the elements of \eqref{eq:exact} with our three sufficient statistics: the elasticity of substitution between public and private consumption $\e$, the unemployment gap $u-u^*$, and the unemployment multiplier $m$.
+
+\begin{lem}\label{lem:statistics} The term $1-MRS_{gc}$ can be approximated as follows:
+\begin{equation}
+1-MRS_{gc}\approx \frac{1}{\e}\cdot \frac{g/c-(g/c)^*}{(g/c)^*},
+\label{eq:mrs}\end{equation}
+where $\e$ is evaluated at $g/c$. The approximation is valid up to a remainder that is $O\bp{\bs{g/c-(g/c)^{*}}^{2}}$. The term $\dertx{y}{x}$ can be approximated as follows:
+\begin{equation}
+\frac{x}{y}\cdot\der{y}{x}\approx \frac{u-u^*}{1-u^{*}}.
+\label{eq:dydx}\end{equation}
+The approximation is valid up to a remainder that is $O\bp{\bs{u-u^{*}}^{2}}$. Last, the term $\derttx{x}{g}$ satisfies
+\begin{equation}
+\frac{y}{x}\cdot \dert{x}{g}= \frac{m}{(1-\eta) (1-u)  u }.
+\label{eq:dxdg}\end{equation}\end{lem}
+
+The proof of the lemma is relegated to online appendix~\ref{app:proofs}. Equations \eqref{eq:mrs} and \eqref{eq:dxdg} immediately follow from the definitions of the elasticity of substitution and the unemployment multiplier, but the derivation of equation~\eqref{eq:dydx} is more complex.
+
+Using lemma~\ref{lem:statistics}, we prove in online appendix~\ref{app:proofs} that \eqref{eq:exact} can be rewritten as follows:
+
+\begin{lem}\label{lem:implicit} Optimal stimulus spending satisfies
+\begin{equation}
+\frac{g/c-(g/c)^{*}}{(g/c)^{*}}\approx z_0  \e m \frac{u-u^{*}}{u^{*}},
+\label{eq:implicit}\end{equation}
+where $\e$ and $m$ are evaluated at $\bs{g/c,u}$ and 
+\begin{equation*}
+z_0 = \frac{1}{(1-\eta)  (1-u^*)^2}. 
+\end{equation*}
+The approximation is valid up to a remainder that is $O\bp{\bs{u-u^{*}}^{2}+\bs{g/c-(g/c)^{*}}^{2}}$.\end{lem}
+
+If the current values of stimulus spending and our three sufficient statistics satisfy \eqref{eq:implicit}, then stimulus spending is optimal. Thus \eqref{eq:implicit} is useful to assess whether current stimulus spending is optimal or not. But \eqref{eq:implicit} cannot be used to compute optimal stimulus spending. The root of the problem is that the sufficient statistics (especially the unemployment gap) are implicit functions of stimulus spending. To understand this problem, imagine that we plug the current values of the statistics in \eqref{eq:implicit}; the formula indicates some stimulus spending. The government could then adjust current public spending to achieve the indicated stimulus spending. As public spending changes, however, the sufficient statistics also change. Once the indicated stimulus spending is reached, it is very likely that \eqref{eq:implicit} does not hold any longer. Hence, the stimulus spending initially indicated by \eqref{eq:implicit} is not optimal. This is a typical limitation of the sufficient-statistic approach \cp{C09}, which we now address by developing a new sort of sufficient-statistic formula.
+
+We assume that public expenditure is at the Samuelson level $(g/c)^*$ and unemployment is at an inefficient rate $u_{0}\neq u^{*}$. We have in mind the following scenario. Initially everything is going well: unemployment is efficient, and public expenditure satisfies the Samuelson rule. Then a shock occurs, pushing unemployment to $u_0$. The shock could be anything: aggregate-demand shock, aggregate-supply shock, shock to the price of services, shock to the matching function, or shock to the separation rate.
+
+Given the initial unemployment gap $u_0-u^*$, we aim to compute optimal stimulus spending $g/c - (g/c)^*$. As $g/c$ deviates from $(g/c)^*$, unemployment responds, so as we have just discussed, we cannot plug $u_0-u^*$ into \eqref{eq:implicit} to compute the optimal policy. Instead, we take the response of unemployment into account, and we transform \eqref{eq:implicit} into an explicit formula---a formula expressed with sufficient statistics independent of policy.
+
+\begin{prop}\label{prop:explicit} Suppose that the economy is initially at an equilibrium $\bs{(g/c)^{*},u_{0}}$. Then optimal stimulus spending satisfies
+\begin{equation}
+\frac{g/c-(g/c)^{*}}{(g/c)^{*}} \approx \frac{z_0 \e  m}{1 + z_1 z_0 \e  m^{2}}\cdot \frac{u_{0}-u^{*}}{u^{*}},
+\label{eq:explicit}\end{equation}
+where $\e$ and $m$ are evaluated at $\bs{(g/c)^{*},u_{0}}$, and
+\begin{equation*}
+ z_1 = \frac{(g/y)^{*}(c/y)^{*}}{u^{*}}. 
+\end{equation*}
+Under the optimal policy, the unemployment rate is
+\begin{equation}
+u\approx u^{*}+\frac{u_{0}-u^{*}}{1+ z_1 z_0 \e m^{2}}.
+\label{eq:response}\end{equation}
+The approximations \eqref{eq:explicit} and \eqref{eq:response} are valid up to a remainder that is $O\bp{\bs{u_{0}-u^{*}}^{2}+\bs{g/c-(g/c)^{*}}^{2}}$.\end{prop}
+
+The formal proof, presented in online appendix~\ref{app:proofs}, builds on a simple argument: since the unemployment multiplier $m$ is proportional to $du/dg$, a first-order Taylor expansion of $u$ at $u_{0}$ yields
+\begin{equation*}
+u\approx u_{0} - \text{constant} \cdot m \cdot \frac{g/c-(g/c)^{*}}{(g/c)^{*}}.
+\end{equation*}
+Substituting $u$ by this expression in \eqref{eq:implicit} yields \eqref{eq:explicit}. 
+
+Formula~\eqref{eq:explicit} is the main formula of the paper. It expresses optimal stimulus spending $g/c-(g/c)^{*}$ as a function of three sufficient statistics: initial elasticity of substitution between public and private consumption ($\e$), initial unemployment multiplier ($m$), and initial unemployment gap ($u_{0}-u^{*}$). Formula~\eqref{eq:response} expresses the unemployment rate under optimal public expenditure as a function of the same statistics. The advantage of \eqref{eq:explicit} over \eqref{eq:implicit} is that its sufficient statistics are independent of policy. Thus, we can compute optimal stimulus spending by plugging the current values of the statistics into \eqref{eq:explicit} .
+
+The policy debate on stimulus spending often revolves around unemployment gaps and multipliers \eg{RB09}. Formula~\eqref{eq:explicit} confirms that optimal stimulus spending is indeed a function of the unemployment gap and a multiplier---the unemployment multiplier. Yet, these statistics are not sufficient to measure the effect of public expenditure on welfare because an increase in public expenditure also modifies the composition of households' consumption. Consequently, optimal stimulus spending also depends on the elasticity of substitution between public and private consumption; this statistic should probably play a more prominent role in the policy debate.
+
+Finally, since the output multiplier often enters the policy debate, we reformulate our results in terms of that multiplier. We start by introducing a new unemployment multiplier.
+
+\begin{defn} The empirical unemployment multiplier is
+\begin{equation}
+M = -\frac{Y}{1-u}\cdot \dert{u}{G}.
+\label{eq:M}\end{equation}\end{defn}
+
+The empirical unemployment multiplier measures the percent increase in employment rate observed when public expenditure increases by one percent of GDP. In practice $1-u\approx 1$, so the multiplier approximately measures the percentage-point decrease in unemployment rate observed when public expenditure increases by one percent of GDP.
+
+The empirical unemployment multiplier acts as a bridge between the unemployment multiplier in our formula and the output multiplier.
+
+\begin{lem}\label{lem:multipliers} The unemployment multiplier in our formula ($m$), the empirical unemployment multiplier ($M$), and the output multiplier ($dY/dG$) are related by
+\begin{align}
+m&=\frac{(1-u) \cdot M}{1-\frac{G}{Y}\cdot \frac{\eta}{1-\eta}\cdot\frac{\tau}{u}\cdot M}\label{eq:mM}\\
+M&=\dert{Y}{G}.\label{eq:MdYdG}
+\end{align}\end{lem}
+
+The proof is in online appendix~\ref{app:proofs}. Intuitively, empirical unemployment multiplier and output multiplier are equal because employment rate and output are proportional ($Y = (1-u) k$).
+
+We could use \eqref{eq:mM} and \eqref{eq:MdYdG} to rewrite formula~\eqref{eq:explicit} in terms of the output multiplier instead of the unemployment multiplier $m$. At the same time, \eqref{eq:mM} and \eqref{eq:MdYdG} imply that $m$ and the output multiplier have the same sign, and that $m$ is larger when the output multiplier is larger. Hence, all the results linking $m$ to optimal stimulus spending also apply to the output multiplier.
+
+A caveat is that the output multiplier is only useful when taxation is nondistortionary. Section~\ref{sec:supply} shows that when taxation is distortionary, \eqref{eq:MdYdG} does not hold, so the tight link between unemployment multiplier and output multiplier breaks down. As a consequence, with distortionary taxation, the output multiplier cannot be used to design stimulus spending.
+
+Lastly, we will also use the empirical unemployment multiplier in the numerical applications of sections~\ref{sec:application} and~\ref{sec:simulation}. Indeed, the multiplier $m$ in our formula is difficult to estimate because it measures the response of unemployment to changes in public consumption---which is not directly observable. The issue is that public expenditure on matching resources, which must be subtracted from total public expenditure to obtain public consumption, is unobservable. The empirical multiplier is much easier to estimate because it measures the response of unemployment to changes in public expenditure---which is reported in national accounts. Hence, in numerical work, we will use estimates of the empirical multiplier and \eqref{eq:mM} to calibrate $m$. In practice, however, $m$ and $M$ will be broadly the same.\footnote{Although public consumption $g$ and private consumption $c$ are not observable, the consumption ratio $g/c$ in our formula is measurable---and thus easily interpretable---because $g/c = G/C$ and both public expenditure $G$ and private expenditure $C$ are measured in national accounts.}
+
+\subsection{Implications}
+
+Using our sufficient-statistic formula, given by \eqref{eq:explicit}, we explore how the sign and amplitude of optimal stimulus spending depend on the unemployment gap, unemployment multiplier, and elasticity of substitution between public and private consumption. We also use formula~\eqref{eq:response} to characterize the unemployment gap under optimal stimulus spending. 
+
+\paragraph{Sign of Optimal Stimulus Spending.} Formula~\eqref{eq:explicit} gives the sign of optimal stimulus spending in various situations:
+
+\begin{prop}\label{prop:hump1} If the unemployment multiplier is zero ($m =0$), or the unemployment gap is zero ($u_{0}=u^{*}$), optimal stimulus spending is zero ($g/c=(g/c)^{*}$). Otherwise, optimal public expenditure deviates from the Samuelson rule to partially fill the initial unemployment gap. Consider first a positive unemployment multiplier ($m>0$). If the unemployment gap is positive ($u_{0}>u^{*}$), optimal stimulus spending is positive ($g/c>(g/c)^{*}$) but does not completely fill the unemployment gap ($u>u^{*}$). If the unemployment gap is negative ($u_{0}<u^{*}$), optimal stimulus spending is negative ($g/c<(g/c)^{*}$) but does not completely eliminate the unemployment gap ($u<u^{*}$). On the other hand,when the unemployment multiplier is negative ($m <0$), optimal stimulus spending is negative if the unemployment gap is positive, and optimal stimulus spending is positive if the unemployment gap is negative.\end{prop} 
+
+The proposition establishes that optimal public expenditure satisfies the Samuelson rule only if the unemployment multiplier is zero or if the unemployment gap is zero. In all other situations, optimal public expenditure deviates from the Samuelson rule. 
+
+The general pattern is that optimal public expenditure deviates from the Samuelson rule to partially fill the initial unemployment gap. To understand these results, imagine that public expenditure satisfies the Samuelson rule, the unemployment multiplier is positive, and unemployment is inefficiently high. Keeping total consumption constant, increasing public consumption reduces private consumption one-for-one. Since the marginal utilities of public and private consumption are equal at the Samuelson rule, the increase in public consumption has no first-order effect on welfare so far. Now, since the unemployment multiplier is positive, increasing public consumption lowers unemployment; and since unemployment is inefficiently high, reducing unemployment raises total consumption. Hence, through its effect on unemployment, the increase in public consumption raises welfare. It is therefore optimal to increase public consumption above the Samuelson rule, and thus reduce the unemployment gap.
+
+Why is it not optimal to completely fill the unemployment gap? If the government did that, we would reach a situation where increasing public consumption reduces private consumption one-for-one (since crowding out is one-for-one when the unemployment gap is zero), but extra public consumption is less valuable than extra private consumption (since public consumption is above the Samuelson level). The situation is clearly suboptimal: welfare can be increased by reducing public consumption.
+
+These results have implications for the cyclicality of optimal public expenditure. Under the presumption that the unemployment gap is positive in slumps and negative in booms, and that the unemployment multiplier is nonzero with a constant sign, then optimal stimulus spending changes sign over the business cycle. Accordingly, optimal public expenditure fluctuates around the Samuelson level over the business cycle.
+
+\paragraph{Role of the Unemployment Multiplier.} Formula \eqref{eq:explicit} also shows how optimal stimulus spending depends on the unemployment multiplier.
+
+\begin{prop} Assume that the initial unemployment gap is positive ($u_{0}> u^{*}$). Then optimal stimulus spending is a hump-shaped function of the unemployment multiplier: it is 0 when $m=0$, increasing in $m$ for $m\in\bs{0,1\big/\sqrt{z_1 z_0 \e}}$, decreasing in $m$ for $m\in[1\big/\sqrt{z_1 z_0 \e},+\infty)$, and $0$ for $m\to +\infty$. The maximum optimal stimulus spending, reached at $m=1\big/\sqrt{z_1 z_0 \e}$, is
+\begin{equation*}
+\frac{g/c-(g/c)^{*}}{(g/c)^{*}}=\frac{1}{2} \cdot \sqrt{\frac{z_0 \e}{z_1}}\cdot\frac{u_{0}-u^{*}}{u^{*}}.
+\end{equation*}
+Furthermore, the unemployment gap under optimal stimulus spending is a decreasing function of the unemployment multiplier: it falls from $u_{0}-u^*$ when $m=0$ to $0$ when $m\to +\infty$.\end{prop}
+
+For concreteness, this proposition and the next only consider positive unemployment multipliers and unemployment gaps, but we could of course derive the same type of results with negative multipliers or negative gaps.
+
+What is the intuition behind the hump shape? When public expenditure is optimal, the marginal social cost from consuming too many public services and too few private services equals the marginal social value from reducing unemployment. This marginal social value is determined by two factors: the current unemployment multiplier, which measures how much unemployment can be reduced by additional expenditure, and the current unemployment gap, which measures the social value from lower unemployment. For a given amount of stimulus spending and a given initial unemployment gap, a larger initial multiplier has conflicting effects on the two factors: it means a larger current multiplier (a higher marginal social value) but a smaller current unemployment gap (a lower marginal social value). The first effect advocates for more spending, the second for less spending. It turns out that for small multipliers, the first effect dominates, so optimal stimulus spending is increasing in the multiplier; for large multipliers, the second effect dominates, so optimal stimulus spending is decreasing in the multiplier. In fact, for very large multipliers, it becomes optimal to nearly entirely fill the unemployment gap. Naturally, less spending is required to fill the gap when the multiplier is larger, so optimal stimulus spending is decreasing in the multiplier.
+
+Our results qualify the view that a larger multiplier entails a larger stimulus spending---the bang-for-the-buck logic often used in policy discussions \see[p.~212]{MW11}. Stimulus skeptics usually believe in small multipliers and infer that stimulus spending should be small in slumps. Similarly, stimulus advocates usually believe in large multipliers and infer that stimulus spending should be large in slumps. Our theory shows that this bang-for-the-buck logic holds for small multipliers but not for large ones; therefore, a large multiplier is not a justification for a large stimulus. Instead, since the relationship between multiplier and optimal stimulus spending is hump-shaped, optimal stimulus spending is similar for some small and large multipliers.
+
+\paragraph{Role of the Elasticity of Substitution Between Public and Private Consumption.} Formula \eqref{eq:explicit} next shows how optimal stimulus spending depends on the elasticity of substitution between public and private consumption.
+
+\begin{prop}\label{prop:e} Assume that the unemployment multiplier and initial unemployment gap are positive ($m>0$ and $u_{0}-u^{*}>0$). Then optimal stimulus spending is an increasing function of the elasticity of substitution between public and private consumption: it rises from 0 when $\e=0$ to 
+\begin{equation*}
+\frac{g/c-(g/c)^{*}}{(g/c)^{*}}=  \frac{1}{z_1  m}\cdot \frac{u_{0}-u^{*}}{u^{*}}
+\end{equation*}
+when $\e\to +\infty$. The unemployment gap under the optimal policy is a decreasing function of the elasticity of substitution: it falls from $u_{0}-u^*$ when $\e \to 0$ to $0$ when $\e\to +\infty$.\end{prop}
+
+The proposition shows that both optimal stimulus spending and the share of the unemployment gap filled under the optimal policy are increasing in the elasticity of substitution between public and private consumption. The proposition also uncovers two interesting polar cases. 
+
+The first is $\e\to0$. In this case, additional public services have zero value: additional public workers dig and fill holes in the ground. Then, optimal stimulus spending is zero, irrespective of the unemployment rate and multiplier. Intuitively, above the Samuelson level, public consumption has no value, but it crowds out private consumption; therefore, it cannot be optimal to provide more public consumption than the Samuelson level.\footnote{The results in proposition~\ref{prop:e} are based on \eqref{eq:explicit}, which is a first-order approximation around $\bs{u^*,(g/c)^*}$. When $u_0$ and $g/c$ are far from $u^*$ and $(g/c)^*$, the equation may not be accurate and results may change. For instance, \eqref{eq:explicit} does not work well when $\e\to 0$ and public consumption crowds in private consumption ($dc/dg>0$). (Having $dc/dg>0$ requires a large deviation from $u^*$ because at $u^*$ total consumption is maximized so $dc/dg = -1$.) In that situation, \eqref{eq:explicit} suggests that stimulus spending should be zero. But going back to \eqref{eq:exact}, we see that optimal stimulus spending is positive when $dc/dg>0$, even if $\e\to 0$. Indeed, \eqref{eq:exact} can be written $0 = MRS_{gc} + dc/dg$. Since $MRS_{gc} \geq 0$ and $dc/dg>0$ around $(g/c)^*$, it is optimal to spend more than $(g/c)^*$, irrespective of $\e$.}
+ 
+The second polar case is $\e\to+\infty$. In this case, public consumption perfectly substitutes for private consumption, and optimal stimulus spending completely fills the unemployment gap. This result holds even if the multiplier is very small and public expenditure severely crowds out private consumption. Intuitively, public and private consumptions are interchangeable, so it is optimal to maximize total consumption, irrespective of its composition. This is achieved by completely filling the unemployment gap.
+
+Overall, proposition~\ref{prop:e} clarifies the link between usefulness of public expenditure and optimal stimulus spending. A concern of stimulus skeptics is that additional public expenditure could be wasteful. Our theory develops this argument. It is true that when the elasticity of substitution between public and private consumption is zero, public expenditure should remain at the Samuelson level. But in the more realistic case where the elasticity of substitution is positive, some stimulus spending remains  desirable in slumps.
+
+\subsection{Distortionary Taxation}\label{sec:supply}
+
+So far taxation has been nondistortionary because labor supply was fixed. We now introduce endogenous labor supply: households supply a productive capacity $k$ at utility cost $\Wc(k)$, where the function $\Wc$ is strictly increasing and convex. We examine how distortionary taxation affects optimal public expenditure. Here we present a summary of the results; online appendix~\ref{app:taxation} contains the complete analysis.
+
+The government uses a linear income tax $\tau^{L}$ to finance public expenditure. With such a tax, the household's labor income is $(1-\tau^{L})  Y(x,k)=(1-\tau^{L}) \bs{1-u(x)}  k$. To finance public expenditure $G$, the tax rate must be $\tau^{L}=G/Y=g/y$. 
+
+The household chooses $k$ to maximize utility. The labor supply decision is distorted by the income tax: a higher tax reduces the returns to supplying labor; it thus reduces the capacity $k$ supplied by the household (a substitution effect). Because of this distortion, the first-order condition of the government's problem becomes
+\begin{equation*}
+\underbrace{1-\dlnt{k}{g}=MRS_{gc}}_{\text{modified Samuelson rule}} + \underbrace{\der{y}{x}\cdot \dert{x}{g}}_{\text{correction}}.
+\end{equation*}
+This condition differs from \eqref{eq:exact}, but the two have the same structure once the Samuelson rule is modified to account for distortionary taxation.\footnote{The modified Samuelson rule was developed by \ct{SD71}, \ct{DiM71}, and \ct{AS74} to describe optimal public expenditure with a linear income tax. A large literature has built on these papers \see{BF92,KV12}.} The statistic $1-\dlnttx{k}{g}>1$ is the marginal cost of funds; it is greater than one because the linear income tax distorts labor supply. Because the marginal cost of funds is greater than one, the modified Samuelson rule recommends lower public expenditure than the regular Samuelson rule.
+
+While Samuelson spending is lower with the linear income tax, the correction to the Samuelson rule remains the same. Accordingly, our sufficient-statistic formula remains valid: as long as the statistic $z_1$ is generalized to allow for supply-side responses, optimal stimulus spending satisfies \eqref{eq:explicit} and the unemployment rate reached under optimal stimulus spending satisfies \eqref{eq:response}.
+
+There is one important difference with distortionary taxation, however: the output multiplier is not useful to characterize optimal stimulus spending---only the unemployment multiplier is. In section~\ref{subsec:derivation}, we showed that when taxes are nondistortionary, all our results would remain the same if we replaced the unemployment multiplier by the output multiplier. Things are different when taxes are distortionary. Higher taxes reduce labor supply, which reduces output but not the employment rate. As a consequence, the output multiplier may be negative when the unemployment multiplier is positive, which renders the output multiplier useless to design stimulus spending.
+
+Hence, our theory alleviates a common concern of stimulus skeptics. They worry that output is too low in slumps, and that increasing public expenditure would further reduce output through tax distortions.\footnote{\ct{BR11} find in US data that the deficit-financed output multiplier is positive (around $0.5$), but because taxation significantly depresses supply, the balanced-budget output multiplier is negative (around $-0.6$).}  But our theory shows that if it is only because of tax distortions that public spending reduces output, then stimulus spending should be positive in slumps. Indeed, since $Y = (1-u) k$, public spending affects output through two channels: the unemployment channel (public spending affects $u$) and the labor-supply channel (more public spending leads to higher taxes, which reduces $k$). If it is only because of tax distortions that public spending reduces output, then public spending lowers unemployment; but the associated tax increase depresses labor supply so much that output falls. Then, starting from the modified Samuelson rule, a small increase in public expenditure reduces unemployment, reduces labor supply, and increases public consumption, which are all good for welfare; but it reduces output and thus private consumption, which is bad for welfare. By construction, at the modified Samuelson rule, the cost of lower private consumption offsets the benefits of higher public consumption and lower labor supply; the only remaining effect on welfare is the positive effect from lower unemployment. Therefore, increasing public expenditure above the modified Samuelson rule is desirable. The key is that the modified Samuelson rule takes into account the negative welfare effect caused by the reduction in output stemming from lower labor supply, but not the positive welfare effect caused by the increase in output stemming from lower unemployment.\footnote{In this section, we have considered the traditional approach to taxation: public spending is funded with a linear income tax. In online appendix~\ref{app:taxation}, we also consider the modern approach to taxation, which follows the benefit principle. This principle, introduced by \ct{HZ79} and fully developed by \ct{K96,Ka98}, is an important result in modern public-economic theory: it states that optimal public expenditure is disconnected from distortionary taxation. Under the benefit principle, extra public expenditure is financed by a tax change leaving all individual utilities unchanged---thus not altering labor supply. This is done by changing a nonlinear income tax schedule to absorb the benefits derived from extra public spending, individual by individual. Then, although capacity is endogenous, all the formulas obtained with fixed capacity hold.} This omitted positive welfare effect justifies raising public expenditure above the modified Samuelson rule.
+
+
+\subsection{Comparison with a Keynesian, Fixprice Model}\label{sec:fixprice}
+
+We have shown that the Samuelson rule must be corrected when productive efficiency fails. We have treated productive inefficiency using a matching model, but in macroeconomics productive inefficiency is usually studied using fixprice models, in the tradition of \ct{BG71} and \ct{B93}.\footnote{New Keynesian models build upon this tradition, but replace fixed prices with slowly adjusting prices. Slow price adjustments make the dynamics more interesting but the theoretical analysis more difficult. We focus on fixed prices for tractability, and consistency with our earlier analysis.} Here we apply our methodology to such a model and compare the results of the matching and fixprice approaches.
+
+The economy has the same structure as in our matching model, but services are traded on a perfectly competitive market instead of a matching market. The price of services is fixed at a level $p$, which may not clear the market. The private demand for services is given by a function $c(p,g)$, with $\dertx{c}{p}<0$. The aggregate demand for services is $y(p,g) = c(p,g)+g$. The aggregate supply of services is fixed at $k$. There is no wedge between output and consumption, so $y$, $c$, and $g$ are both output and consumption of services. This fixprice model can be seen as the limit case of our matching model when matching costs become vanishingly small ($\r\to 0$). Hence, all the equations from the matching model apply once we set $\tau(x)=0$.
+
+Since $c=y-g$, the optimal $g$ maximizes $\Uc\bp{y-g,g}$. As in the matching model, the first-order condition of the maximization is 
+\begin{equation}
+1 = MRS_{gc}+\dert{y}{g}.
+\label{eq:exact2}\end{equation}
+
+When the price of services clears the market, aggregate demand equals aggregate supply ($y = k$), which implies that the output multiplier is zero ($dy/dg=0$). Thus, the Samuelson rule holds ($1=MRS_{gc}$) when the market clears.
+
+What happens when the price of services is fixed at a level that does not clear the market?  We first consider the excess-supply regime: the supply side of the market is rationed, and output is determined by the demand side: $y = y(p,g)<k$. This regime represents a slack economy. In it, the output multiplier $dy/dg$ can be one, above one, or below one, depending on the effect of public consumption on the marginal utility from private consumption; that is, depending on whether $c$ and $g$ are complements or substitutes in the Edgeworth-Pareto sense.\footnote{To see this, consider the demand side with land described in section~\ref{sec:land}. The output multiplier is $dy/dg = 1 + dc/dg$, so we need to determine the sign of $dc/dg$. Since there is excess supply, private consumption is determined by private demand, so we study the response of private demand to $g$. Private demand $c(p,g)$ is defined by $\dertx{\Uc}{c}=p \Vc'(l_0)/\d$, so $dc/dg=-(\partial^2 \Uc/\partial c \partial g)/(\partial^2 \Uc/\partial c^2)$,  and $dy/dg=1-(\partial^2 \Uc/\partial c \partial g)/(\partial^2 \Uc/\partial c^2)$. We infer that the multiplier is one when $c$ and $g$ are unrelated in the Edgeworth-Pareto sense ($\partial^2 \Uc/\partial c \partial g = 0$). The multiplier is above one when $c$ and $g$ are substitutes in the Edgeworth-Pareto sense ($\partial^2 \Uc/\partial c \partial g < 0$). And the multiplier is below one when $c$ and $g$ are complements in the Edgeworth-Pareto sense ($\partial^2 \Uc/\partial c \partial g > 0$).}
+
+If the output multiplier is greater or equal to one, then for any public expenditure, $MRS_{gc}+dy/dg>1$. Thus, it is optimal for the government to spend until the output gap is filled, irrespective of the usefulness of additional public expenditure. Intuitively, with such a large multiplier, public consumption does not crowd out private consumption, so increasing public consumption raises all inputs into the welfare function. Clearly, then, public consumption should increase until the output gap is filled. As showed in online appendix~\ref{app:fixprice}, up to a second-order remainder, the implied optimal stimulus spending is
+\begin{equation}
+\frac{g/c-(g/c)^{*}}{(g/c)^{*}}  \approx z_2 \cdot \frac{1 - (g/y)^* (dy/dg)}{dy/dg} \cdot \frac{k - y_0}{y_0},
+\label{eq:explicit2}\end{equation}
+where $y_0$ is initial output, $dy/dg$ is evaluated at $\bs{(g/c)^*,y_0}$, and $z_2 = 1\big/\bs{(c/y)^* (g/y)^*}$.
+
+This result has three implications. First, optimal stimulus spending grows in proportion to the output gap ($k-y_0$). Second, optimal stimulus spending is smaller when the output multiplier is larger (because less spending is required to fill the output gap with a larger multiplier). Third, the value of additional public spending is irrelevant: optimal stimulus spending is the same whether public consumption substitutes well or not for private consumption.
+
+This result is consistent with results obtained in other fixprice models. For instance, using a fixprice model with a multiplier of one, \ct[pp.~232--234]{MW11} find that it is optimal to completely fill the output gap.
+
+If the output multiplier is lower than one, it may not be optimal to fill the output gap. At the Samuelson level of spending, $MRS_{gc}=1$ so $MRS_{gc}+dy/dg>1$: it is optimal to increase public expenditure to reduce the output gap. As public expenditure increases, $MRS_{gc}$ decreases. If $MRS_{gc}+dy/dg$ is above 1 once the output gap is filled, then it is optimal to completely fill the output gap. If $MRS_{gc}+dy/dg$ reaches 1 before the output gap is filled, however, optimal public expenditure does not completely fill the output gap. In that case, optimal stimulus spending satisfies
+\begin{equation}
+\frac{g/c-(g/c)^*}{(g/c)^*} \approx \e \dert{y}{g}.
+\label{eq:explicit3}\end{equation} 
+This equation applies only when optimal stimulus spending is small enough that it does not completely fill the output gap---so only when the output multiplier ($dy/dg$) and the elasticity of substitution between public and private consumption ($\e$) are small enough. The equation implies that as long as public consumption is valuable at the margin and the output multiplier is positive, stimulus spending should be positive. Additionally, optimal stimulus spending grows in proportion to the multiplier and to the elasticity of substitution, but it is independent of the output gap.
+
+Overall, then, we reach similar qualitative insights with the fixprice and matching models when the economy is slack. This is good news: irrespective of how productive inefficiency is modeled, stimulus spending obeys similar principles in slumps. One difference between the two models lies in the shape of optimal stimulus spending as a function of the sufficient statistics. In the matching model, the function is smooth. In the fixprice model, the function has two different parts. If the multiplier is large enough, stimulus spending should completely fill the output gap, so it is strictly increasing in the output gap, strictly decreasing in the multiplier, and independent of the elasticity of substitution. But when the multiplier is sufficiently small, optimal stimulus spending is given by \eqref{eq:explicit3}, so it is independent of the output gap, strictly increasing in the multiplier, and strictly increasing in the elasticity of substitution.
+
+When the economy is tight, however, fixprice and matching recommendations differ sharply. In the fixprice model, a tight economy is represented by the excess-demand regime. In this regime, the demand side of the market is rationed, and output is determined by the supply side: $y=k<y(p,g)$. Since $y=k$, $dy/dg=0$, so \eqref{eq:exact2} implies that the Samuelson rule holds. Hence, the fixprice model recommends to keep public spending at the Samuelson level in booms.\footnote{In online appendix~\ref{app:fixprice} we analyze a fixprice model with endogenous capacity $k$. While it has other problems, such a model treats the excess-demand and excess-supply regimes symmetrically, much like the matching model.} The recommendation emanating from the matching model is very different. Indeed, in the matching model, it is optimal to deviate from the Samuelson rule in booms in order to reduce the (negative) unemployment gap.
+
+\section{Application to the Great Recession in the United States}\label{sec:application}
+
+We now complement our theoretical results with a numerical application. We calibrate our sufficient-statistic formula, given by \eqref{eq:explicit}, and compute optimal stimulus spending at the onset of the Great Recession in the United States. This exercise illustrates how much optimal public expenditure may deviate from the Samuelson rule. We also use formula~\eqref{eq:response} to compute the unemployment rate reached under optimal stimulus spending. Since the formulas are valid whether taxes are distortionary or not, the numerical results apply in both cases.
+
+Our starting point is 2008:Q3 in the United States: the unemployment rate is $u=6\%$, and public expenditure is $G/C=19.7\%$. For simplicity, we assume that in 2008:Q3 the unemployment rate is efficient and public expenditure satisfies the Samuelson rule: $u^{*}=6\%$ and $(G/C)^{*}=19.7\%$. These assumptions seem reasonable: unemployment and public expenditure in 2008:Q3 are close to their 25-year averages, and there is a presumption, going back at least to \ct{O63}, that the economy is efficient on average.\footnote{We set $u$ to the seasonally adjusted unemployment rate constructed by the Bureau of Labor Statistics from the Current Population Survey. To construct $G/C$, we set $G$ to the seasonally adjusted employment level in the government industry and $C$ to the seasonally adjusted employment level in the private industry. Both series constructed are by the Bureau of Labor Statistics from the Current Employment Statistics survey. Over the 1990--2014 period, the average unemployment rate is $u=6.1\%$, and the average public expenditure satisfies $G/C=19.7\%$.} 
+
+In 2008, an adverse shock hits the US economy, and unemployment starts rising toward an inefficient level $u_{0}>u^{*}$.\footnote{Our formula accommodates any type of shock. But since we calibrate $u^*$ and $(G/C)^*$ using preshock observations, the shock should not affect $u^*$ and $(G/C)^*$. So it could be a shock to aggregate demand, to aggregate supply, or to prices, but not to the matching process (matching function, $s$, or $\rho$).} In our model unemployment immediately reaches the higher level $u_{0}$, but in reality unemployment slowly rises to $u_{0}$. The challenge for policymakers is to forecast $u_{0}$ in advance. In the winter 2008--2009, when the US government designed the stimulus package, they forecast $u_{0}=9\%$, so we use $u_{0}=9\%$ \cp[fig.~1]{RB09}. Then, to apply formula~\eqref{eq:explicit}, we collect estimates of the two main statistics: the elasticity of substitution between public and private consumption ($\e$) and the unemployment multiplier ($m$). 
+
+A literature attempts to estimate the elasticity of substitution between public and private consumption. The empirical strategy is to isolate variations in the ratio of public-consumption price to private-consumption price and to assess their impact on the ratio of public consumption to private consumption. For example, if the consumption ratio stays constant in spite of secular variations in the price ratio, then the elasticity of substitution is about one.\footnote{This is plausible in light of the fairly stable ratio of government consumption to GDP in OECD countries since 1980 (see \url{https://data.worldbank.org/indicator/}).} To tackle the challenging identification problem, the modern literature uses the co-integration approach developed by \ct{O92}. Applying this approach to US data, \ct{AW97,AW98} estimate elasticities of 0.9 and 1.56 .\footnote{Similar estimates are obtained in other countries: \ct{C01} estimate an elasticity of 1.1 for Taiwan; \ct[pp.~79--80]{Ok03} estimate an elasticity of 1.39 for Japan; and \ct[p.~52]{K07} estimate an elasticity between 0.57 and 1.05 for a group of nine East Asian countries, depending on the specification and time period.} Hence, to span the range of available estimates, we consider three values for the elasticity of substitution: $\e=0.5$, $\e=1$, and $\e=2$.
+
+Next, we determine plausible values for the unemployment multiplier $m$. Since $m$ is not directly observable, we report estimates for the empirical unemployment multiplier $M$ and translate $M$ into $m$. For the translation, we calibrate \eqref{eq:mM} to US data. We set $G/Y$ and $u$ to their values after the shock but before the stimulus: $G/Y=(G/C)/(1+G/C)=0.197/(1+0.197)=16.5\%$ and $u=9\%$. \ct[fig.~1]{LMS15} measure labor devoted to matching: when the unemployment rate is 9\%, as in 2009:Q2, they find $\tau=1.7\%$. We use this value. Last, following \ct[p.~195]{LMS15}, we set $\eta=0.6$. Overall, we find that $m$ is almost identical to $M$: $m= 0.91 \times M/\bp{1- 0.047\times M}$.
+
+The unemployment multiplier $M$ is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by one percent of GDP. \ct[pp.~533--536]{MPT10} estimate a structural vector autoregression (SVAR) on US data and find unemployment multipliers between 0.2 and 0.6. \ct[pp.~40--42]{Ra13} estimates SVARs on US data with various identification schemes and sample periods. She finds unemployment multipliers between 0.2 and 0.5, except in one specification where the multiplier is 1. In sum, the average unemployment multiplier is estimated to be in the 0.2--1 range.
+
+The multiplier entering our formula could be larger if multipliers are larger when unemployment is higher, as suggested by recent research on state-dependent multipliers. For instance, estimating regime-switching SVARs on US data, \ct[table~1]{AG10} find that while the output multiplier is 0.6 in expansions and 1 on average, it is as high as 2.5 in recessions. To account for the uncertainty about the exact value of the multiplier in bad times, we compute optimal stimulus spending for a range of unemployment multipliers: $0 < M < 2$.
+
+The last step before using formulas \eqref{eq:explicit} and \eqref{eq:response} is calibrating the constants $z_0$ and $z_1$. We calibrate them just as we calibrated \eqref{eq:mM}: we set $(g/c)^*=19.7\%$, $(g/y)^*=16.5\%$, $(c/y)^* =1-(g/y)^* =83.5\%$, $u^*=6\%$, and $\eta=0.6$, which implies $z_0=2.83$ and $z_1=2.30$. 
+
+Figure~\ref{fig:optimal} displays the results: optimal stimulus spending as a share of GPD ($G/Y-(G/Y)^*$), and unemployment rate under optimal stimulus spending. (To obtain public spending as a share of GPD from \eqref{eq:explicit}, we use the identity $G/Y = (g/c)/(1+g/c)$.) Several observations stand out.
+
+\begin{figure}[p] \centering
+\includegraphics[scale=0.3,page=3]{\path graphs/policy_20180514.pdf}\\
+\includegraphics[scale=0.3,page=4]{\path graphs/policy_20180514.pdf}
+\caption{Great Recession in the United States: Optimal Stimulus Spending and Resulting Unemployment Rate}
+\fig{Notes}{When the shock responsible for the Great Recession hit the US economy in 2008, unemployment was projected to increase from 6\% to 9\%. The figure displays optimal stimulus spending in response to the shock, and the unemployment rate that would be reached after such spending. Optimal stimulus spending is measured as a share of GPD ($G/Y - (G/Y)^*$). Optimal stimulus spending and the resulting unemployment rate are computed for various values of the empirical unemployment multiplier ($M$) and elasticity of substitution between public and private consumption ($\e$). Optimal stimulus spending is computed using \eqref{eq:explicit} with $(g/c)^*=19.7\%$, $u^*=6\%$, $u_0=9\%$, $m= 0.91 \times M/\bp{1- 0.046\times M}$, $z_0=2.83$, and $z_1=2.30$. (We also translate $g/c$ into $G/Y$ using $G/Y = (g/c)/(1+g/c)$.) The resulting unemployment rate is computed using \eqref{eq:response} with the same calibration.}
+\label{fig:optimal}\end{figure}
+
+First, even with a small multiplier, optimal stimulus spending is significant. For example, take $M=0.2$: if $\e=0.5$, optimal stimulus spending is 1.6 percentage points of GDP; if $\e=1$, it is 2.8 points of GDP; and if $\e=2$, it is 4.7 points of GDP.
+
+Second, the multiplier warranting the largest stimulus is fairly modest. With $\e=0.5$, the largest stimulus (2.6 points of GDP) occurs with $M=0.6$. With $\e=1$, the largest stimulus (3.7 points of GDP) occurs with $M=0.4$. And with $\e=2$, the largest stimulus (5.1 points of GDP) occurs with $M=0.3$.
+
+Third, optimal stimulus spending is the same for small and large multipliers. For instance, with $\e=1$, optimal stimulus spending is the same (1.9 points of GDP) for $M=0.12$ and $M=1.5$. Of course the resulting unemployment rates are very different.
+
+Fourth, for small multipliers, unemployment barely falls below 9\% although optimal stimulus spending is large. For example, with $M=0.2$, unemployment only falls to 8.7\% if $\e=0.5$, 8.5\% if $\e=1$, and 8.1\% if $\e=2$. This is because public expenditure has little effect on unemployment when the multiplier is small.
+
+Fifth, with a multiplier above one, optimal stimulus spending almost brings back unemployment to its efficient level of 6\%. Indeed, when $M=1$, the unemployment rate falls below 6.8\%, so the remaining unemployment gap is less than 0.8 percentage points. And when $M=2$, the remaining unemployment gap is less than 0.2 percentage points. 
+
+Sixth, the elasticity of substitution between public and private consumption plays a significant role for small to medium multipliers, but not for large multipliers. Consider first $M=0.4$: if $\e=0.5$, optimal stimulus spending is 2.4 percentage points of GDP; if $\e=1$, it is 3.6 points of GDP; and if $\e=2$, it is 4.8 points of GDP. Hence, $\e$ significantly influences optimal stimulus spending. In contrast, for $M>1$, the optimal levels of stimulus spending when $\e=0.5$, $\e=1$, and $\e=2$ are nearly indistinguishable. This is because for large multipliers, the optimal policy is to fill the unemployment gap, so it is not influenced by the elasticity of substitution.
+
+Finally, we calculate optimal stimulus spending at the onset of the Great Recession using midrange values for the unemployment multiplier and elasticity of substitution: $M=0.5$ and $\e=1$. Under this calibration, optimal stimulus spending is 3.6 points of GDP; since US GDP in 2008 is \$14,700 billion, optimal stimulus spending is \$530 billion per year. How does this optimal stimulus package compare to the actual stimulus package? According to the Congressional Budget Office (CBO), the American Recovery and Reinvestment Act (ARRA), enacted into law in February 2009, is estimated to cost \$840 billion over ten years, with half of that amount spent in 2010.\footnote{See \url{https://perma.cc/RJ6D-GZA8}.} So at the peak of the Great Recession in 2010, stimulus spending was \$420 billion. This is below but of the same order of magnitude as our optimal stimulus package of \$530 billion. 
+
+Yet, evaluating the adequacy of ARRA is more complicated than comparing these two numbers. Our model focuses on one stabilization policy: government expenditure on goods and services. ARRA was more complex; it was a blend of three policies: increase in government expenditure, increase in government transfers, and increase in government deficit. According to the CBO, only 30\% of ARRA was devoted to government expenditure, so about $0.3 \times \$420$ billion = \$130 billion.\footnote{A breakdown of ARRA's funding is available at \url{https://web.archive.org/web/20150905195457/http://www.recovery.gov/arra/Transparency/fundingoverview/Pages/fundingbreakdown.aspx}.} At the same time, government expenditure on goods and services was combined with other stabilization policies, so optimal stimulus spending on goods and services was less than \$530 billion. Determining whether the optimal stimulus was above or below \$130 billion would require a more sophisticated model describing jointly the effects of government transfers, government deficit, and government expenditure on goods and services.
+
+\section{Simulations}\label{sec:simulation}
+
+This section simulates a fully specified, structural matching model. The simulations show that the matching model provides a good description of the business cycle: in response to aggregate-demand shocks the model generates realistic, countercyclical fluctuations in the unemployment rate and unemployment multiplier. This realism suggests that the matching framework is adapted to study optimal policy over the business cycle. The simulations also show that our sufficient-statistic formula, obtained with first-order approximations, is accurate even for large business-cycle fluctuations. Indeed, in our matching model, the sufficient-statistic formula and the exact optimality condition deliver almost identical policies.\footnote{We keep the simulation model simple to illustrate the theoretical results as transparently as possible. It would also be useful to simulate a richer model to obtain more precise quantitative results about optimal stimulus spending.}
+
+\subsection{Quantitative Properties of the Matching Model}
+
+We simulate the matching model with land developed in section~\ref{sec:land}. The model is calibrated to US data (see online appendix~\ref{app:land}). We represent the business cycle as a succession of unexpected permanent aggregate-demand shocks. We use these shocks for two reasons: first, they generate inefficient fluctuations in unemployment; second, they generate the negative comovements between tightness and unemployment observed empirically \cp{MS13}.
+
+We parameterize aggregate demand with $\a=\d/\Vc'(l_{0})$. Since the economy jumps to its new steady-state equilibrium in response to a shock, we only need to compute a collection of steady states parameterized by $\a \in [0.97,1.03]$. We run two simulations: one in which $G/Y$ is constant at 16.5\%, its average value in the United States for 1990--2014, and one in which $G/Y$ is at its optimal level, given by \eqref{eq:exact}. 
+
+Figure~\ref{fig:simu} illustrates the simulations. The unemployment rate is countercyclical: when $G/Y=16.5\%$, it rises from 4.4\% when aggregate demand is highest, to 6.1\% (the average unemployment rate in the United States for 1990--2014) when aggregate demand is average, and to 11.0\% when aggregate demand is lowest. Unemployment fluctuates in response to aggregate-demand shocks because of price rigidity: when $\a$ goes up, the price of services does not adjust, which stimulates the aggregate-demand curve \eqref{eq:ad} and reduces unemployment.  
+
+\begin{figure}[p] \centering
+\includegraphics[scale=0.2,page=5]{\path graphs/policy_20180514.pdf}\qquad
+\includegraphics[scale=0.2,page=6]{\path graphs/policy_20180514.pdf}
+\includegraphics[scale=0.2,page=7]{\path graphs/policy_20180514.pdf}\qquad
+\includegraphics[scale=0.2,page=8]{\path graphs/policy_20180514.pdf}
+\caption{Business-Cycle Simulations in the Matching Model with Land}
+\fig{Notes}{The figure displays business cycles when public expenditure is $G/Y=16.5\%$ and when public expenditure is set optimally. The business cycles are generated by aggregate-demand shocks. Condition \eqref{eq:exact} is used to determine the optimal level of public expenditure. The results are obtained by simulating the matching model with land from section~\ref{sec:land} under the calibration in online appendix~\ref{app:land}. The multiplier in the top-right panel is the empirical unemployment multiplier ($M$), also equal to the output multiplier ($dY/dG$). The bottom-right panel compares the level of public expenditure given by sufficient-statistic formula~\eqref{eq:explicit} to the optimal level of public expenditure.}
+\label{fig:simu}\end{figure}
+
+The unemployment multiplier is also countercyclical: it increases from 0.2 when unemployment is $4.4\%$, to 0.5 (the midrange of US estimates) when unemployment is $6.1\%$, to 1.4 when unemployment is $11.0\%$. This countercyclicality is consistent with empirical evidence: in the United States, multipliers seem higher when unemployment is higher or output is lower \cp{AG10,CL13,FMP12}. The mechanism behind this countercyclicality is described in \ct{M12}. When unemployment is high, there is a lot of idle capacity so the matching process is congested by sellers of services. Hence, increased spending by the government has very little effect on other buyers of services. Crowding out of private expenditure by public expenditure is therefore weak, and the multiplier is large. When unemployment is low, the opposite occurs: matching is congested by buyers of services, crowding out of private expenditure by public expenditure is sharp, and the multiplier is small.
+
+We also compute optimal public expenditure over the business cycle. We find that optimal public spending is markedly countercyclical, decreasing from $G/Y=20.4\%$ to $G/Y=13.7\%$ as aggregate demand increases. This is unsurprising. The unemployment rate is efficient when $\a=1$, inefficiently high when $\a<1$, and inefficiently low when $\a>1$; furthermore, the unemployment multiplier is positive. Hence, public spending should be above Samuelson spending when $\a<1$ and below it when $\a>1$. 
+
+Finally, unemployment responds when public expenditure is adjusted from $G/Y=16.5\%$ to its optimal level.  When aggregate demand is low, optimal public expenditure is higher than $G/Y=16.5\%$ so unemployment falls below its original level. For instance, at $\a=0.97$, the unemployment rate falls from 11.0\% to 7.2\%. When aggregate demand is high, optimal public expenditure is below $G/Y=16.5\%$ so unemployment rises above its original level. For instance, at $\a=1.03$, the unemployment rate increases from 4.4\% to 5.2\%. The unemployment multiplier depends on the unemployment rate, so it adjusts accordingly.
+
+\subsection{Accuracy of the Sufficient-Statistic Formula} \label{sec:accuracy}
+
+The level of public expenditure given by sufficient-statistic formula~\eqref{eq:explicit} is a first-order approximation to the optimal level of public expenditure, described by \eqref{eq:exact}. Since unemployment fluctuations are large, the second-order remainder in our formula could be large, and the approximation could be inaccurate. In our simulations, however, this does not happen. Figure~\ref{fig:simu} shows that our formula is quite accurate: the level of public expenditure given by our formula never deviate by more than one percentage point of GDP from the optimal level of public expenditure. The largest deviations occur at $\a=0.97$, where our formula gives $G/Y=19.7\%$ while the optimum is $G/Y=20.4\%$, and at $\a=1.03$,  where our formula gives $G/Y=14.5\%$ while the optimum is $G/Y=13.7\%$. 
+
+\section{Conclusion}\label{sec:ccl}
+
+This paper has developed a theory of optimal public expenditure in the presence of unemployment. The theory shows that when unemployment is efficient, the Samuelson rule remains valid; but when unemployment is inefficient, optimal public expenditure deviates from the Samuelson rule to bring unemployment closer to its efficient level. 
+
+In the past few decades, monetary policy has been governments' preferred stabilization policy. Yet it has become clear that because of the zero lower bound---which was binding is Japan, the United States, and the eurozone after the Great Recession---governments cannot rely on monetary policy alone to stabilize the economy. Our theory suggests that public expenditure could contribute to stabilization whenever monetary policy is constrained.
+
+In addition, public expenditure could be helpful to members of monetary unions, such as eurozone countries or US states. These governments have no control over monetary policy, so they cannot use it to tackle unemployment. But they can adjust public expenditure. Furthermore, since our theory focuses on budget-balanced spending, it applies both to US states, which cannot run budget deficits, and to eurozone countries, which face strict constraints on their public debt. 
+ 
+In this paper we have limited ourselves to static considerations. It would be useful to enrich the analysis with dynamic elements. Several such elements seem potentially important: the use of government debt to finance public spending \cp{Ba79}; the distinction between temporary and permanent public spending \cp{B81}; public investment in infrastructure \cp{BK93}; the effects of public spending in a liquidity trap \cp{W11,W12}; and the political process associated with the design of stimulus packages \cp{BC11}.
+
+\begin{small}\setstretch{1.1}\putbib\end{small}
+
+\end{bibunit}\end{document}
+
+
+
+

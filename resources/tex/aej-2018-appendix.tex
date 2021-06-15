@@ -1,0 +1,713 @@
+\documentclass[letterpaper,12pt,leqno]{article}
+\usepackage{appendix}
+\def\path{../}
+\begin{document}
+
+\title{\hspace{-0.7cm} A Macroeconomic Approach to Optimal Unemployment Insurance: Applications -- Online Appendices}
+\author{Camille Landais, Pascal Michaillat, Emmanuel Saez}
+\date{July 2017}                                                                              
+
+\begin{titlepage}
+\maketitle
+\begin{small}\setstretch{1.1}\tableofcontents\end{small}
+\end{titlepage}
+
+\section{Online Appendix A: Derivation of the Optimal UI Formula}\label{app:optimal}
+
+We derive the optimal UI formula~(11). We follow the derivation of formula~(23) in a companion paper \citep{LMS}. We condensate the derivation to avoid repetition, while fleshing out the modifications introduced by home production, the nonpecuniary cost of unemployment, and labor market flows.
+
+Social welfare is a function of $\t$ and $\D U$:
+\begin{align*}
+SW(\t,\D U)&= \frac{e^{s}(f(\t),\D U)\cdot f(\t)}{s+e^{s}(f(\t),\D U)\cdot f(\t)}\cdot \pre{\D U+\p(e^{s}(f(\t),\D U))}\\
+&+ U(c^{u}(\t,\D U)+h^{s}(c^{u}(\t,\D U)))-z-\l(h^{s}(c^{u}(\t,\D U)))-\p(e^{s}(f(\t),\D U)).
+\end{align*}
+The consumption level $c^{u}(\t,\D U)$ is implicitly defined by
+\begin{align*}
+y\pre{\frac{l^{s}(\t,\D U)}{1+\tau(\t)}}& = \pre{1-l^{s}(\t,\D U)}\cdot c^{u}(\t,\D U)\\
+&+l^{s}(\t,\D U)\cdot U^{-1}\pre{U(c^{u}(\t,\D U)+h^{s}(c^{u}(\t,\D U))-z-\l(h^{s}(c^{u}(\t,\D U)))+\D U}.
+\end{align*}
+
+We first compute the elasticity of labor supply with respect to tightness. Labor supply can be written $l^{s}(\t,\D U)=\L(e^{s}(f(\t),\D U)\cdot f(\t))$, where $\L(x)\equiv x/(s+f(x))$. Given that the elasticity of $\L(x)$ with respect to $x$ is $1-\L(x)$, the elasticity of $l^{s}(\t,\D U)$ with respect to $\t$ is
+\begin{equation}
+\frac{\t}{l}\cdot\derwrt{l^{s}}{\t}{\D U}= (1-l)\cdot (1+\e^{f})\cdot (1-\eta).
+\label{eq:dls}\end{equation}
+The only difference with formula (14) in the companion paper is the extra factor $(1-l)$. This factor arises because labor supply is $\L(e^{s}(f(\t),\D U)\cdot f(\t))$ in the dynamic model instead of $e^{s}(f(\t),\D U)\cdot f(\t)$ in the static model, and the elasticity of $\L(x)$ with respect to $x$ is $1-\L(x)$.
+
+Next we compute the partial derivatives of the social welfare function. We start with the partial derivative with respect to $\t$. First, we recompute equation~(13) from the companion paper. Since workers choose home production to maximize $U(c^{u}+h)-\l(h)$, changes in $h^{s}(c^{u}(\t,\D U))$ resulting from changes in $\t$ have no impact on social welfare. Hence, the introduction of home production does not add new terms to the partial derivative. The presence of home production only changes $U'(c^{u})$ into $U'(c^{h})$. Accordingly, equation~(13) becomes
+\begin{equation}
+\der{SW}{\t}=(1-l)\cdot \frac{l}{\t}\cdot (1-\eta) \cdot  \pre{\D U + \p(e)}+ U'(c^{h})\cdot \der{c^{u}}{\t}.\label{eq:dsw1}
+\end{equation}
+The factor $(1-l)$ in the first term appears because the environment is dynamic, as in~\eqref{eq:dls}. The fact that the environment is dynamic also changes $\D U$ into $\D U + \p(e)$. Next we recompute equation~(15) from the companion paper. Equation~\eqref{eq:dls} implies that 
+\begin{equation*}
+\der{l^{s}}{\t}=(1-l) \cdot \frac{l}{\t}\cdot (1-\eta) \cdot (1+\e^{f}). 
+\end{equation*}
+Furthermore, with home production the derivative of 
+\begin{equation*}
+c^{e}(c^{u},\D U)=U^{-1}\pre{U(c^{u}+h^{s}(c^{u}))-z-\l(h^{s}(c^{u}))+\D U}
+\end{equation*}
+with respect to $c^{u}$ is 
+\begin{equation*}
+\der{c^{e}}{c^{u}}=\frac{U'(c^{h})}{U'(c^{e})}.
+\end{equation*}
+Because unemployed workers choose home production to maximize $U(c^{u}+h)-\l(h)$, changes in $h^{s}$ resulting from changes in $c^{u}$ have no impact on $c^{e}$. Hence, equation~(15) becomes
+\begin{equation}
+(1-l) \frac{l}{\t} (1-\eta) (1+\e^{f})  (w-\D c)- \frac{l}{\t} \eta \tau(\t) w =\brk{\frac{l}{U'(c^{e})}+\frac{1-l}{U'(c^{h})}} U'(c^{h}) \der{c^{u}}{\t},
+\label{eq:dcudth}\end{equation}
+where $\D c \equiv c^{e}-c^{u}$. This equation is the same as equation~(15) except for the factor $(1-l)$ in the left-hand side and the change of $U'(c^{u})$ into $U'(c^{h})$. Combining~\eqref{eq:dsw1} and~\eqref{eq:dcudth}, we recompute equation~(10) from the companion paper:
+\begin{equation}
+\derwrt{SW}{\t}{\D U} =  (1-l)\cdot \frac{l}{\t}\cdot (1-\eta)\cdot\f\cdot w\cdot \brk{\frac{\D U+\p(e)}{\f\cdot w}+R\cdot \pre{1+\e^{f}}- \frac{\eta}{1-\eta}\cdot  \frac{\tau(\t)}{u}}.
+\label{eq:swth}\end{equation}
+
+We continue by computing the partial derivative of social welfare with respect to $\D U$. First, we recompute equation~(16) from the companion paper. Applying the envelope theorem for the changes in $h^{s}$ and $e^{s}$ resulting from changes in $\D U$, we find that equation~(16) becomes
+\begin{equation}
+\der{SW}{\D U}= l +U'(c^{h})\cdot \der{c^{u}}{\D U}.
+\label{eq:dsw2}\end{equation}
+Using the work done to obtain~\eqref{eq:dcudth}, we recompute equation~(17) from the companion paper:
+\begin{equation}
+\frac{1-l}{\D U}\cdot \e^{m} \cdot (w-\D c)-\frac{l}{U'(c^{e})}=\pre{\frac{l}{U'(c^{e})}+\frac{1-l}{U'(c^{h})}\cdot }\cdot U'(c^{h}) \cdot \der{c^{u}}{\D U}.
+\label{eq:dcuddu}\end{equation}
+Combining~\eqref{eq:dsw2} and~\eqref{eq:dcuddu}, we recompute equation~(11) from the companion paper:
+\begin{equation}
+\derwrt{SW}{\D U}{\t} =  (1-l)\cdot \frac{\f\cdot w}{\D U}\cdot \e^{m}\cdot \brk{R-\frac{l}{w}\cdot \frac{\D U}{\e^{m}}\cdot\pre{\frac{1}{U'(c^{e})}-\frac{1}{U'(c^{h})}}}.
+\label{eq:swc}\end{equation}
+
+The last step to obtain the optimal UI formula is linking the elasticity wedge to the equilibrium response of tightness to UI. Using~\eqref{eq:dls}, we obtain 
+\begin{equation}
+\e^{M}=\e^{m}+l\cdot (1-\eta)\cdot \pre{1+\e^{f}}\cdot\frac{\D U}{\t} \cdot \dert{\t}{\D U}.
+\label{eq:gap}\end{equation}
+This equation replaces equation~(22) in the companion paper. The only difference is that the factor $l/(1-l)$ in equation~(22) is replaced by a factor $l$ here.
+
+The first-order condition  of the government's problem is
+\begin{equation*}
+0=\derwrt{SW}{\D U}{\t} + \derwrt{SW}{\t}{\D U}\cdot \dert{\t}{\D U}.
+\end{equation*}
+Using the partial derivatives of $SW(\t,\D U)$ given by~\eqref{eq:swth} and~\eqref{eq:swc} and the derivative $d\t/d\D U$ implied by~\eqref{eq:gap}, we obtain formula~(11).
+
+\section{Online Appendix B: Job-Finding and Job-Separation Rates in CPS Data}\label{app:cps}
+
+\begin{figure}[p] \centering
+\subfigure[Monthly job-finding rate]{\includegraphics[scale=0.21,page=20]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Vacancy-unemployment ratio]{\includegraphics[scale=0.21,page=21]{\path graphs/ui_applications_graphs_aej.pdf}}
+\subfigure[Monthly vacancy-filling rate]{\includegraphics[scale=0.21,page=22]{\path graphs/ui_applications_graphs_aej.pdf}}\quad
+\subfigure[Monthly job-separation rate]{\includegraphics[scale=0.21,page=23]{\path graphs/ui_applications_graphs_aej.pdf}}
+\caption{Vacancy-Filling and Job-Separation Rates in the United States, 1990--2014}
+\fignotes{Panel~A: The time series is the job-finding rate constructed using equation~\eqref{eq:Ft} from CPS data. Panel~B: The time series is the vacancy-unemployment ratio $v/u$, where $v$ is the help-wanted advertising index from \citet{B10}, scaled to match the number of vacancies in JOLTS data, and $u$ is the number of unemployed persons in CPS data. Panel~C: The solid line is the vacancy-filling rate $q=(e\cdot f)/(v/u)$, where $e\cdot f$ is the time series in panel~A and $v/u$ is the time series in panel~B. The dashed line is the vacancy-filling rate $q=h/v$, where $h$ and $v$ are the numbers of hires and vacancies in nonfarm industries in JOLTS data. Panel~D: The solid line is the job-separation rate constructed using equation~\eqref{eq:st} from CPS data. The dashed line is the separation rate in nonfarm industries in JOLTS data. The shaded areas represent the recessions identified by the NBER.} 
+\label{fig:qs}\end{figure}
+
+We follow the method developed by \citet[pp.~130--133]{S12} to compute job-finding and job-separation rates in CPS data for 1990--2014. In Section~II.A, we use these rates to compute the third measure of recruiter-producer ratio. This measure is the dotted line in Figure~1, panel~A. 
+
+We assume that unemployed workers find a job according to a Poisson process with monthly arrival rate $e(t)\cdot f(t)$. The job-finding rate satisfies $e(t)\cdot f(t)=-\ln(1-F(t))$, where $F(t)$ is the monthly job-finding probability. We construct $F(t)$ as follows:
+\begin{equation}
+F(t)=1-\frac{u(t+1)-u^{s}(t+1)}{u(t)},
+\label{eq:Ft}\end{equation}
+where $u(t)$ is the number of unemployed persons in month $t$ in CPS data, and $u^{s}(t)$ is the number of short-term unemployed persons in month $t$ in CPS data. The number of short-term unemployed persons is the number of unemployed persons with zero to four weeks duration, adjusted after 1994 as in \citet{S12}. We then construct $e(t)\cdot f(t)$ from $F(t)$. The rate $e(t) \cdot f(t)$ is displayed in Figure~\ref{fig:qs}, panel~A. 
+
+To compute the recruiter-producer ratio, the job-finding rate is converted into a vacancy-filling rate. Panel~B of Figure~\ref{fig:qs} displays the vacancy-unemployment ratio $v(t)/u(t)$ constructed in Section~II.A. Panel~C of Figure~\ref{fig:qs} then displays the vacancy-filling rate constructed from the job-finding rate and vacancy-unemployment ratio: $q(t)=\brk{e(t)\cdot f(t)}/\brk{v(t)/u(t)}$. For comparison, panel~C also displays the vacancy-filling rate constructed from JOLTS data in Section~II.A. 
+
+The job-separation rate $s(t)$ is implicitly defined by
+\begin{equation}
+u(t+1) = \pre{1-e^{-e(t)\cdot f(t)-s(t)}}\cdot \frac{s(t)}{e(t)\cdot f(t)+s(t)}\cdot h(t) + e^{-e(t)\cdot f(t)-s(t)}\cdot u(t),
+\label{eq:st}\end{equation}
+where $h(t)$ is the number of persons in the labor force, $u(t)$ is the number of unemployed persons, and $e(t)\cdot f(t)$ is the monthly job-finding rate. We measure $u(t)$ and $h(t)$ in CPS data and use the above series for $e(t)\cdot f(t)$. Each month $t$, we solve~\eqref{eq:st} to compute $s(t)$. The rate $s(t)$ is displayed in Figure~\ref{fig:qs}, panel~D. For comparison, panel~D also displays the job-separation rate constructed from JOLTS data in Section~II.A.
+
+
+\section{Online Appendix C: Construction of the Effective UI Replacement Rate}\label{app:replacement}
+
+We construct the effective replacement rate of the UI program in the United States. This replacement rate is discussed in Section II.B and plotted in Figure~2.
+
+We define the effective replacement rate as the average replacement rate among all unemployed workers who are eligible to UI, or who were eligible to UI at some point during the current unemployment spell. The effective replacement rate is
+\begin{equation}
+R(t) = \frac{\sum R_j(t) \cdot N_j(t)}{\sum N_j(t)},
+\label{eq:effective}\end{equation}
+where $N_j(t)$ is the number of unemployed workers who are in the $j$-th week of their unemployment spell and are or were eligible to UI, and $R_j(t)$ is the average UI replacement rate for individuals who are in the $j$-th week of their unemployment spell. 
+
+To compute $\sum R_j(t) \cdot N_j(t)$ in the numerator of~\eqref{eq:effective}, we split the sum into active and exhausted claims. A claim is exhausted when a jobseeker has been unemployed longer than the potential duration of benefits, $k$. Since jobseekers who have exhausted their benefits have a zero replacement rate, the sum is determined by active claims:
+\begin{equation}
+\sum R_j(t) \cdot N_j(t) = \sum_{j\leq k} R_j(t) \cdot N_j(t).
+\label{eq:sum}\end{equation}
+
+Before UI benefits are exhausted, the replacement rate is virtually constant during the unemployed spell. Hence, we can compute~\eqref{eq:sum} as follows:
+\begin{equation*}
+\sum_{j\leq k} R_j(t) \cdot N_j(t) = \ov{R_{j\leq k}}(t)\cdot \sum_{j\leq k}  N_j(t),
+\end{equation*}
+where $\ov{R_{j\leq k}}(t)$ is the average replacement rate for all active claims, and $\sum_{j\leq k}  N_j(t)$ is the number of active claims in all UI programs. The Department of Labor (DOL) provides data for all existing UI programs: regular programs, extended-benefit programs, and exceptional federal extensions. We use the number of active UI claims to compute $\sum_{j\leq k} N_j(t)$. And we use the average replacement rate among all active claims to compute $\ov{R_{j\leq k}}(t)$. This average replacement rate is computed by the DOL as the ratio of claimants' benefits to claimants' base earnings: it is stable over time, fluctuating between 45.8\% and 47.4\%, with an average value of 46.5\%.\footnote{This is unsurprising: most US states define weekly UI benefits as 1/26$\times$base earnings, where base earnings are the highest quarterly earnings in the year prior to unemployment. This amounts to replacing 50\% of base earnings.} Unfortunately, this average replacement rate is only available since 1997, so we cannot use it to compute the effective replacement rate for 1990--2014 period. Instead, taking advantage of the stability of the average replacement rate, we set $\ov{R_{j\leq k}}=46.5\%$ at all time.
+
+To compute $\sum  N_j(t)$ in the denominator of~\eqref{eq:effective}, we need the number of unemployed workers who are eligible to UI, or who were eligible to UI earlier during the current unemployment spell. Since we do not know the number of unemployed workers who were eligible to UI during the current unemployment spell, we measure $\sum N_j(t)$ by $u(t)\times \b(t)$, where $u(t)$ is the total number of unemployed workers in month $t$ in CPS data, and $\b(t)$ is the fraction of unemployed workers who are job losers in month $t$ in CPS data. While quits and new entrants in the labor force are not eligible for UI, job losers who meet minimal criteria are eligible to UI. Hence, the number of job losers who are unemployed is a good approximation of the number of unemployed workers who are or were eligible to UI. Finally, each month $t$ we cap $\sum N_j(t)$ to the number of active claims in that month. We do this to correct an anomaly that occurs for a few months during the Great Recession: the number of active claims is slightly larger than our estimate of the number of unemployed workers who are or were eligible to UI. The anomaly arises because we measure the stock of unemployed workers who are or were eligible to UI only approximately.
+
+\section{Online Appendix D: Available Estimates of UI Statistics}\label{app:estimates}
+
+We compile existing estimates of several statistics that enter our optimal UI formula.
+
+\subsection{Matching Elasticity ($\eta$)}
+
+The matching elasticity, $\eta$, is defined by $1-\eta=d\ln(f(\t))/d\ln(\t)$. Empirical evidence suggests that the matching function is Cobb-Douglas \citep[p.~424]{PP01}. With a Cobb-Douglas matching function $m(e,u,v)=\mu\cdot (e\cdot u)^{\eta}\cdot v^{1-\eta}$, we have $f(\t)\equiv m/(e\cdot u)=\mu\cdot \brk{v/(u\cdot e)}^{1-\eta}$, so $\eta$ is the elasticity of the matching function with respect to unemployment.
+
+A vast literature studies the matching function and estimates $\eta$. In their survey, \citet[p.~424]{PP01} conclude that the estimates of $\eta$ fall between 0.5 and 0.7.
+
+Evidence obtained in US data since the publication of Petrongolo and Pissarides's survey agrees with their assessment. For instance, \citet[p.~32]{S05} estimate $\eta=0.72$ in CPS data. \citet[p.~638]{RS10} estimate $\eta=0.58$ in JOLTS data. Many of these estimates, however, take the job-search effort of workers as constant. The estimates could therefore be biased if job-search effort was endogenous---as in our model. \citet{BJP11} propose an estimation method immune to this bias. On JOLTS data, they find a lower estimate than earlier work: $\eta=0.3$ (p.~444). 
+
+Based on these findings, we set $\eta=0.6$. Given the uncertainty about the exact value of $\eta$, we also consider the cases $\eta=0.5$ and $\eta=0.7$ in the sensitivity analysis of Section~IV.
+
+\subsection{Discouraged-Worker Elasticity ($\e^{f}$)}
+
+The discouraged-worker elasticity, $\e^{f}$, measures how job-search effort responds to labor market conditions. Search effort can be measured either by the time spent searching for a job or by the number of methods used to search for a job.
+
+Two studies measure $\e^{f}$ using the American Time Use Survey (ATUS), in which search effort is directly measured as the amount of time spent searching for a job.  Both studies find that $\e^{f}$ is positive: \citet{DK13} find that workers reduce their search in response to deteriorating labor market conditions; and \citet{GL15} find that individual search effort is mildly procyclical. 
+
+Two other studies measure $\e^{f}$ from the CPS, in which search effort is proxied by the number of job-search methods used. These studies find that $\e^{f}$ is zero or slightly negative. \citet{S04} finds that labor market participation and search intensity are broadly acyclical, even after controlling for changing characteristics of unemployed workers over the business cycle. This evidence suggests that $\e^{f}$ is close to zero. \citet{MPS13} combine ATUS and CPS data and find that aggregate search effort is countercyclical. Half of the countercyclical movement in search effort, however, is explained by a cyclical shift in the observable characteristics of unemployed workers, and a large share of the remaining countercyclical movement is explained by the fall in housing and stock-market wealth. This evidence suggests that $\e^{f}$ is slightly negative. 
+
+Overall, these results suggest that the response of search effort to the job-finding rate is probably small. We therefore set $\e^{f}=0$.
+
+The calibration $\e^{f}=0$ implies that job search is unresponsive to labor market conditions, but it does not imply that job search is unresponsive to UI. We can link $\e^{f}$ to $\e^{m}$, which measure the response of job search to UI. Let $1/\k$ be the elasticity of $\p'(e)$ with respect to $e$, $\e^{e}_{\D}$ be the elasticity of $e^{s}(f,\D U)$ with respect to $\D U$, and $\L(x)\equiv x/(s+x)$ (the elasticity of $\L(x)$ with respect to $x$ is $1-\L(x)$). The effort supply $e^{s}(f,\D U)$ satisfies~(6), which can be written
+\begin{equation}
+e^{s}\cdot \p'(e^{s})=\L(e^{s}\cdot f) \cdot \pre{\D U + \p(e^{s})}.
+\label{eq:esapp}\end{equation}
+Differentiating this condition with respect to $\D U$ yields
+\begin{equation*}
+\e^{e}_{\D}+\frac{1}{\k}\cdot \e^{e}_{\D}=(1-l)\cdot \e^{e}_{\D}+\frac{\D U}{\D U+\p(e)}+ \frac{e\cdot \p'(e)}{\D U+\p(e)}\cdot\e^{e}_{\D}.
+\end{equation*}
+Equation~\eqref{eq:esapp} implies that $e\cdot \p'(e)=l\cdot (\D U+\p(e))$. Therefore,  
+\begin{equation*}
+\e^{e}_{\D}=\k\cdot \frac{\D U}{\D U+\p(e)}.
+\end{equation*}
+Since labor supply satisfies $l^{s}(\t,\D U)=\L\pre{e^{s}(f(\t),\D U)\cdot f(\t)}$, the elasticity of $l^{s}(\t,\D U)$ with respect to $\D U$ is $(1-l)\cdot \e^{e}_{\D}$. By definition, $\e^{m}$ is $l/(1-l)$ times the elasticity of $l^{s}(\t,\D U)$ with respect to $\D U$. Thus,
+\begin{equation}
+\e^{m}=l\cdot \e^{e}_{\D}=l\cdot \k \cdot \frac{\D U}{\D U+\p(e)}.
+\label{eq:micro}\end{equation}
+Next, we differentiate~\eqref{eq:esapp} with respect to $f$ and obtain
+\begin{equation*}
+\e^{f}+\frac{1}{\k}\cdot \e^{f}=(1-l)\cdot (\e^{f}+1)+\frac{e\cdot \p'(e)}{\D U+\p(e)} \cdot \e^{f}.
+\end{equation*}
+Equation~\eqref{eq:esapp} implies that $e\cdot \p'(e)=l\cdot (\D U+\p(e))$. Hence, 
+\begin{equation*}
+\e^{f}=(1-l)\cdot \k.
+\end{equation*}
+Combining this equation with~\eqref{eq:micro}, we find
+\begin{equation*}
+\e^{f}= \frac{1-l}{l}\cdot \frac{\D U+\p(e)}{\D U}\cdot \e^{m}.
+\end{equation*}
+We infer that $\e^{f}$ is much smaller than $\e^{m}$ in normal circumstances because $(1-l)/l$ is close to 0. Thus, the model predicts a weak response of job search to labor market conditions even when the response of job search to UI is significant.
+
+\subsection[Microelasticity of Unemployment Duration with Respect to Benefit Level ($\e^m_b$)]{\hspace*{-0.7cm}Microelasticity of Unemployment Duration with Respect to Benefit Level ($\e^m_b$)}
+
+The microelasticity of unemployment duration with respect to benefit level is defined by
+\begin{equation}
+\e^{m}_{b}  =  -\derwrt{\ln(e^{s}\cdot f(\t))}{\ln(c^{u})}{\t, c^{e}}.
+\label{eq:emb}\end{equation}
+\citet{L11} provides high-quality estimates of $\e^{m}_{b}$ by implementing a regression kink design on CWBH data. Averaging over five US states for 1976--1984, Landais estimates $\e^m_b=0.4$ (p.~244). Using similar data but a different identification strategy, \citet{M90} obtains slightly higher estimates. Depending on the specification, Meyer's estimates of $\e^{m}_{b}$ fall between 0.5 and 0.9 (Table~V, columns~(4)--(5), row ``log UI benefit level" and Table~VI, columns~(6)--(9), row ``log UI benefit level"). These two studies rely on older data, but \citet{CJL15} obtain comparable estimates in recent data. They implement a regression kink design on an administrative dataset from Missouri for 2003--2013 and find that $\e^{m}_{b}$ is 0.35 in 2003--2007 and is between 0.65 and 0.9 in 2008--2013 (p.~126).
+
+Based on this evidence, we set $\e^{m}_{b}=0.4$. Since these studies obtain a broad range of estimates, we also consider the cases $\e^{m}_{b}=0.2$ and $\e^{m}_{b}=0.6$ in the sensitivity analysis of Section~IV.
+
+The estimate of $\e^{m}_{b}$ will be useful to compute the microelasticity of unemployment with respect to UI, $\e^{m}$. Indeed, using~\eqref{eq:emb} and $1-l^{s}=s/(s+e^{s}\cdot f(\t))$, we have
+\begin{equation}
+\e^{m}_{b}= \frac{1}{l}\cdot\derwrt{\ln(1-l^{s})}{\ln(c^{u})}{\t, c^{e}}=-\frac{c^{u}}{l\cdot (1-l)}\cdot\derwrt{l^{s}}{c^{u}}{\t, c^{e}}.
+\label{eq:inter}\end{equation}
+We now consider a change $dc^{u}$, keeping $c^{e}$ and $\t$ constant. By definition, $\D U=U(c^{e})-U(c^{u}+h)+z+\l(h)$. The change $dc^{u}$ does not affect $c^{e}$ but it affects $h$. Since workers choose $h$ to maximize $U(c^{u}+h)-\l(h)$, however, changes in $h$ resulting from changes in $c^{u}$ have no impact on $\D U$. Thus the change $dc^{u}$ implies a  change $d\D U= -U'(c^{h})\cdot dc^{u}$. Using~\eqref{eq:inter} and the definition of $\e^m$, we therefore obtain
+\begin{equation}
+\e^{m}_{b} = \frac{c^{u}}{l\cdot (1-l)}\cdot U'(c^{h})\cdot \derwrt{l^{s}}{\D U}{\t} = \frac{c^{u} \cdot U'(c^h)}{l\cdot \D U} \cdot \e^m.
+\label{eq:interem}\end{equation}
+
+\subsection{Coefficient of Relative Risk Aversion ($\g$)}
+
+A large literature, following a wide range of approaches, estimates risk aversion. We take our estimate of the coefficient of relative risk aversion, $\g$, from \citet{Ch06}. We use this estimate because it comes from the same data that are also used to measure the microelasticity of unemployment with respect to UI and the consumption drop upon unemployment. Hence, the curvature of utility that it measures is relevant for evaluating the effect of UI on welfare \citep[p.~154]{CF12}.
+
+Chetty uses data on labor supply from more than 30 studies. He analyzes the risk aversion implied by the response of labor supply to wage changes. He reports a median estimate of $\g=1$, with an upper bound of $\g=2$ and a lower bound around $\g=0.2$ (p.~1822, p.1830). Accordingly, we set $\g=1$. Given the uncertainty about the exact value of $\g$,  we also consider the cases $\g=0.5$ and $\g=2$ in the sensitivity analysis of Section~IV.
+
+The coefficient of relative risk aversion will enable us to link marginal utility to consumption. Indeed, a first-order Taylor expansion of $U'$ around $c^{e}$ yields $U'(c^{h}) = U'(c^{e}) - U''(c^{e})\cdot \pre{c^{e}-c^{h}}$. Since $\g=-c^{e}\cdot U''(c^{e})/U'(c^{e})$, we obtain
+\begin{equation}
+\frac{U'(c^{h})}{U'(c^{e})}=1+ \g\cdot \pre{1-\frac{c^{h}}{c^{e}}}.
+\label{eq:gammahe}\end{equation}
+Since the first-order Taylor expansion of $1/(1+x)$ around $x=0$ is $1-x$, another first-order approximation is
+\begin{equation}
+\frac{U'(c^{e})}{U'(c^{h})}=1-\g\cdot \pre{1-\frac{c^{h}}{c^{e}}}.
+\label{eq:gammaeh}\end{equation}
+
+
+\subsection{Consumption Drop upon Unemployment ($1-c^{h}/c^{e}$)} 
+
+A large literature documents the drop in consumption upon unemployment in the United States. 
+
+A number of studies measure consumption by expenditure on food. \citet[p.~195]{G97} estimates in data from the Panel Study of Income Dynamics (PSID) that food expenditure falls by 7\% upon unemployment. Many studies have confirmed this estimate in PSID data. For instance, \citet[p.~32]{St01} finds that food expenditure falls by 9\% following a job displacement and \citet[p.~1792]{H16} finds that it falls by 8\%.  Different datasets yield comparable estimates. For instance, in a dataset describing more than 200,000 checking accounts that have received UI benefits, \citet[Table~6, column~(3)]{GN15} find that food expenditure is lower by 5\% while receiving UI.
+
+It is possible that upon unemployment, food consumption falls less than food expenditure. If households spend more time on food production at home when unemployed, they may be able to smooth food consumption despite reducing food expenditures \citep{AH05}. There are several factors suggesting, however, that the consumption drop used to calibrate our formula should be larger than the drop in food expenditure upon unemployment.
+
+First, food consumption is more inelastic than total consumption to an income change, so the drop of total consumption upon unemployment will be larger than the drop of food consumption. For instance, \citet[p.~19]{BC01} report that the income elasticity of food consumption is 0.6, which implies that food-consumption drops of 5\%, 7\%, and 9\% would translate into total-consumption drops of $5\%/0.6=8\%$, $7\%/0.6=12\%$, and $9\%/0.6=15\%$. Consistent with this argument, \citet[Table~6, column~(3)]{GN15} find that upon unemployment, expenditure on all nondurable goods falls by more than food expenditure: it falls by 7\%.
+
+Second, it seems that consumption of workers who eventually become unemployed start falling well before they actually lost their job. \citet[p.~1792]{H16} finds in PSID data that food expenditure drops by about $3\%$ in the two years before job loss.
+
+Third, in the United States, UI benefits only last for a limited time (usually 26 weeks). Households who cannot find a job before exhausting their benefits suffer an additional consumption drop. In the same way that our effective UI replacement rate accounts for both unemployed workers receiving benefits and unemployed workers whose benefits expired, the consumption drop should incorporate the consumption of both unemployed workers receiving benefits and unemployed workers whose benefits expired. \citet{GN15} find that the consumption drop upon benefit exhaustion is significant: expenditure on all nondurable goods falls by an additional $10\%$ upon benefit exhaustion (p.~26). Thus, expenditure on all nondurable goods for unemployed workers whose benefits expired is $7\%+10\%=17\%$ below what it was before job loss.
+
+Taking all these considerations into account, we set the consumption drop upon unemployment to $1-c^{h}/c^{e}=12\%$. Given the uncertainty about the exact value of the drop, we also consider the cases $1-c^{h}/c^{e}=5\%$ and $1-c^{h}/c^{e}=20\%$ in the sensitivity analysis of Section~IV.
+
+Next, we link the consumption drop upon unemployment to the UI replacement rate, $R$. We have $1-(c^{h}/c^{e})=12\%$ when $R$ takes its average value of 42\%. Since the consumption of unemployed workers, $c^{h}$, depends on $R$, the ratio $c^{h}/c^{e}$ is mechanically related to $R$. We now described this relation.
+
+First, \citet[p.~195, p.~202]{G97} estimates that when the UI benefit rate increases by 10 percentage point from an average value of 43\%, the food consumption of an unemployed worker increases by 2.7\%. The implied elasticity of food consumption with respect to UI benefits therefore is $2.7/(10/0.43)=0.12$. Using an income elasticity of food consumption of $0.6$, we convert the response of food consumption into the response of total consumption: the elasticity of total consumption with respect to UI benefits is $0.12/0.6=0.2$. In other words, $d\ln(c^{h})/d\ln(c^{u})=0.2$.
+
+Second, we combine the government's budget constraint, $y=l\cdot c^{e}+(1-l)\cdot c^{u}$, with the definition of the replacement rate, $c^{u}=c^{e}-(1-R)\cdot w$. We find
+\begin{equation*}
+c^{e}= y + (1-l) \cdot (1-R)\cdot w
+\end{equation*}
+Let $\a$ be the labor share, defined by $\a=w\cdot l/y$. We have
+\begin{equation}
+\frac{c^{e}}{w}=\frac{l}{\a}+(1-l)\cdot(1-R). 
+\label{eq:cew}\end{equation}
+The labor share is determined by the shape of the production function: with a production function $y(n)=n^{\a}$, the labor share is $\a$. In Section~III, we find that the shape of the production function also determines the elasticity wedge. To obtain an elasticity wedge of $0.4$, we set $\a=0.73$. To have a labor share consistent with the elasticity wedge, we also set $\a=0.73$. Using $\a=0.73$, $1-l=6.1\%$, and $R=42\%$, we find $c^{e}/w = 1.32$. In addition,~\eqref{eq:cew} shows that a change $dR$ in the replacement rate implies a change $dc^{e}=-w \cdot u\cdot  dR$. Here the underlying assumption (supported by the empirical evidence presented in Section~III.C) is that $w$ does not respond to $R$.
+
+Third, since $c^{u}=c^{e}-(1-R)\cdot w$, equation~\eqref{eq:cew} implies that
+\begin{equation}
+\frac{c^{u}}{w}=\frac{l}{\a}-l\cdot(1-R). 
+\label{eq:cuw}\end{equation}
+Using $\a=0.73$, $l=0.94$, and $R=42\%$, we find $c^{u}/w = 0.74$. Moreover, a small change $dR$ in replacement rate generates a benefit change $dc^{u}=w\cdot l \cdot dR$.
+
+Using the property that $d(c^h/c^e) = (c^h/c^e)\cdot d\ln(c^h/c^e)$, we find that when the replacement rate changes by $dR$,
+\begin{equation*}
+d(c^h/c^e)=\frac{c^h}{c^e}\cdot\brk{\dlnt{c^h}{c^u}\cdot dln(c^u)-dln(c^e)}\cdot dR.
+\end{equation*}
+Then, using $dc^{e}=-w \cdot u\cdot  dR$ and $dc^{u}=w\cdot l \cdot dR$, we obtain
+\begin{equation}
+d(c^h/c^e)=\frac{c^h}{c^e}\cdot\brk{\dlnt{c^h}{c^u}\cdot l\cdot \frac{w}{c^u}+(1-l)\cdot\frac{w}{c^e}}\cdot dR.
+\label{eq:dchce}\end{equation}
+Using $1-c^{h}/c^{e}=12\%$, $d\ln(c^{h})/d\ln(c^{u})=0.2$, $c^{u}/w=0.74$, and $c^e/w=1.32$, we find $d(c^{h}/c^{e}) = 0.26 \times dR$, and we finally obtain
+\begin{equation}
+1-\frac{c^{h}}{c^{e}}=0.12-0.26\times (R-0.42).
+\label{eq:chcer}\end{equation}
+
+Lastly, we assume that the consumption drop upon unemployment does not respond to labor market conditions. This assumption is motivated by the work of \citet{KN10}. In PSID data they find that the consumption drop does not vary with the unemployment rate.
+
+\section{Online Appendix E: Calibration of the Optimal UI Formula}\label{app:formula}
+
+We compute the approximate optimal UI formula~(21) by calibrating each of its elements.
+
+\subsection{Utility Cost of Unemployment}
+
+We derive~(15), which expresses the utility cost of unemployment, $K$, as a function of UI.
+
+We start by computing the average value of $K$, achieved when unemployment rate and UI replacement rate take their average values $u=6.1\%$ and $R=42\%$ (Section~II). The cost $K$ is given by~(9). Since $Z/(\f\cdot w)=0.3$ (Section~II), it only remains to calculate
+\begin{equation}
+\frac{U(c^{e})-U(c^{h})}{\f\cdot w} = \frac{U(c^{e})-U(c^{h})}{U'(c^{e})\cdot c^{e}}\cdot \frac{U'(c^{e})}{\f}\cdot\frac{c^{e}}{w}.
+\label{eq:ru3}\end{equation}
+We compute each of the three factors in the right-hand side. First,~\eqref{eq:cew} implies $c^e/w=1.32$. Next,~(10) and~\eqref{eq:gammaeh} imply that
+\begin{equation}
+\frac{U'(c^{e})}{\f} = 1-\g\cdot (1-l)\cdot \pre{1-\frac{c^{h}}{c^{e}}}.
+\label{eq:ucef}\end{equation}
+With $\g=1$ and $1-c^{h}/c^{e}=12\%$ (Online Appendix~D), and  $1-l = u = 6.1\%$, we find $U'(c^{e})/\f=0.99$. Last, a first-order Taylor expansion of $U$ yields $U(c^{h}) = U(c^{e})+U'(c^{e})\cdot \pre{c^{e}-c^{h}}$ so
+\begin{equation}
+\frac{U(c^{e})-U(c^{h})}{U'(c^{e})\cdot c^{e}}= 1-\frac{c^{h}}{c^{e}}.
+\label{eq:uceuch}\end{equation}
+With $1-c^{h}/c^{e}=12\%$, we find that $\pre{U(c^{e})-U(c^{h})}/\pre{U'(c^{e})\cdot c^{e}}=0.12$. Combining these estimates with~\eqref{eq:ru3}, we conclude that $\pre{U(c^{e})-U(c^{h})}/(\f\cdot w)=0.99\times 1.32 \times  0.12 = 0.16$. This implies that the average utility cost of unemployment is $K= 0.16 + 0.3 = 0.46$.  
+
+Next, we explore how $K$ depends on labor market conditions. We have seen that $Z/(\f \cdot w)$ does not depend on unemployment (Section~II). Moreover, we have seen that the consumption drop upon unemployment does not depend on labor market conditions (Online Appendix~D); therefore,~\eqref{eq:uceuch} implies that $(U(c^{e})-U(c^{h}))/(U'(c^{e})\cdot c^{e})$ does not depend on labor market conditions. Equations~\eqref{eq:cew} and~\eqref{eq:ucef} show that both $c^e/w$ and $U'(c^{e})/\f$ are affected by employment $l$, but the effects on $K$ will be small. With $R=42\%$, $\a = 0.73$, and $1-c^h/c^e= 12\%$, we have $\dertx{(c^e/w)}{l}=R+(1-\a)/\a=0.8$ so the effect of $l$ on $K$ through $c^e/w$ is less than $0.8 \times 0.12 = 0.1$. Since $l$ moves by less than 5 percentage points around its average value of $94\%$, changes in $l$ have effects on $K$ through $c^e/w$ of less than $5\times 0.1 =0.5$ percentage point. We neglect them. Further, with $1-c^h/c^e= 12\%$ and $\g=1$, we have  $\dertx{(U'(c^{e})/\f)}{l}= \g\cdot (1-c^h/c^e) = 0.12$ so the effect of $l$ on $K$ through $U'(c^{e})/\f$ is $0.12 \times 0.12 \times 1.32 = 0.02$. Changes in $l$ therefore have effects on $K$ through $U'(c^{e})/\f$ of less than $5\times 0.02 =0.1$ percentage point. We also neglect them. To conclude, labor market conditions have minuscule effects on $K$, and we neglect them.
+
+Finally, we study how $K$ varies with the UI replacement rate, $R$. Equation~(9) shows that
+\begin{equation*}
+K = \frac{U(c^{e})-U(c^{u}+h) +  z + \p(e) + \l(h)}{\f\cdot w}.
+\end{equation*}
+As in Online Appendix~D, we assume that $R$ has no effect on $w$. Further, since $h$ is chosen optimally to maximize $U(c^{h})-\l(h)$, the change in $h$ caused by $R$ has no first-order effect on $K$. Hence, we only need to determine how $c^u$, $U(c^e)$, $\p(e)$, and $\f$ respond to $R$.
+
+We start by determining the response of $c^{u}$ to $R$. Equation~\eqref{eq:cuw} shows that a small change $dR$ generates a change $dc^{u}=w\cdot l \cdot dR$. Accordingly, the effect of $dR$ on $U(c^{u}+h)$ through $c^{u}$ is $dU(c^{u}+h)=U'(c^{h})\cdot w \cdot l \cdot dR$ and
+\begin{equation}
+\frac{dU(c^{u}+h)}{\f\cdot w} = l\cdot\frac{U'(c^{h})}{\f}\cdot dR.
+\label{eq:duch}\end{equation} 
+Using~(10) and~\eqref{eq:gammahe}, we obtain
+\begin{equation}
+\frac{U'(c^{h})}{\f} = 1+\g\cdot l\cdot \pre{1-\frac{c^{h}}{c^{e}}}. 
+\label{eq:uchf}\end{equation}
+With $l=1-u=0.94$, $\g=1$, and $1-c^{h}/c^{e}=12\%$, we obtain $U'(c^{h})/\f=1.11$ and $dU(c^{u}+h)/\pre{\f\cdot w} = 0.94\times 1.11\times dR = 1.04 \times dR$.
+
+Second, we determine the response of $U(c^{e})$ to $R$. Equation~\eqref{eq:cew} shows that a small change $dR$ generates a change $d c^e = - u\times w \times dR$. Accordingly, the effect of $dR$ on $U(c^e)$ satisfies 
+\begin{equation}
+\frac{dU(c^e)}{\f\cdot w} = - u \cdot\frac{U'(c^e)}{\f}\cdot dR.
+\label{eq:duce}\end{equation}
+With $u=6.1\%$ and $U'(c^e)/\f=0.99$, we obtain $dU(c^e)/\pre{\f\cdot w} = -0.06\times dR$.
+
+Next, we determine the response of $\p(e)$ to $R$. Consider again a small change $dR$. The associated change $dc^{u}=w\cdot l \cdot dR$ generates a change $de$ determined by the microelasticity of unemployment duration with respect to benefit level: 
+\begin{equation*}
+\frac{de}{e}=\e^{m}_{b} \cdot \frac{dc^{u}}{c^{u}}=\e^{m}_{b} \cdot l \cdot \frac{w}{c^{u}}\cdot dR. 
+\end{equation*}
+Accordingly, the effect of $dR$ on $\p(e)$ satisfies 
+\begin{equation*}
+\frac{d\p(e)}{\f\cdot w}=\frac{\p'(e)}{\f\cdot w}\cdot de =  -\frac{e\cdot \p'(e)}{\f\cdot w}\cdot l \cdot \frac{w}{c^{u}} \cdot \e^{m}_{b}\cdot dR.  
+\end{equation*}
+Using~(6), we rewrite this equation as
+\begin{equation}
+\frac{d\p(e)}{\f\cdot w}=-l^2 \cdot K \cdot \frac{w}{c^{u}} \cdot \e^{m}_{b}\cdot dR. 
+\label{eq:dpe}\end{equation}
+Equation~\eqref{eq:cuw} implies $c^{u}/w=0.74$. With $\e^{m}_{b}=0.4$ (Online Appendix~D), $l=0.94$, and $K=0.46$, we obtain $d\p(e)/\pre{\f\cdot w} = - 0.22 \times dR$.
+
+Last, the response of $1/(\f\cdot w)$ to $R$ is exactly zero under log utility and minuscule otherwise. Indeed,
+\begin{equation*}
+\frac{1}{\f \cdot w}=\frac{1}{w}\cdot\brk{\frac{1-u}{U'(c^e)}+\frac{u}{U'(c^h)}}.
+\end{equation*}
+A change $dR$ leads to changes $dc^e/w=-u \cdot dR$ and $dc^u/w=(1-u)\cdot dR$. Hence, it leads to a change
+\begin{equation*}
+d\pre{\frac{1}{\f \cdot w}}=(1-u) \cdot u \cdot \brk{\frac{U''(c^e)}{(U'(c^e))^2}-\frac{U''(c^h)}{(U'(c^h))^2}} \cdot dR.
+\end{equation*}
+With constant-relative-risk-aversion utility, $U(c)=\pre{c^{1-\g}-1}/\pre{1-\g}$, we obtain
+\begin{align*}
+d\pre{\frac{1}{\f \cdot w}}&=\frac{\g \cdot (1-u)  \cdot  u}{(c^h)^{1-\g}} \cdot \brk{\pre{\frac{c^h}{c^e}}^{1-\g}-1}\cdot dR \\
+&\approx (1-u)  \cdot  u \cdot \frac{\g \cdot (\g-1)}{(c^h)^{1-\g}} \cdot \pre{1-\frac{c^h}{c^e}}\cdot dR.
+\end{align*}
+With $\g=1$, this is exactly 0. With other values of $\g$ around 1, because $u \cdot (1-c^h/c^e) = 0.006$, the response of $1/(\f\cdot w)$ to $R$ remains minuscule, and we neglect it.
+
+Collecting all the results, and using the fact that $K=0.46$ when $R=42\%$, we obtain
+\begin{equation}
+K =0.46-(1.04+0.06+0.22)\cdot (R-0.42)=0.46-1.32\times (R-0.42).
+\label{eq:dupe}\end{equation}
+
+\subsection{Elasticity Wedge}
+
+We derive~(18), which relates the elasticity wedge, $1-\e^M/\e^m$, to labor market conditions.
+
+The average value of the elasticity wedge is 0.4 (Section~III). This average value is achieved when the ratio $\tau/u$ takes its average value of 0.38 (Section~II). Our aim is to determine how the elasticity wedge varies when $\tau/u$ deviates from its average value. Empirical evidence discussed in Section~III.E indicates that the elasticity wedge is higher when the labor market is depressed  and $\tau/u$ is low. Unfortunately this evidence is insufficient to directly quantify the response of the elasticity wedge to $\tau/u$, and we resort to an indirect, structural approach: we compute the elasticity wedge in the job-rationing model of \citet{M09} and use the response predicted by the model. (See Section~IV.D for a description of the model.)
+
+By definition, $\e^{M}$ is $l/(1-l)$ times the elasticity of $l$ with respect to $\D U$. Since $l=l^{d}(\t,a)$ in equilibrium, and since the elasticity of $l^{d}(\t,a)$ with respect to $\t$ is $-\eta\cdot \tau(\t)\cdot \a/(1-\a)$ (see equation~(22)), we infer that
+\begin{equation*}
+\e^{M}=-\frac{l}{1-l}\cdot \eta\cdot  \frac{\a}{1-\a} \cdot \tau(\t)\cdot \frac{\D U}{\t}\cdot \dert{\t}{\D U}.
+\end{equation*}
+We substitute the expression for $(\D U/\t)\cdot (d\t/d\D U)$ from~\eqref{eq:gap} into this equation and obtain
+\begin{equation*}
+\e^{M}=\frac{\eta}{1-\eta}\cdot\frac{\a}{1-\a}\cdot \frac{1}{1+\e^{f}}\cdot  \frac{\tau(\t)}{u}\cdot\pre{\e^{m}-\e^{M}}.
+\end{equation*}
+Dividing this equation by $\e^m$ and rearranging yields the elasticity wedge:
+\begin{equation}
+1-\frac{\e^{M}}{\e^{m}}=1\bigg/\pre{1+\frac{\eta}{1-\eta}\cdot\frac{\a}{1-\a}\cdot\frac{1}{1+\e^{f}}\cdot \frac{\tau(\t)}{u}}.
+\label{eq:wedge0}\end{equation} 
+This equation describes the elasticity wedge as a function of $\tau/u$. This function's derivative is
+\begin{equation}
+\dert{(1-\e^M/\e^m)}{(\tau/u)}=-\pre{1-\frac{\e^M}{\e^m}}^2 \cdot \frac{\eta}{1-\eta}\cdot\frac{\a}{1-\a}\cdot\frac{1}{1+\e^{f}}.
+\label{eq:wedge1}\end{equation}
+
+We now calibrate the production-function parameter $\a$ so that the average value of the elasticity wedge is 0.4. In~\eqref{eq:wedge0},  we set $\eta=0.6$ and $\e^f=0$ (Online Appendix~D) and $\tau/u=0.38$. We then need $\a=0.73$ to obtain $1-\e^M/\e^m=0.4$. 
+
+Finally, we use these results to linearize the elasticity wedge around its average value. Equation~\eqref{eq:wedge1} shows that with $\eta=0.6$, $\e^f=0$, and $\a=0.73$, the average value of the derivative $\derttx{(1-\e^M/\e^m)}{(\tau/u)}$ is 0.65. Hence, we linearize the elasticity wedge as follows:
+\begin{equation*}
+1-\frac{\e^{M}}{\e^{m}}=0.4 - 0.65 \times \pre{\frac{\tau}{u}-0.38}.
+\end{equation*}
+
+\subsection{Baily-Chetty Replacement Rate}
+
+We compute equation~(19), which gives the Baily-Chetty replacement rate as a function of UI.
+
+We begin by reworking the expression of the Baily-Chetty replacement rate in~(11). Using~\eqref{eq:gammaeh}, we rewrite the Baily-Chetty replacement rate as
+\begin{equation*}
+\g\cdot \frac{l\cdot \D U}{\e^{m} \cdot \f\cdot w}\cdot\frac{\f}{U'(c^{e})}\cdot \pre{1-\frac{c^{h}}{c^{e}}}.
+\end{equation*}
+From~\eqref{eq:micro}, we know that
+\begin{equation}
+\frac{l\cdot \D U}{\e^{m}\cdot\f\cdot w}=\frac{1}{\k}\cdot	\frac{\D U+\p(e)}{\f\cdot w} = \frac{1}{\k}\cdot K,
+\label{eq:em1}\end{equation}
+where $1/\k$ is the elasticity of $\p'(e)$ with respect to $e$. Thus the Baily-Chetty replacement becomes
+\begin{equation}
+\frac{\g}{\k}\cdot K\cdot\frac{\f}{U'(c^{e})}\cdot \pre{1-\frac{c^{h}}{c^{e}}}.
+\label{eq:bc2}\end{equation}
+
+We now compute each of the factors in~\eqref{eq:bc2}. Equations~\eqref{eq:chcer} and~\eqref{eq:dupe} give $1-c^h/c^e$ and $K$. Online Appendix~D  shows that $\g=1$. To compute $\k$, we use equation~\eqref{eq:interem}, which gives
+\begin{equation*}
+\frac{\e^m\cdot\f\cdot w}{l\cdot \D U}= \frac{\f}{U'(c^{h})} \cdot \frac{w}{c^{u}}\cdot\e^{m}_{b}.
+\end{equation*}
+Combining this equation with~\eqref{eq:em1}, we obtain
+\begin{equation}
+\k=K\cdot \frac{\f}{U'(c^{h})} \cdot \frac{w}{c^{u}} \cdot\e^{m}_{b}.
+\label{eq:kappa}\end{equation}
+With $K=0.46$, $U'(c^{h})/\f=1.11$ (equation~\eqref{eq:uchf}), $c^{u}/w=0.74$ (equation~\eqref{eq:cuw}), and $\e^{m}_{b}=0.4$ (Online Appendix~D), we find $\k=0.22$. Last,~\eqref{eq:ucef} shows that on average $\f/U'(c^{e})=1/0.99=1.01$ and that $\f/U'(c^{e})$ does not respond much to changes in labor market conditions and UI. Indeed, the equation shows that $\dertx{(U'(c^{e})/\f)}{l}= \g \cdot (1-c^h/c^e) = 1\times 0.12 =0.12$ and $\dertx{(U'(c^{e})/\f)}{R}= \g\cdot u\cdot \dertx{(1-c^{h}/c^e)}{R} =1\times 0.061\times 0.26 = 0.016$ (using estimates from Online Appendix~D). The effect of $R$ is tiny. Since employment $l$ moves by less than $0.05$ around its average value of $0.94$, changes in $l$ have effects on $\f/U'(c^{e})$ of at most $0.05\times 0.12 =0.006$, which are minuscule compared to the average value of $U'(c^{e})/\f$. In sum, we set $\f/U'(c^{e})=1.01$ and assume it is constant. Combining these results with~\eqref{eq:bc2}, we find that the Baily-Chetty replacement rate is
+\begin{equation*}
+4.6\times \brk{0.46-1.32\times (R-0.42)} \times \brk{0.12-0.26\times (R-0.42)}.
+\end{equation*}
+
+Our calibration implies that the Baily-Chetty replacement rate does not depend on labor market conditions. This property arises because we calibrated the consumption drop upon unemployment and job-search behavior to not depend much on labor market conditions. A related implication of our calibration is that  the microelasticity of unemployment duration with respect to benefit level, $\e^m_b$, does not depend much on labor market conditions (see equation~\eqref{eq:kappa}). Is this realistic? \citet{L11} estimates how  $\e^{m}_{b}$ varies with labor market conditions and finds that the effect of state unemployment rate on $\e^{m}_{b}$ is small and not significantly different from zero (online appendix: p.~17 and Table~A5). \citet{SWB09} obtain a similar result in German administrative data.\footnote{They use variations in the potential duration of benefits by age and a regression discontinuity design to estimate the microelasticity of unemployment duration with respect to the benefit duration. They replicate the estimation across labor markets with different unemployment rates, and they find that their estimates remain broadly constant (p.~732 and Figure~VI, panel~A).} \citet{CJL15} is the only study finding that $\e^{m}_{b}$ changes with the unemployment rate: their estimate of $\e^{m}_{b}$ in Missouri is much larger when unemployment was high (2008--2013) than when it was low (2003--2007). Part of the variation, however, is explained by the extremely long duration of benefits after the Great Recession, which altered benefit exhaustion rates. Hence, overall, $\e^{m}_{b}$ does not seem to respond much to labor market conditions.
+
+\subsection{Variation of $\tau/u$ with UI}
+
+We compute equation~(20), which relates the ratio $\tau/u$ to the UI replacement rate, $R$.
+
+We begin by computing the semielasticity 
+\begin{equation}
+\frac{d\ln(\tau)}{dR} = \dlnt{\tau}{\t}\cdot \dlnt{\t}{\D U}\cdot \frac{d\ln(\D U)}{dR}.
+\label{eq:dtaudR}\end{equation}
+We calculate each of the three factors in turn. Equation~(2) implies that 
+\begin{equation*}
+\dlnt{\tau}{\t}=\eta \cdot (1+\tau).
+\end{equation*}
+Equation~\eqref{eq:gap} shows that 
+\begin{equation*}
+\dlnt{\t}{\D U}=- \pre{1-\frac{\e^M}{\e^m}}\cdot \frac{\e^m}{(1-\eta)\cdot(1-u)\cdot(1+\e^f)}.
+\end{equation*}
+Last, $\D U=U(c^{e})-U(c^{u}+h)+z+\l(h)$. Since $z$ is constant and $h$ is chosen optimally to minimize $\D U$, $R$ affects $\D U$ only through $c^{u}$ and $c^e$. Consider a small change $dR$ and the associated changes $dc^{u}$, $dc^e$, and $dl$. Equations~\eqref{eq:cuw} and~\eqref{eq:cew} imply that 
+\begin{align*}
+dc^u &= w \cdot l \cdot dR + \pre{\frac{1-\a}{\a}+R}\cdot dl\\
+dc^e &= - w \cdot u \cdot dR + \pre{\frac{1-\a}{\a}+R}\cdot dl .
+\end{align*}
+(We assume again that $R$ does not affect $w$.) Hence, the change $dR$ leads to a change
+\begin{align*}
+d\D U & = U'(c^{h})\cdot \brc{\pre{\frac{U'(c^{e})}{U'(c^{h})}-1}\cdot \pre{\frac{1-\a}{\a}+R} \cdot dl - \pre{u \cdot\frac{U'(c^{e})}{U'(c^{h})}+l} \cdot w\cdot dR}\\
+& = - U'(c^{h})\cdot \brc{\g\pre{1-\frac{c^{h}}{c^{e}}}\cdot \pre{\frac{1-\a}{\a}+R} \cdot dl + \brk{1-\g \cdot u \cdot \pre{1-\frac{c^{h}}{c^{e}}}} \cdot w\cdot dR}.
+\end{align*}
+This expression can be simplified with a few numerical approximations. With $\g=1$, $u=0.061$, and $1-c^h/c^e=0.12$ (Online Appendix~D  and Section~II), the term $\g \cdot u \cdot (1-c^{h}/c^{e})$ is less than $0.01$ and can be neglected. In addition, the change $dl$ has to be much smaller than $dR$ in the range of $R$ that we consider. Since the term in front of $dl$ is one order of magnitude smaller than the term in front of $dR$, we neglect the entire term attached to $dl$. Accordingly, the effect of $dR$ on $\D U$ simplifies to $d\D U=-U'(c^{h})\cdot w\cdot dR$. Finally, combining these results into~\eqref{eq:dtaudR} yields
+\begin{equation}
+\frac{d\ln(\tau)}{dR} = \frac{\e^m \cdot U'(c^{h})\cdot w}{(1-u)\cdot \D U}\cdot  \pre{1-\frac{\e^M}{\e^m}} \cdot \frac{\eta}{1-\eta}\cdot \frac{1+\tau}{1+\e^f}.
+\label{eq:dlntaudr}\end{equation}
+
+Next, we compute the semielasticity 
+\begin{equation}
+\frac{d\ln(u)}{dR} =\dlnt{u}{\D U}\cdot \frac{d\ln(\D U)}{dR}.
+\label{eq:dlnudr}\end{equation}
+The definition of $\e^M$  implies $d\ln(u)/d\ln(\D U)=- \e^M$. Since $d\D U/dR=-U'(c^{h})\cdot w$, we obtain
+\begin{equation*}
+\frac{d\ln(u)}{dR} = \frac{\e^m \cdot U'(c^{h})\cdot w}{(1-u)\cdot \D U}\cdot (1-u)\cdot\frac{\e^M}{\e^m}.
+\end{equation*}
+
+We then combine~\eqref{eq:dlntaudr} and~\eqref{eq:dlnudr} to compute $d(\tau/u)/dR$:
+\begin{align}
+\frac{d(\tau/u)}{dR} & =\frac{\tau}{u}\cdot \brk{\frac{d\ln(\tau)}{dR}-\frac{d\ln(u)}{dR}} \nonumber\\
+&= \frac{\tau}{u}\cdot\frac{\e^m_b \cdot w}{c^u}\cdot \brk{\pre{1-\frac{\e^M}{\e^m}} \cdot \frac{\eta}{1-\eta}\cdot \frac{1+\tau}{1+\e^f}-(1-u)\cdot\frac{\e^M}{\e^m}},\label{eq:tauuR}
+\end{align}
+where we have also used the result from~\eqref{eq:interem}. We use~\eqref{eq:tauuR} to calibrate $\derttx{(\tau/u)}{R}$ at an average labor market and UI program. We set $\eta=0.6$, $\e^f=0$, and $\e^{m}_{b}=0.4$ (Online Appendix~D); $1-\e^m/\e^m=0.4$ (Section~III); $\tau=2.3\%$ and $u=6.1\%$ (Section~II); and $c^u/w=0.74$ (equation~\eqref{eq:cuw}). This yields $\derttx{(\tau/u)}{R}=0.01$.
+
+Using the calibration, we obtain a linear relationship between the ratio $\tau/u$ and the replacement rate $R$ around their observed values, $\hat{\tau}/\hat{u}$ and $\hat{R}$:\footnote{We set $\derttx{(\tau/u)}{R}$ to 0.01, which is its average value, not its value at $\hat{\tau}/\hat{u}$ and $\hat{R}$. Using the value at $\hat{\tau}/\hat{u}$ and $\hat{R}$ instead would only add second-order terms to the first-order approximation~\eqref{eq:tauu(R)}, which we opt to neglect.}
+\begin{equation}
+\frac{\tau}{u}=\frac{\hat{\tau}}{\hat{u}} + 0.01 \times \pre{R-\hat{R}}.
+\label{eq:tauu(R)}\end{equation}
+
+\section{Online Appendix F: Sensitivity Analysis}\label{app:sensitivity}
+
+We describe the alternative formulas used to compute the optimal UI replacement rates in the sensitivity analysis of Section IV.C. We derive these formulas by following the steps of the derivation of the baseline formula, given by~(21). To avoid repetition, we do not provide the entire derivations here: we only describe the steps that are modified.
+
+\subsection{Elasticity Wedge ($1-\e^{M}/\e^{m}$)}
+
+The elasticity wedge $1-\e^{M}/\e^{m}$ affects the ratio $\tau/u$. Indeed, equation~\eqref{eq:tauuR} implies that with a generic $1-\e^{M}/\e^{m}$,
+\begin{equation*}
+\frac{\tau}{u}\pre{R,\frac{\e^M}{\e^m}} =\frac{\hat{\tau}}{\hat{u}} + 0.21 \times \brk{1.53\times \pre{1-\frac{\e^M}{\e^m}} -0.94\times \frac{\e^M}{\e^m}}\times \pre{R-\hat{R}}.
+\end{equation*}
+Thus, with a generic $1-\e^{M}/\e^{m}$, the optimal UI formula becomes
+ \begin{align*}
+R = 4.6  & \times \brk{0.46-1.32\times (R-0.42)} \times \brk{0.12-0.26\times (R-0.42)}\\
+&+\brk{1-\frac{\e^{M}}{\e^{m}}}\times \brk{0.88 - 0.32\times (R-0.42) - 1.5 \times \frac{\tau}{u}\pre{R,\frac{\e^M}{\e^m}}}.
+\end{align*}
+In panel~A of Figure~8, we solve this formula with $1-\e^{M}/\e^{m}=-0.4$, $1-\e^{M}/\e^{m}=0$, and $1-\e^{M}/\e^{m}=0.4$.
+
+\subsection[Microelasticity of Unemployment Duration with Respect to Benefit Level ($\e^m_b$)]{\hspace*{-0.7cm}Microelasticity of Unemployment Duration with Respect to Benefit Level ($\e^m_b$)}
+
+The microelasticity $\e^{m}_{b}$ influences the calibration of the microelasticity of unemployment with respect to UI, $\e^{m}$. Indeed,~\eqref{eq:kappa} implies that with a generic $\e^{m}_{b}$, the parameter $\k$ that determines $\e^{m}$ satisfies
+\begin{equation*}
+\k(\e^{m}_{b})=0.56\times \e^{m}_{b}.
+\end{equation*}
+In addition, $\e^{m}_{b}$ affects the utility cost of unemployment, $K$. Indeed,~\eqref{eq:dpe} implies that with a generic $\e^{m}_{b}$, $d\p(e)/(\f\cdot w) = -\e^{m}_{b}\times 0.55\times dR$, so that
+\begin{equation*}
+K(R,\e^{m}_{b})=0.46-\brk{1.11+0.55\times \e^{m}_{b}}\times (R-0.42).
+\end{equation*}
+Finally, $\e^{m}_{b}$ affects the ratio $\tau/u$. Equation~\eqref{eq:tauuR} implies that with a generic $\e^{m}_{b}$,
+\begin{equation*}
+\frac{\tau}{u}(R,\e^{m}_{b})  =\frac{\hat{\tau}}{\hat{u}} + \e^m_b \times 0.03 \times \pre{R-\hat{R}}.
+\end{equation*}
+With a generic $\e^{m}_{b}$, the optimal UI formula therefore becomes
+\begin{align*}
+R = \frac{1.01}{\k(\e^{m}_{b})}  & \times \brk{K(R,\e^{m}_{b})} \times \brk{0.12-0.26\times (R-0.42)}\\
+&+\brk{0.4 - 0.65 \times \pre{\frac{\tau}{u}(R,\e^{m}_{b})-0.38}}\times\brk{K(R,\e^{m}_{b})+ R - 1.5 \times \frac{\tau}{u}(R,\e^{m}_{b})}.
+\end{align*}
+In panel~B of Figure~8, we solve this formula with $\e^{m}_{b}=0.2$, $\e^{m}_{b}=0.4$, and $\e^{m}_{b}=0.6$.
+
+\subsection{Nonpecuniary Cost of Unemployment ($Z$)}
+
+The cost $Z$ affects $K$: equations~(9) and~\eqref{eq:dpe} show that with a generic $Z$,
+\begin{equation*}
+K(R,Z)=0.16+\frac{Z}{\f\cdot w}-\brk{1.10+0.48\times \pre{0.16+\frac{Z}{\f\cdot w}}}\times (R-0.42).
+\end{equation*}
+In addition,~\eqref{eq:kappa} implies that with a generic $Z$, the parameter $\k$ satisfies 
+\begin{equation*}
+\k(Z)=0.49\times \pre{0.16+\frac{Z}{\f\cdot w}}.
+\end{equation*} 
+With a generic $Z$, the optimal UI formula therefore becomes
+\begin{align*}
+R = \frac{1.01}{\k(Z)}  &\times \brk{K(R,Z)} \times \brk{0.12-0.26\times (R-0.42)}\\
+&+\brk{0.4 - 0.65 \times \pre{\frac{\hat{\tau}}{\hat{u}}-0.38+ 0.01 \times \pre{R-\hat{R}}}}\\
+&\times\brk{K(R,Z)+ R - 1.5 \times \pre{\frac{\hat{\tau}}{\hat{u}}+ 0.01 \times \pre{R-\hat{R}}}}.
+\end{align*}
+In panel~C of Figure~8, we solve this formula with $Z=0$, $Z=0.3 \cdot \phi \cdot w$, and $Z=0.6 \cdot \phi \cdot w$.
+
+\subsection{Matching Elasticity ($\eta$)}
+
+The elasticity $\eta$ affects the ratio $\tau/u$: equation~\eqref{eq:tauuR} implies that with a generic $\eta$,
+\begin{equation*}
+\frac{\tau}{u}(R,\eta)  =\frac{\hat{\tau}}{\hat{u}} + 0.21 \times \brk{0.41\times \frac{\eta}{1-\eta} - 0.56}\times \pre{R-\hat{R}}.
+\end{equation*}
+The elasticity $\eta$ also affects the efficiency term. Overall, with a generic $\eta$, the optimal UI formula becomes
+\begin{align*}
+R = 4.6  & \times \brk{0.46-1.32\times (R-0.42)} \times \brk{0.12-0.26\times (R-0.42)}\\
+&+\brk{0.4 - 0.65 \times \pre{\frac{\tau}{u}(R,\eta)-0.38}}\times\brk{0.88 - 0.32\times (R-0.42) - \frac{\eta}{1-\eta} \times \frac{\tau}{u}(R,\eta)}.
+\end{align*}
+In panel~D of Figure~8, we solve this formula with $\eta=0.5$, $\eta=0.6$, and $\eta=0.7$.
+
+
+\subsection{Coefficient of Relative Risk Aversion ($\g$)}
+
+The risk aversion $\g$ affects the Baily-Chetty replacement rate, as showed by~\eqref{eq:bc2}. It also affects $K$: equations~\eqref{eq:duch} and~\eqref{eq:uchf} imply that with a generic $\g$, we have $dU(c^{u}+h)/(\f\cdot w) = (0.94+ 0.10\times \g)\times dR$, which yields
+\begin{equation*}
+K(R,\g)=0.46-\pre{1.22+0.10\times \g}\times (R-0.42).
+\end{equation*} 
+Equation~\eqref{eq:ucef} implies that $\g$ also  affects $K$ through $U'(c^{e})/\f$ and $dU(c^e)/(\f\cdot w)$, but these effects are negligible. Moreover, ~\eqref{eq:kappa} implies that $\g$ affects the parameter $\k$:
+\begin{equation*}
+\k(\g)=\frac{0.25}{1+0.11\times \g}.
+\end{equation*} 
+In sum, with a generic $\g$, the optimal UI formula becomes
+\begin{align*}
+R = \g\times \frac{1.01}{\k(\g)}  & \times \brk{K(R,\g)} \times \brk{0.12-0.26\times (R-0.42)}\\
+&+\brk{0.4 - 0.65 \times \pre{\frac{\hat{\tau}}{\hat{u}}-0.38+ 0.01 \times \pre{R-\hat{R}}}}\\
+&\times\brk{K(R,\g)+ R - 1.5 \times \pre{\frac{\hat{\tau}}{\hat{u}}+ 0.01 \times \pre{R-\hat{R}}}}.
+\end{align*}
+In panel~E of Figure~8, we solve this formula with $\g=0.5$, $\g=1$, and $\g=2$.
+
+\subsection{Consumption Drop Upon Unemployment ($1-c^{h}/c^{e}$)}
+
+The consumption drop is a function of the UI replacement rate, as showed by~\eqref{eq:chcer}. We denote by $c^{h}/c^{e}$ the consumption ratio for a generic replacement rate $R$ and by $\ov{c^{h}/c^{e}}$ the consumption ratio when the replacement rate takes the average value of $\ov{R}=42\%$. Equation~\eqref{eq:dchce} implies that $d(c^{h}/c^{e})=0.30 \times \ov{c^{h}/c^{e}} \times dR$. Hence, the consumption drop upon unemployment satisfies
+\begin{equation*}
+1-\frac{c^{h}}{c^{e}}=1-\ov{c^{h}/c^{e}}-0.30\times \ov{c^{h}/c^{e}} \times (R-0.42).
+\end{equation*}
+The consumption ratio $\ov{c^{h}/c^{e}}$ also affects $K$. First, using~\eqref{eq:ru3} and~\eqref{eq:uceuch}, we find that at $R=\ov{R}$,
+\begin{equation*}
+K\pre{\ov{R},\ov{c^{h}/c^{e}}}=1.61-1.31\times\ov{c^{h}/c^{e}}.
+\end{equation*}
+(Equation~\eqref{eq:ucef} shows that $\ov{c^{h}/c^{e}}$ affects $K$ through $U'(c^{e})/\f$, but the effect is negligible.) In addition,~\eqref{eq:duch},~\eqref{eq:uchf}, and~\eqref{eq:dpe} imply that
+\begin{align*}
+\frac{dU(c^{u}+h)}{\f\cdot w} &= \brk{1.82-0.88\times \ov{c^{h}/c^{e}}}\times dR,\\
+\frac{d\p(e)}{\f\cdot w} & = - 0.48\times \brk{K\pre{\ov{R},\ov{c^{h}/c^{e}}}}\times dR.
+\end{align*} 
+(Equation~\eqref{eq:ucef} shows that $\ov{c^h/c^e}$ affects $K$ through $dU(c^e)/(\f\cdot w)$, but the effect is also negligible.) Hence, we find that
+\begin{equation*}
+K\pre{R,\ov{c^{h}/c^{e}}} = K\pre{\ov{R},\ov{c^{h}/c^{e}}}-\brk{1.82 +0.48\times K\pre{\ov{R},\ov{c^{h}/c^{e}}}- 0.88\times \ov{c^{h}/c^{e}}}\times (R-0.42).
+\end{equation*}
+Last,~\eqref{eq:uchf} and~\eqref{eq:kappa} imply that $\ov{c^{h}/c^{e}}$ affects the parameter $\k$:
+\begin{equation*}
+\k\pre{\ov{c^{h}/c^{e}}}=0.54\times \frac{K\pre{\ov{R},\ov{c^{h}/c^{e}}}}{1.94-0.94\times\ov{c^{h}/c^{e}}}.
+\end{equation*} 
+In sum, with a generic average consumption drop $1-\ov{c^{h}/c^{e}}$, the optimal UI formula becomes
+\begin{align*}
+R = \frac{1.01}{\k\pre{\ov{c^{h}/c^{e}}}}  &  \times\brk{K(R,\ov{c^{h}/c^{e}})} \times \brk{1-\ov{c^{h}/c^{e}}-0.30 \times \ov{c^{h}/c^{e}} \times (R-0.42)}\\
+&+\brk{0.4 - 0.65 \times \pre{\frac{\hat{\tau}}{\hat{u}}-0.38+ 0.01 \times \pre{R-\hat{R}}}}\\
+&\times\brk{K(R,\ov{c^{h}/c^{e}})+ R - 1.5 \times \pre{\frac{\hat{\tau}}{\hat{u}}+ 0.01 \times \pre{R-\hat{R}}}}.
+\end{align*}
+(Equation~\eqref{eq:ucef} implies that $\ov{c^{h}/c^{e}}$ also affects the Baily-Chetty replacement rate through  $U'(c^{e})/\f$, but the effect is negligible.) In panel~F of Figure~8, we solve this formula with $1-\ov{c^{h}/c^{e}}=5\%$,  $1-\ov{c^{h}/c^{e}}=12\%$, and $1-\ov{c^{h}/c^{e}}=20\%$.
+
+\section{Online Appendix G: Calibration of the Simulation Model}\label{app:calibration}
+
+We calibrate the matching model simulated in Sections~IV.D and~IV.E. The parameter values used in simulations are summarized in Table~\ref{tab:calib}. For the calibration, we normalize average technology to $a=1$ and average job-search effort to $e=1$.
+
+First, we use a concave production function:
+\begin{equation*}
+y(n)=a\cdot n^{\a},
+\end{equation*}
+where the parameter $a$ measures technology and the parameter $\a$ measures diminishing marginal returns to labor. We set $\a=0.73$ to be consistent with $1-\e^{M}/\e^{m}=0.4$ (Online Appendix~E). 
+
+Next, we use a constant-relative-risk-aversion specification for the utility from consumption:
+\begin{equation*}
+U(c)=\frac{c^{1-\g}-1}{1-\g},
+\end{equation*}
+where the parameter $\g$ is the coefficient of relative risk aversion. We set $\g=1$ (Online Appendix~D), which implies that $U(c)=\ln(c)$. 
+
+Then, we calibrate parameters related to matching. We use a Cobb-Douglas matching function:
+\begin{equation*}
+m(e\cdot u,v)=\m\cdot (e\cdot u)^{\eta}\cdot v^{1-\eta},
+\end{equation*} 
+where the parameter $\m$ measures matching efficacy and the parameter $\eta$ is the matching elasticity. (With this matching function, $f(\t)=\m\cdot\t^{1-\eta}$ and $q(\t)=\m\cdot\t^{-\eta}$.)  We set $\eta=0.6$ (Online Appendix~D). We set the job-separation rate to its average value for 1990--2014: $s=2.8\%$ (Online Appendix~B). To calibrate $\m$, we rewrite~(1) as
+\begin{equation*}
+\m= \t^{\eta-1}\cdot \frac{s\cdot (1-u)}{u\cdot e}. 
+\end{equation*}
+We use the number of vacancies plotted in Figure~\ref{fig:qs}, panel~B. The average number of vacancies for 1990--2014 is 3.80 million. The average number of unemployed workers in CPS data for 1990--2014 is 8.82 million. Since the average job-search effort is normalized 1, the average tightness for 1990--2014 is $\t=3.80/(1\times 8.82)=0.43$. With $s=2.8\%$, $\t=0.43$, $\eta=0.6$, $e=1$, and $u=6.1\%$ (Section~II),  we get $\m=0.60$. Finally, to calibrate the matching cost $\r$, we exploit~(2), which implies 
+\begin{equation*}
+\r=\m\cdot \t^{-\eta}\cdot \frac{\tau}{s\cdot (1+\tau)}.  
+\end{equation*}
+With $\m=0.6$, $s=2.8\%$, $\t=0.43$, and $\tau=2.3\%$ (Section~II), we obtain $\r=0.80$.
+
+\begin{table}[t]
+\caption{Parameter Values in the Simulation Model}
+\small\begin{tabular*}{\textwidth}[]{l@{\extracolsep\fill}p{7cm}p{5.5cm}}\toprule
+& Description  & Source\\
+\midrule
+$\a=0.73$ & Production function: concavity & Matches $1-\e^{M}/\e^{m}=0.4$\\
+$\g = 1$ & Relative risk aversion & \citet{Ch06} \\
+$s = 2.8\%$ & Monthly job-separation rate & CPS, 1990--2014 \\
+$\eta=0.6$ & Matching elasticity  & \citet{PP01}\\
+$\m=0.60$ & Matching efficacy & Matches $\t=0.43$\\
+$\r=0.80$ & Matching cost & Matches $\tau=2.3\%$\\
+$\z=0.5$ & Real wage: rigidity & \citet{M12} \\
+$\o=0.73$ & Real wage: level & Matches $u=6.1\%$\\
+$\s=0.17$ & Disutility from home production: convexity & Matches $d\ln(c^{h})/d\ln(c^{u})=0.2$\\
+$\x=1.43$ & Disutility from home production: level &  Matches $1-c^{h}/c^{e}=12\%$\\
+$\k=0.22$ & Disutility from job search: convexity & Matches $\e^{m}_{b}=0.4$\\
+$\d=0.33$ & Disutility from job search: level &  Matches $e=1$\\
+$z=-0.14$ & Disutility from unemployment &  Matches $Z=0.3 \times \f \times w$\\
+\bottomrule\end{tabular*}
+\label{tab:calib}\end{table}
+
+
+We now calibrate parameters related to wages. We use a partially rigid wage schedule:
+\begin{equation*}
+w(a)=\o\cdot a^{1-\z},
+\end{equation*}
+where the parameter $\o$ governs the wage level and the parameter $\z$ governs wage rigidity. Following \citet{M12}, we set the wage rigidity to $\z=0.5$. To calibrate $\o$, we use~(22) and the equilibrium condition $l^{d}(\t,a)=l=1-u$, which imply
+\begin{equation*}
+\o=a^{\z}\cdot \a\cdot (1-u)^{\a-1}\cdot (1+\tau)^{-\a}.
+\end{equation*}
+With $a=1$, $\tau=2.3\%$, $\a=0.73$, and $u=6.1\%$, we obtain $\o=0.73$.
+
+We now compute the consumption levels implied by the calibration. The definition of the replacement rate implies $c^{e}-c^{u}=w\cdot (1-R)$. The government's budget constraint imposes $(1-u)\cdot c^{e}+u\cdot c^{u}=a\cdot n^{\a}$. Solving this linear system of two equations with $a=1$,$w=0.73$, $R=42\%$ (Section~II), $u=6.1\%$,  $\tau=2.3\%$, $n=(1-u)/(1+\tau)=0.92$, and $\a=0.73$, we obtain $c^{e}=0.97$ and $c^{u}=0.54$. As $1-c^{h}/c^{e}=12\%$ (Online Appendix~D), we find $c^{h}=0.85$ and $h=c^{h}-c^{u}=0.31$. 
+
+These consumption levels allow us to compute other statistics. The average marginal utility $\f$ satisfies $1/\f=(1-u)\cdot (c^{e})^{\g}+u\cdot (c^{h})^{\g}$. With $\g=1$, $u=6.1\%$, $c^{e}=0.97$, and $c^{h}=0.85$, we find $\f=1.04$. We set the total nonpecuniary cost from unemployment to $Z=0.3\times \f\times w$ (Section~II). With $\f=1.04$ and $w=0.73$, we obtain $Z=0.23$. Finally, with log utility, $Z=0.23$, $c^{e}=0.97$, and $c^{h}=0.85$, we find that the utility gain from work is $U(c^{e})-U(c^{h})+Z = \ln(c^{e}/c^{h})+Z = 0.36$. 
+
+To conclude, we calibrate parameters from workers' utility function. We assume that the disutility from home production is a convex power function:
+\begin{equation*}
+\l(h)=\x\cdot \frac{h^{1+\s}}{1+\s},
+\end{equation*} 
+where the parameter $\x$ governs the level of disutility and the parameter $\s$ governs the convexity of the disutility function. Equation~(4) implies that 
+\begin{equation}
+\x\cdot h^{\s}=\pre{c^{u}+h}^{-\g}.
+\label{eq:xi}\end{equation}
+We implicitly differentiate this equation with respect to $c^{u}$ and obtain
+\begin{align*}
+\dert{h}{c^{u}}&=-\frac{\g\cdot (h/c^{h})}{\s+\g\cdot (h/c^{h})}\\
+\text{and}\qquad \dert{c^{h}}{c^{u}} &=1+\dert{h}{c^{u}}=\frac{\s}{\s+\g\cdot (h/c^{h})}.
+\end{align*}
+Since $c^{h}=0.85$, $c^{u}=0.54$ and $d\ln(c^{h})/d\ln(c^{u})=0.2$ (Online Appendix~D), we infer that $dc^{h}/dc^{u}=0.2\times (0.85/0.54)=0.31$. Furthermore, $h/c^{h}=0.35$ and $\g=1$. We conclude that $\s=0.17$. Using~\eqref{eq:xi}, $\g=1$, $c^{u}=0.54$, $h=0.31$, and $\s=0.17$, we find $\x=1.43$. Then we assume that the disutility from search effort is a convex power function: 
+\begin{equation*}
+\p(e)=\d\cdot\frac{\k}{1+\k}\cdot e^{(1+\k)/\k},
+\end{equation*}
+where the parameter $\d$ governs the level of disutility and the parameter $\k$ governs the convexity of the disutility function. We set $\k=0.22$ to be consistent with $\e^{m}_{b}=0.4$ (Online Appendix~E). To calibrate $\d$, we use equation~(6) with $e=1$, which implies
+\begin{equation*}
+\d = (1-u)\cdot \pre{U(c^{e})-U(c^{h})+Z}.
+\end{equation*}
+With $u=6.1\%$ and $U(c^{e})-U(c^{h})+Z=0.36$, we find $\d=0.33$. Last, we calibrate the disutility from unemployment, $z$. We target $Z=z+\p(e)+\l(h)=0.23$. On average $\l(h)=\l(0.31)=0.31$ and $\p(e)=\p(1)=0.06$, so we set $z=-0.14$.
+
+\section{Online Appendix H: Additional Simulation Results}\label{app:simulation}
+
+We discuss additional results obtained in the simulations of Sections~IV.D and~IV.E. The simulations compare three UI programs: in the first, the replacement rate remains constant at $42\%$, the average US value; in the second, the replacement rate is the Baily-Chetty replacement rate, described in formula~(11); and in the third, the replacement rate is the optimal replacement rate, given by formula~(11). Under each UI program, we simulate equilibria spanning the business cycle.  
+
+\begin{figure}[p] \centering
+\includegraphics[scale=0.145,page=24]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=25]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=26]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=27]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=28]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=29]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=30]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=31]{\path graphs/ui_applications_graphs_aej.pdf}
+\includegraphics[scale=0.145,page=32]{\path graphs/ui_applications_graphs_aej.pdf}
+\caption{Additional Simulation Results}
+\fignotes{This figure complements Figure~10. The figure depicts equilibria under a constant replacement rate of 42\% (dotted line), under the Baily-Chetty replacement rate (dashed line), and under the optimal UI replacement rate (solid line). The optimal replacement rate is computed using formula~(11) and the Baily-Chetty replacement rate using the expression in~(11). The equilibria are parametrized by various levels of technology. The results are obtained by simulating the matching model of \citet{M09} under the calibration in Online Appendix~G.}
+\label{fig:additional}\end{figure}
+
+Figure~\ref{fig:additional} displays the additional results. The top three panels describe labor market conditions. When technology increases from 0.96 to 1.03 and UI remains constant, the unemployment rate falls from 10\% to 4.5\%. Unemployment responds when the UI replacement rate adjusts from its original level of 42\% to the Baily-Chetty and optimal levels; however, these responses are small. The range of fluctuations of unemployment in the simulations is consistent with the range observed in the United States (Figure~1, panel~B). 
+
+As unemployment falls, the recruiter-producer ratio increases from 1\% to 3.7\%. This is because when technology increases, it stimulates labor demand, which raises tightness $\t$ and therefore the recruiter-producer ratio $\tau(t)$. The range of fluctuations of the recruiter-producer ratio in the simulations is comparable, albeit somewhat wider, to the range observed in the United States (Figure~1).
+
+Finally, since unemployment $u$ is countercyclical and the recruiter-producer ratio $\tau$ is procyclical, the ratio $\tau/u$ is procyclical. As a consequence, the efficiency term is countercyclical: it is above $0.5$ for high unemployment rates, around $0.3$ on average, and below $-0.3$ for low unemployment rates. The fluctuations of the efficiency term in the simulations are consistent with those in Figure~3.
+
+The middle three panels display the microelasticity of unemployment with respect to UI ($\e^{m}$), macroelasticity of unemployment with respect to UI ($\e^{M}$), and elasticity wedge ($1-\e^{M}/\e^{m}$). On average, the elasticity wedge is positive, equal to $0.4$. The elasticity wedge is countercyclical but always positive: it decreases from 0.71 to 0.23 as unemployment falls. Section~III.E explains why the elasticity wedge is countercyclical and provides empirical evidence. The fluctuations of the elasticity wedge in the simulations are consistent with those in Figure~5.
+
+In the simulations, the elasticity wedge varies because the macroelasticity does. Indeed, as unemployment falls, the macroelasticity increases from 0.05 to 0.13. This means that UI has a weaker influence on unemployment in slumps than in booms (this property arises from job rationing). Unlike the macroelasticity, the microelasticity remains broadly constant around 0.17. This means that UI has the same effect on job-search effort in slumps and booms.  
+
+The next panel shows that the consumption drop upon unemployment is procyclical: as unemployment falls, the consumption drop rises from 9\% to 14\% when $R=42\%$, from 12\% to 15\% under Baily-Chetty UI, and from 6\% to 16\% under optimal UI. Under optimal UI, the consumption drop is procyclical because the replacement rate is countercyclical. Under constant and Baily-Chetty UI, the consumption drop is procyclical because home production is countercyclical. This happens because unemployed workers receive lower UI benefits in bad times due to the (weakly) lower replacement rate and lower output in the economy. With lower benefits, the marginal value of home production is higher, so home production is higher.
+
+Figure~10 shows that the optimal UI program is quite generous in bad times, with a replacement rate above 50\%. This result is striking because, as showed in the last two panels, optimal UI has significant disincentives effects at the micro level. These disincentive effects, arising from moral hazard, reduce job search and home production: in bad times, both job search and home production are about 10\% below their average levels. 
+
+\begin{small}\setstretch{1.1}\bibliography{\path bibliography/ui}\end{small}
+
+\end{document}
