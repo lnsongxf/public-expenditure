@@ -152,7 +152,7 @@ else:
 dUdc = lambda gc:((1-gamma)*U(1,gc))**(1/epsilon)
 dUdc_bar = dUdc(GC_bar)
 dUdg = lambda gc:(gamma*U(1/gc, 1))**(1/epsilon)
-MRS = lambda gc:gamma**(1/epsilon)/(1-gamma)**(1/epsilon)*gc**(1/epsilon)
+MRS = lambda gc:gamma**(1/epsilon)/(1-gamma)**(1/epsilon)*gc**(-1/epsilon)
 dlnUdlnc = lambda gc:(1 - gamma)**(1/epsilon)*(U(1, gc))**((1 - epsilon)/epsilon)
 dlnUdlng = lambda gc:gamma**(1/epsilon)*(U(1/gc, 1))**((1 - epsilon)/epsilon)
 dlnUcdlnc = lambda gc:(dlnUdlnc(gc) - 1)/epsilon

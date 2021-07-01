@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helper Functions &#8212; Optimal Public Expenditure over the Business Cycle</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Simulations" href="simulations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Optimal Public Expenditure over the Business Cycle</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../book.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Public-Expenditure
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../markdown/optimal-stimulus.html">
+   Optimal Public Expenditure over the Business Cycle
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calibration-suffstat.html">
+     Calibration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stimulus.html">
+     Optimal Stimulus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calibration-sim.html">
+     Additional Calibration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="simulations.html">
+     Simulations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Helper Functions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/helpers.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pascalmichaillat/public-expenditure/main?urlpath=tree/notebooks/helpers.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-parameters">
+   Model Parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-omega-generic-badge">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(\omega\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-rho">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(\rho\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-bar-tau">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(\bar{\tau}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-q">
+     Calculation of q
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-tau">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(\tau\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-output-identity">
+     Calculation of Output Identity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-m">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(m\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-z-0-and-z-1">
+     Calculation of
+     <span class="math notranslate nohighlight">
+      \(z_0\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(z_1\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="helper-functions">
+<h1>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h1>
+<p>This section serves as a directory of the functions that are used in our calculations.</p>
+<div class="section" id="model-parameters">
+<h2>Model Parameters<a class="headerlink" href="#model-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="calculation-of-omega-generic-badge">
+<h3>Calculation of <span class="math notranslate nohighlight">\(\omega\)</span>   <a class="reference external" href="https://www.pascalmichaillat.org/5.html"><img alt="Generic badge" src="https://img.shields.io/badge/LMS18a-p.%20G28-purple?logo=read-the-docs" /></a><a class="headerlink" href="#calculation-of-omega-generic-badge" title="Permalink to this headline">¶</a></h3>
+<p>The parameter <span class="math notranslate nohighlight">\(\omega\)</span> denotes matching efficacy in the matching function.</p>
+<p>We calculate <span class="math notranslate nohighlight">\(\omega\)</span> by using the following equation:</p>
+<p><span class="math notranslate nohighlight">\(\omega = \bar{x}^{\eta - 1}\cdot \frac{s\cdot (1-\bar{u})}{\bar{u}\cdot e}, \)</span>            <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs" /></a></p>
+<p>where <span class="math notranslate nohighlight">\(e\)</span> is the average job-search effort, which is normalized to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">omega_func</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">x_bar</span><span class="p">,</span> <span class="n">u_bar</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x_bar</span><span class="o">**</span><span class="p">(</span><span class="n">eta</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u_bar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">u_bar</span><span class="o">*</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-rho">
+<h3>Calculation of <span class="math notranslate nohighlight">\(\rho\)</span><a class="headerlink" href="#calculation-of-rho" title="Permalink to this headline">¶</a></h3>
+<p>To calculate <span class="math notranslate nohighlight">\(\rho\)</span>, we use the following relationship between the recruiter-producer ratio (<span class="math notranslate nohighlight">\(\tau\)</span>) and labor market tightness (<span class="math notranslate nohighlight">\(x\)</span>):</p>
+<p><span class="math notranslate nohighlight">\(\tau(x) = \frac{\rho s}{q(x) - \rho s}. \)</span>              <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs" /></a></p>
+<p>This gives us that:</p>
+<p><span class="math notranslate nohighlight">\(\rho = \frac{\omega x^{-\eta}\tau}{(1+\tau)s}.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rho_func</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">omega</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">tau</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tau</span><span class="p">)</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-bar-tau">
+<h3>Calculation of <span class="math notranslate nohighlight">\(\bar{\tau}\)</span><a class="headerlink" href="#calculation-of-bar-tau" title="Permalink to this headline">¶</a></h3>
+<p>When labor market tightness is efficient, we have:</p>
+<p><span class="math notranslate nohighlight">\((1-\eta)\bar{u}-\eta\bar{\tau} = 0, \)</span>            <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%205-purple?logo=read-the-docs" /></a></p>
+<p>which can be re-arranged into:</p>
+<p><span class="math notranslate nohighlight">\(\bar{\tau} = \frac{(1-\eta)\bar{u}}{\eta}.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tau_bar_func</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">u_bar</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">u_bar</span><span class="o">/</span><span class="n">eta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-q">
+<h3>Calculation of q<a class="headerlink" href="#calculation-of-q" title="Permalink to this headline">¶</a></h3>
+<p>The buying rate <span class="math notranslate nohighlight">\(q\)</span>, as a function of labor market tightness <span class="math notranslate nohighlight">\(x\)</span>, is:</p>
+<p><span class="math notranslate nohighlight">\(q(x(t)) = \frac{h(t)}{v(t)}=\omega x(t)^{-\eta}.\)</span>        <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">q_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">omega</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-tau">
+<h3>Calculation of <span class="math notranslate nohighlight">\(\tau\)</span><a class="headerlink" href="#calculation-of-tau" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\tau\)</span> is the recruiter-producer ratio, where</p>
+<p><span class="math notranslate nohighlight">\(\tau(x) = \frac{\rho s}{q(x) - \rho s}. \)</span>              <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tau_func</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">*</span><span class="n">rho</span><span class="o">/</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">s</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-output-identity">
+<h3>Calculation of Output Identity<a class="headerlink" href="#calculation-of-output-identity" title="Permalink to this headline">¶</a></h3>
+<p>Since output consists of government spending and consumption, we have the following identities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GY_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">GC</span><span class="p">:</span><span class="n">GC</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">GC</span><span class="p">)</span> <span class="c1"># G/Y</span>
+<span class="n">CY_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">GC</span><span class="p">:</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY</span><span class="p">(</span><span class="n">GC</span><span class="p">)</span>  <span class="c1"># C/Y</span>
+<span class="n">GC_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">GY</span><span class="p">:</span><span class="n">GY</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY</span><span class="p">)</span> <span class="c1"># G/C</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-m">
+<h3>Calculation of <span class="math notranslate nohighlight">\(m\)</span><a class="headerlink" href="#calculation-of-m" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m\)</span> is the theoretical unemployment multiplier, which measures the response of unemployment to changes in public consumption. <span class="math notranslate nohighlight">\(m\)</span> is calculated by using the following equation:</p>
+<p><span class="math notranslate nohighlight">\( m = \frac{(1-u)\cdot M}{1- \frac{G}{Y}\cdot \frac{\eta}{1-\eta}\cdot \frac{\tau}{u}\cdot M},\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2026-purple?logo=read-the-docs" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">m_func</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">GY</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">M</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY</span><span class="o">*</span><span class="n">eta</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">tau</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculation-of-z-0-and-z-1">
+<h3>Calculation of <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span><a class="headerlink" href="#calculation-of-z-0-and-z-1" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span> can be calculated by using the following equations:</p>
+<p><span class="math notranslate nohighlight">\(z_0 = \frac{1}{(1-\eta)(1-\bar{u})^2},\)</span>         <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201315-purple?logo=read-the-docs" /></a></p>
+<p>and</p>
+<p><span class="math notranslate nohighlight">\(z_1 = \frac{\overline{g/y}\cdot \overline{c/y}}{\bar{u}}.\)</span>           <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201316-purple?logo=read-the-docs" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">z0_func</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">u_bar</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">z1_func</span><span class="p">(</span><span class="n">GY_bar</span><span class="p">,</span> <span class="n">u_bar</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">GY_bar</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY_bar</span><span class="p">)</span><span class="o">/</span><span class="n">u_bar</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="simulations.html" title="previous page">Simulations</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pascal Michaillat and Haoyu Sheng<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

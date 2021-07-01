@@ -3,7 +3,7 @@
 
 # # Simulations
 # 
-# This section simulates the calibrated model in response to aggregate-demand shocks and aggregate-supply shocks and calculates optimal government spending. 
+# This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks. 
 # 
 # The simulations are based on Section 5 in Michaillat and Saez ([2019](https://www.pascalmichaillat.org/6.html))
 
@@ -37,16 +37,15 @@ get_ipython().run_line_magic('run', 'calibration-sim.ipynb')
 
 
 # ## Simulations of Business Cycles
-# ### Aggregate Demand Shocks
-# We first run business cycle simulations under aggregate demand shocks, fixing the public expenditure policy at $G/Y = 16.5\%$. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search. 
+# We first simulate business cycle simulations using aggregate demand shocks, fixing the public expenditure policy at $G/Y = 16.5\%$. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search. 
 
 # In[4]:
 
 
 # Range of aggregate demand
-ALPHA = np.arange(start=0.97, step=0.0025, stop=1.03) 
+ALPHA = np.arange(start=0.97, step=0.005, stop=1.03) 
 # Grid to search for equilibrium tightness x
-x0 = np.arange(start=0.001, step=0.0002, stop=2) 
+x0 = np.arange(start=0.001, step=0.001, stop=2) 
 xad, Gad = np.empty(len(ALPHA)), np.empty(len(ALPHA))
 G0 = GY_bar*Y(x0)	# G such that G/Y=16.5%
 for i, alpha in enumerate(ALPHA):
@@ -81,53 +80,9 @@ ad_axes[1, 1].set(xlabel='Aggregate Demand', ylabel='Public Expenditure, % of GD
 ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 
-# ### Public Spending Shocks
-# We then run business-cycle simulations under public spending shocks. We compute equilibrium variables for a range of public spending to output ratios $G/Y$.
-
-# In[7]:
-
-
-# Range of public expenditure G/Y
-GY0 = np.arange(start=0.07, step=0.00005, stop=0.25) 
-xgy, Ggy = np.empty(len(GY0)), np.empty(len(GY0))
-for i, gy in enumerate(GY0):
-    # Find G such that G/Y=gy
-    G0 = gy*Y(x0)
-    eva = findeq(G0, x0, 1)
-    ind = np.argmin(eva)
-    # Record equlibrium tightness and public expenditure
-    xgy[i]=x0[ind]
-    Ggy[i]=G0[ind]
-
-
-# And we compute all other macro variables of interest:
-
-# In[8]:
-
-
-gy = pd.DataFrame({'Y': Y(xgy),'u': u(xgy), 'M':M(Ggy, xgy), 'G/Y':Ggy/Y(xgy)},index=GY0)
-
-
-# We will then examine equilibria under different government spending shocks:
-
-# In[9]:
-
-
-gy_axes = gy.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
-                legend=False, figsize=(10, 10), grid=True, color='red')
-gy_axes[0, 0].set(xlabel=r'Public Expenditure $G/Y$', ylabel='Output = measured productivity')
-gy_axes[0, 1].set(xlabel=r'Public Expenditure $G/Y$', ylabel='Unemployment/idleness rate')
-gy_axes[0, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
-gy_axes[0, 1].xaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
-gy_axes[1, 0].set(xlabel=r'Public Expenditure $G/Y$', ylabel='Output multiplier (dY/dG)')
-gy_axes[1, 1].set(xlabel=r'Public Expenditure $G/Y$', ylabel='Public Expenditure, % of GDP')
-gy_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
-gy_axes[1, 1].xaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
-
-
-# ## Optimal Stimulus Under Aggregate Demand Shocks
+# ## Optimal Stimulus
 # 
-# In this section, we calculate optimal stimulus under aggregate demand shocks. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. We then calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.
+# In this section, we calculate optimal stimulus over the business cycle. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. We then calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.
 
 # ### Exact Optimal Stimulus
 # 
@@ -138,16 +93,18 @@ gy_axes[1, 1].xaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # 
 # 
 
-# In[10]:
+# In[7]:
 
 
 optimal = lambda G, x:abs(1 - MRS(G/(Y(x) - G)) - dlnydlnx(x)*dlnxdlng(G, x)*Y(x)/G)
 
 
-# In[11]:
+# In[8]:
 
 
 xoptimal, Goptimal = np.empty(len(ALPHA)), np.empty(len(ALPHA))
+# We now use grid search over a 2-d grid to find eq G and x
+GY0 = np.arange(start=0.07, step=0.0005, stop=0.25) 
 x1, GY1 = np.meshgrid(x0, GY0)
 G1 = GY1*Y(x1)
 for i, alpha in enumerate(ALPHA):
@@ -166,7 +123,7 @@ for i, alpha in enumerate(ALPHA):
 
 # We can now calculate other macroeconomic variables. 
 
-# In[12]:
+# In[9]:
 
 
 exact_opt = pd.DataFrame({'Y': Y(xoptimal),'u': u(xoptimal), 'M':M(Goptimal, xoptimal), 'G/Y':Goptimal/Y(xoptimal)}, index=ALPHA)
@@ -174,7 +131,7 @@ exact_opt = pd.DataFrame({'Y': Y(xoptimal),'u': u(xoptimal), 'M':M(Goptimal, xop
 
 # We can see how these variables compare to when $G/Y = 16.5\%$: 
 
-# In[13]:
+# In[10]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -200,7 +157,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 #                 
 # We can use this formula to calculate optimal stimulus in response to the shocks above.
 
-# In[14]:
+# In[11]:
 
 
 suffstat = lambda G, x:epsilon*z0*m(G,x)/(1 + z1*z0*epsilon*m(G,x)**2)
@@ -208,7 +165,7 @@ suffstat = lambda G, x:epsilon*z0*m(G,x)/(1 + z1*z0*epsilon*m(G,x)**2)
 
 # We then compute optimal stimulus in response to aggregate demand shocks:
 
-# In[15]:
+# In[12]:
 
 
 xsuffstat, Gsuffstat = np.empty(len(ALPHA)), np.empty(len(ALPHA))
@@ -226,13 +183,13 @@ for i, alpha in enumerate(ALPHA):
 
 # We compute the other macroeconomics variables and compare them with when $G/Y$ is fixed at $16.5\%$
 
-# In[16]:
+# In[13]:
 
 
 ss = pd.DataFrame({'Y': Y(xsuffstat),'u': u(xsuffstat), 'M':M(Gsuffstat, xsuffstat), 'G/Y':Gsuffstat/Y(xsuffstat)},index=ALPHA)
 
 
-# In[17]:
+# In[14]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -252,7 +209,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # We can also compare the exact solution with the solution given by the sufficient-statistics formula:
 
-# In[18]:
+# In[15]:
 
 
 ss_ax = ss['G/Y'].plot(label='Optimal G: Sufficient Statistics', grid=True)

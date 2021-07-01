@@ -1,10 +1,13 @@
 # In _toc.yml
 format: jb-book
 root: book
-chapters:
-  - file: markdown/optimal-stimulus
-    sections:
-      - file: notebooks/calibration-suffstat
-      - file: notebooks/stimulus
-      - file: notebooks/calibration-sim
-      - file: notebooks/simulations
+parts:
+  - caption: Public-Expenditure
+    chapters:
+      - file: markdown/optimal-stimulus
+        sections:
+          - file: notebooks/calibration-suffstat
+          - file: notebooks/stimulus
+          - file: notebooks/calibration-sim
+          - file: notebooks/simulations
+      - file: notebooks/helpers
