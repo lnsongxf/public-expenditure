@@ -248,6 +248,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mtick</span>
+<span class="o">%</span><span class="k">run</span> helpers.ipynb
 </pre></div>
 </div>
 </div>
@@ -257,43 +258,73 @@
 <p>First, we load the calibrated parameter values from our previous section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="o">%</span><span class="n">run</span> <span class="n">calibration</span><span class="o">.</span><span class="n">ipynb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params
+<span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.03557894736842106,
+ &#39;u_bar&#39;: 0.05974999999999999,
+ &#39;x_bar&#39;: 0.557752047505985,
+ &#39;GC_bar&#39;: 0.19191729280673472,
+ &#39;M_bar&#39;: 0.5,
+ &#39;M_bar_l&#39;: 0,
+ &#39;M_bar_h&#39;: 2,
+ &#39;epsilon&#39;: 1,
+ &#39;epsilon_h&#39;: 1.5,
+ &#39;epsilon_l&#39;: 0.5,
+ &#39;eta&#39;: 0.6,
+ &#39;eta_l&#39;: 0.5,
+ &#39;eta_h&#39;: 0.7,
+ &#39;omega&#39;: 0.7071671173494025,
+ &#39;rho&#39;: 1.080804575426955,
+ &#39;tau&#39;: 0.03873194401199106,
+ &#39;m&#39;: 0.4702564229442872,
+ &#39;z0&#39;: 2.827830175507158,
+ &#39;z1&#39;: 2.2609135556386306}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setting <span class="math notranslate nohighlight">\(u_0 = 9\%\)</span> and <span class="math notranslate nohighlight">\(\eta = 0.6\)</span>, we first calculate <span class="math notranslate nohighlight">\(m\)</span>’s for a given range of <span class="math notranslate nohighlight">\(M\)</span>’s:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="mf">0.09</span>
+<span class="n">M_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar_l&#39;</span><span class="p">],</span> <span class="n">stop</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar_h&#39;</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">m_vals</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;eta&#39;</span><span class="p">],</span> <span class="n">u</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">],</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">]),</span> <span class="n">tau</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>We now calculate optimal stimulus with the following equation:</p>
 <p><span class="math notranslate nohighlight">\(\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs" /></a></p>
+<p>For convenience of calculating optimal stimulus as percentage of GDP for different <span class="math notranslate nohighlight">\(\epsilon\)</span>’s, we define the following wrapper:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function calculates the optimal government spending to private consumption ratio</span>
-<span class="n">GC_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">u0</span><span class="p">:</span><span class="n">z0</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">m_func</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z1</span><span class="o">*</span><span class="n">z0</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">m_func</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u0</span><span class="o">-</span><span class="n">u_bar</span><span class="p">)</span><span class="o">/</span><span class="n">u_bar</span> <span class="o">*</span> <span class="n">GC_bar</span> <span class="o">+</span> <span class="n">GC_bar</span>
-<span class="c1"># This functio ncomputes the optimal government spending as percentage of GDP. </span>
-<span class="n">stim_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">u0</span><span class="p">:</span><span class="n">GY_func</span><span class="p">(</span><span class="n">GC_func</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">u0</span><span class="p">))</span> <span class="o">-</span> <span class="n">GY_bar</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stim_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">epsilon</span><span class="p">:</span><span class="n">GY_func</span><span class="p">((</span><span class="n">suffstat_func</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m_vals</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">],</span> <span class="n">z1</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;z1&#39;</span><span class="p">],</span>
+                                                  <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">u0</span><span class="p">,</span> <span class="n">u_bar</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">GY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Setting <span class="math notranslate nohighlight">\(u_0 = 9\%\)</span> and <span class="math notranslate nohighlight">\(\eta = 0.6\)</span>, let’s look at what the optimal stimulus is for different <span class="math notranslate nohighlight">\(M\)</span>’s and <span class="math notranslate nohighlight">\(\epsilon\)</span>’s:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="mf">0.09</span>
-<span class="n">stim_vals</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">u0</span><span class="p">)</span>
-<span class="n">stim_vals_h</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon_h</span><span class="p">,</span> <span class="n">u0</span><span class="p">)</span>
-<span class="n">stim_vals_l</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon_l</span><span class="p">,</span> <span class="n">u0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stim_vals</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon&#39;</span><span class="p">])</span>
+<span class="n">stim_vals_h</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon_h&#39;</span><span class="p">])</span>
+<span class="n">stim_vals_l</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon_l&#39;</span><span class="p">])</span>
 <span class="n">stim_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span>
-                          <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">epsilon_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals_h</span><span class="p">,</span> 
-                                <span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">epsilon</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals</span><span class="p">,</span>
-                                <span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">epsilon_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals_l</span><span class="p">})</span>
+                          <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;epsilon_h&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals_h</span><span class="p">,</span> 
+                                <span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals</span><span class="p">,</span>
+                                <span class="sa">f</span><span class="s1">&#39;$\epsilon = $</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;epsilon_l&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">stim_vals_l</span><span class="p">})</span>
 <span class="n">stim_range_ax</span> <span class="o">=</span> <span class="n">stim_range</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Optimal Stimulus Spending&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
-<span class="n">stim_range_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Unemployment Multiplier&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Optimal stimulus spending (</span><span class="si">% o</span><span class="s1">f GDP)&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">))</span>
+<span class="n">stim_range_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Unemployment Multiplier&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Optimal stimulus spending (</span><span class="si">% o</span><span class="s1">f GDP)&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">])</span>
 <span class="n">stim_range_ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mtick</span><span class="o">.</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/stimulus_7_0.png" src="../_images/stimulus_7_0.png" />
+<img alt="../_images/stimulus_8_0.png" src="../_images/stimulus_8_0.png" />
 </div>
 </div>
 </div>

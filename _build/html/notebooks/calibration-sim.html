@@ -226,27 +226,7 @@
   <a class="reference internal nav-link" href="#additional-parameters">
    Additional Parameters
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#supply-side-generic-badge">
-   Supply Side
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#demand-side-and-equilibrium-generic-badge">
-   Demand Side and Equilibrium
-  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#utility-function-generic-badge">
-     Utility Function
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#unemployment-multipliers-generic-badge">
-     Unemployment Multipliers
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#equilibrium-tightness-and-public-spending">
      Equilibrium Tightness and Public Spending
@@ -268,6 +248,27 @@
   <div class="section" id="additional-calibration">
 <h1>Additional Calibration<a class="headerlink" href="#additional-calibration" title="Permalink to this headline">¶</a></h1>
 <p>This section implements additional calibration of the supply and demand side of the matching model. The additional calibration calculates additional parameters such as target macroeconomic variables, price rigidities, and different elasticities on the supply and demand sides that are needed for the simulations.</p>
+<p>First, we read in the calibrated parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params
+<span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="mi">45</span><span class="n">f76379ec01</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="s1">&#39;-r params&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">params</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;u_bar&#39;</span><span class="p">]]</span>
+
+<span class="ne">TypeError</span>: unhashable type: &#39;list&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="additional-parameters">
 <h2>Additional Parameters<a class="headerlink" href="#additional-parameters" title="Permalink to this headline">¶</a></h2>
 <p>We want to first calculate the additional parameters needed for the simulations.</p>
@@ -279,27 +280,16 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># normalization</span>
-<span class="n">Y_bar</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u_bar</span><span class="p">)</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">GC_bar</span><span class="p">)</span> 
+<span class="n">Y_bar</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">])</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>For convenience, we define the functions to calculate key macroeconomic variables  <span class="math notranslate nohighlight">\(G/Y, C/Y\)</span>, and <span class="math notranslate nohighlight">\(G/C\)</span>. The expressions for them simply follow from accounting identity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GY</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:</span><span class="n">gc</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gc</span><span class="p">)</span> <span class="c1"># G/Y</span>
-<span class="n">CY</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>  <span class="c1"># C/Y</span>
-<span class="n">GC</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">GY</span><span class="p">:</span><span class="n">GY</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">GY</span><span class="p">)</span> <span class="c1"># G/C</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We then use these functions to calculate target macroeconomic variables.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GY_bar</span> <span class="o">=</span> <span class="n">GY</span><span class="p">(</span><span class="n">GC_bar</span><span class="p">)</span>
-<span class="n">CY_bar</span> <span class="o">=</span> <span class="n">CY</span><span class="p">(</span><span class="n">GC_bar</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GY_bar</span> <span class="o">=</span> <span class="n">GY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span>
+<span class="n">CY_bar</span> <span class="o">=</span> <span class="n">CY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span>
 <span class="n">G_bar</span> <span class="o">=</span> <span class="n">GY_bar</span><span class="o">*</span><span class="n">Y_bar</span>
 <span class="n">C_bar</span> <span class="o">=</span> <span class="n">CY_bar</span><span class="o">*</span><span class="n">Y_bar</span>
 </pre></div>
@@ -312,140 +302,25 @@
 <p><span class="math notranslate nohighlight">\(r = \frac{(1-\gamma)\epsilon M}{1 - \gamma M} = \frac{\overline{C/Y}\epsilon M}{1 - \overline{G/Y} M}.\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">M_bar</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">CY_bar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">M_bar</span><span class="o">*</span><span class="n">GY_bar</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">CY_bar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">GY_bar</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We now move to derive functions that are useful for finding equilibrium labor market tightness and government spending. We do this by looking at both the supply side and the demand side of the economy.</p>
-</div>
-<div class="section" id="supply-side-generic-badge">
-<h2>Supply Side   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Section%202.2-purple?logo=read-the-docs" /></a><a class="headerlink" href="#supply-side-generic-badge" title="Permalink to this headline">¶</a></h2>
-<p>We set up the following functions for the supply side of our model.</p>
-<p>The buying rate <span class="math notranslate nohighlight">\(q\)</span>, as a function of labor market tightness <span class="math notranslate nohighlight">\(x\)</span>, is:</p>
-<p><span class="math notranslate nohighlight">\(q(x(t)) = \frac{h(t)}{v(t)}=\omega x(t)^{-\eta}.\)</span>        <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs" /></a></p>
-<p>The selling rate <span class="math notranslate nohighlight">\(f\)</span>, as a function of labor market tightness <span class="math notranslate nohighlight">\(x\)</span>, is:</p>
-<p><span class="math notranslate nohighlight">\(f(x) = \omega x^{1-\eta}.\)</span>             <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs" /></a></p>
-<p>The matching wedge <span class="math notranslate nohighlight">\(\tau\)</span> is:</p>
-<p><span class="math notranslate nohighlight">\(\tau(x) = \frac{\rho s}{q(x) - \rho s}, \)</span>             <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs" /></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">omega</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span> <span class="c1">#buying rate</span>
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">omega</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span> <span class="c1">#selling rate</span>
-<span class="n">tau</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">s</span><span class="o">*</span><span class="n">rho</span><span class="o">/</span><span class="p">(</span><span class="n">q</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">s</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span> <span class="c1">#matching wedge</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dUdc_bar</span> <span class="o">=</span> <span class="n">dUdc</span><span class="p">(</span><span class="n">GC_bar</span><span class="p">)</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">dUdc_bar</span><span class="o">**</span><span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tau_bar</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can also calculate the elasticity of output to tightness.</p>
-<p>First, we have that unemployment rate is:</p>
-<p><span class="math notranslate nohighlight">\(u(x) = \frac{s}{s+f(x)}.\)</span>              <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%202-purple?logo=read-the-docs" /></a></p>
-<p>Also, output is given by:</p>
-<p><span class="math notranslate nohighlight">\(Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k.\)</span>    <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs" /></a></p>
-<p>Thus, the elasticity of output to tightness is:</p>
-<p><span class="math notranslate nohighlight">\(\frac{d\ln{y}}{d\ln{x}} = (1-\eta) * u(x) - \eta * \tau(x).\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">s</span><span class="o">/</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># unemployment rate</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="n">k</span>  <span class="c1"># output</span>
 <span class="n">dlnydlnx</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="mi">1</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">tau</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1">#elasticity of output to tightness</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="demand-side-and-equilibrium-generic-badge">
-<h2>Demand Side and Equilibrium   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Appendix%20A-purple?logo=read-the-docs" /></a><a class="headerlink" href="#demand-side-and-equilibrium-generic-badge" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="utility-function-generic-badge">
-<h3>Utility Function   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%20A1~A2-purple?logo=read-the-docs" /></a><a class="headerlink" href="#utility-function-generic-badge" title="Permalink to this headline">¶</a></h3>
-<p>Given the elasticity of substitution between private and public consumption <span class="math notranslate nohighlight">\(\epsilon\)</span>, we have the following CES utility function:</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{U}(c, g) = \left((1-\gamma)^{1/\epsilon}c^{(\epsilon-1)/\epsilon} + \gamma ^{1/\epsilon}g^{(\epsilon - 1)/\epsilon}\right)^{\epsilon/(\epsilon - 1)}.\)</span>            <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%208-purple?logo=read-the-docs" /></a></p>
-<p>When <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, the utility function is Cobb-Douglas:</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{U}(c,g) = \frac{c^{1-\gamma} g^{\gamma}}{(1-\gamma)^{1-\gamma}\gamma^\gamma}.\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">epsilon</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">scalar</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="n">gamma</span><span class="o">**</span><span class="n">gamma</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">**</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">/</span><span class="n">scalar</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">g</span><span class="p">:((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="p">((</span><span class="n">epsilon</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span> <span class="o">+</span> 
-                     <span class="n">gamma</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">**</span><span class="p">((</span><span class="n">epsilon</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="n">epsilon</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>With the given utility function, we have the following first derivatives:</p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}} = (1-\gamma)^{{1/\epsilon}} \left(\frac{c}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon},\)</span></p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta \ln{\mathcal{U}}}{\delta \ln{g}} = \gamma^{{1/\epsilon}} \left(\frac{g}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_g \equiv \frac{\delta \mathcal{U}}{\delta g} = \left(\gamma \frac{\mathcal{U}}{g}\right)^{1/\epsilon}.\)</span>           <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs" /></a></p>
-<p>which gives the marginal rate of substitution:</p>
-<p><span class="math notranslate nohighlight">\(MRS_{gc} = \frac{\mathcal{U}_g}{\mathcal{U}_c}  = \frac{\gamma^{1/\epsilon}}{(1-\gamma)^{1/\epsilon}}*(gc)^{1/\epsilon}.\)</span></p>
-<p>We also have the following second derivatives:</p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{c}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta c} -1 \right),\)</span></p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta g} \right).\)</span>                        <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%20A2-purple?logo=read-the-docs" /></a></p>
-<p>These derivatives are useful for calculating unemployment multipliers.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dUdc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:((</span><span class="mi">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">gc</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">dUdc_bar</span> <span class="o">=</span> <span class="n">dUdc</span><span class="p">(</span><span class="n">GC_bar</span><span class="p">)</span>
-<span class="n">dUdg</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:(</span><span class="n">gamma</span><span class="o">*</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gc</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">MRS</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:</span><span class="n">gamma</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">*</span><span class="n">gc</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">dlnUdlnc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">gc</span><span class="p">))</span><span class="o">**</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">dlnUdlng</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:</span><span class="n">gamma</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gc</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span><span class="p">)</span>
-<span class="n">dlnUcdlnc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:(</span><span class="n">dlnUdlnc</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span>
-<span class="n">dlnUcdlng</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gc</span><span class="p">:</span><span class="n">dlnUdlng</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span><span class="o">/</span><span class="n">epsilon</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="unemployment-multipliers-generic-badge">
-<h3>Unemployment Multipliers   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%20A2~A3-purple?logo=read-the-docs" /></a><a class="headerlink" href="#unemployment-multipliers-generic-badge" title="Permalink to this headline">¶</a></h3>
-<p>We now move on to compute the theoretical unemployment multiplier and the output multiplier.</p>
-<p>First, we want to compute the effect of public consumption on the price of services, which requires us to look at the price mechanism. It is rigid since it does not respond to demand shocks, and is an expression of the multiplier:</p>
-<p><span class="math notranslate nohighlight">\(p(G) = p_0 \left\{ (1-\gamma) + \gamma ^{\frac{1}{\epsilon}}\left[(1-\gamma)\frac{g}{y^*-g}\right]^{\frac{\epsilon-1}{\epsilon}}\right \}^\frac{1-r}{\epsilon - 1}.\)</span>   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2015-purple?logo=read-the-docs" /></a></p>
-<p>which gives us:</p>
-<p><span class="math notranslate nohighlight">\(\frac{d\ln{p}}{d\ln{g}} = (1-r) \left[ \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{g}} - \frac{G}{y^* - G} \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{c}}  \right].\)</span>      <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A4-purple?logo=read-the-docs" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial price level</span>
-<span class="n">p0</span> <span class="o">=</span> <span class="n">dUdc_bar</span><span class="o">**</span><span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tau_bar</span><span class="p">)</span> 
-<span class="n">p</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">:</span><span class="n">p0</span><span class="o">*</span><span class="n">dUdc</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y_bar</span><span class="o">-</span><span class="n">G</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span>
-<span class="n">dlnpdlng</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">:(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">dlnUcdlng</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y_bar</span> <span class="o">-</span> <span class="n">G</span><span class="p">))</span> <span class="o">-</span> <span class="n">dlnUcdlnc</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y_bar</span> <span class="o">-</span> <span class="n">G</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y_bar</span> <span class="o">-</span> <span class="n">G</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we want to compute the effects of public consumption and tightness on private demand, which are:</p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta\ln{c}}{\delta \ln{x}} = \frac{\eta \tau(x)}{\delta \ln{\mathcal{U}_c}/\delta\ln(c)},\)</span>                        <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A6-purple?logo=read-the-docs" /></a></p>
-<p>and</p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta\ln{c}}{\delta \ln{g}} = \frac{d \ln{p}/d\ln(g) - \delta \ln{\mathcal{U}_c}/\delta\ln(g)}{\delta \ln{\mathcal{U}_c}/\delta\ln(c)}.\)</span>                   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A7-purple?logo=read-the-docs" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dlncdlnx</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">eta</span><span class="o">*</span><span class="n">tau</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">dlnUcdlnc</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">G</span><span class="p">))</span>
-<span class="n">dlncdlng</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:(</span><span class="n">dlnpdlng</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">-</span><span class="n">dlnUcdlng</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">G</span><span class="p">)))</span><span class="o">/</span><span class="n">dlnUcdlnc</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">G</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can also determine the effect of public consumption on equilibrium tightness, which is:</p>
-<p><span class="math notranslate nohighlight">\(\frac{\delta\ln{x}}{\delta \ln{g}} = \frac{(g/y) + (c/y)\delta\ln{c}/\delta\ln{g}}{\delta\ln{y}/\delta\ln{x} - (c/y)\delta\ln{c}/\delta\ln{x}}.\)</span>                   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A9-purple?logo=read-the-docs" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dlnxdlng</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:(</span><span class="n">G</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">G</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="n">dlncdlng</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">dlnydlnx</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">G</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="n">dlncdlnx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Thus, we can compute the theoretical unemployment multiplier</p>
-<p><span class="math notranslate nohighlight">\(m = (1-\eta) (1-u) u \frac{y}{g}\frac{d\ln{x}}{d\ln{g}},\)</span></p>
-<p>and the empirical unemployment multiplier</p>
-<p><span class="math notranslate nohighlight">\(M = \frac{m}{1- u + \frac{g}{y}\frac{\eta}{1-\eta}\frac{\tau}{u}m}.\)</span>                         <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A11-purple?logo=read-the-docs" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="n">dlnxdlng</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">G</span> 
-<span class="n">M</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">m</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">G</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">tau</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="p">)</span><span class="o">/</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">m</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>

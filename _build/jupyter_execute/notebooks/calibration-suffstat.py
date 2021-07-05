@@ -413,7 +413,8 @@ z1
 
 params = {'s':s, 'u_bar':u_bar, 'x_bar':x_bar, 'GC_bar':GC_bar, 
           'M_bar':M_bar, 'M_bar_l':M_bar_l, 'M_bar_h':M_bar_h,
-          'epsilon':epsilon, 'eta':eta, 'eta_l':eta_l, 'eta_h':eta_h,
+          'epsilon':epsilon, 'epsilon_h':epsilon_h, 'epsilon_l':epsilon_l,
+          'eta':eta, 'eta_l':eta_l, 'eta_h':eta_h,
           'omega':omega, 'rho':rho, 'tau':tau, 'm':m, 'z0':z0, 'z1':z1}
 get_ipython().run_line_magic('store', 'params')
 
