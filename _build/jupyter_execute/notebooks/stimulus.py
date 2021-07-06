@@ -20,7 +20,7 @@ get_ipython().run_line_magic('run', 'helpers.ipynb')
 # 
 # First, we load the calibrated parameter values from our previous section.
 
-# In[2]:
+# In[9]:
 
 
 get_ipython().run_line_magic('store', '-r params')
@@ -29,12 +29,12 @@ params
 
 # Setting $u_0 = 9\%$ and $\eta = 0.6$, we first calculate $m$'s for a given range of $M$'s:
 
-# In[3]:
+# In[10]:
 
 
 u0 = 0.09
 M_vals = np.linspace(start=params['M_bar_l'], stop=params['M_bar_h'], num=101)
-m_vals = m_func(M=M_vals, eta=params['eta'], u=params['u_bar'], GY=GY_func(params['GC_bar']), tau=params['tau'])
+m_vals = m_func(which='M', M=M_vals, u=params['u_bar'], GY=GY_func(params['GC_bar']), **params)
 
 
 # We now calculate optimal stimulus with the following equation:
@@ -43,14 +43,14 @@ m_vals = m_func(M=M_vals, eta=params['eta'], u=params['u_bar'], GY=GY_func(param
 # 
 # For convenience of calculating optimal stimulus as percentage of GDP for different $\epsilon$'s, we define the following wrapper:
 
-# In[4]:
+# In[16]:
 
 
 stim_func = lambda epsilon:GY_func((suffstat_func(m=m_vals, z0=params['z0'], z1=params['z1'],
                                                   epsilon=epsilon, u0=u0, u_bar=params['u_bar']) + 1)*params['GC_bar']) - GY_func(params['GC_bar'])
 
 
-# In[6]:
+# In[17]:
 
 
 stim_vals = stim_func(epsilon=params['epsilon'])

@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Helper Functions
-# 
-# This section serves as a directory of the functions that are used in our calculations. 
-# 
-# # To-DOs
-# - Clean up title/organization
-# - finish calculating m
-# - taking in params as argument instead of individual parameter
+# # Helper Functions
+# 
+# This
 
 # ## Model Parameters
 
@@ -23,7 +18,7 @@
 #      
 # where $e$ is the average job-search effort, which is normalized to $1$. 
 
-# In[1]:
+# In[2]:
 
 
 def omega_func(eta, x_bar, u_bar, e=1):
@@ -41,7 +36,7 @@ def omega_func(eta, x_bar, u_bar, e=1):
 #                 $\rho = \frac{\omega x^{-\eta}\tau}{(1+\tau)s}.$
 #                 
 
-# In[2]:
+# In[3]:
 
 
 def rho_func(eta, s, u, x, omega, tau):
@@ -57,7 +52,7 @@ def rho_func(eta, s, u, x, omega, tau):
 # 
 #                 $\bar{\tau} = \frac{(1-\eta)\bar{u}}{\eta}.$ 
 
-# In[3]:
+# In[4]:
 
 
 def tau_bar_func(eta, u_bar):
@@ -71,10 +66,11 @@ def tau_bar_func(eta, u_bar):
 #                 $q(x(t)) = \frac{h(t)}{v(t)}=\omega x(t)^{-\eta}.$        [![Generic badge](https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 #                 
 
-# In[4]:
+# In[5]:
 
 
-def q_func(x, omega, eta):
+def q_func(x, **params):
+    omega, eta = params['omega'], params['eta']
     return omega*x**(-eta)
 
 
@@ -88,10 +84,11 @@ def q_func(x, omega, eta):
 # 
 #                 $f(x) = \omega x^{1-\eta}.$             [![Generic badge](https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html) 
 
-# In[1]:
+# In[6]:
 
 
-def u_func(x, s, eta, omega):
+def u_func(x, **params):
+    s, eta, omega = params['s'], params['eta'], params['omega']
     f = omega*x**(1 - eta)
     return s/(s + f)
 
@@ -101,66 +98,53 @@ def u_func(x, s, eta, omega):
 # 
 #                 $\tau(x) = \frac{\rho s}{q(x) - \rho s}. $              [![Generic badge](https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html) 
 
-# In[5]:
+# In[7]:
 
 
-def tau_func(x, s, rho, q):
-    return s*rho/(q - s*rho)
-
-
-# ### $z_0$ and $z_1$
-# 
-# $z_0$ and $z_1$ can be calculated by using the following equations:
-# 
-#                 $z_0 = \frac{1}{(1-\eta)(1-\bar{u})^2},$         [![Generic badge](https://img.shields.io/badge/MS19-p.%201315-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
-# 
-# and 
-# 
-# 
-#                 $z_1 = \frac{\overline{g/y}\cdot \overline{c/y}}{\bar{u}}.$           [![Generic badge](https://img.shields.io/badge/MS19-p.%201316-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
-
-# In[8]:
-
-
-def z0_func(eta, u_bar):
-    return 1/((1 - eta)*(1 - u_bar)**2)
-def z1_func(GY_bar, u_bar):
-    return GY_bar*(1 - GY_bar)/u_bar
+def tau_func(x, **params):
+    s, rho = params['s'], params['rho']
+    return s*rho/(q_func(x=x, **params) - s*rho)
 
 
 # ## Output Identity
 # 
-# ### Output
+# ### $Y$
 # 
 
-# In[6]:
+# Output $Y$ is given by:
+# 
+#                 $Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k.$                [![Generic badge](https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)    
+
+# In[9]:
 
 
 def Y_func(x, **params):
     s, eta, omega, k = params['s'], params['eta'], params['omega'], params['k']
-    return (1 - u_func(x=x, eta=eta, omega=omega, s=s))*k
+    return (1 - u_func(x=x, **params))*k
 
 
-# ### Effect of Tightness on Output
+# ### $\frac{d\ln{y}}{d\ln{x}}$
 # 
-# From the output equation, we have:
+# From the output equation, the effect of tightness on output $\frac{d\ln{y}}{d\ln{x}}$ is:
 # 
 #                 $\frac{d\ln{y}}{d\ln{x}} = (1-\eta) * u(x) - \eta * \tau(x).$
 
-# In[ ]:
+# In[10]:
 
 
+def dlnydlnx_func(x, **params):
+    eta = params['eta']
+    return (1 - eta)*u_func(x=x, **params) - eta*tau_func(x=x, **params)
 
 
+# ### $G/Y, C/Y$ and $G/C$
+# Since output consists of government spending and consumption, we have the following identities for different consumption ratios:
 
-# ### Ratios between Different Types of Consumption
-# Since output consists of government spending and consumption, we have the following identities:
-
-# In[ ]:
+# In[11]:
 
 
 GY_func = lambda GC:GC/(1 + GC) # G/Y
-CY_func = lambda GC:1 - GY(GC)  # C/Y
+CY_func = lambda GC:1 - GY_func(GC)  # C/Y
 GC_func = lambda GY:GY/(1 - GY) # G/C
 
 
@@ -178,7 +162,7 @@ GC_func = lambda GY:GY/(1 - GY) # G/C
 #                 $\mathcal{U}(c,g) = \frac{c^{1-\gamma} g^{\gamma}}{(1-\gamma)^{1-\gamma}\gamma^\gamma}.$
 # 
 
-# In[2]:
+# In[12]:
 
 
 def U_func(c, g, **params):
@@ -191,34 +175,34 @@ def U_func(c, g, **params):
                 gamma**(1/epsilon)*g**((epsilon - 1)/epsilon))**(epsilon/(epsilon - 1))
 
 
-# ### Marginal Utility of Private Consumption
-
-# From our utility function, we have:
+# ### $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}}$ and $\mathcal{U}_c$
+# 
+# $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}}$ and $\mathcal{U}_c$ are the (linearized) marginal utility of private consumption. From our utility function, we have:
 # 
 #                 $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}} = (1-\gamma)^{{1/\epsilon}} \left(\frac{c}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon}.$           [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[4]:
+# In[13]:
 
 
 def dUdc_func(gc, **params):
     epsilon, gamma = params['epsilon'], params['gamma']
-    return ((1-gamma)*U_func(1,gc))**(1/epsilon)
-def dlnUdlnc(gc, **params):
+    return ((1-gamma)*U_func(c=1, g=gc, **params))**(1/epsilon)
+def dlnUdlnc_func(gc, **params):
     epsilon, gamma = params['epsilon'], params['gamma']
-    return (1 - gamma)**(1/epsilon)*(U(1, gc))**((1 - epsilon)/epsilon)
+    return (1 - gamma)**(1/epsilon)*(U_func(c=1, g=gc, **params))**((1 - epsilon)/epsilon)
 
 
-# ### Marginal Utility of Public Consumption
-# From our utility, we have:
+# ### $\mathcal{U}_g$
+# $\mathcal{U}_g$ is the marginal utility of public consumption
 # 
 #                 $\mathcal{U}_g \equiv \frac{\delta \mathcal{U}}{\delta g} = \left(\gamma \frac{\mathcal{U}}{g}\right)^{1/\epsilon}.$           [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[5]:
+# In[14]:
 
 
 def dlnUdlng_func(gc, **params):
     epsilon, gamma = params['epsilon'], params['gamma']
-    return gamma**(1/epsilon)*(U(1/gc, 1))**((1 - epsilon)/epsilon)
+    return gamma**(1/epsilon)*(U_func(1/gc, 1, **params))**((1 - epsilon)/epsilon)
 
 
 # ### Marginal Rate of Substitution
@@ -228,7 +212,7 @@ def dlnUdlng_func(gc, **params):
 #                 $MRS_{gc} = \frac{\mathcal{U}_g}{\mathcal{U}_c}  = \frac{\gamma^{1/\epsilon}}{(1-\gamma)^{1/\epsilon}}*(gc)^{1/\epsilon}.$
 #                
 
-# In[16]:
+# In[15]:
 
 
 def MRS_func(gc, **params):
@@ -236,15 +220,15 @@ def MRS_func(gc, **params):
     return gamma**(1/epsilon)/(1-gamma)**(1/epsilon)*gc**(-1/epsilon)
 
 
-# ### Derivatives of Marginal Utility of Private Consumption
+# ###  $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{c}}$ and $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}}$
 # 
-# We also have the following:
+# $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{c}}$ and $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}}$ are the effects of public and private consumption on the marginal utility of private consumption. We also have the following:
 # 
 #                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{c}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta c} -1 \right),$                      
 # 
 #                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta g} \right).$                        [![Generic badge](https://img.shields.io/badge/MS19-p.%20A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[4]:
+# In[16]:
 
 
 def dlnUcdlnc_func(gc, **params):
@@ -257,13 +241,13 @@ def dlnUcdlng_func(gc, **params):
 
 # ## Prices  [![Generic badge](https://img.shields.io/badge/MS19-p.%20A2~A3-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
-# ### Price Mechanism
+# ### $p(G)$
 # 
-# We have the foloowing price mechanism. It is rigid since it does not respond to demand shocks, and is an expression of the multiplier:
+# $p(G)$ is our price mechanism. It is rigid since it does not respond to demand shocks, and is an expression of the multiplier:
 # 
 #                 $p(G) = p_0 \left\{ (1-\gamma) + \gamma ^{\frac{1}{\epsilon}}\left[(1-\gamma)\frac{g}{y^*-g}\right]^{\frac{\epsilon-1}{\epsilon}}\right \}^\frac{1-r}{\epsilon - 1}.$   [![Generic badge](https://img.shields.io/badge/MS19-Eq%2015-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[2]:
+# In[17]:
 
 
 def p_func(G, **params):
@@ -271,32 +255,25 @@ def p_func(G, **params):
     return p0*dUdc_func(gc=G/(Y_bar-G), **params)**(1 - r)
 
 
-# ### Effects of Public Consumption on Prices
+# ### $\frac{d\ln{p}}{d\ln{g}}$
 # 
-# From the price mechanism, we have:
+# $\frac{d\ln{p}}{d\ln{g}}$ denotes the effects of public consumption on prices. From the price mechanism, we have:
 # 
 #                 $\frac{d\ln{p}}{d\ln{g}} = (1-r) \left[ \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{g}} - \frac{G}{y^* - G} \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{c}}  \right].$      [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A4-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[ ]:
+# In[19]:
 
 
 def dlnpdlng_func(G, **params):
     r,  Y_bar = params['r'],  params['Y_bar']
-    return (1 - r)*(dlnUcdlng_func(gc=G/(Y_bar - G), **params) - dlnUcdlnc(gc=G/(Y_bar - G), params)*(G/(Y_bar - G)))
+    return (1 - r)*(dlnUcdlng_func(gc=G/(Y_bar - G), **params) - dlnUcdlnc_func(gc=G/(Y_bar - G), **params)*(G/(Y_bar - G)))
 
 
 # ## Unemployment Multipliers
-# ### $m$
 # 
-# $m$ is the theoretical unemployment multiplier, which measures the response of unemployment to changes in public consumption. $m$ can be calculated in two ways. For a given $M$, $m$ can be calculated as:
+# ### $\frac{\delta\ln{x}}{\delta \ln{g}}$
 # 
-#                 $ m = \frac{(1-u)\cdot M}{1- \frac{G}{Y}\cdot \frac{\eta}{1-\eta}\cdot \frac{\tau}{u}\cdot M},$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2026-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
-
-# $m$ can also be calculated with the effect of public consumption on equilibrium tightness:
-# 
-#                 $m = (1-\eta) (1-u) u \frac{y}{g}\frac{d\ln{x}}{d\ln{g}}.$     [![Generic badge](https://img.shields.io/badge/MS19-Eq%2021-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
-# 
-# The effect of public consumption on equilibrium tightness is given by the following equation:
+# Before calculating $m$, we want to derive the effect of public consumption on equilibrium tightness is given by the following equation:
 # 
 #                 $\frac{\delta\ln{x}}{\delta \ln{g}} = \frac{(g/y) + (c/y)\delta\ln{c}/\delta\ln{g}}{\delta\ln{y}/\delta\ln{x} - (c/y)\delta\ln{c}/\delta\ln{x}},$    [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A9-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
@@ -307,7 +284,29 @@ def dlnpdlng_func(G, **params):
 # 
 #                 $\frac{\delta\ln{c}}{\delta \ln{g}} = \frac{d \ln{p}/d\ln(g) - \delta \ln{\mathcal{U}_c}/\delta\ln(g)}{\delta \ln{\mathcal{U}_c}/\delta\ln(c)}.$    [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A7-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[7]:
+# In[ ]:
+
+
+def dlnxdlng_func(G, x, **params):
+    eta = params['eta']
+    tau = tau_func(x=x, **params)
+    Y = Y_func(x=x, **params)
+    dlncdlnx = eta*tau/dlnUcdlnc_func(gc=G/(Y-G), **params)
+    dlncdlng = (dlnpdlng_func(G=G, **params)-dlnUcdlng_func(gc=G/(Y - G), **params))/dlnUcdlnc_func(gc=G/(Y - G), **params)
+    return (G/Y + (1 - G/Y)*dlncdlng)/(dlnydlnx_func(x=x, **params) - (1-G/Y)*dlncdlnx)
+
+
+# ### $m$
+# 
+# $m$ is the theoretical unemployment multiplier, which measures the response of unemployment to changes in public consumption. $m$ can be calculated in two ways. For a given $M$, $m$ can be calculated as:
+# 
+#                 $ m = \frac{(1-u)\cdot M}{1- \frac{G}{Y}\cdot \frac{\eta}{1-\eta}\cdot \frac{\tau}{u}\cdot M},$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2026-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+
+# $m$ can also be calculated with the effect of public consumption on equilibrium tightness:
+# 
+#                 $m = (1-\eta) (1-u) u \frac{y}{g}\frac{d\ln{x}}{d\ln{g}}.$     [![Generic badge](https://img.shields.io/badge/MS19-Eq%2021-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+
+# In[20]:
 
 
 def m_func(which, **params):
@@ -315,14 +314,13 @@ def m_func(which, **params):
         u, M, GY, eta, tau = params['u'], params['M'], params['GY'], params['eta'], params['tau']
         return (1 - u)*M/(1 - GY*eta/(1 - eta)*tau/u*M)
     elif which == 'dlnxdlng':
-        G, x, s, rho, omega, eta = params['G'], params['x'], params['s'], params['rho'], params['omega'], params['eta']
-        q = q_func(x=x, omega=omega, eta=eta)
-        u = u_func(x=x, s=s, eta=eta, omega=omega)
-        tau = tau_func(s=s, rho=rho, q=q)
-        dlncdlnx = eta*tau/dlnUcdlnc_func(gc=G/(Y(x)-G), **params)
-        dlncdlng = (dlnpdlng_func(G=G, **params)-dlnUcdlng_func(gc=G/(Y(x)-G), **params))/dlnUcdlnc_func(gc=G/(Y(x)-G), **params)
-        dlnxdlng = (G/Y(x) + (1 - G/Y(x))*dlncdlng)/(dlnydlnx(x=x, **params) - (1-G/Y(x))*dlncdlnx)
-        return (1 - eta)*u*(1 - u)*dlnxdlng*Y_func(x)/G 
+        G, x, eta = params['G'], params['x'], params['eta']
+        q = q_func(**params)
+        u = u_func(**params)
+        tau = tau_func(**params)
+        Y = Y_func(**params)
+        dlnxdlng = dlnxdlng_func(**params)
+        return (1 - eta)*u*(1 - u)*dlnxdlng*Y/G 
 
 
 # ### $M$
@@ -331,14 +329,16 @@ def m_func(which, **params):
 #                 $M = \frac{m}{1- u + \frac{g}{y}\frac{\eta}{1-\eta}\frac{\tau}{u}m}.$                         [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A11-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
 
-# In[20]:
+# In[21]:
 
 
-def M_func(G, x):
-    s, rho, omega, eta = params['s'], params['rho'], params['omega'], params['eta']
-    q = q_func(x=x, omega=omega, eta=eta)
-    u = u_func(x=x, s=s, eta=eta, omega=omega)
-    return m(G, x)/(1 - u + G/Y(x)*eta*tau(s=s, rho=rho, q=q)/(1 - eta)/u*m(G, x))
+def M_func(G, x, **params):
+    eta = params['eta']
+    q = q_func(x=x, **params)
+    u = u_func(x=x, **params)
+    tau = tau_func(x=x, **params)
+    m = m_func(which='dlnxdlng', G=G, x=x, **params)
+    return m/(1 - u + G/Y_func(x, **params)*eta*tau/(1 - eta)/u*m)
 
 
 # ## Calculating Equilibrium Labor Market Tightness
@@ -346,49 +346,44 @@ def M_func(G, x):
 # To determine equilibrium under different aggregate demand/government spending, we need to find where aggreagte demand is equal to aggregate supply, which happens when 
 # 
 #                 $\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}$                       [![Generic badge](https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
-#                 
-# First, we derive the marginal utility of consumption. 
 # 
-# Given the elasticity of substitution between private and public consumption $\epsilon$, we have the following CES utility function:
-# 
-# 
-#                 $\mathcal{U}(c, g) = \left((1-\gamma)^{1/\epsilon}c^{(\epsilon-1)/\epsilon} + \gamma ^{1/\epsilon}g^{(\epsilon - 1)/\epsilon}\right)^{\epsilon/(\epsilon - 1)}.$            [![Generic badge](https://img.shields.io/badge/MS19-Eq%208-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
-# 
-# When $\epsilon = 1$, the utility function is Cobb-Douglas:
-# 
-#                 $\mathcal{U}(c,g) = \frac{c^{1-\gamma} g^{\gamma}}{(1-\gamma)^{1-\gamma}\gamma^\gamma}.$
-# 
-# This gives us that:
-# 
-#                 $\mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon}.$
-#                 
-# We also have the following pricing mechanism:
-# 
-#                 $p(G) = p_0 \left\{ (1-\gamma) + \gamma ^{\frac{1}{\epsilon}}\left[(1-\gamma)\frac{g}{y^*-g}\right]^{\frac{\epsilon-1}{\epsilon}}\right \}^\frac{1-r}{\epsilon - 1}.$   [![Generic badge](https://img.shields.io/badge/MS19-Eq%2015-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
-#                 
 # We now define the following function such that the function returns zero when the economy is at equilibrium.
 
-# In[ ]:
+# In[23]:
 
 
 def find_eq(G, x, alpha, **params):
     s, rho, omega, eta = params['s'], params['rho'], params['omega'], params['eta']
-    q = q_func(x=x, omega=omega, eta=eta)
-    return abs(dUdc_func(G/(Y_func(x) - G, params)) - ((1 + tau(s=s, rho=rho, q=q))*p(G)/alpha))
+    return abs(dUdc_func(G/(Y_func(x, **params) - G), **params) - ((1 + tau_func(x=x, **params))*p_func(G, **params)/alpha))
 
 
 # ## Optimal Stimulus
 # 
+# ### Exact Optimal Stimulus
+# 
+# Optimal public expenditure satisfy the Samuelson rule pluse an correction term:
+# 
+#                 $1 = MRS_{gc} + \frac{\delta y}{\delta x}\frac{d x}{\delta g}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2018-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
+# 
+
+# In[ ]:
+
+
+def optimal_func(G, x, **params):
+    return abs(1 - MRS_func(gc=G/(Y_func(x, **params) - G), **params) - dlnydlnx_func(x=x, **params)*dlnxdlng_func(G=G, x=x, **params)*Y_func(x=x, **params)/G)
+
+
 # ### The Sufficient Statistics Approach
 # 
 # The sufficient-statistics formula is as follows:
 # 
 #                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 
-# In[ ]:
+# In[24]:
 
 
-def suffstat_func(u0, u_bar, z0, z1, m, epsilon):
+def suffstat_func(u0, m, **params):
+    u_bar, z0, z1, epsilon = params['u_bar'], params['z0'], params['z1'], params['epsilon']
     du = (u0 - u_bar)/u_bar
     return epsilon*z0*m/(1 + z1*z0*epsilon*m**2)*du
 

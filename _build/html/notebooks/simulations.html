@@ -278,27 +278,53 @@
 </div>
 <div class="section" id="calibration">
 <h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
-<p>We first run <code class="docutils literal notranslate"><span class="pre">calibration.ipynb</span></code> to attain parameters needed for the sufficient statistics formula. All calibrated values based on US data between 2001-01-01 and 2019-12-31:</p>
+<p>We first retrieve our calibrated parameter values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="o">%</span><span class="n">run</span> <span class="n">calibration</span><span class="o">-</span><span class="n">suffstat</span><span class="o">.</span><span class="n">ipynb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params_full
+<span class="o">%</span><span class="k">run</span> helpers.ipynb
+<span class="n">params_full</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.03557894736842106,
+ &#39;u_bar&#39;: 0.05974999999999999,
+ &#39;x_bar&#39;: 0.557752047505985,
+ &#39;GC_bar&#39;: 0.19191729280673472,
+ &#39;M_bar&#39;: 0.5,
+ &#39;M_bar_l&#39;: 0,
+ &#39;M_bar_h&#39;: 2,
+ &#39;epsilon&#39;: 1,
+ &#39;epsilon_h&#39;: 1.5,
+ &#39;epsilon_l&#39;: 0.5,
+ &#39;eta&#39;: 0.6,
+ &#39;eta_l&#39;: 0.5,
+ &#39;eta_h&#39;: 0.7,
+ &#39;omega&#39;: 0.7071671173494025,
+ &#39;rho&#39;: 1.080804575426955,
+ &#39;tau&#39;: 0.03873194401199106,
+ &#39;m_bar&#39;: 0.5100528390820994,
+ &#39;z0&#39;: 2.827830175507158,
+ &#39;z1&#39;: 2.2609135556386306,
+ &#39;GY_bar&#39;: 0.16101561237928397,
+ &#39;k&#39;: 1,
+ &#39;Y_bar&#39;: 0.94025,
+ &#39;gamma&#39;: 0.16101561237928397,
+ &#39;r&#39;: 0.4562215934340785,
+ &#39;p0&#39;: 0.9627122818016041}
 </pre></div>
 </div>
 </div>
 </div>
 <p>We now run the additional calibration as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> calibration-sim.ipynb
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="simulations-of-business-cycles">
 <h2>Simulations of Business Cycles<a class="headerlink" href="#simulations-of-business-cycles" title="Permalink to this headline">¶</a></h2>
 <p>We first simulate business cycle simulations using aggregate demand shocks, fixing the public expenditure policy at <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search.</p>
+<p>The equation we rely on for finding equilibrium labor market tightness is the following:</p>
+<p><span class="math notranslate nohighlight">\(\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}.\)</span>                       <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs" /></a></p>
+<p>We find values of <span class="math notranslate nohighlight">\(x\)</span> that equate the two sides of the equation using the function <code class="docutils literal notranslate"><span class="pre">find_eq</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Range of aggregate demand</span>
@@ -306,9 +332,9 @@
 <span class="c1"># Grid to search for equilibrium tightness x</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
 <span class="n">xad</span><span class="p">,</span> <span class="n">Gad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">))</span>
-<span class="n">G0</span> <span class="o">=</span> <span class="n">GY_bar</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>	<span class="c1"># G such that G/Y=16.5%</span>
+<span class="n">G0</span> <span class="o">=</span> <span class="n">params_full</span><span class="p">[</span><span class="s1">&#39;GY_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span> <span class="c1"># G such that G/Y=16.5%</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">):</span>
-    <span class="n">eva</span> <span class="o">=</span> <span class="n">findeq</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">eva</span> <span class="o">=</span> <span class="n">find_eq</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="c1"># Finding where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">)</span>
     <span class="c1"># Record equlibrium tightness and public expenditure</span>
@@ -321,7 +347,10 @@
 <p>We then compute all other equilibrium variables with <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span> under the aggregate demand shocks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">(</span><span class="n">xad</span><span class="p">),</span><span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="n">xad</span><span class="p">),</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M</span><span class="p">(</span><span class="n">Gad</span><span class="p">,</span> <span class="n">xad</span><span class="p">),</span> <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Gad</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">xad</span><span class="p">)},</span><span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">xad</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
+                   <span class="s1">&#39;u&#39;</span><span class="p">:</span><span class="n">u_func</span><span class="p">(</span><span class="n">xad</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                   <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M_func</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">Gad</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">xad</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                   <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Gad</span><span class="o">/</span><span class="n">Y_func</span><span class="p">(</span><span class="n">xad</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -341,7 +370,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_11_0.png" src="../_images/simulations_11_0.png" />
+<img alt="../_images/simulations_10_0.png" src="../_images/simulations_10_0.png" />
 </div>
 </div>
 </div>
@@ -354,25 +383,18 @@
 <p><span class="math notranslate nohighlight">\(1 = MRS_{gc} + \frac{\delta y}{\delta x}\frac{d x}{\delta g}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2018-purple?logo=read-the-docs" /></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimal</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">MRS</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">G</span><span class="p">))</span> <span class="o">-</span> <span class="n">dlnydlnx</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">dlnxdlng</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">G</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xoptimal</span><span class="p">,</span> <span class="n">Goptimal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">))</span>
 <span class="c1"># We now use grid search over a 2-d grid to find eq G and x</span>
 <span class="n">GY0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span> 
 <span class="n">x1</span><span class="p">,</span> <span class="n">GY1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">GY0</span><span class="p">)</span>
-<span class="n">G1</span> <span class="o">=</span> <span class="n">GY1</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">G1</span> <span class="o">=</span> <span class="n">GY1</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">):</span>
-    <span class="n">eva</span> <span class="o">=</span> <span class="n">findeq</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">eva</span> <span class="o">=</span> <span class="n">find_eq</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">G1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="c1"># Finding where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">x2</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
-    <span class="n">G2</span> <span class="o">=</span> <span class="n">GY0</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
-    <span class="n">eva</span> <span class="o">=</span> <span class="n">optimal</span><span class="p">(</span><span class="n">G2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+    <span class="n">G2</span> <span class="o">=</span> <span class="n">GY0</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="n">eva</span> <span class="o">=</span> <span class="n">optimal_func</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">G2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="c1"># Finding where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">)</span>
     <span class="c1"># Record equlibrium tightness and public expenditure</span>
@@ -385,7 +407,10 @@
 <p>We can now calculate other macroeconomic variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_opt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">(</span><span class="n">xoptimal</span><span class="p">),</span><span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="n">xoptimal</span><span class="p">),</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M</span><span class="p">(</span><span class="n">Goptimal</span><span class="p">,</span> <span class="n">xoptimal</span><span class="p">),</span> <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Goptimal</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">xoptimal</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_opt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xoptimal</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
+                          <span class="s1">&#39;u&#39;</span><span class="p">:</span><span class="n">u_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xoptimal</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                          <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M_func</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">Goptimal</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">xoptimal</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                          <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Goptimal</span><span class="o">/</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xoptimal</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -410,7 +435,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_19_0.png" src="../_images/simulations_19_0.png" />
+<img alt="../_images/simulations_17_0.png" src="../_images/simulations_17_0.png" />
 </div>
 </div>
 </div>
@@ -418,23 +443,15 @@
 <h3>The Sufficient-Statistics Approach<a class="headerlink" href="#the-sufficient-statistics-approach" title="Permalink to this headline">¶</a></h3>
 <p>Recall</p>
 <p><span class="math notranslate nohighlight">\(\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs" /></a></p>
-<p>We can use this formula to calculate optimal stimulus in response to the shocks above.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suffstat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">epsilon</span><span class="o">*</span><span class="n">z0</span><span class="o">*</span><span class="n">m</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">z1</span><span class="o">*</span><span class="n">z0</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">m</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>We then compute optimal stimulus in response to aggregate demand shocks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsuffstat</span><span class="p">,</span> <span class="n">Gsuffstat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">):</span>
-    <span class="n">du</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">u_bar</span><span class="p">)</span><span class="o">/</span><span class="n">u_bar</span>
-    <span class="n">suffstat0</span> <span class="o">=</span> <span class="n">suffstat</span><span class="p">(</span><span class="n">Gad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">du</span>
-    <span class="n">G0</span> <span class="o">=</span> <span class="n">GY</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">suffstat0</span><span class="p">)</span><span class="o">*</span><span class="n">GC_bar</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
-    <span class="n">eva</span> <span class="o">=</span> <span class="n">findeq</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u_func</span><span class="p">(</span><span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="n">suffstat0</span> <span class="o">=</span> <span class="n">suffstat_func</span><span class="p">(</span><span class="n">u0</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;dlnxdlng&#39;</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">Gad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="n">G0</span> <span class="o">=</span> <span class="n">GY_func</span><span class="p">(</span><span class="n">GC</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">suffstat0</span><span class="p">)</span><span class="o">*</span><span class="n">params_full</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="n">eva</span> <span class="o">=</span> <span class="n">find_eq</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="c1"># Finding where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">)</span>
     <span class="c1"># Record equlibrium tightness and public expenditure</span>
@@ -447,7 +464,10 @@
 <p>We compute the other macroeconomics variables and compare them with when <span class="math notranslate nohighlight">\(G/Y\)</span> is fixed at <span class="math notranslate nohighlight">\(16.5\%\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">(</span><span class="n">xsuffstat</span><span class="p">),</span><span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="n">xsuffstat</span><span class="p">),</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M</span><span class="p">(</span><span class="n">Gsuffstat</span><span class="p">,</span> <span class="n">xsuffstat</span><span class="p">),</span> <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Gsuffstat</span><span class="o">/</span><span class="n">Y</span><span class="p">(</span><span class="n">xsuffstat</span><span class="p">)},</span><span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
+                   <span class="s1">&#39;u&#39;</span><span class="p">:</span><span class="n">u_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                   <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="n">M_func</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">Gsuffstat</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> 
+                   <span class="s1">&#39;G/Y&#39;</span><span class="p">:</span><span class="n">Gsuffstat</span><span class="o">/</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,7 +491,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_26_0.png" src="../_images/simulations_26_0.png" />
+<img alt="../_images/simulations_23_0.png" src="../_images/simulations_23_0.png" />
 </div>
 </div>
 <p>We can also compare the exact solution with the solution given by the sufficient-statistics formula:</p>
@@ -486,10 +506,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x184fbcea760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x18e782937f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/simulations_28_1.png" src="../_images/simulations_28_1.png" />
+<img alt="../_images/simulations_25_1.png" src="../_images/simulations_25_1.png" />
 </div>
 </div>
 </div>

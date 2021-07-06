@@ -280,7 +280,7 @@
  &#39;omega&#39;: 0.7071671173494025,
  &#39;rho&#39;: 1.080804575426955,
  &#39;tau&#39;: 0.03873194401199106,
- &#39;m&#39;: 0.4702564229442872,
+ &#39;m_bar&#39;: 0.5100528390820994,
  &#39;z0&#39;: 2.827830175507158,
  &#39;z1&#39;: 2.2609135556386306}
 </pre></div>
@@ -292,7 +292,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="mf">0.09</span>
 <span class="n">M_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar_l&#39;</span><span class="p">],</span> <span class="n">stop</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar_h&#39;</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
-<span class="n">m_vals</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;eta&#39;</span><span class="p">],</span> <span class="n">u</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">],</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">]),</span> <span class="n">tau</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])</span>
+<span class="n">m_vals</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">],</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_func</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

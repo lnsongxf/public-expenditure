@@ -20,26 +20,28 @@ from itertools import product
 
 # ## Calibration
 # 
-# We first run `calibration.ipynb` to attain parameters needed for the sufficient statistics formula. All calibrated values based on US data between 2001-01-01 and 2019-12-31:
+# We first retrieve our calibrated parameter values
 
 # In[2]:
 
 
-get_ipython().run_cell_magic('capture', '', '%run calibration-suffstat.ipynb')
+get_ipython().run_line_magic('store', '-r params_full')
+get_ipython().run_line_magic('run', 'helpers.ipynb')
+params_full
 
 
 # We now run the additional calibration as follows:
 
-# In[3]:
-
-
-get_ipython().run_line_magic('run', 'calibration-sim.ipynb')
-
-
 # ## Simulations of Business Cycles
 # We first simulate business cycle simulations using aggregate demand shocks, fixing the public expenditure policy at $G/Y = 16.5\%$. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search. 
+# 
+# The equation we rely on for finding equilibrium labor market tightness is the following: 
+# 
+#                 $\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}.$                       [![Generic badge](https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+# 
+# We find values of $x$ that equate the two sides of the equation using the function `find_eq`.
 
-# In[4]:
+# In[3]:
 
 
 # Range of aggregate demand
@@ -47,9 +49,9 @@ ALPHA = np.arange(start=0.97, step=0.005, stop=1.03)
 # Grid to search for equilibrium tightness x
 x0 = np.arange(start=0.001, step=0.001, stop=2) 
 xad, Gad = np.empty(len(ALPHA)), np.empty(len(ALPHA))
-G0 = GY_bar*Y(x0)	# G such that G/Y=16.5%
+G0 = params_full['GY_bar']*Y_func(x0, **params_full) # G such that G/Y=16.5%
 for i, alpha in enumerate(ALPHA):
-    eva = findeq(G0, x0, alpha)
+    eva = find_eq(G0, x0, alpha, **params_full)
     # Finding where AS = AD
     ind = np.argmin(eva)
     # Record equlibrium tightness and public expenditure
@@ -59,15 +61,18 @@ for i, alpha in enumerate(ALPHA):
 
 # We then compute all other equilibrium variables with $G/Y = 16.5\%$ under the aggregate demand shocks. 
 
-# In[5]:
+# In[4]:
 
 
-ad = pd.DataFrame({'Y': Y(xad),'u': u(xad), 'M':M(Gad, xad), 'G/Y':Gad/Y(xad)},index=ALPHA)
+ad = pd.DataFrame({'Y':Y_func(xad, **params_full),
+                   'u':u_func(xad, **params_full), 
+                   'M':M_func(G=Gad, x=xad, **params_full), 
+                   'G/Y':Gad/Y_func(xad, **params_full)}, index=ALPHA)
 
 
 # Let's first look at equilibria under aggregate demand shocks:
 
-# In[6]:
+# In[5]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -93,27 +98,21 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # 
 # 
 
-# In[7]:
-
-
-optimal = lambda G, x:abs(1 - MRS(G/(Y(x) - G)) - dlnydlnx(x)*dlnxdlng(G, x)*Y(x)/G)
-
-
-# In[8]:
+# In[6]:
 
 
 xoptimal, Goptimal = np.empty(len(ALPHA)), np.empty(len(ALPHA))
 # We now use grid search over a 2-d grid to find eq G and x
 GY0 = np.arange(start=0.07, step=0.0005, stop=0.25) 
 x1, GY1 = np.meshgrid(x0, GY0)
-G1 = GY1*Y(x1)
+G1 = GY1*Y_func(x1, **params_full)
 for i, alpha in enumerate(ALPHA):
-    eva = findeq(G1, x1, alpha)
+    eva = find_eq(G=G1, x=x1, alpha=alpha, **params_full)
     # Finding where AS = AD
     ind = np.argmin(eva, axis=1)
     x2 = x0[ind]
-    G2 = GY0*Y(x2)
-    eva = optimal(G2, x2)
+    G2 = GY0*Y_func(x2, **params_full)
+    eva = optimal_func(G=G2, x=x2, **params_full)
     # Finding where AS = AD
     ind = np.argmin(eva)
     # Record equlibrium tightness and public expenditure
@@ -123,15 +122,18 @@ for i, alpha in enumerate(ALPHA):
 
 # We can now calculate other macroeconomic variables. 
 
-# In[9]:
+# In[7]:
 
 
-exact_opt = pd.DataFrame({'Y': Y(xoptimal),'u': u(xoptimal), 'M':M(Goptimal, xoptimal), 'G/Y':Goptimal/Y(xoptimal)}, index=ALPHA)
+exact_opt = pd.DataFrame({'Y':Y_func(x=xoptimal, **params_full),
+                          'u':u_func(x=xoptimal, **params_full), 
+                          'M':M_func(G=Goptimal, x=xoptimal, **params_full), 
+                          'G/Y':Goptimal/Y_func(x=xoptimal, **params_full)}, index=ALPHA)
 
 
 # We can see how these variables compare to when $G/Y = 16.5\%$: 
 
-# In[10]:
+# In[8]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -154,26 +156,18 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # Recall 
 # 
 #                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
-#                 
-# We can use this formula to calculate optimal stimulus in response to the shocks above.
-
-# In[11]:
-
-
-suffstat = lambda G, x:epsilon*z0*m(G,x)/(1 + z1*z0*epsilon*m(G,x)**2)
-
 
 # We then compute optimal stimulus in response to aggregate demand shocks:
 
-# In[12]:
+# In[9]:
 
 
 xsuffstat, Gsuffstat = np.empty(len(ALPHA)), np.empty(len(ALPHA))
 for i, alpha in enumerate(ALPHA):
-    du = (u(xad[i])-u_bar)/u_bar
-    suffstat0 = suffstat(Gad[i], xad[i])*du
-    G0 = GY((1 + suffstat0)*GC_bar)*Y(x0)
-    eva = findeq(G0, x0, alpha)
+    u = u_func(xad[i], **params_full)
+    suffstat0 = suffstat_func(u0=u, m=m_func(which='dlnxdlng', G=Gad[i], x=xad[i], **params_full), **params_full)
+    G0 = GY_func(GC=(1 + suffstat0)*params_full['GC_bar'])*Y_func(x0, **params_full)
+    eva = find_eq(G0, x0, alpha, **params_full)
     # Finding where AS = AD
     ind = np.argmin(eva)
     # Record equlibrium tightness and public expenditure
@@ -183,13 +177,16 @@ for i, alpha in enumerate(ALPHA):
 
 # We compute the other macroeconomics variables and compare them with when $G/Y$ is fixed at $16.5\%$
 
-# In[13]:
+# In[10]:
 
 
-ss = pd.DataFrame({'Y': Y(xsuffstat),'u': u(xsuffstat), 'M':M(Gsuffstat, xsuffstat), 'G/Y':Gsuffstat/Y(xsuffstat)},index=ALPHA)
+ss = pd.DataFrame({'Y':Y_func(x=xsuffstat, **params_full),
+                   'u':u_func(x=xsuffstat, **params_full), 
+                   'M':M_func(G=Gsuffstat, x=xsuffstat, **params_full), 
+                   'G/Y':Gsuffstat/Y_func(x=xsuffstat, **params_full)}, index=ALPHA)
 
 
-# In[14]:
+# In[11]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -209,7 +206,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # We can also compare the exact solution with the solution given by the sufficient-statistics formula:
 
-# In[15]:
+# In[12]:
 
 
 ss_ax = ss['G/Y'].plot(label='Optimal G: Sufficient Statistics', grid=True)
