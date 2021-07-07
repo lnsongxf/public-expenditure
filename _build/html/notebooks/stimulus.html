@@ -256,22 +256,23 @@
 <div class="section" id="calculating-optimal-stimulus">
 <h2>Calculating Optimal Stimulus<a class="headerlink" href="#calculating-optimal-stimulus" title="Permalink to this headline">¶</a></h2>
 <p>First, we load the calibrated parameter values from our previous section.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">params</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.03557894736842106,
- &#39;u_bar&#39;: 0.05974999999999999,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.035578947368421,
+ &#39;u_bar&#39;: 0.0597499999999999,
  &#39;x_bar&#39;: 0.557752047505985,
- &#39;GC_bar&#39;: 0.19191729280673472,
+ &#39;GC_bar&#39;: 0.1919172928067347,
  &#39;M_bar&#39;: 0.5,
- &#39;M_bar_l&#39;: 0,
- &#39;M_bar_h&#39;: 2,
- &#39;epsilon&#39;: 1,
+ &#39;M_bar_l&#39;: 0.0,
+ &#39;M_bar_h&#39;: 2.0,
+ &#39;epsilon&#39;: 1.0,
  &#39;epsilon_h&#39;: 1.5,
  &#39;epsilon_l&#39;: 0.5,
  &#39;eta&#39;: 0.6,
@@ -279,10 +280,11 @@
  &#39;eta_h&#39;: 0.7,
  &#39;omega&#39;: 0.7071671173494025,
  &#39;rho&#39;: 1.080804575426955,
- &#39;tau&#39;: 0.03873194401199106,
+ &#39;tau&#39;: 0.038731944011991,
  &#39;m_bar&#39;: 0.5100528390820994,
  &#39;z0&#39;: 2.827830175507158,
- &#39;z1&#39;: 2.2609135556386306}
+ &#39;z1&#39;: 2.2609135556386306,
+ &#39;GY_bar&#39;: 0.1610156123792839}
 </pre></div>
 </div>
 </div>

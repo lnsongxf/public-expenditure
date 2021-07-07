@@ -5,7 +5,7 @@
 # 
 # This section computes the optimal level of public expenditure for any given current unemployment rate by using the sufficient-statistics formula.
 
-# In[1]:
+# In[11]:
 
 
 # %load setup.py
@@ -20,16 +20,17 @@ get_ipython().run_line_magic('run', 'helpers.ipynb')
 # 
 # First, we load the calibrated parameter values from our previous section.
 
-# In[9]:
+# In[12]:
 
 
-get_ipython().run_line_magic('store', '-r params')
+params = pd.read_csv('output/params_suffstat.csv')
+params = dict(params.values)
 params
 
 
 # Setting $u_0 = 9\%$ and $\eta = 0.6$, we first calculate $m$'s for a given range of $M$'s:
 
-# In[10]:
+# In[13]:
 
 
 u0 = 0.09
@@ -43,14 +44,14 @@ m_vals = m_func(which='M', M=M_vals, u=params['u_bar'], GY=GY_func(params['GC_ba
 # 
 # For convenience of calculating optimal stimulus as percentage of GDP for different $\epsilon$'s, we define the following wrapper:
 
-# In[16]:
+# In[14]:
 
 
 stim_func = lambda epsilon:GY_func((suffstat_func(m=m_vals, z0=params['z0'], z1=params['z1'],
                                                   epsilon=epsilon, u0=u0, u_bar=params['u_bar']) + 1)*params['GC_bar']) - GY_func(params['GC_bar'])
 
 
-# In[17]:
+# In[15]:
 
 
 stim_vals = stim_func(epsilon=params['epsilon'])

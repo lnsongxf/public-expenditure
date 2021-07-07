@@ -323,8 +323,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#storing-calibrated-parameter-values-and-functions">
-   Storing Calibrated Parameter Values and Functions
+  <a class="reference internal nav-link" href="#storing-calibrated-parameter-values">
+   Storing Calibrated Parameter Values
   </a>
  </li>
 </ul>
@@ -341,7 +341,7 @@
   <div class="section" id="calibration">
 <h1>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy, on average, is efficient.</p>
-<p>We fetch the data series from FRED. To do this, we use the <code class="docutils literal notranslate"><span class="pre">fredapi</span></code> package.</p>
+<p>Before we start, we first load the necessary libraries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load setup.py</span>
@@ -353,6 +353,7 @@
 </div>
 </div>
 </div>
+<p>We fetch the data series from FRED. To do this, we use the <code class="docutils literal notranslate"><span class="pre">fredapi</span></code> package. An API key is required. More information on API keys can be found <a class="reference external" href="https://research.stlouisfed.org/docs/api/api_key.html">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fredapi</span> <span class="kn">import</span> <span class="n">Fred</span>
@@ -399,7 +400,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/calibration-suffstat_10_0.png" src="../_images/calibration-suffstat_10_0.png" />
+<img alt="../_images/calibration-suffstat_11_0.png" src="../_images/calibration-suffstat_11_0.png" />
 </div>
 </div>
 <p>We now calibrate <span class="math notranslate nohighlight">\(s\)</span> and find that it is around <span class="math notranslate nohighlight">\(3.6\%\)</span>.</p>
@@ -437,7 +438,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/calibration-suffstat_16_0.png" src="../_images/calibration-suffstat_16_0.png" />
+<img alt="../_images/calibration-suffstat_17_0.png" src="../_images/calibration-suffstat_17_0.png" />
 </div>
 </div>
 <p>Taking the average gives us the calibrated value of <span class="math notranslate nohighlight">\(\bar{u}\)</span>, which is around <span class="math notranslate nohighlight">\(6\%\)</span>.</p>
@@ -483,7 +484,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 0, &#39;Year&#39;), Text(0, 0.5, &#39;x&#39;), (0.0, 1.4)]
 </pre></div>
 </div>
-<img alt="../_images/calibration-suffstat_22_1.png" src="../_images/calibration-suffstat_22_1.png" />
+<img alt="../_images/calibration-suffstat_23_1.png" src="../_images/calibration-suffstat_23_1.png" />
 </div>
 </div>
 <p>We now calibrate the steady-state labor market tightness <span class="math notranslate nohighlight">\(\bar{x}\)</span> and find that it is around <span class="math notranslate nohighlight">\(0.56\)</span>.</p>
@@ -523,7 +524,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/calibration-suffstat_28_0.png" src="../_images/calibration-suffstat_28_0.png" />
+<img alt="../_images/calibration-suffstat_29_0.png" src="../_images/calibration-suffstat_29_0.png" />
 </div>
 </div>
 <p>We now calibrate the steady-state ratio <span class="math notranslate nohighlight">\(\overline{G/C}\)</span>, and find the average ratio between public and private employment to be around <span class="math notranslate nohighlight">\(19.2\%\)</span>.</p>
@@ -696,7 +697,7 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/calibration-suffstat_50_0.png" src="../_images/calibration-suffstat_50_0.png" />
+<img alt="../_images/calibration-suffstat_51_0.png" src="../_images/calibration-suffstat_51_0.png" />
 </div>
 </div>
 <p>When calculating the theoretical unemployment multiplier, we take <span class="math notranslate nohighlight">\(\tau\)</span> to be its long-run average, which is around <span class="math notranslate nohighlight">\(3.9\%\)</span>.</p>
@@ -758,10 +759,10 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x22447b09280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x1beca7f5a60&gt;
 </pre></div>
 </div>
-<img alt="../_images/calibration-suffstat_58_1.png" src="../_images/calibration-suffstat_58_1.png" />
+<img alt="../_images/calibration-suffstat_59_1.png" src="../_images/calibration-suffstat_59_1.png" />
 </div>
 </div>
 <p>As we can see, the choice of <span class="math notranslate nohighlight">\(\eta\)</span> within our specified range makes very little difference.</p>
@@ -800,8 +801,8 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 </div>
 </div>
 </div>
-<div class="section" id="storing-calibrated-parameter-values-and-functions">
-<h2>Storing Calibrated Parameter Values and Functions<a class="headerlink" href="#storing-calibrated-parameter-values-and-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="storing-calibrated-parameter-values">
+<h2>Storing Calibrated Parameter Values<a class="headerlink" href="#storing-calibrated-parameter-values" title="Permalink to this headline">¶</a></h2>
 <p>After calibrating the parameters, we store them in preparation for future usage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -810,12 +811,7 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
           <span class="s1">&#39;epsilon&#39;</span><span class="p">:</span><span class="n">epsilon</span><span class="p">,</span> <span class="s1">&#39;epsilon_h&#39;</span><span class="p">:</span><span class="n">epsilon_h</span><span class="p">,</span> <span class="s1">&#39;epsilon_l&#39;</span><span class="p">:</span><span class="n">epsilon_l</span><span class="p">,</span>
           <span class="s1">&#39;eta&#39;</span><span class="p">:</span><span class="n">eta</span><span class="p">,</span> <span class="s1">&#39;eta_l&#39;</span><span class="p">:</span><span class="n">eta_l</span><span class="p">,</span> <span class="s1">&#39;eta_h&#39;</span><span class="p">:</span><span class="n">eta_h</span><span class="p">,</span>
           <span class="s1">&#39;omega&#39;</span><span class="p">:</span><span class="n">omega</span><span class="p">,</span> <span class="s1">&#39;rho&#39;</span><span class="p">:</span><span class="n">rho</span><span class="p">,</span> <span class="s1">&#39;tau&#39;</span><span class="p">:</span><span class="n">tau</span><span class="p">,</span> <span class="s1">&#39;m_bar&#39;</span><span class="p">:</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;z0&#39;</span><span class="p">:</span><span class="n">z0</span><span class="p">,</span> <span class="s1">&#39;z1&#39;</span><span class="p">:</span><span class="n">z1</span><span class="p">,</span> <span class="s1">&#39;GY_bar&#39;</span><span class="p">:</span><span class="n">GY_bar</span><span class="p">}</span>
-<span class="o">%</span><span class="k">store</span> params
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored &#39;params&#39; (dict)
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span><span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">()})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

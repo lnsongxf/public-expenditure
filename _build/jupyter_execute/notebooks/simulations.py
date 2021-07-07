@@ -3,11 +3,11 @@
 
 # # Simulations
 # 
-# This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks. 
+# This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks. The simulations are based on Section 5 in Michaillat and Saez ([2019](https://www.pascalmichaillat.org/6.html))
 # 
-# The simulations are based on Section 5 in Michaillat and Saez ([2019](https://www.pascalmichaillat.org/6.html))
+# Before we start, we first set up the libraries and import the helper functions.
 
-# In[1]:
+# In[4]:
 
 
 # %load setup.py
@@ -16,32 +16,31 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as mtick
 from itertools import product
-
-
-# ## Calibration
-# 
-# We first retrieve our calibrated parameter values
-
-# In[2]:
-
-
-get_ipython().run_line_magic('store', '-r params_full')
 get_ipython().run_line_magic('run', 'helpers.ipynb')
+
+
+# We then retrieve our calibrated parameter values from the previous sections.
+
+# In[5]:
+
+
+params_suffstat = pd.read_csv('output/params_suffstat.csv')
+params_sim = pd.read_csv('output/params_sim.csv')
+params_full = pd.concat([params_suffstat, params_sim])
+params_full = dict(params_full.values)
 params_full
 
 
-# We now run the additional calibration as follows:
-
 # ## Simulations of Business Cycles
-# We first simulate business cycle simulations using aggregate demand shocks, fixing the public expenditure policy at $G/Y = 16.5\%$. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search. 
+# Fixing the public expenditure policy at $G/Y = 16.5\%$, we simulate business cycles using aggregate demand shocks. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search. 
 # 
 # The equation we rely on for finding equilibrium labor market tightness is the following: 
 # 
 #                 $\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}.$                       [![Generic badge](https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
-# We find values of $x$ that equate the two sides of the equation using the function `find_eq`.
+# We find values of $x$ that equate the two sides of the equation by using the function `find_eq`.
 
-# In[3]:
+# In[6]:
 
 
 # Range of aggregate demand
@@ -61,7 +60,7 @@ for i, alpha in enumerate(ALPHA):
 
 # We then compute all other equilibrium variables with $G/Y = 16.5\%$ under the aggregate demand shocks. 
 
-# In[4]:
+# In[7]:
 
 
 ad = pd.DataFrame({'Y':Y_func(xad, **params_full),
@@ -70,9 +69,9 @@ ad = pd.DataFrame({'Y':Y_func(xad, **params_full),
                    'G/Y':Gad/Y_func(xad, **params_full)}, index=ALPHA)
 
 
-# Let's first look at equilibria under aggregate demand shocks:
+# Let's first look at equilibria under aggregate demand shocks and fixed public expenditure:
 
-# In[5]:
+# In[8]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -87,18 +86,18 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # ## Optimal Stimulus
 # 
-# In this section, we calculate optimal stimulus over the business cycle. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. We then calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.
+# In this section, we calculate optimal stimulus over the business cycle. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. Second, we calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.
 
 # ### Exact Optimal Stimulus
 # 
-# We first calculate the exact optimal stimulus. We make use of the property where optimal public expenditure satisfy the Samuelson rule pluse an correction term:
+# We first calculate the exact optimal stimulus. We make use of the property where optimal public expenditure satisfies the Samuelson rule plus a correction term:
 # 
 #                 $1 = MRS_{gc} + \frac{\delta y}{\delta x}\frac{d x}{\delta g}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2018-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 # 
 # 
 # 
 
-# In[6]:
+# In[9]:
 
 
 xoptimal, Goptimal = np.empty(len(ALPHA)), np.empty(len(ALPHA))
@@ -120,9 +119,9 @@ for i, alpha in enumerate(ALPHA):
     Goptimal[i] = G2[ind]
 
 
-# We can now calculate other macroeconomic variables. 
+# We now calculate other macroeconomic variables. 
 
-# In[7]:
+# In[10]:
 
 
 exact_opt = pd.DataFrame({'Y':Y_func(x=xoptimal, **params_full),
@@ -131,9 +130,9 @@ exact_opt = pd.DataFrame({'Y':Y_func(x=xoptimal, **params_full),
                           'G/Y':Goptimal/Y_func(x=xoptimal, **params_full)}, index=ALPHA)
 
 
-# We can see how these variables compare to when $G/Y = 16.5\%$: 
+# We can see how these variables compare to when $G/Y = 16.5\%$. Business cycle is much smoother under exact optimal public expenditure. 
 
-# In[8]:
+# In[11]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -157,9 +156,9 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # 
 #                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 
-# We then compute optimal stimulus in response to aggregate demand shocks:
+# We now compute optimal stimulus in response to aggregate demand shocks by using the formula above.
 
-# In[9]:
+# In[12]:
 
 
 xsuffstat, Gsuffstat = np.empty(len(ALPHA)), np.empty(len(ALPHA))
@@ -175,9 +174,9 @@ for i, alpha in enumerate(ALPHA):
     Gsuffstat[i] = G0[ind]
 
 
-# We compute the other macroeconomics variables and compare them with when $G/Y$ is fixed at $16.5\%$
+# We compute other macroeconomics variables and compare them with when $G/Y$ is fixed at $16.5\%$.
 
-# In[10]:
+# In[13]:
 
 
 ss = pd.DataFrame({'Y':Y_func(x=xsuffstat, **params_full),
@@ -186,7 +185,7 @@ ss = pd.DataFrame({'Y':Y_func(x=xsuffstat, **params_full),
                    'G/Y':Gsuffstat/Y_func(x=xsuffstat, **params_full)}, index=ALPHA)
 
 
-# In[11]:
+# In[14]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -204,9 +203,9 @@ ad_axes[0, 1].legend(['G/Y = 16.5%', 'Optimal G: Sufficient Statistics'])
 ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 
-# We can also compare the exact solution with the solution given by the sufficient-statistics formula:
+# We also compare the exact solution with the solution given by the sufficient-statistics formula. The graph below shows that the sufficient statistics approach serves as a good approximation of the exact approach. 
 
-# In[12]:
+# In[15]:
 
 
 ss_ax = ss['G/Y'].plot(label='Optimal G: Sufficient Statistics', grid=True)
