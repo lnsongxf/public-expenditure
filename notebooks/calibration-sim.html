@@ -254,6 +254,11 @@
    </span>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storing-calibrated-values">
+   Storing Calibrated Values
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -267,25 +272,34 @@
                 
   <div class="section" id="additional-calibration">
 <h1>Additional Calibration<a class="headerlink" href="#additional-calibration" title="Permalink to this headline">¶</a></h1>
-<p>This section implements additional parameters needed for business cycle simulation.</p>
-<p>Before we start, we read in the calibrated parameters and the helper functions.</p>
+<p>This section calibrates additional parameters used for business cycle simulations.</p>
+<p>Before we start, we import the libraries we need and read in the helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="o">%</span><span class="k">run</span> helpers.ipynb
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also read in the calibrated parameters:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">params</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.03557894736842106,
- &#39;u_bar&#39;: 0.05974999999999999,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.035578947368421,
+ &#39;u_bar&#39;: 0.0597499999999999,
  &#39;x_bar&#39;: 0.557752047505985,
- &#39;GC_bar&#39;: 0.19191729280673472,
+ &#39;GC_bar&#39;: 0.1919172928067347,
  &#39;M_bar&#39;: 0.5,
- &#39;M_bar_l&#39;: 0,
- &#39;M_bar_h&#39;: 2,
- &#39;epsilon&#39;: 1,
+ &#39;M_bar_l&#39;: 0.0,
+ &#39;M_bar_h&#39;: 2.0,
+ &#39;epsilon&#39;: 1.0,
  &#39;epsilon_h&#39;: 1.5,
  &#39;epsilon_l&#39;: 0.5,
  &#39;eta&#39;: 0.6,
@@ -293,33 +307,24 @@
  &#39;eta_h&#39;: 0.7,
  &#39;omega&#39;: 0.7071671173494025,
  &#39;rho&#39;: 1.080804575426955,
- &#39;tau&#39;: 0.03873194401199106,
+ &#39;tau&#39;: 0.038731944011991,
  &#39;m_bar&#39;: 0.5100528390820994,
  &#39;z0&#39;: 2.827830175507158,
  &#39;z1&#39;: 2.2609135556386306,
- &#39;GY_bar&#39;: 0.16101561237928397,
- &#39;k&#39;: 1,
- &#39;Y_bar&#39;: 0.94025,
- &#39;gamma&#39;: 0.16101561237928397,
- &#39;r&#39;: 0.4562215934340785,
- &#39;p0&#39;: 0.9627122818016041}
+ &#39;GY_bar&#39;: 0.1610156123792839}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="calibration-of-bar-y">
 <h2>Calibration of <span class="math notranslate nohighlight">\(\bar{Y}\)</span><a class="headerlink" href="#calibration-of-bar-y" title="Permalink to this headline">¶</a></h2>
-<p>First, we calculate average output. When calculating output, we use the following equation:</p>
+<p>First, we calculate the average output. When calculating output, we use the following equation:</p>
 <p><span class="math notranslate nohighlight">\(Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k,\)</span>                <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs" /></a></p>
-<p>with the normalization <span class="math notranslate nohighlight">\(k = 1\)</span></p>
-<ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> : preference parameter</p></li>
-<li><p><span class="math notranslate nohighlight">\(k\)</span> : productive capacity, which can also be endogenized by adding a labor market where firms hire workers</p></li>
-</ol>
+<p>with the normalization <span class="math notranslate nohighlight">\(k = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">&#39;Y_bar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Y_bar</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;u_bar&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -331,7 +336,7 @@
 <p><span class="math notranslate nohighlight">\((g/c)^* = \frac{\gamma}{1-\gamma}.\)</span>                <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%20A1-purple?logo=read-the-docs" /></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span> 
 </pre></div>
 </div>
 </div>
@@ -346,7 +351,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CY_bar</span> <span class="o">=</span> <span class="n">CY_func</span><span class="p">(</span><span class="n">GC</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">CY_bar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GY_bar&#39;</span><span class="p">])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">CY_bar</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;M_bar&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GY_bar&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -354,29 +359,27 @@
 </div>
 <div class="section" id="calibration-of-p-0">
 <h2>Calibration of <span class="math notranslate nohighlight">\(p_0\)</span><a class="headerlink" href="#calibration-of-p-0" title="Permalink to this headline">¶</a></h2>
-<p>We also need to calibrate the initial price level <span class="math notranslate nohighlight">\(p_0\)</span> for the price mechanism.</p>
+<p>We also need to calibrate the initial price level <span class="math notranslate nohighlight">\(p_0\)</span> for the price mechanism <span class="math notranslate nohighlight">\(p(G)\)</span>.</p>
 <p>Looking at private demand, we have:</p>
 <p><span class="math notranslate nohighlight">\(\mathcal{U}_c = (1+\tau(x))p\alpha\)</span>.                <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs" /></a></p>
-<p>Thus, at the efficient level with <span class="math notranslate nohighlight">\(\alpha = 1\)</span>:</p>
+<p>Thus, with <span class="math notranslate nohighlight">\(\alpha = 1\)</span>, at the efficient level, we have that:</p>
 <p><span class="math notranslate nohighlight">\(p_0 = \frac{\overline{\mathcal{U}_c}}{1+\bar\tau}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dUdc_bar</span> <span class="o">=</span> <span class="n">dUdc_func</span><span class="p">(</span><span class="n">gc</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dUdc_bar</span><span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dUdc_bar</span> <span class="o">=</span> <span class="n">dUdc_func</span><span class="p">(</span><span class="n">gc</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">],</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">dUdc_bar</span><span class="o">**</span><span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>We now store the updated parameters and proceed to run our simulations.</p>
+</div>
+<div class="section" id="storing-calibrated-values">
+<h2>Storing Calibrated Values<a class="headerlink" href="#storing-calibrated-values" title="Permalink to this headline">¶</a></h2>
+<p>We now store the newly calibrated parameters and proceed to run our simulations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params_full</span> <span class="o">=</span> <span class="n">params</span>
-<span class="o">%</span><span class="k">store</span> params_full
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored &#39;params_full&#39; (dict)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;Y_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;CY_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;p0&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;Value&#39;</span><span class="p">:[</span><span class="n">k</span><span class="p">,</span> <span class="n">Y_bar</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">CY_bar</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p0</span><span class="p">]})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/params_sim.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

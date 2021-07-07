@@ -223,11 +223,6 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calibration">
-   Calibration
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulations-of-business-cycles">
    Simulations of Business Cycles
   </a>
@@ -262,8 +257,8 @@
                 
   <div class="section" id="simulations">
 <h1>Simulations<a class="headerlink" href="#simulations" title="Permalink to this headline">¶</a></h1>
-<p>This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks.</p>
-<p>The simulations are based on Section 5 in Michaillat and Saez (<a class="reference external" href="https://www.pascalmichaillat.org/6.html">2019</a>)</p>
+<p>This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks. The simulations are based on Section 5 in Michaillat and Saez (<a class="reference external" href="https://www.pascalmichaillat.org/6.html">2019</a>)</p>
+<p>Before we start, we first set up the libraries and import the helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load setup.py</span>
@@ -272,30 +267,31 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mtick</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="o">%</span><span class="k">run</span> helpers.ipynb
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="calibration">
-<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
-<p>We first retrieve our calibrated parameter values</p>
-<div class="cell docutils container">
+<p>We then retrieve our calibrated parameter values from the previous sections.</p>
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">store</span> -r params_full
-<span class="o">%</span><span class="k">run</span> helpers.ipynb
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params_suffstat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">)</span>
+<span class="n">params_sim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output/params_sim.csv&#39;</span><span class="p">)</span>
+<span class="n">params_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">params_suffstat</span><span class="p">,</span> <span class="n">params_sim</span><span class="p">])</span>
+<span class="n">params_full</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">params_full</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">params_full</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.03557894736842106,
- &#39;u_bar&#39;: 0.05974999999999999,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.035578947368421,
+ &#39;u_bar&#39;: 0.0597499999999999,
  &#39;x_bar&#39;: 0.557752047505985,
- &#39;GC_bar&#39;: 0.19191729280673472,
+ &#39;GC_bar&#39;: 0.1919172928067347,
  &#39;M_bar&#39;: 0.5,
- &#39;M_bar_l&#39;: 0,
- &#39;M_bar_h&#39;: 2,
- &#39;epsilon&#39;: 1,
+ &#39;M_bar_l&#39;: 0.0,
+ &#39;M_bar_h&#39;: 2.0,
+ &#39;epsilon&#39;: 1.0,
  &#39;epsilon_h&#39;: 1.5,
  &#39;epsilon_l&#39;: 0.5,
  &#39;eta&#39;: 0.6,
@@ -303,28 +299,27 @@
  &#39;eta_h&#39;: 0.7,
  &#39;omega&#39;: 0.7071671173494025,
  &#39;rho&#39;: 1.080804575426955,
- &#39;tau&#39;: 0.03873194401199106,
+ &#39;tau&#39;: 0.038731944011991,
  &#39;m_bar&#39;: 0.5100528390820994,
  &#39;z0&#39;: 2.827830175507158,
  &#39;z1&#39;: 2.2609135556386306,
- &#39;GY_bar&#39;: 0.16101561237928397,
- &#39;k&#39;: 1,
+ &#39;GY_bar&#39;: 0.1610156123792839,
+ &#39;k&#39;: 1.0,
  &#39;Y_bar&#39;: 0.94025,
- &#39;gamma&#39;: 0.16101561237928397,
- &#39;r&#39;: 0.4562215934340785,
- &#39;p0&#39;: 0.9627122818016041}
+ &#39;gamma&#39;: 0.1610156123792839,
+ &#39;CY_bar&#39;: 0.838984387620716,
+ &#39;r&#39;: 0.4562215934340784,
+ &#39;p0&#39;: 0.962712281801604}
 </pre></div>
 </div>
 </div>
 </div>
-<p>We now run the additional calibration as follows:</p>
-</div>
 <div class="section" id="simulations-of-business-cycles">
 <h2>Simulations of Business Cycles<a class="headerlink" href="#simulations-of-business-cycles" title="Permalink to this headline">¶</a></h2>
-<p>We first simulate business cycle simulations using aggregate demand shocks, fixing the public expenditure policy at <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search.</p>
+<p>Fixing the public expenditure policy at <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>, we simulate business cycles using aggregate demand shocks. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search.</p>
 <p>The equation we rely on for finding equilibrium labor market tightness is the following:</p>
 <p><span class="math notranslate nohighlight">\(\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}.\)</span>                       <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs" /></a></p>
-<p>We find values of <span class="math notranslate nohighlight">\(x\)</span> that equate the two sides of the equation using the function <code class="docutils literal notranslate"><span class="pre">find_eq</span></code>.</p>
+<p>We find values of <span class="math notranslate nohighlight">\(x\)</span> that equate the two sides of the equation by using the function <code class="docutils literal notranslate"><span class="pre">find_eq</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Range of aggregate demand</span>
@@ -355,7 +350,7 @@
 </div>
 </div>
 </div>
-<p>Let’s first look at equilibria under aggregate demand shocks:</p>
+<p>Let’s first look at equilibria under aggregate demand shocks and fixed public expenditure:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad_axes</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="s1">&#39;Unemployment&#39;</span><span class="p">,</span> <span class="s1">&#39;Output Multiplier&#39;</span><span class="p">,</span> <span class="s1">&#39;Public Expenditure&#39;</span><span class="p">],</span> 
@@ -370,16 +365,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_10_0.png" src="../_images/simulations_10_0.png" />
+<img alt="../_images/simulations_9_0.png" src="../_images/simulations_9_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="optimal-stimulus">
 <h2>Optimal Stimulus<a class="headerlink" href="#optimal-stimulus" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we calculate optimal stimulus over the business cycle. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. We then calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.</p>
+<p>In this section, we calculate optimal stimulus over the business cycle. We compute optimal stimulus in two ways. First, we find exact optimal stimulus using a grid search. Second, we calculate optimal stimulus using the sufficient-statistics formula. We then compare the two as a validity check for the sufficient-statistics approach.</p>
 <div class="section" id="exact-optimal-stimulus">
 <h3>Exact Optimal Stimulus<a class="headerlink" href="#exact-optimal-stimulus" title="Permalink to this headline">¶</a></h3>
-<p>We first calculate the exact optimal stimulus. We make use of the property where optimal public expenditure satisfy the Samuelson rule pluse an correction term:</p>
+<p>We first calculate the exact optimal stimulus. We make use of the property where optimal public expenditure satisfies the Samuelson rule plus a correction term:</p>
 <p><span class="math notranslate nohighlight">\(1 = MRS_{gc} + \frac{\delta y}{\delta x}\frac{d x}{\delta g}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2018-purple?logo=read-the-docs" /></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -404,7 +399,7 @@
 </div>
 </div>
 </div>
-<p>We can now calculate other macroeconomic variables.</p>
+<p>We now calculate other macroeconomic variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_opt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xoptimal</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
@@ -415,7 +410,7 @@
 </div>
 </div>
 </div>
-<p>We can see how these variables compare to when <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>:</p>
+<p>We can see how these variables compare to when <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>. Business cycle is much smoother under exact optimal public expenditure.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad_axes</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="s1">&#39;Unemployment&#39;</span><span class="p">,</span> <span class="s1">&#39;Output Multiplier&#39;</span><span class="p">,</span> <span class="s1">&#39;Public Expenditure&#39;</span><span class="p">],</span> 
@@ -435,7 +430,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_17_0.png" src="../_images/simulations_17_0.png" />
+<img alt="../_images/simulations_16_0.png" src="../_images/simulations_16_0.png" />
 </div>
 </div>
 </div>
@@ -443,7 +438,7 @@
 <h3>The Sufficient-Statistics Approach<a class="headerlink" href="#the-sufficient-statistics-approach" title="Permalink to this headline">¶</a></h3>
 <p>Recall</p>
 <p><span class="math notranslate nohighlight">\(\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs" /></a></p>
-<p>We then compute optimal stimulus in response to aggregate demand shocks:</p>
+<p>We now compute optimal stimulus in response to aggregate demand shocks by using the formula above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsuffstat</span><span class="p">,</span> <span class="n">Gsuffstat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">))</span>
@@ -461,7 +456,7 @@
 </div>
 </div>
 </div>
-<p>We compute the other macroeconomics variables and compare them with when <span class="math notranslate nohighlight">\(G/Y\)</span> is fixed at <span class="math notranslate nohighlight">\(16.5\%\)</span></p>
+<p>We compute other macroeconomics variables and compare them with when <span class="math notranslate nohighlight">\(G/Y\)</span> is fixed at <span class="math notranslate nohighlight">\(16.5\%\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
@@ -491,10 +486,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/simulations_23_0.png" src="../_images/simulations_23_0.png" />
+<img alt="../_images/simulations_22_0.png" src="../_images/simulations_22_0.png" />
 </div>
 </div>
-<p>We can also compare the exact solution with the solution given by the sufficient-statistics formula:</p>
+<p>We also compare the exact solution with the solution given by the sufficient-statistics formula. The graph below shows that the sufficient statistics approach serves as a good approximation of the exact approach.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_ax</span> <span class="o">=</span> <span class="n">ss</span><span class="p">[</span><span class="s1">&#39;G/Y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal G: Sufficient Statistics&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -506,10 +501,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x18e782937f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x180384d2520&gt;
 </pre></div>
 </div>
-<img alt="../_images/simulations_25_1.png" src="../_images/simulations_25_1.png" />
+<img alt="../_images/simulations_24_1.png" src="../_images/simulations_24_1.png" />
 </div>
 </div>
 </div>
