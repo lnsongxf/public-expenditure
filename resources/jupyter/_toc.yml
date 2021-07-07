@@ -1,8 +1,0 @@
-# In _toc.yml
-- file: notebooks/notebook
-  sections:
-    - file: notebooks/data
-    - file: notebooks/calibration
-    - file: notebooks/multiplier
-    - file: notebooks/gap
-    - file: notebooks/stimulus
