@@ -2,7 +2,10 @@
 format: jb-book
 root: book
 parts:
-  - caption: Public-Expenditure
+  - caption: BEFORE YOU START
+    chapters:
+      - file: markdown/user-guide
+  - caption: PUBLIC EXPENDITURE
     chapters:
       - file: markdown/optimal-stimulus
         sections:

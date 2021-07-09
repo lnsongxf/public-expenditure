@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Optimal Public Expenditure over the Business Cycle
+title: Optimal Policies
 author: Pascal Michaillat and Haoyu Sheng
 logo: logo.png
 
@@ -25,4 +25,4 @@ binder:
   text                        : "Launch binder"
 
 html:
-  home_page_in_navbar         : true
+  home_page_in_navbar         : false
