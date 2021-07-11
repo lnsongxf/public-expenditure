@@ -3,7 +3,7 @@
 
 # # Helper Functions
 # 
-# This
+# This section contains all the functions used in our notebooks. 
 
 # ## Model Parameters
 

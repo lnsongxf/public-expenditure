@@ -3,9 +3,9 @@
 
 # # Calibration
 # 
-# In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy, on average, is efficient. 
+# In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy is efficient on average. 
 # 
-# Before we start, we first load the necessary libraries. 
+# Before we start, we first load the necessary libraries for plotting and data cleaning. 
 
 # In[1]:
 
@@ -17,7 +17,7 @@ import pandas as pd
 import matplotlib.ticker as mtick
 
 
-# We fetch the data series from FRED. To do this, we use the `fredapi` package. An API key is required. More information on API keys can be found [here](https://research.stlouisfed.org/docs/api/api_key.html).
+# We fetch the data series from FRED. Here, we use the `fredapi` python package to do this. Downloading Fred data series requires an API key, which you can register by going [here](https://research.stlouisfed.org/docs/api/api_key.html).
 
 # In[2]:
 
@@ -75,7 +75,7 @@ s
 
 # ## Calibration of $\bar{u}$
 # 
-# We now calibrate $\bar{u}$, which is the steady-state unemployment rate. We set it to be the average US unemployment rate over our sample period.
+# We now calibrate $\bar{u}$, which is the steady-state unemployment rate. We calibrate it to be the average US unemployment rate over our sample period.
 
 # In[8]:
 
@@ -110,7 +110,7 @@ u_bar
 # 
 # $$x(t) = \frac{v(t)}{k-Y(t)},$$
 # 
-# where $v$ denotes the vacancy level, $k$ the productive capacity of households, and $Y$ the output. Therefore, $k - Y(t)$ is simply the unemployment level, since we assume output to only come from services provided by households. 
+# where $v$ is the vacancy level, $k$ the productive capacity of households, and $Y$ the output. Therefore, $k - Y(t)$ is the unemployment level, since we assume output to only come from services provided by households. 
 
 # In[11]:
 
@@ -140,7 +140,7 @@ x_bar
 
 # ## Calibration of $\overline{G/C}$
 # 
-# $\overline{G/C}$ is the steady-state ratio between public and private employment. We calibrate it with the average value ratio between public and private employment in the US over our sample period. 
+# $\overline{G/C}$ is the steady-state ratio between public and private employment. We calibrate it to be the average value ratio between public and private employment in the US over our sample period. 
 
 # In[14]:
 
@@ -171,7 +171,7 @@ GC_bar
 
 # ## Calibration of $\bar{M}$   [![Generic badge](https://img.shields.io/badge/MS19-p.%201324~1325-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
-# The parameter $M$ is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by $1\%$ of GDP. 
+# The parameter $\bar{M}$ is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by $1\%$ of GDP. 
 # 
 # Monacelli et al. ([2010](http://dx.doi.org/10.1016/j.jmoneco.2010.05.009), pp. 533–536) estimate a structural vector autoregression (SVAR) on US data and find unemployment multipliers between $0.2$ and $0.6$. Ramey ([2013](http://doi.org/10.7208/chicago/9780226018584.003.0002), pp.40–42) estimates SVARs on US data with various identification schemes and sample periods and finds unemployment multipliers between $0.2$ and $0.5$, except in one specification where the multiplier is $1$.
 # 
@@ -202,7 +202,7 @@ epsilon = 1
 # The parameter $\eta$ is the matching elasticity, which is the elasticity of the matching function with respect to unemployment. A vast literature has attempted to estimate $\eta$. In their survey, Petrongolo
 # and Pissarides ([2001](https://doi.org/10.1257/jel.39.2.390), p. 424) conclude that the estimates of $\eta$ fall between 0.5 and 0.7. Here, we will set $\eta$ to be $0.6$, with an upper bound of $0.7$ and a lower bound of $0.5$.
 # 
-# Check the badge above for reference to a more detailed discussion. 
+# Click the badge above for the reference to a more detailed discussion of the calibration of $\eta$. 
 
 # In[19]:
 
@@ -362,7 +362,7 @@ m = m_func(which='M', M=M_bar, eta=eta, u=u_bar, GY=GY_bar, tau=tau)
 m
 
 
-# As shown above, $m$ is roughly equal to $M$. We also compute $m$ for different $M$'s and $\eta$'s:
+# As shown above, $m$ is roughly equal to $\bar{M} = 0.5$. We also compute $m$ for different $M$'s and $\eta$'s:
 
 # In[30]:
 
@@ -378,11 +378,11 @@ m_range_ax.set(xlabel='M', ylabel='m', ylim=(0, 2))
 m_range_ax.fill_between(m_range.index, m_range[f'$\eta = ${eta_l}'], m_range[f'$\eta = ${eta_h}'], alpha=0.2, color='tab:orange')
 
 
-# As we can see, the choice of $\eta$ within our specified range makes very little difference. 
+# As you can see, the choice of $\eta$ within our specified range makes very little difference. 
 
 # ## Calibration of $z_0$ and $z_1$
 # 
-# We now calibrate $z_0$ and $z_1$. $z_0$ and $z_1$ can be calculated by using the following equations:
+# We now calibrate $z_0$ and $z_1$. $z_0$ and $z_1$ can be calculated with the following equations:
 # 
 #                 $z_0 = \frac{1}{(1-\eta)(1-\bar{u})^2},$         [![Generic badge](https://img.shields.io/badge/MS19-p.%201315-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 # 
