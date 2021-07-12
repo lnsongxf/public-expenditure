@@ -1,8 +1,9 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Optimal Policies
+title: An Interactive Guide for Optimal Policies
 author: Pascal Michaillat and Haoyu Sheng
+copyright: "2021"  # Copyright year to be placed in the footer
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -26,3 +27,6 @@ binder:
 
 html:
   home_page_in_navbar         : false
+  use_edit_page_button        : false
+  use_issues_button           : true
+  use_repository_button       : true

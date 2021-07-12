@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Additional Calibration &#8212; Optimal Policies</title>
+    <title>Additional Calibration &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -76,7 +76,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Optimal Policies</h1>
+      <h1 class="site-logo" id="site-title">An Interactive Guide for Optimal Policies</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -191,6 +191,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pascalmichaillat/public-expenditure"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fnotebooks/calibration-sim.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pascalmichaillat/public-expenditure/edit/main/notebooks/calibration-sim.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -260,8 +278,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#storing-calibrated-values">
-   Storing Calibrated Values
+  <a class="reference internal nav-link" href="#storing-calibrated-parameters">
+   Storing Calibrated Parameters
   </a>
  </li>
 </ul>
@@ -277,8 +295,8 @@
                 
   <div class="section" id="additional-calibration">
 <h1>Additional Calibration<a class="headerlink" href="#additional-calibration" title="Permalink to this headline">¶</a></h1>
-<p>This section calibrates additional parameters used for business cycle simulations.</p>
-<p>Before we start, we import the libraries we need and read in the helper functions.</p>
+<p>This section calibrates additional parameters used for business cycle simulations and optimal stimulus calculations over the business cycle.</p>
+<p>Before we start, we import the libraries we need and the helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -378,9 +396,9 @@
 </div>
 </div>
 </div>
-<div class="section" id="storing-calibrated-values">
-<h2>Storing Calibrated Values<a class="headerlink" href="#storing-calibrated-values" title="Permalink to this headline">¶</a></h2>
-<p>We now store the newly calibrated parameters and proceed to run our simulations.</p>
+<div class="section" id="storing-calibrated-parameters">
+<h2>Storing Calibrated Parameters<a class="headerlink" href="#storing-calibrated-parameters" title="Permalink to this headline">¶</a></h2>
+<p>We now store the newly calibrated parameters and proceed to business cycle simulations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;Y_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;CY_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;p0&#39;</span><span class="p">],</span>

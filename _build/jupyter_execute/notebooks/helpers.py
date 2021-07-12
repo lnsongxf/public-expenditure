@@ -74,6 +74,19 @@ def q_func(x, **params):
     return omega*x**(-eta)
 
 
+# ### $\tau$
+# $\tau$ is the recruiter-producer ratio, where
+# 
+#                 $\tau(x) = \frac{\rho s}{q(x) - \rho s}. $              [![Generic badge](https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html) 
+
+# In[7]:
+
+
+def tau_func(x, **params):
+    s, rho = params['s'], params['rho']
+    return s*rho/(q_func(x=x, **params) - s*rho)
+
+
 # ### u
 # 
 # The rate of unemployment is:
@@ -93,19 +106,6 @@ def u_func(x, **params):
     return s/(s + f)
 
 
-# ### $\tau$
-# $\tau$ is the recruiter-producer ratio, where
-# 
-#                 $\tau(x) = \frac{\rho s}{q(x) - \rho s}. $              [![Generic badge](https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html) 
-
-# In[7]:
-
-
-def tau_func(x, **params):
-    s, rho = params['s'], params['rho']
-    return s*rho/(q_func(x=x, **params) - s*rho)
-
-
 # ## Output Identity
 # 
 # ### $Y$
@@ -113,7 +113,7 @@ def tau_func(x, **params):
 
 # Output $Y$ is given by:
 # 
-#                 $Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k.$                [![Generic badge](https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)    
+#                 $Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k.$    [![Generic badge](https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)    
 
 # In[9]:
 
@@ -150,12 +150,12 @@ GC_func = lambda GY:GY/(1 - GY) # G/C
 
 # ## Utility Function and its Derivatives
 
-# ### Utility Function   [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1~A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+# ### $\mathcal{U}(c, g)$    [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1~A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
 # Given the elasticity of substitution between private and public consumption $\epsilon$, we have the following CES utility function:
 # 
 # 
-#                 $\mathcal{U}(c, g) = \left((1-\gamma)^{1/\epsilon}c^{(\epsilon-1)/\epsilon} + \gamma ^{1/\epsilon}g^{(\epsilon - 1)/\epsilon}\right)^{\epsilon/(\epsilon - 1)}.$            [![Generic badge](https://img.shields.io/badge/MS19-Eq%208-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
+#                 $\mathcal{U}(c, g) = \left((1-\gamma)^{1/\epsilon}c^{(\epsilon-1)/\epsilon} + \gamma ^{1/\epsilon}g^{(\epsilon - 1)/\epsilon}\right)^{\epsilon/(\epsilon - 1)}.$     [![Generic badge](https://img.shields.io/badge/MS19-Eq%208-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 # 
 # When $\epsilon = 1$, the utility function is Cobb-Douglas:
 # 
@@ -179,7 +179,7 @@ def U_func(c, g, **params):
 # 
 # $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}}$ and $\mathcal{U}_c$ are the (linearized) marginal utility of private consumption. From our utility function, we have:
 # 
-#                 $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}} = (1-\gamma)^{{1/\epsilon}} \left(\frac{c}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon}.$           [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+#                 $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}} = (1-\gamma)^{{1/\epsilon}} \left(\frac{c}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon}.$     [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
 # In[13]:
 
@@ -205,9 +205,9 @@ def dlnUdlng_func(gc, **params):
     return gamma**(1/epsilon)*(U_func(1/gc, 1, **params))**((1 - epsilon)/epsilon)
 
 
-# ### Marginal Rate of Substitution
+# ### $MRS_{gc}$
 
-# From the first-order derivates above, we have:
+# From the first-order derivates above, we can calculate the marginal rate of subsitutition between private and public consumption:
 # 
 #                 $MRS_{gc} = \frac{\mathcal{U}_g}{\mathcal{U}_c}  = \frac{\gamma^{1/\epsilon}}{(1-\gamma)^{1/\epsilon}}*(gc)^{1/\epsilon}.$
 #                
@@ -226,7 +226,7 @@ def MRS_func(gc, **params):
 # 
 #                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{c}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta c} -1 \right),$                      
 # 
-#                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta g} \right).$                        [![Generic badge](https://img.shields.io/badge/MS19-p.%20A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+#                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta g} \right).$              [![Generic badge](https://img.shields.io/badge/MS19-p.%20A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
 # In[16]:
 
@@ -298,7 +298,7 @@ def dlnxdlng_func(G, x, **params):
 
 # ### $m$
 # 
-# $m$ is the theoretical unemployment multiplier, which measures the response of unemployment to changes in public consumption. $m$ can be calculated in two ways. For a given $M$, $m$ can be calculated as:
+# $m$ is the theoretical unemployment multiplier, which measures the response of unemployment to changes in public consumption. $m$ can be calculated in two ways. For a given $M$, $m$ is:
 # 
 #                 $ m = \frac{(1-u)\cdot M}{1- \frac{G}{Y}\cdot \frac{\eta}{1-\eta}\cdot \frac{\tau}{u}\cdot M},$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2026-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
@@ -326,7 +326,7 @@ def m_func(which, **params):
 # ### $M$
 # Then, we can compute the empirical unemployment multiplier
 # 
-#                 $M = \frac{m}{1- u + \frac{g}{y}\frac{\eta}{1-\eta}\frac{\tau}{u}m}.$                         [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A11-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+#                 $M = \frac{m}{1- u + \frac{g}{y}\frac{\eta}{1-\eta}\frac{\tau}{u}m}.$            [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A11-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
 
 # In[21]:
@@ -345,7 +345,7 @@ def M_func(G, x, **params):
 # 
 # To determine equilibrium under different aggregate demand/government spending, we need to find where aggreagte demand is equal to aggregate supply, which happens when 
 # 
-#                 $\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}$                       [![Generic badge](https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
+#                 $\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
 # We now define the following function such that the function returns zero when the economy is at equilibrium.
 
@@ -377,7 +377,7 @@ def optimal_func(G, x, **params):
 # 
 # The sufficient-statistics formula is as follows:
 # 
-#                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
+#                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$      [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 
 # In[24]:
 

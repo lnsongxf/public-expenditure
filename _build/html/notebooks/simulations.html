@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulations &#8212; Optimal Policies</title>
+    <title>Simulations &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -76,7 +76,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Optimal Policies</h1>
+      <h1 class="site-logo" id="site-title">An Interactive Guide for Optimal Policies</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -191,6 +191,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pascalmichaillat/public-expenditure"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fnotebooks/simulations.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pascalmichaillat/public-expenditure/edit/main/notebooks/simulations.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -247,6 +265,11 @@
      The Sufficient-Statistics Approach
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparing-the-two">
+     Comparing the Two
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -262,7 +285,7 @@
                 
   <div class="section" id="simulations">
 <h1>Simulations<a class="headerlink" href="#simulations" title="Permalink to this headline">¶</a></h1>
-<p>This section simulates business cycles in the calibrated model by using aggregate demand shocks. We then calculate optimal government spending in response to the aggregate demand shocks. The simulations are based on Section 5 in Michaillat and Saez (<a class="reference external" href="https://www.pascalmichaillat.org/6.html">2019</a>)</p>
+<p>This section simulates business cycles with aggregate demand shocks. We also calculate optimal government spending in response to these shocks. The simulations are based on Section 5 in <a class="reference external" href="https://www.pascalmichaillat.org/6.html">Michaillat and Saez (2019</a>)</p>
 <p>Before we start, we first set up the libraries and import the helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -277,7 +300,7 @@
 </div>
 </div>
 </div>
-<p>We then retrieve our calibrated parameter values from the previous sections.</p>
+<p>We then retrieve our calibrated parameter values from the previous sections and merge them for a full list of calibrated parameters.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params_suffstat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">)</span>
@@ -289,10 +312,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.035578947368421,
- &#39;u_bar&#39;: 0.0597499999999999,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;s&#39;: 0.035578947368421064,
+ &#39;u_bar&#39;: 0.05974999999999999,
  &#39;x_bar&#39;: 0.557752047505985,
- &#39;GC_bar&#39;: 0.1919172928067347,
+ &#39;GC_bar&#39;: 0.19191729280673472,
  &#39;M_bar&#39;: 0.5,
  &#39;M_bar_l&#39;: 0.0,
  &#39;M_bar_h&#39;: 2.0,
@@ -303,16 +326,16 @@
  &#39;eta_l&#39;: 0.5,
  &#39;eta_h&#39;: 0.7,
  &#39;omega&#39;: 0.7071671173494025,
- &#39;rho&#39;: 1.080804575426955,
- &#39;tau&#39;: 0.038731944011991,
+ &#39;rho&#39;: 1.0808045754269548,
+ &#39;tau&#39;: 0.038731944011991065,
  &#39;m_bar&#39;: 0.5100528390820994,
  &#39;z0&#39;: 2.827830175507158,
  &#39;z1&#39;: 2.2609135556386306,
- &#39;GY_bar&#39;: 0.1610156123792839,
+ &#39;GY_bar&#39;: 0.16101561237928394,
  &#39;k&#39;: 1.0,
  &#39;Y_bar&#39;: 0.94025,
- &#39;gamma&#39;: 0.1610156123792839,
- &#39;CY_bar&#39;: 0.838984387620716,
+ &#39;gamma&#39;: 0.16101561237928394,
+ &#39;CY_bar&#39;: 0.8389843876207159,
  &#39;r&#39;: 0.4562215934340784,
  &#39;p0&#39;: 0.962712281801604}
 </pre></div>
@@ -324,7 +347,7 @@
 <p>Fixing the public expenditure policy at <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>, we simulate business cycles using aggregate demand shocks. For each magnitude of aggregate demand, we find the equilibrium labor market tightness using grid search.</p>
 <p>The equation we rely on for finding equilibrium labor market tightness is the following:</p>
 <p><span class="math notranslate nohighlight">\(\frac{dU}{dc} - G = (1+\tau)\frac{p(G)}{\alpha}.\)</span>                       <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2013-purple?logo=read-the-docs" /></a></p>
-<p>We find values of <span class="math notranslate nohighlight">\(x\)</span> that equate the two sides of the equation by using the function <code class="docutils literal notranslate"><span class="pre">find_eq</span></code>.</p>
+<p>This condition is satisfied when aggregate supply equals aggregate demand. We want to find values of <span class="math notranslate nohighlight">\(x\)</span> that equate the two sides of the equation with the function <code class="docutils literal notranslate"><span class="pre">find_eq</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Range of aggregate demand</span>
@@ -355,11 +378,11 @@
 </div>
 </div>
 </div>
-<p>Let’s first look at equilibria under aggregate demand shocks and fixed public expenditure:</p>
+<p>Let’s first look at equilibria under aggregate demand shocks and fixed public expenditure. We can see that aggregate demand shocks produce business cycles.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad_axes</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="s1">&#39;Unemployment&#39;</span><span class="p">,</span> <span class="s1">&#39;Output Multiplier&#39;</span><span class="p">,</span> <span class="s1">&#39;Public Expenditure&#39;</span><span class="p">],</span> 
-                <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+                  <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">ad_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Output = measured productivity&#39;</span><span class="p">)</span>
 <span class="n">ad_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Unemployment/idleness rate&#39;</span><span class="p">)</span>
 <span class="n">ad_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mtick</span><span class="o">.</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
@@ -390,10 +413,11 @@
 <span class="n">G1</span> <span class="o">=</span> <span class="n">GY1</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">):</span>
     <span class="n">eva</span> <span class="o">=</span> <span class="n">find_eq</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">G1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
-    <span class="c1"># Finding where AS = AD</span>
+    <span class="c1"># Finding all x&#39;s where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">x2</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
     <span class="n">G2</span> <span class="o">=</span> <span class="n">GY0</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="c1"># Finding values of x and G for which the optimality equation is satisfied</span>
     <span class="n">eva</span> <span class="o">=</span> <span class="n">optimal_func</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">G2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="c1"># Finding where AS = AD</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">eva</span><span class="p">)</span>
@@ -415,7 +439,7 @@
 </div>
 </div>
 </div>
-<p>We can see how these variables compare to when <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>. Business cycle is much smoother under exact optimal public expenditure.</p>
+<p>We can see how these variables compare to when <span class="math notranslate nohighlight">\(G/Y = 16.5\%\)</span>. Business cycle is much smoother under exact optimal public expenditure. We now see a flattened business cycle.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad_axes</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="s1">&#39;Unemployment&#39;</span><span class="p">,</span> <span class="s1">&#39;Output Multiplier&#39;</span><span class="p">,</span> <span class="s1">&#39;Public Expenditure&#39;</span><span class="p">],</span> 
@@ -449,6 +473,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xsuffstat</span><span class="p">,</span> <span class="n">Gsuffstat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ALPHA</span><span class="p">):</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">u_func</span><span class="p">(</span><span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
+    <span class="c1"># Calculate optimal stimulus with eq 23</span>
     <span class="n">suffstat0</span> <span class="o">=</span> <span class="n">suffstat_func</span><span class="p">(</span><span class="n">u0</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;dlnxdlng&#39;</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">Gad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">xad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="n">G0</span> <span class="o">=</span> <span class="n">GY_func</span><span class="p">(</span><span class="n">GC</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">suffstat0</span><span class="p">)</span><span class="o">*</span><span class="n">params_full</span><span class="p">[</span><span class="s1">&#39;GC_bar&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
     <span class="n">eva</span> <span class="o">=</span> <span class="n">find_eq</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">)</span>
@@ -461,7 +486,7 @@
 </div>
 </div>
 </div>
-<p>We compute other macroeconomics variables and compare them with when <span class="math notranslate nohighlight">\(G/Y\)</span> is fixed at <span class="math notranslate nohighlight">\(16.5\%\)</span>.</p>
+<p>We compute other macroeconomics variables and compare them with when <span class="math notranslate nohighlight">\(G/Y\)</span> is fixed at <span class="math notranslate nohighlight">\(16.5\%\)</span>. As expected, the business cycle is much smoother under stimulus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="n">Y_func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xsuffstat</span><span class="p">,</span> <span class="o">**</span><span class="n">params_full</span><span class="p">),</span>
@@ -494,6 +519,9 @@
 <img alt="../_images/simulations_22_0.png" src="../_images/simulations_22_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="comparing-the-two">
+<h3>Comparing the Two<a class="headerlink" href="#comparing-the-two" title="Permalink to this headline">¶</a></h3>
 <p>We also compare the exact solution with the solution given by the sufficient-statistics formula. The graph below shows that the sufficient statistics approach serves as a good approximation of the exact approach.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -506,7 +534,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x180384d2520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11806cdc0&gt;
 </pre></div>
 </div>
 <img alt="../_images/simulations_24_1.png" src="../_images/simulations_24_1.png" />

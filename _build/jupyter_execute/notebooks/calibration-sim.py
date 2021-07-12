@@ -3,9 +3,9 @@
 
 # # Additional Calibration
 # 
-# This section calibrates additional parameters used for business cycle simulations. 
+# This section calibrates additional parameters used for business cycle simulations and optimal stimulus calculations over the business cycle. 
 # 
-# Before we start, we import the libraries we need and read in the helper functions.
+# Before we start, we import the libraries we need and the helper functions.
 
 # In[5]:
 
@@ -88,8 +88,8 @@ dUdc_bar = dUdc_func(gc=params['GC_bar'], gamma=gamma, **params)
 p0 = dUdc_bar**r/(1 + params['tau']) 
 
 
-# ## Storing Calibrated Values
-# We now store the newly calibrated parameters and proceed to run our simulations.
+# ## Storing Calibrated Parameters
+# We now store the newly calibrated parameters and proceed to business cycle simulations.
 
 # In[12]:
 
