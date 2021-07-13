@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; Optimal Public Expenditure over the Business Cycle</title>
+    <title>Introduction &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,14 +44,14 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Optimal Public Expenditure over the Business Cycle" href="markdown/optimal-stimulus.html" />
+    <link rel="next" title="A Quick User Guide" href="markdown/user-guide.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -73,7 +73,7 @@
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Optimal Public Expenditure over the Business Cycle</h1>
+      <h1 class="site-logo" id="site-title">An Interactive Guide for Optimal Policies</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -81,16 +81,21 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
-   Introduction
+        <p class="caption">
+ <span class="caption-text">
+  BEFORE YOU START
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown/user-guide.html">
+   A Quick User Guide
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Public-Expenditure
+  PUBLIC EXPENDITURE
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -183,6 +188,22 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pascalmichaillat/public-expenditure"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fbook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -210,14 +231,16 @@
 <p>This is the online code library for calculating optimal policies. It includes monetary policy, fiscal policy, and unemployment insurance. The theoretical foundations for these policies are based on papers by <a class="reference external" href="https://www.pascalmichaillat.org/">Pascal Michaillat</a>. This code library is built by <a class="reference external" href="https://haoyusheng.net/">Haoyu Sheng</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "pascalmichaillat/public-expenditure",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -237,7 +260,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="markdown/optimal-stimulus.html" title="next page">Optimal Public Expenditure over the Business Cycle</a>
+    <a class='right-next' id="next-link" href="markdown/user-guide.html" title="next page">A Quick User Guide</a>
 
         </div>
         

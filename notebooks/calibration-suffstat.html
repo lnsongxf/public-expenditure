@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calibration &#8212; Optimal Public Expenditure over the Business Cycle</title>
+    <title>Calibration &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,9 +44,9 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -76,7 +76,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Optimal Public Expenditure over the Business Cycle</h1>
+      <h1 class="site-logo" id="site-title">An Interactive Guide for Optimal Policies</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -84,16 +84,21 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        <p class="caption">
+ <span class="caption-text">
+  BEFORE YOU START
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../book.html">
-   Introduction
+  <a class="reference internal" href="../markdown/user-guide.html">
+   A Quick User Guide
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Public-Expenditure
+  PUBLIC EXPENDITURE
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -186,6 +191,22 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pascalmichaillat/public-expenditure"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fnotebooks/calibration-suffstat.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -208,6 +229,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -340,8 +364,8 @@
                 
   <div class="section" id="calibration">
 <h1>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h1>
-<p>In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy, on average, is efficient.</p>
-<p>Before we start, we first load the necessary libraries.</p>
+<p>In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy is efficient on average.</p>
+<p>Before we start, we first load the necessary libraries for plotting and data cleaning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load setup.py</span>
@@ -353,7 +377,7 @@
 </div>
 </div>
 </div>
-<p>We fetch the data series from FRED. To do this, we use the <code class="docutils literal notranslate"><span class="pre">fredapi</span></code> package. An API key is required. More information on API keys can be found <a class="reference external" href="https://research.stlouisfed.org/docs/api/api_key.html">here</a>.</p>
+<p>We fetch the data series from FRED. Here, we use the <code class="docutils literal notranslate"><span class="pre">fredapi</span></code> python package to do this. Downloading Fred data series requires an API key, which you can register by going <a class="reference external" href="https://research.stlouisfed.org/docs/api/api_key.html">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fredapi</span> <span class="kn">import</span> <span class="n">Fred</span>
@@ -420,7 +444,7 @@
 </div>
 <div class="section" id="calibration-of-bar-u">
 <h2>Calibration of <span class="math notranslate nohighlight">\(\bar{u}\)</span><a class="headerlink" href="#calibration-of-bar-u" title="Permalink to this headline">¶</a></h2>
-<p>We now calibrate <span class="math notranslate nohighlight">\(\bar{u}\)</span>, which is the steady-state unemployment rate. We set it to be the average US unemployment rate over our sample period.</p>
+<p>We now calibrate <span class="math notranslate nohighlight">\(\bar{u}\)</span>, which is the steady-state unemployment rate. We calibrate it to be the average US unemployment rate over our sample period.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
@@ -462,7 +486,7 @@
 <p>Note that labor market tightness is defined as:</p>
 <div class="math notranslate nohighlight">
 \[x(t) = \frac{v(t)}{k-Y(t)},\]</div>
-<p>where <span class="math notranslate nohighlight">\(v\)</span> denotes the vacancy level, <span class="math notranslate nohighlight">\(k\)</span> the productive capacity of households, and <span class="math notranslate nohighlight">\(Y\)</span> the output. Therefore, <span class="math notranslate nohighlight">\(k - Y(t)\)</span> is simply the unemployment level, since we assume output to only come from services provided by households.</p>
+<p>where <span class="math notranslate nohighlight">\(v\)</span> is the vacancy level, <span class="math notranslate nohighlight">\(k\)</span> the productive capacity of households, and <span class="math notranslate nohighlight">\(Y\)</span> the output. Therefore, <span class="math notranslate nohighlight">\(k - Y(t)\)</span> is the unemployment level, since we assume output to only come from services provided by households.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;JTSJOL&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
@@ -504,7 +528,7 @@
 </div>
 <div class="section" id="calibration-of-overline-g-c">
 <h2>Calibration of <span class="math notranslate nohighlight">\(\overline{G/C}\)</span><a class="headerlink" href="#calibration-of-overline-g-c" title="Permalink to this headline">¶</a></h2>
-<p><span class="math notranslate nohighlight">\(\overline{G/C}\)</span> is the steady-state ratio between public and private employment. We calibrate it with the average value ratio between public and private employment in the US over our sample period.</p>
+<p><span class="math notranslate nohighlight">\(\overline{G/C}\)</span> is the steady-state ratio between public and private employment. We calibrate it to be the average value ratio between public and private employment in the US over our sample period.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;USGOVT&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
@@ -544,7 +568,7 @@
 </div>
 <div class="section" id="calibration-of-bar-m-generic-badge">
 <h2>Calibration of <span class="math notranslate nohighlight">\(\bar{M}\)</span>   <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201324~1325-purple?logo=read-the-docs" /></a><a class="headerlink" href="#calibration-of-bar-m-generic-badge" title="Permalink to this headline">¶</a></h2>
-<p>The parameter <span class="math notranslate nohighlight">\(M\)</span> is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by <span class="math notranslate nohighlight">\(1\%\)</span> of GDP.</p>
+<p>The parameter <span class="math notranslate nohighlight">\(\bar{M}\)</span> is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by <span class="math notranslate nohighlight">\(1\%\)</span> of GDP.</p>
 <p>Monacelli et al. (<a class="reference external" href="http://dx.doi.org/10.1016/j.jmoneco.2010.05.009">2010</a>, pp. 533–536) estimate a structural vector autoregression (SVAR) on US data and find unemployment multipliers between <span class="math notranslate nohighlight">\(0.2\)</span> and <span class="math notranslate nohighlight">\(0.6\)</span>. Ramey (<a class="reference external" href="http://doi.org/10.7208/chicago/9780226018584.003.0002">2013</a>, pp.40–42) estimates SVARs on US data with various identification schemes and sample periods and finds unemployment multipliers between <span class="math notranslate nohighlight">\(0.2\)</span> and <span class="math notranslate nohighlight">\(0.5\)</span>, except in one specification where the multiplier is <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p>The multiplier entering our formula could be larger if multipliers are larger when unemployment is higher, as suggested by recent research on state-dependent multipliers. For instance, estimating regime-switching SVARs on US data, Auerbach and Gorodnichenko (<a class="reference external" href="http://doi.org/10.1257/pol.4.2.1">2012</a>, table 1) find that while the output multiplier is <span class="math notranslate nohighlight">\(0.6\)</span> in expansions and <span class="math notranslate nohighlight">\(1\)</span> on average, it is as high as <span class="math notranslate nohighlight">\(2.5\)</span> in recessions.</p>
 <p>Thus, we consider a range of unemployment multipliers with lower bound <span class="math notranslate nohighlight">\(0\)</span> and upper bound <span class="math notranslate nohighlight">\(2\)</span>. We use <span class="math notranslate nohighlight">\(\bar{M} = 0.5\)</span> for most calculations.</p>
@@ -573,7 +597,7 @@
 <h2>Calibration of <span class="math notranslate nohighlight">\(\eta\)</span>    <a class="reference external" href="https://www.pascalmichaillat.org/5.html"><img alt="Generic badge" src="https://img.shields.io/badge/LMS18a-p.%20D7-purple?logo=read-the-docs" /></a><a class="headerlink" href="#calibration-of-eta-generic-badge" title="Permalink to this headline">¶</a></h2>
 <p>The parameter <span class="math notranslate nohighlight">\(\eta\)</span> is the matching elasticity, which is the elasticity of the matching function with respect to unemployment. A vast literature has attempted to estimate <span class="math notranslate nohighlight">\(\eta\)</span>. In their survey, Petrongolo
 and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.39.2.390">2001</a>, p. 424) conclude that the estimates of <span class="math notranslate nohighlight">\(\eta\)</span> fall between 0.5 and 0.7. Here, we will set <span class="math notranslate nohighlight">\(\eta\)</span> to be <span class="math notranslate nohighlight">\(0.6\)</span>, with an upper bound of <span class="math notranslate nohighlight">\(0.7\)</span> and a lower bound of <span class="math notranslate nohighlight">\(0.5\)</span>.</p>
-<p>Check the badge above for reference to a more detailed discussion.</p>
+<p>Click the badge above for the reference to a more detailed discussion of the calibration of <span class="math notranslate nohighlight">\(\eta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eta_h</span><span class="p">,</span> <span class="n">eta_l</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span>
@@ -743,7 +767,7 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 </div>
 </div>
 </div>
-<p>As shown above, <span class="math notranslate nohighlight">\(m\)</span> is roughly equal to <span class="math notranslate nohighlight">\(M\)</span>. We also compute <span class="math notranslate nohighlight">\(m\)</span> for different <span class="math notranslate nohighlight">\(M\)</span>’s and <span class="math notranslate nohighlight">\(\eta\)</span>’s:</p>
+<p>As shown above, <span class="math notranslate nohighlight">\(m\)</span> is roughly equal to <span class="math notranslate nohighlight">\(\bar{M} = 0.5\)</span>. We also compute <span class="math notranslate nohighlight">\(m\)</span> for different <span class="math notranslate nohighlight">\(M\)</span>’s and <span class="math notranslate nohighlight">\(\eta\)</span>’s:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">M_bar_l</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">M_bar_h</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
@@ -765,11 +789,11 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 <img alt="../_images/calibration-suffstat_59_1.png" src="../_images/calibration-suffstat_59_1.png" />
 </div>
 </div>
-<p>As we can see, the choice of <span class="math notranslate nohighlight">\(\eta\)</span> within our specified range makes very little difference.</p>
+<p>As you can see, the choice of <span class="math notranslate nohighlight">\(\eta\)</span> within our specified range makes very little difference.</p>
 </div>
 <div class="section" id="calibration-of-z-0-and-z-1">
 <h2>Calibration of <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span><a class="headerlink" href="#calibration-of-z-0-and-z-1" title="Permalink to this headline">¶</a></h2>
-<p>We now calibrate <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span>. <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span> can be calculated by using the following equations:</p>
+<p>We now calibrate <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span>. <span class="math notranslate nohighlight">\(z_0\)</span> and <span class="math notranslate nohighlight">\(z_1\)</span> can be calculated with the following equations:</p>
 <p><span class="math notranslate nohighlight">\(z_0 = \frac{1}{(1-\eta)(1-\bar{u})^2},\)</span>         <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201315-purple?logo=read-the-docs" /></a></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(z_1 = \frac{\overline{g/y}\cdot \overline{c/y}}{\bar{u}}.\)</span>           <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-p.%201316-purple?logo=read-the-docs" /></a></p>
@@ -823,8 +847,8 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "pascalmichaillat/public-expenditure",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

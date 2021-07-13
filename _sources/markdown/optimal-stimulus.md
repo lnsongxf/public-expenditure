@@ -1,10 +1,8 @@
 # Optimal Public Expenditure over the Business Cycle
 
-This chapter computes the optimal level of public expenditure in a simple matching model of the business cycle. 
+This chapter computes the optimal level of public expenditure in a simple matching model of the business cycle. The model features self-employed workers who sell their services on a matching market to other households and the government. 
 
-The model features self-employed workers who sell their services on a matching market to other households and the government. 
-
-In this chapter, we first calibrate the parameters using US data. We then compute optimal stimulus with the sufficient-statistics formula in Michaillat and Saez (2019). We then calibrate the rest of the paramters needed for the business cycle simulations. Finally, we simulate the model in response to aggregate-demand shocks and aggregate-supply shocks and compute the optimal stimulus spending in response to these shocks.
+In this chapter, we first calibrate the parameters using US data. We then show how to compute optimal stimulus with the sufficient-statistics formula in Michaillat and Saez (2019) to see how optimal stimulus varies with different parameter values. We then calibrate the rest of the paramters needed for the business cycle simulations. Finally, we simulate business cycles with aggregate-demand shocks and compute the optimal stimulus spending in response to these shocks.
 
 ## References
 

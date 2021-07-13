@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Optimal Public Expenditure over the Business Cycle &#8212; An Interactive Guide for Optimal Policies</title>
+    <title>A Quick User Guide &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Calibration" href="../notebooks/calibration-suffstat.html" />
-    <link rel="prev" title="A Quick User Guide" href="user-guide.html" />
+    <link rel="next" title="Optimal Public Expenditure over the Business Cycle" href="optimal-stimulus.html" />
+    <link rel="prev" title="Introduction" href="../book.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -87,9 +87,9 @@
   BEFORE YOU START
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="user-guide.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    A Quick User Guide
   </a>
  </li>
@@ -99,12 +99,12 @@
   PUBLIC EXPENDITURE
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="optimal-stimulus.html">
    Optimal Public Expenditure over the Business Cycle
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
@@ -178,7 +178,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/markdown/optimal-stimulus.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/markdown/user-guide.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -198,7 +198,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fmarkdown/optimal-stimulus.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fmarkdown/user-guide.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -225,8 +225,28 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
+  <a class="reference internal nav-link" href="#how-the-book-works">
+   How the Book Works
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-run-the-code">
+   How to Run the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-the-source-code-is-stored">
+   Where the Source Code is Stored
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-the-functions-are-defined">
+   Where the Functions are Defined
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-users-can-contribute-to-the-book">
+   How Users Can Contribute to the Book
   </a>
  </li>
 </ul>
@@ -240,20 +260,29 @@
         
               <div>
                 
-  <div class="section" id="optimal-public-expenditure-over-the-business-cycle">
-<h1>Optimal Public Expenditure over the Business Cycle<a class="headerlink" href="#optimal-public-expenditure-over-the-business-cycle" title="Permalink to this headline">¶</a></h1>
-<p>This chapter computes the optimal level of public expenditure in a simple matching model of the business cycle. The model features self-employed workers who sell their services on a matching market to other households and the government.</p>
-<p>In this chapter, we first calibrate the parameters using US data. We then show how to compute optimal stimulus with the sufficient-statistics formula in Michaillat and Saez (2019) to see how optimal stimulus varies with different parameter values. We then calibrate the rest of the paramters needed for the business cycle simulations. Finally, we simulate business cycles with aggregate-demand shocks and compute the optimal stimulus spending in response to these shocks.</p>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Pascal Michaillat. <a class="reference external" href="https://www.pascalmichaillat.org/2.html">A Theory of Countercyclical Government Multiplier</a>. January 2014. American Economic Journal: Macroeconomics, volume 6, issue 1, pages 190-217.</p></li>
-<li><p>Pascal Michaillat, Emmanuel Saez. <a class="reference external" href="https://www.pascalmichaillat.org/3.html">Aggregate Demand, Idle Time, and Unemployment</a>. May 2015. Quarterly Journal of Economics, volume 130, issue 2, pages 507–569.</p></li>
-<li><p>Camille Landais, Pascal Michaillat, Emmanuel Saez. <a class="reference external" href="https://www.pascalmichaillat.org/5.html">A Macroeconomic Approach to Optimal Unemployment Insurance: Applications</a>. May 2018. American Economic Journal: Economic Policy, volume 10, issue 2, pages 152-181.</p></li>
-<li><p>Pascal Michaillat, Emmanuel Saez. <a class="reference external" href="https://www.pascalmichaillat.org/6.html">Optimal Public Expenditure with Inefficient Unemployment</a>. May 2019. Review of Economic Studies, volume 86, issue 3, pages 1301–1331.</p></li>
-</ul>
+  <div class="section" id="a-quick-user-guide">
+<h1>A Quick User Guide<a class="headerlink" href="#a-quick-user-guide" title="Permalink to this headline">¶</a></h1>
+<p>Before you start reading the book, here is a quick walkthrough of the structure of this book. Hope this can help you make the most out of it.</p>
+<div class="section" id="how-the-book-works">
+<h2>How the Book Works<a class="headerlink" href="#how-the-book-works" title="Permalink to this headline">¶</a></h2>
+<p>This is an executable Jupyter book. Most sections of this book are written in Jupyter Notebook, which means they are a combination of code and markdown cells. This book not only shows how optimal policies are calculated, but also allows users to interact with our policy functions and see how they change under different macroeconomic environments by changing the inputs yourself.</p>
 </div>
-<div class="toctree-wrapper compound">
+<div class="section" id="how-to-run-the-code">
+<h2>How to Run the Code<a class="headerlink" href="#how-to-run-the-code" title="Permalink to this headline">¶</a></h2>
+<p>You can execute the notebooks online via <code class="docutils literal notranslate"><span class="pre">Binder</span></code>. What <code class="docutils literal notranslate"><span class="pre">Binder</span></code> does is hosting the notebooks on servers. This allows users to execute notebooks without having to download them and run them locally. To run the code online, simply click the <code class="docutils literal notranslate"><span class="pre">Binder</span></code> badge on the top right of each Jupyter Notebook section.</p>
+</div>
+<div class="section" id="where-the-source-code-is-stored">
+<h2>Where the Source Code is Stored<a class="headerlink" href="#where-the-source-code-is-stored" title="Permalink to this headline">¶</a></h2>
+<p>The source code is hosted <a class="reference external" href="https://github.com/pascalmichaillat/public-expenditure">here</a>. You can also go to the Github repo by clicking the Github icon on the top right of the page.</p>
+<p>In the repo, the notebooks are in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder. Output produced by the notebooks are stored in <code class="docutils literal notranslate"><span class="pre">notebooks/output/</span></code>.</p>
+</div>
+<div class="section" id="where-the-functions-are-defined">
+<h2>Where the Functions are Defined<a class="headerlink" href="#where-the-functions-are-defined" title="Permalink to this headline">¶</a></h2>
+<p>Since we use one notebook for each section, and there are functions used by multiple notebooks, we decided to put all our reusable functions in the <code class="docutils literal notranslate"><span class="pre">Helper</span> <span class="pre">Functions</span></code> section. This section defines all the functions used in the chapter, and provides detailed documentation and references of how each function works.</p>
+</div>
+<div class="section" id="how-users-can-contribute-to-the-book">
+<h2>How Users Can Contribute to the Book<a class="headerlink" href="#how-users-can-contribute-to-the-book" title="Permalink to this headline">¶</a></h2>
+<p>If you want to continue building on the book, you can simply fork the Github repository and make edits in your fork. If you are interested in contributing to the book, <a class="reference external" href="https://github.com/MarcDiethelm/contributing/blob/master/README.md">here</a> is a guide on how to do so. You can also suggest edits and open new issues by clicking on the Github icon. We would love to hear your input!</p>
 </div>
 </div>
 
@@ -282,8 +311,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="user-guide.html" title="previous page">A Quick User Guide</a>
-    <a class='right-next' id="next-link" href="../notebooks/calibration-suffstat.html" title="next page">Calibration</a>
+    <a class='left-prev' id="prev-link" href="../book.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="optimal-stimulus.html" title="next page">Optimal Public Expenditure over the Business Cycle</a>
 
         </div>
         

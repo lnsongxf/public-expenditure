@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Optimal Stimulus &#8212; Optimal Public Expenditure over the Business Cycle</title>
+    <title>Optimal Stimulus &#8212; An Interactive Guide for Optimal Policies</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,9 +44,9 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -76,7 +76,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Optimal Public Expenditure over the Business Cycle</h1>
+      <h1 class="site-logo" id="site-title">An Interactive Guide for Optimal Policies</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -84,16 +84,21 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        <p class="caption">
+ <span class="caption-text">
+  BEFORE YOU START
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../book.html">
-   Introduction
+  <a class="reference internal" href="../markdown/user-guide.html">
+   A Quick User Guide
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Public-Expenditure
+  PUBLIC EXPENDITURE
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -186,6 +191,22 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pascalmichaillat/public-expenditure"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fnotebooks/stimulus.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -208,6 +229,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -240,7 +264,7 @@
                 
   <div class="section" id="optimal-stimulus">
 <h1>Optimal Stimulus<a class="headerlink" href="#optimal-stimulus" title="Permalink to this headline">¶</a></h1>
-<p>This section computes the optimal level of public expenditure for any given current unemployment rate by using the sufficient-statistics formula.</p>
+<p>This section computes the optimal level of public expenditure for any given current unemployment rate by using the sufficient-statistics formula. Before we start, we set up the libraries and read in the helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load setup.py</span>
@@ -289,7 +313,8 @@
 </div>
 </div>
 </div>
-<p>Setting <span class="math notranslate nohighlight">\(u_0 = 9\%\)</span> and <span class="math notranslate nohighlight">\(\eta = 0.6\)</span>, we first calculate <span class="math notranslate nohighlight">\(m\)</span>’s for a given range of <span class="math notranslate nohighlight">\(M\)</span>’s:</p>
+<p>We want to find out what the optimal stimulus is for any deviation from the steady state. Here, we set <span class="math notranslate nohighlight">\(u_0 = 9\%\)</span>, which means we want to calculate the optimal stimulus when current unemployment rate is around <span class="math notranslate nohighlight">\(3\)</span> percentage points higher than the steady-state value. Feel free to change this value to see how optimal stimulus changes.</p>
+<p>We also set <span class="math notranslate nohighlight">\(\eta = 0.6\)</span> and calculate <span class="math notranslate nohighlight">\(m\)</span>’s for a given range of <span class="math notranslate nohighlight">\(M\)</span>’s:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="mf">0.09</span>
@@ -301,7 +326,7 @@
 </div>
 <p>We now calculate optimal stimulus with the following equation:</p>
 <p><span class="math notranslate nohighlight">\(\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.\)</span>          <a class="reference external" href="https://www.pascalmichaillat.org/6.html"><img alt="Generic badge" src="https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs" /></a></p>
-<p>For convenience of calculating optimal stimulus as percentage of GDP for different <span class="math notranslate nohighlight">\(\epsilon\)</span>’s, we define the following wrapper:</p>
+<p>For convenience, we define the following wrapper, which calculates optimal stimulus as a percentage of GDP for different <span class="math notranslate nohighlight">\(\epsilon\)</span>’s from the LHS of the equation above using accounting identities:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stim_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">epsilon</span><span class="p">:</span><span class="n">GY_func</span><span class="p">((</span><span class="n">suffstat_func</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m_vals</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">],</span> <span class="n">z1</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;z1&#39;</span><span class="p">],</span>
@@ -310,6 +335,7 @@
 </div>
 </div>
 </div>
+<p>Below is what optimal stimulus spending looks like for different unemployment multipliers and elasticities of substitution between public and private consumption. For a more detailed discussion of the implications of this graph, go to page 1325 of <a class="reference external" href="https://www.pascalmichaillat.org/6.html">Michaillat and Saez (2019</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stim_vals</span> <span class="o">=</span> <span class="n">stim_func</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;epsilon&#39;</span><span class="p">])</span>
@@ -326,7 +352,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/stimulus_8_0.png" src="../_images/stimulus_8_0.png" />
+<img alt="../_images/stimulus_9_0.png" src="../_images/stimulus_9_0.png" />
 </div>
 </div>
 </div>
@@ -336,8 +362,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "pascalmichaillat/public-expenditure",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
