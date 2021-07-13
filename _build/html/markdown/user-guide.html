@@ -44,9 +44,9 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -201,9 +201,7 @@
             href="https://github.com/pascalmichaillat/public-expenditure/issues/new?title=Issue%20on%20page%20%2Fmarkdown/user-guide.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pascalmichaillat/public-expenditure/edit/main/markdown/user-guide.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+        
     </div>
 </div>
 
@@ -275,7 +273,8 @@
 </div>
 <div class="section" id="where-the-source-code-is-stored">
 <h2>Where the Source Code is Stored<a class="headerlink" href="#where-the-source-code-is-stored" title="Permalink to this headline">¶</a></h2>
-<p>The source code is hosted <a class="reference external" href="https://github.com/pascalmichaillat/public-expenditure">here</a>. The notebooks are in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder. Output produced by the notebooks are stored in <code class="docutils literal notranslate"><span class="pre">notebooks/output/</span></code>.</p>
+<p>The source code is hosted <a class="reference external" href="https://github.com/pascalmichaillat/public-expenditure">here</a>. You can also go to the Github repo by clicking the Github icon on the top right of the page.</p>
+<p>In the repo, the notebooks are in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder. Output produced by the notebooks are stored in <code class="docutils literal notranslate"><span class="pre">notebooks/output/</span></code>.</p>
 </div>
 <div class="section" id="where-the-functions-are-defined">
 <h2>Where the Functions are Defined<a class="headerlink" href="#where-the-functions-are-defined" title="Permalink to this headline">¶</a></h2>
@@ -283,7 +282,7 @@
 </div>
 <div class="section" id="how-users-can-contribute-to-the-book">
 <h2>How Users Can Contribute to the Book<a class="headerlink" href="#how-users-can-contribute-to-the-book" title="Permalink to this headline">¶</a></h2>
-<p>If you want to continue building on the book, you can simply fork the Github repository and make edits in your fork. If you are interested in contributing to the book, <a class="reference external" href="https://github.com/MarcDiethelm/contributing/blob/master/README.md">here</a> is a guide on how to do so. We would really appreciate your input!</p>
+<p>If you want to continue building on the book, you can simply fork the Github repository and make edits in your fork. If you are interested in contributing to the book, <a class="reference external" href="https://github.com/MarcDiethelm/contributing/blob/master/README.md">here</a> is a guide on how to do so. You can also suggest edits and open new issues by clicking on the Github icon. We would love to hear your input!</p>
 </div>
 </div>
 
@@ -291,8 +290,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "pascalmichaillat/public-expenditure",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

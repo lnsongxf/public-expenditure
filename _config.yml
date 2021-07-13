@@ -25,6 +25,9 @@ binder:
   binderhub_url               : "https://mybinder.org"
   text                        : "Launch binder"
 
+launch_buttons:
+  thebe                  : true
+
 html:
   home_page_in_navbar         : false
   use_edit_page_button        : false
