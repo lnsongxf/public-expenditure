@@ -7,21 +7,23 @@
 # 
 # Before we start, we first set up the libraries and import the helper functions.
 
-# In[2]:
+# In[1]:
 
 
-# %load setup.py
+# %load ../py/setup.py
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as mtick
-from itertools import product
+import plotly.io as pio
+import plotly.express as px
+import plotly.offline as py
 get_ipython().run_line_magic('run', 'helpers.ipynb')
 
 
 # We then retrieve our calibrated parameter values from the previous sections and merge them for a full list of calibrated parameters.
 
-# In[3]:
+# In[2]:
 
 
 params_suffstat = pd.read_csv('output/params_suffstat.csv')
@@ -40,7 +42,7 @@ params_full
 # 
 # This condition is satisfied when aggregate supply equals aggregate demand. We want to find values of $x$ that equate the two sides of the equation with the function `find_eq`.
 
-# In[4]:
+# In[3]:
 
 
 # Range of aggregate demand
@@ -60,7 +62,7 @@ for i, alpha in enumerate(ALPHA):
 
 # We then compute all other equilibrium variables with $G/Y = 16.5\%$ under the aggregate demand shocks. 
 
-# In[5]:
+# In[4]:
 
 
 ad = pd.DataFrame({'Y':Y_func(xad, **params_full),
@@ -71,7 +73,7 @@ ad = pd.DataFrame({'Y':Y_func(xad, **params_full),
 
 # Let's first look at equilibria under aggregate demand shocks and fixed public expenditure. We can see that aggregate demand shocks produce business cycles. 
 
-# In[6]:
+# In[5]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -97,7 +99,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # 
 # 
 
-# In[7]:
+# In[6]:
 
 
 xoptimal, Goptimal = np.empty(len(ALPHA)), np.empty(len(ALPHA))
@@ -122,7 +124,7 @@ for i, alpha in enumerate(ALPHA):
 
 # We now calculate other macroeconomic variables. 
 
-# In[8]:
+# In[7]:
 
 
 exact_opt = pd.DataFrame({'Y':Y_func(x=xoptimal, **params_full),
@@ -133,7 +135,7 @@ exact_opt = pd.DataFrame({'Y':Y_func(x=xoptimal, **params_full),
 
 # We can see how these variables compare to when $G/Y = 16.5\%$. Business cycle is much smoother under exact optimal public expenditure. We now see a flattened business cycle. 
 
-# In[9]:
+# In[8]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -159,7 +161,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # We now compute optimal stimulus in response to aggregate demand shocks by using the formula above.
 
-# In[10]:
+# In[9]:
 
 
 xsuffstat, Gsuffstat = np.empty(len(ALPHA)), np.empty(len(ALPHA))
@@ -178,7 +180,7 @@ for i, alpha in enumerate(ALPHA):
 
 # We compute other macroeconomics variables and compare them with when $G/Y$ is fixed at $16.5\%$. As expected, the business cycle is much smoother under stimulus. 
 
-# In[11]:
+# In[10]:
 
 
 ss = pd.DataFrame({'Y':Y_func(x=xsuffstat, **params_full),
@@ -187,7 +189,7 @@ ss = pd.DataFrame({'Y':Y_func(x=xsuffstat, **params_full),
                    'G/Y':Gsuffstat/Y_func(x=xsuffstat, **params_full)}, index=ALPHA)
 
 
-# In[12]:
+# In[11]:
 
 
 ad_axes = ad.plot(subplots=True, layout=(2, 2), title=['Output', 'Unemployment', 'Output Multiplier', 'Public Expenditure'], 
@@ -209,7 +211,7 @@ ad_axes[1, 1].yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 # 
 # We also compare the exact solution with the solution given by the sufficient-statistics formula. The graph below shows that the sufficient statistics approach serves as a good approximation of the exact approach. 
 
-# In[13]:
+# In[12]:
 
 
 ss_ax = ss['G/Y'].plot(label='Optimal G: Sufficient Statistics', grid=True)
@@ -217,4 +219,16 @@ ss_ax.set(xlabel='Aggregate Demand', ylabel='Public Expenditure, % of GDP')
 ss_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 exact_opt['G/Y'].plot(ax=ss_ax, grid=True, label='Optimal G: Exact Solution')
 ss_ax.legend()
+
+
+# In[13]:
+
+
+opt_stim = pd.DataFrame({'Exact Solution':exact_opt['G/Y'], 
+                         'Sufficient Statistics':ss['G/Y']})
+opt_stim = opt_stim.melt(ignore_index=False, var_name='Approach')
+fig = px.line(opt_stim, x=opt_stim.index, y='value', color='Approach', 
+              labels={"index": "Aggregate Demand",
+                      "value": "Public Expenditure, % of GDP"})
+fig
 

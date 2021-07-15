@@ -5,14 +5,17 @@
 # 
 # This section computes the optimal level of public expenditure for any given current unemployment rate by using the sufficient-statistics formula. Before we start, we set up the libraries and read in the helper functions. 
 
-# In[11]:
+# In[1]:
 
 
-# %load setup.py
+# %load ../py/setup.py
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as mtick
+import plotly.io as pio
+import plotly.express as px
+import plotly.offline as py
 get_ipython().run_line_magic('run', 'helpers.ipynb')
 
 
@@ -20,7 +23,7 @@ get_ipython().run_line_magic('run', 'helpers.ipynb')
 # 
 # First, we load the calibrated parameter values from our previous section. 
 
-# In[12]:
+# In[2]:
 
 
 params = pd.read_csv('output/params_suffstat.csv')
@@ -32,7 +35,7 @@ params
 # 
 # We also set $\eta = 0.6$ and calculate $m$'s for a given range of $M$'s:
 
-# In[13]:
+# In[3]:
 
 
 u0 = 0.09
@@ -46,7 +49,7 @@ m_vals = m_func(which='M', M=M_vals, u=params['u_bar'], GY=GY_func(params['GC_ba
 # 
 # For convenience, we define the following wrapper, which calculates optimal stimulus as a percentage of GDP for different $\epsilon$'s from the LHS of the equation above using accounting identities:
 
-# In[14]:
+# In[4]:
 
 
 stim_func = lambda epsilon:GY_func((suffstat_func(m=m_vals, z0=params['z0'], z1=params['z1'],
@@ -55,17 +58,19 @@ stim_func = lambda epsilon:GY_func((suffstat_func(m=m_vals, z0=params['z0'], z1=
 
 # Below is what optimal stimulus spending looks like for different unemployment multipliers and elasticities of substitution between public and private consumption. For a more detailed discussion of the implications of this graph, go to page 1325 of [Michaillat and Saez (2019](https://www.pascalmichaillat.org/6.html)).
 
-# In[15]:
+# In[5]:
 
 
 stim_vals = stim_func(epsilon=params['epsilon'])
 stim_vals_h = stim_func(epsilon=params['epsilon_h'])
 stim_vals_l = stim_func(epsilon=params['epsilon_l'])
-stim_range = pd.DataFrame(index=M_vals,
-                          data={f'$\epsilon = ${params["epsilon_h"]}':stim_vals_h, 
-                                f'$\epsilon = ${params["epsilon"]}':stim_vals,
-                                f'$\epsilon = ${params["epsilon_l"]}':stim_vals_l})
-stim_range_ax = stim_range.plot(title=r"Optimal Stimulus Spending", color=['red', 'blue', 'orange'])
-stim_range_ax.set(xlabel='Unemployment Multiplier', ylabel='Optimal stimulus spending (% of GDP)', ylim=[0, 0.06])
-stim_range_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
+stim = pd.DataFrame(data={'M':M_vals,
+                          params["epsilon_h"]:stim_vals_h, 
+                          params["epsilon"]:stim_vals,
+                          params["epsilon_l"]:stim_vals_l})
+stim = stim.melt(id_vars=['M'], var_name='ϵ')
+fig = px.line(stim, x="M", y='value', color='ϵ', 
+              labels={"M": "Unemployment Multiplier",
+                      "value": "Optimal stimulus spending (% of GDP)"})
+fig
 

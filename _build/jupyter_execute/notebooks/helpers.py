@@ -18,7 +18,7 @@
 #      
 # where $e$ is the average job-search effort, which is normalized to $1$. 
 
-# In[2]:
+# In[1]:
 
 
 def omega_func(eta, x_bar, u_bar, e=1):
@@ -36,7 +36,7 @@ def omega_func(eta, x_bar, u_bar, e=1):
 #                 $\rho = \frac{\omega x^{-\eta}\tau}{(1+\tau)s}.$
 #                 
 
-# In[3]:
+# In[2]:
 
 
 def rho_func(eta, s, u, x, omega, tau):
@@ -52,7 +52,7 @@ def rho_func(eta, s, u, x, omega, tau):
 # 
 #                 $\bar{\tau} = \frac{(1-\eta)\bar{u}}{\eta}.$ 
 
-# In[4]:
+# In[3]:
 
 
 def tau_bar_func(eta, u_bar):
@@ -66,7 +66,7 @@ def tau_bar_func(eta, u_bar):
 #                 $q(x(t)) = \frac{h(t)}{v(t)}=\omega x(t)^{-\eta}.$        [![Generic badge](https://img.shields.io/badge/MS19-p.%201305-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 #                 
 
-# In[5]:
+# In[4]:
 
 
 def q_func(x, **params):
@@ -79,7 +79,7 @@ def q_func(x, **params):
 # 
 #                 $\tau(x) = \frac{\rho s}{q(x) - \rho s}. $              [![Generic badge](https://img.shields.io/badge/MS19-Eq%203-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html) 
 
-# In[7]:
+# In[5]:
 
 
 def tau_func(x, **params):
@@ -115,7 +115,7 @@ def u_func(x, **params):
 # 
 #                 $Y(x, k) = \frac{f(x)}{s+f(x)}k = (1-u(x))\cdot k.$    [![Generic badge](https://img.shields.io/badge/MS19-Eq%201-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)    
 
-# In[9]:
+# In[7]:
 
 
 def Y_func(x, **params):
@@ -129,7 +129,7 @@ def Y_func(x, **params):
 # 
 #                 $\frac{d\ln{y}}{d\ln{x}} = (1-\eta) * u(x) - \eta * \tau(x).$
 
-# In[10]:
+# In[8]:
 
 
 def dlnydlnx_func(x, **params):
@@ -140,7 +140,7 @@ def dlnydlnx_func(x, **params):
 # ### $G/Y, C/Y$ and $G/C$
 # Since output consists of government spending and consumption, we have the following identities for different consumption ratios:
 
-# In[11]:
+# In[9]:
 
 
 GY_func = lambda GC:GC/(1 + GC) # G/Y
@@ -162,7 +162,7 @@ GC_func = lambda GY:GY/(1 - GY) # G/C
 #                 $\mathcal{U}(c,g) = \frac{c^{1-\gamma} g^{\gamma}}{(1-\gamma)^{1-\gamma}\gamma^\gamma}.$
 # 
 
-# In[12]:
+# In[10]:
 
 
 def U_func(c, g, **params):
@@ -181,7 +181,7 @@ def U_func(c, g, **params):
 # 
 #                 $\frac{\delta \ln{\mathcal{U}}}{\delta \ln{c}} = (1-\gamma)^{{1/\epsilon}} \left(\frac{c}{\mathcal{U}}\right)^{\frac{\epsilon-1}{\epsilon}},\quad \mathcal{U}_c \equiv \frac{\delta \mathcal{U}}{\delta c} = \left((1-\gamma) \frac{\mathcal{U}}{c}\right)^{1/\epsilon}.$     [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[13]:
+# In[11]:
 
 
 def dUdc_func(gc, **params):
@@ -197,7 +197,7 @@ def dlnUdlnc_func(gc, **params):
 # 
 #                 $\mathcal{U}_g \equiv \frac{\delta \mathcal{U}}{\delta g} = \left(\gamma \frac{\mathcal{U}}{g}\right)^{1/\epsilon}.$           [![Generic badge](https://img.shields.io/badge/MS19-p.%20A1-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[14]:
+# In[12]:
 
 
 def dlnUdlng_func(gc, **params):
@@ -212,7 +212,7 @@ def dlnUdlng_func(gc, **params):
 #                 $MRS_{gc} = \frac{\mathcal{U}_g}{\mathcal{U}_c}  = \frac{\gamma^{1/\epsilon}}{(1-\gamma)^{1/\epsilon}}*(gc)^{1/\epsilon}.$
 #                
 
-# In[15]:
+# In[13]:
 
 
 def MRS_func(gc, **params):
@@ -228,7 +228,7 @@ def MRS_func(gc, **params):
 # 
 #                 $\frac{\delta \ln{\mathcal{U}_c}}{\delta \ln{g}} = \frac{1}{\epsilon}\left(\frac{\delta \mathcal{U}}{\delta g} \right).$              [![Generic badge](https://img.shields.io/badge/MS19-p.%20A2-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[16]:
+# In[14]:
 
 
 def dlnUcdlnc_func(gc, **params):
@@ -247,7 +247,7 @@ def dlnUcdlng_func(gc, **params):
 # 
 #                 $p(G) = p_0 \left\{ (1-\gamma) + \gamma ^{\frac{1}{\epsilon}}\left[(1-\gamma)\frac{g}{y^*-g}\right]^{\frac{\epsilon-1}{\epsilon}}\right \}^\frac{1-r}{\epsilon - 1}.$   [![Generic badge](https://img.shields.io/badge/MS19-Eq%2015-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[17]:
+# In[15]:
 
 
 def p_func(G, **params):
@@ -261,7 +261,7 @@ def p_func(G, **params):
 # 
 #                 $\frac{d\ln{p}}{d\ln{g}} = (1-r) \left[ \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{g}} - \frac{G}{y^* - G} \frac{\delta\ln{\mathcal{U}_c}}{\delta \ln{c}}  \right].$      [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A4-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[19]:
+# In[16]:
 
 
 def dlnpdlng_func(G, **params):
@@ -284,7 +284,7 @@ def dlnpdlng_func(G, **params):
 # 
 #                 $\frac{\delta\ln{c}}{\delta \ln{g}} = \frac{d \ln{p}/d\ln(g) - \delta \ln{\mathcal{U}_c}/\delta\ln(g)}{\delta \ln{\mathcal{U}_c}/\delta\ln(c)}.$    [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A7-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[ ]:
+# In[17]:
 
 
 def dlnxdlng_func(G, x, **params):
@@ -306,7 +306,7 @@ def dlnxdlng_func(G, x, **params):
 # 
 #                 $m = (1-\eta) (1-u) u \frac{y}{g}\frac{d\ln{x}}{d\ln{g}}.$     [![Generic badge](https://img.shields.io/badge/MS19-Eq%2021-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 
-# In[20]:
+# In[18]:
 
 
 def m_func(which, **params):
@@ -329,7 +329,7 @@ def m_func(which, **params):
 #                 $M = \frac{m}{1- u + \frac{g}{y}\frac{\eta}{1-\eta}\frac{\tau}{u}m}.$            [![Generic badge](https://img.shields.io/badge/MS19-Eq%20A11-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
 
-# In[21]:
+# In[19]:
 
 
 def M_func(G, x, **params):
@@ -349,7 +349,7 @@ def M_func(G, x, **params):
 # 
 # We now define the following function such that the function returns zero when the economy is at equilibrium.
 
-# In[23]:
+# In[20]:
 
 
 def find_eq(G, x, alpha, **params):
@@ -366,7 +366,7 @@ def find_eq(G, x, alpha, **params):
 #                 $1 = MRS_{gc} + \frac{\delta y}{\delta x}\frac{d x}{\delta g}.$          [![Generic badge](https://img.shields.io/badge/MS19-Eq%2018-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 # 
 
-# In[ ]:
+# In[21]:
 
 
 def optimal_func(G, x, **params):
@@ -379,7 +379,7 @@ def optimal_func(G, x, **params):
 # 
 #                 $\frac{g/c - (g/c)^*}{(g/c)^*} \approx \frac{z_0 \epsilon m}{1 + z_1 z_0\epsilon m^2}\cdot \frac{u_0 - \bar{u}}{\bar{u}}.$      [![Generic badge](https://img.shields.io/badge/MS19-Eq%2023-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 
-# In[24]:
+# In[22]:
 
 
 def suffstat_func(u0, m, **params):
