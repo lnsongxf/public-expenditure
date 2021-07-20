@@ -1,6 +1,6 @@
 # Optimal Public Expenditure over the Business Cycle
 
-This [Jupyter Notebook](https://pascalmichaillat.github.io/public-expenditure) describes how to compute different types of optimal policies. 
+This [Jupyter book](https://pascalmichaillat.github.io/public-expenditure) describes how to compute different types of optimal policies. 
 
 The book covers three main types of policy tools: monetary policy, public expenditure, and unemployment insurance.
 

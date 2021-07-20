@@ -3,21 +3,24 @@
 
 # # Calibration
 # 
-# In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy, on average, is efficient. 
+# In this section, we calibrate the parameters needed to calculate optimal stimulus with US data between 2001 and 2019. We  use the assumption that the economy is efficient on average. 
 # 
-# Before we start, we first load the necessary libraries. 
+# Before we start, we first load the necessary libraries for plotting and data cleaning. 
 
 # In[1]:
 
 
-# %load setup.py
+# %load ../py/setup.py
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as mtick
+import plotly.io as pio
+import plotly.express as px
+import plotly.offline as py
 
 
-# We fetch the data series from FRED. To do this, we use the `fredapi` package. An API key is required. More information on API keys can be found [here](https://research.stlouisfed.org/docs/api/api_key.html).
+# We fetch the data series from FRED. Here, we use the `fredapi` python package to do this. Downloading Fred data series requires an API key, which you can register by going [here](https://research.stlouisfed.org/docs/api/api_key.html).
 
 # In[2]:
 
@@ -64,9 +67,18 @@ s_ax.set(xlabel='Year', ylabel='s', ylim=(0, 0.05))
 s_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 
+# In[7]:
+
+
+fig = px.line(s_ts, labels={"index": "Year",
+                            "value": "s"}, title='US Job Separation Rate between 2001 and 2019')
+fig.data[0].update(mode='markers+lines', showlegend=False)
+fig
+
+
 # We now calibrate $s$ and find that it is around $3.6\%$.
 
-# In[7]:
+# In[8]:
 
 
 s = s_ts.mean()
@@ -75,9 +87,9 @@ s
 
 # ## Calibration of $\bar{u}$
 # 
-# We now calibrate $\bar{u}$, which is the steady-state unemployment rate. We set it to be the average US unemployment rate over our sample period.
+# We now calibrate $\bar{u}$, which is the steady-state unemployment rate. We calibrate it to be the average US unemployment rate over our sample period.
 
-# In[8]:
+# In[9]:
 
 
 u_ts = fred.get_series('UNRATE', frequency='q', observation_start=start_date, observation_end=end_date)/100
@@ -85,7 +97,7 @@ u_ts = fred.get_series('UNRATE', frequency='q', observation_start=start_date, ob
 
 # This is what unemployment rate in the US looks like over our sample period:
 
-# In[9]:
+# In[10]:
 
 
 u_ax = u_ts.plot(title="US Unemployment Rate between 2001 and 2019", marker='.')
@@ -95,7 +107,7 @@ u_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # Taking the average gives us the calibrated value of $\bar{u}$, which is around $6\%$.
 
-# In[10]:
+# In[11]:
 
 
 u_bar = u_ts.mean()
@@ -110,9 +122,9 @@ u_bar
 # 
 # $$x(t) = \frac{v(t)}{k-Y(t)},$$
 # 
-# where $v$ denotes the vacancy level, $k$ the productive capacity of households, and $Y$ the output. Therefore, $k - Y(t)$ is simply the unemployment level, since we assume output to only come from services provided by households. 
+# where $v$ is the vacancy level, $k$ the productive capacity of households, and $Y$ the output. Therefore, $k - Y(t)$ is the unemployment level, since we assume output to only come from services provided by households. 
 
-# In[11]:
+# In[12]:
 
 
 v_ts = fred.get_series('JTSJOL', frequency='q', observation_start=start_date, observation_end=end_date)
@@ -122,7 +134,7 @@ x_ts = v_ts/ul_ts
 
 # Here is what labor market tightness in the US looks like over our sample period.
 
-# In[12]:
+# In[13]:
 
 
 x_ax = x_ts.plot(title="US Labor Market Tightness between 2001 and 2019", marker='.')
@@ -131,7 +143,7 @@ x_ax.set(xlabel='Year', ylabel='x', ylim=(0, 1.4))
 
 # We now calibrate the steady-state labor market tightness $\bar{x}$ and find that it is around $0.56$.
 
-# In[13]:
+# In[14]:
 
 
 x_bar = x_ts.mean()
@@ -140,9 +152,9 @@ x_bar
 
 # ## Calibration of $\overline{G/C}$
 # 
-# $\overline{G/C}$ is the steady-state ratio between public and private employment. We calibrate it with the average value ratio between public and private employment in the US over our sample period. 
+# $\overline{G/C}$ is the steady-state ratio between public and private employment. We calibrate it to be the average value ratio between public and private employment in the US over our sample period. 
 
-# In[14]:
+# In[15]:
 
 
 G_ts = fred.get_series('USGOVT', frequency='q', observation_start=start_date, observation_end=end_date)
@@ -152,7 +164,7 @@ GC_ts = G_ts/C_ts
 
 # This is what the ratio between public and private employment in the US looks like over our sample period:
 
-# In[15]:
+# In[16]:
 
 
 GC_ax = GC_ts.plot(title="US Public to Private Employment Ratio between 2001 and 2019", marker='.')
@@ -162,7 +174,7 @@ GC_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # We now calibrate the steady-state ratio $\overline{G/C}$, and find the average ratio between public and private employment to be around $19.2\%$.
 
-# In[16]:
+# In[17]:
 
 
 GC_bar = GC_ts.mean()
@@ -171,7 +183,7 @@ GC_bar
 
 # ## Calibration of $\bar{M}$   [![Generic badge](https://img.shields.io/badge/MS19-p.%201324~1325-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)
 # 
-# The parameter $M$ is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by $1\%$ of GDP. 
+# The parameter $\bar{M}$ is the average unemployment multiplier. The unemployment multiplier is estimated by measuring the percentage-point change in the unemployment rate when public expenditure increases by $1\%$ of GDP. 
 # 
 # Monacelli et al. ([2010](http://dx.doi.org/10.1016/j.jmoneco.2010.05.009), pp. 533–536) estimate a structural vector autoregression (SVAR) on US data and find unemployment multipliers between $0.2$ and $0.6$. Ramey ([2013](http://doi.org/10.7208/chicago/9780226018584.003.0002), pp.40–42) estimates SVARs on US data with various identification schemes and sample periods and finds unemployment multipliers between $0.2$ and $0.5$, except in one specification where the multiplier is $1$.
 # 
@@ -179,7 +191,7 @@ GC_bar
 # 
 # Thus, we consider a range of unemployment multipliers with lower bound $0$ and upper bound $2$. We use $\bar{M} = 0.5$ for most calculations.
 
-# In[17]:
+# In[18]:
 
 
 M_bar_h, M_bar_l = 2, 0
@@ -190,7 +202,7 @@ M_bar = 0.5
 # 
 # The parameter $\epsilon$ is the elasticity of substitution between public and private consumption. Amano and Wirjanto ([1997](https://doi.org/10.1162/003465397557187), [1998](https://doi.org/10.1006/redy.1998.0021)) estimate the elasticity of substitution between public and private consumption to be 0.9 and 1.56. Here, we consider three values: $\epsilon = 0.5, \epsilon = 1$ and $\epsilon = 1.5.$ You can also play with the parameter values of $\epsilon$ below.
 
-# In[18]:
+# In[19]:
 
 
 epsilon_h, epsilon_l = 1.5, 0.5
@@ -202,9 +214,9 @@ epsilon = 1
 # The parameter $\eta$ is the matching elasticity, which is the elasticity of the matching function with respect to unemployment. A vast literature has attempted to estimate $\eta$. In their survey, Petrongolo
 # and Pissarides ([2001](https://doi.org/10.1257/jel.39.2.390), p. 424) conclude that the estimates of $\eta$ fall between 0.5 and 0.7. Here, we will set $\eta$ to be $0.6$, with an upper bound of $0.7$ and a lower bound of $0.5$.
 # 
-# Check the badge above for reference to a more detailed discussion. 
+# Click the badge above for the reference to a more detailed discussion of the calibration of $\eta$. 
 
-# In[19]:
+# In[20]:
 
 
 eta_h, eta_l = 0.7, 0.5
@@ -222,7 +234,7 @@ eta = 0.6
 #      
 # where $e$ is the average job-search effort, which is normalized to $1$. We find that $\omega$ is roughly $0.71$.
 
-# In[20]:
+# In[21]:
 
 
 omega = omega_func(eta=eta, x_bar=x_bar, u_bar=u_bar)
@@ -231,7 +243,7 @@ omega
 
 # We also calculate values of $\omega$ at the bounds of $\eta$:
 
-# In[21]:
+# In[22]:
 
 
 omega_h = omega_func(eta=eta_h, x_bar=x_bar, u_bar=u_bar)
@@ -264,7 +276,7 @@ omega_l = omega_func(eta=eta_l, x_bar=x_bar, u_bar=u_bar)
 # 
 # With this, we can calculate $\rho$ by first computing $\bar{\tau}$.
 
-# In[22]:
+# In[23]:
 
 
 tau_bar = tau_bar_func(eta=eta, u_bar=u_bar)
@@ -273,7 +285,7 @@ tau_bar
 
 # We now calibrate $\rho$, which we find to be around $1.08$:
 
-# In[23]:
+# In[24]:
 
 
 rho = rho_func(eta=eta, omega=omega, tau=tau_bar, s=s, u=u_bar, x=x_bar)
@@ -282,7 +294,7 @@ rho
 
 # We also compute $\rho$'s upper and lower bound given bounds on $\eta$:
 
-# In[24]:
+# In[25]:
 
 
 rho_h = rho_func(eta=eta, omega=omega_h, tau=tau_bar_func(eta=eta_h, u_bar=u_bar), 
@@ -304,7 +316,7 @@ rho_l = rho_func(eta=eta, omega=omega_l, tau=tau_bar_func(eta=eta_l, u_bar=u_bar
 # We now compute the time series for $\tau$ over our sample period.
 #            
 
-# In[25]:
+# In[26]:
 
 
 tau_ts = tau_func(x=x_ts, s=s, rho=rho, omega=omega, eta=eta)
@@ -312,7 +324,7 @@ tau_ts = tau_func(x=x_ts, s=s, rho=rho, omega=omega, eta=eta)
 
 # This is what $\tau$ looks like over our sample period with different values of $\eta$ :
 
-# In[26]:
+# In[27]:
 
 
 tau_h_ts = tau_func(x=x_ts, s=s, rho=rho_h, omega=omega_h, eta=eta_h)
@@ -330,7 +342,7 @@ tau_range_ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0, decimals=0))
 
 # When calculating the theoretical unemployment multiplier, we take $\tau$ to be its long-run average, which is around $3.9\%$.
 
-# In[27]:
+# In[28]:
 
 
 tau = tau_ts.mean()
@@ -339,7 +351,7 @@ tau
 
 # We also compute $\tau$'s upper and lower bound given bounds on $\eta$:
 
-# In[28]:
+# In[29]:
 
 
 tau_h, tau_l = tau_h_ts.mean(), tau_l_ts.mean()
@@ -353,7 +365,7 @@ tau_h, tau_l = tau_h_ts.mean(), tau_l_ts.mean()
 #                 
 # where $G/Y$ follows the identity $G/Y = (G/C)/(1+G/C)$. Here, we will use the long-run average $\bar{u}, \overline{G/C}$ to calculate $m$. 
 
-# In[29]:
+# In[30]:
 
 
 # Identity for conversion between G/Y and G/C
@@ -362,9 +374,9 @@ m = m_func(which='M', M=M_bar, eta=eta, u=u_bar, GY=GY_bar, tau=tau)
 m
 
 
-# As shown above, $m$ is roughly equal to $M$. We also compute $m$ for different $M$'s and $\eta$'s:
+# As shown above, $m$ is roughly equal to $\bar{M} = 0.5$. We also compute $m$ for different $M$'s and $\eta$'s:
 
-# In[30]:
+# In[31]:
 
 
 M_vals = np.linspace(start=M_bar_l, stop=M_bar_h, num=101)
@@ -378,11 +390,11 @@ m_range_ax.set(xlabel='M', ylabel='m', ylim=(0, 2))
 m_range_ax.fill_between(m_range.index, m_range[f'$\eta = ${eta_l}'], m_range[f'$\eta = ${eta_h}'], alpha=0.2, color='tab:orange')
 
 
-# As we can see, the choice of $\eta$ within our specified range makes very little difference. 
+# As you can see, the choice of $\eta$ within our specified range makes very little difference. 
 
 # ## Calibration of $z_0$ and $z_1$
 # 
-# We now calibrate $z_0$ and $z_1$. $z_0$ and $z_1$ can be calculated by using the following equations:
+# We now calibrate $z_0$ and $z_1$. $z_0$ and $z_1$ can be calculated with the following equations:
 # 
 #                 $z_0 = \frac{1}{(1-\eta)(1-\bar{u})^2},$         [![Generic badge](https://img.shields.io/badge/MS19-p.%201315-purple?logo=read-the-docs)](https://www.pascalmichaillat.org/6.html)  
 # 
@@ -393,14 +405,14 @@ m_range_ax.fill_between(m_range.index, m_range[f'$\eta = ${eta_l}'], m_range[f'$
 # 
 # We estimate $z_0$ to be about 2.83 and $z_1$ to be around $2.26$.
 
-# In[31]:
+# In[32]:
 
 
 z0 = 1/((1 - eta)*(1 - u_bar)**2)
 z0
 
 
-# In[32]:
+# In[33]:
 
 
 z1 = GY_bar*(1 - GY_bar)/u_bar
@@ -411,7 +423,7 @@ z1
 # 
 # After calibrating the parameters, we store them in preparation for future usage.
 
-# In[36]:
+# In[34]:
 
 
 params = {'s':s, 'u_bar':u_bar, 'x_bar':x_bar, 'GC_bar':GC_bar, 
