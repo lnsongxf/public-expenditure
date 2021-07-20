@@ -68,9 +68,21 @@ stim = pd.DataFrame(data={'M':M_vals,
                           params["epsilon_h"]:stim_vals_h, 
                           params["epsilon"]:stim_vals,
                           params["epsilon_l"]:stim_vals_l})
-stim = stim.melt(id_vars=['M'], var_name='ϵ')
-fig = px.line(stim, x="M", y='value', color='ϵ', 
+stim = stim.melt(id_vars=['M'], var_name='ϵ', value_name='G/Y')
+fig = px.line(stim, x="M", y='G/Y', color='ϵ', 
               labels={"M": "Unemployment Multiplier",
-                      "value": "Optimal stimulus spending (% of GDP)"})
+                      "G/Y": "Optimal stimulus spending (% of GDP)"})
 fig
 
+
+# ## Storing Optimal Stimulus
+# 
+# We now store the optimal stimulus for your custom $u_0$. 
+
+# In[6]:
+
+
+stim.to_csv('output/stim.csv', index=False)
+
+
+# If you'd like to download this csv file, follow the instructions in the [user guide](../markdown/user-guide.md).

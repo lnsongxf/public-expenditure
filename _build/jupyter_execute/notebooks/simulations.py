@@ -226,9 +226,17 @@ ss_ax.legend()
 
 opt_stim = pd.DataFrame({'Exact Solution':exact_opt['G/Y'], 
                          'Sufficient Statistics':ss['G/Y']})
-opt_stim = opt_stim.melt(ignore_index=False, var_name='Approach')
-fig = px.line(opt_stim, x=opt_stim.index, y='value', color='Approach', 
+opt_stim = opt_stim.melt(ignore_index=False, var_name='Approach', value_name='G/Y')
+fig = px.line(opt_stim, x=opt_stim.index, y='G/Y', color='Approach', 
               labels={"index": "Aggregate Demand",
-                      "value": "Public Expenditure, % of GDP"})
+                      "G/Y": "Public Expenditure, % of GDP"})
 fig
+
+
+# We can also save the optimal stimuli given by the two methods. If you'd like to download this csv file, follow the corresponding instructions in our [user guide](../markdown/user-guide.md).
+
+# In[14]:
+
+
+opt_stim.to_csv('output/opt_stim_bus_cyc.csv', index_label='Aggregate Demand')
 
