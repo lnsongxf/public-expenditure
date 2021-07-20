@@ -84,3 +84,5 @@ fig
 
 stim.to_csv('output/stim.csv', index=False)
 
+
+# If you'd like to download this csv file, follow the instructions in the [user guide](../markdown/user-guide.md).
