@@ -4,13 +4,13 @@ root: book
 parts:
   - caption: BEFORE YOU START
     chapters:
-      - file: markdown/user-guide
+    - file: markdown/user-guide
   - caption: PUBLIC EXPENDITURE
     chapters:
-      - file: markdown/optimal-stimulus
-        sections:
-          - file: notebooks/calibration-suffstat
-          - file: notebooks/stimulus
-          - file: notebooks/calibration-sim
-          - file: notebooks/simulations
-      - file: notebooks/helpers
+    - file: markdown/optimal-stimulus
+      sections:
+      - file: notebooks/calibration-suffstat
+      - file: notebooks/stimulus
+      - file: notebooks/calibration-sim
+      - file: notebooks/simulations
+    - file: notebooks/helpers
