@@ -367,14 +367,10 @@
 <p>Before we start, we first load the necessary libraries for plotting and data cleaning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ../py/setup.py</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mtick</span>
-<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">py</span>
 </pre></div>
 </div>
 </div>
@@ -411,7 +407,10 @@
 <p>The parameter <span class="math notranslate nohighlight">\(s\)</span> is the job separation rate. We calibrate it with the average separation rate in the US over the sample period.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;JTSTSR&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;JTSTSR&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+                       <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<span class="c1"># Convert percentage to decimal</span>
+<span class="n">s_ts</span> <span class="o">=</span> <span class="n">s_ts</span><span class="o">/</span><span class="mi">100</span>
 </pre></div>
 </div>
 </div>
@@ -491,8 +490,10 @@
 <p>where <span class="math notranslate nohighlight">\(v\)</span> is the vacancy level, <span class="math notranslate nohighlight">\(k\)</span> the productive capacity of households, and <span class="math notranslate nohighlight">\(Y\)</span> the output. Therefore, <span class="math notranslate nohighlight">\(k - Y(t)\)</span> is the unemployment level, since we assume output to only come from services provided by households.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;JTSJOL&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
-<span class="n">ul_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;UNEMPLOY&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;JTSJOL&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+                       <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<span class="n">ul_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;UNEMPLOY&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+                        <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
 <span class="n">x_ts</span> <span class="o">=</span> <span class="n">v_ts</span><span class="o">/</span><span class="n">ul_ts</span>
 </pre></div>
 </div>
@@ -502,15 +503,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_ax</span> <span class="o">=</span> <span class="n">x_ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;US Labor Market Tightness between 2001 and 2019&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">x_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">))</span>
+<span class="n">x_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 0, &#39;Year&#39;), Text(0, 0.5, &#39;x&#39;), (0.0, 1.4)]
-</pre></div>
-</div>
-<img alt="../_images/calibration-suffstat_23_1.png" src="../_images/calibration-suffstat_23_1.png" />
+<img alt="../_images/calibration-suffstat_23_0.png" src="../_images/calibration-suffstat_23_0.png" />
 </div>
 </div>
 <p>We now calibrate the steady-state labor market tightness <span class="math notranslate nohighlight">\(\bar{x}\)</span> and find that it is around <span class="math notranslate nohighlight">\(0.56\)</span>.</p>
@@ -533,8 +531,10 @@
 <p><span class="math notranslate nohighlight">\(\overline{G/C}\)</span> is the steady-state ratio between public and private employment. We calibrate it to be the average value ratio between public and private employment in the US over our sample period.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;USGOVT&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
-<span class="n">C_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;USPRIV&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;USGOVT&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+                       <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<span class="n">C_ts</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;USPRIV&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+                       <span class="n">observation_start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">observation_end</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
 <span class="n">GC_ts</span> <span class="o">=</span> <span class="n">G_ts</span><span class="o">/</span><span class="n">C_ts</span>
 </pre></div>
 </div>
@@ -716,8 +716,8 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 <span class="n">tau_range_ax</span> <span class="o">=</span> <span class="n">tau_range</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Estimated US Recruiter to Producer Ratio between 2001 and 2019&quot;</span><span class="p">,</span> 
                               <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
 <span class="n">tau_range_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\tau$&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
-<span class="n">tau_range_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">tau_range</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">tau_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">tau_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> 
-                          <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
+<span class="n">tau_range_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">tau_range</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">tau_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> 
+                          <span class="n">tau_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
 <span class="n">tau_range_ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mtick</span><span class="o">.</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -776,19 +776,20 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 <span class="n">m_vals</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u_bar</span><span class="p">,</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_bar</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau</span><span class="p">)</span>
 <span class="n">m_vals_h</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">eta_h</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u_bar</span><span class="p">,</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_bar</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau_h</span><span class="p">)</span>
 <span class="n">m_vals_l</span> <span class="o">=</span> <span class="n">m_func</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M_vals</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">eta_l</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u_bar</span><span class="p">,</span> <span class="n">GY</span><span class="o">=</span><span class="n">GY_bar</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau_l</span><span class="p">)</span>
-<span class="n">m_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals_h</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals_l</span><span class="p">},</span>
+<span class="n">m_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals_h</span><span class="p">,</span> 
+                             <span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals</span><span class="p">,</span>
+                             <span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">m_vals_l</span><span class="p">},</span>
                        <span class="n">index</span><span class="o">=</span><span class="n">M_vals</span><span class="p">)</span>
-<span class="n">m_range_ax</span> <span class="o">=</span> <span class="n">m_range</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Estimated Theoretical Unemployment Multiplier&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
+<span class="n">m_range_ax</span> <span class="o">=</span> <span class="n">m_range</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Estimated Theoretical Unemployment Multiplier&quot;</span><span class="p">,</span> 
+                          <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
 <span class="n">m_range_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">m_range_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">m_range</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">m_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">m_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
+<span class="n">m_range_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">m_range</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">m_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_l</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> <span class="n">m_range</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;$\eta = $</span><span class="si">{</span><span class="n">eta_h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span> 
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x1e425007190&gt;
-</pre></div>
-</div>
-<img alt="../_images/calibration-suffstat_59_1.png" src="../_images/calibration-suffstat_59_1.png" />
+<img alt="../_images/calibration-suffstat_59_0.png" src="../_images/calibration-suffstat_59_0.png" />
 </div>
 </div>
 <p>As you can see, the choice of <span class="math notranslate nohighlight">\(\eta\)</span> within our specified range makes very little difference.</p>
@@ -829,7 +830,7 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
 </div>
 <div class="section" id="storing-calibrated-parameter-values">
 <h2>Storing Calibrated Parameter Values<a class="headerlink" href="#storing-calibrated-parameter-values" title="Permalink to this headline">¶</a></h2>
-<p>After calibrating the parameters, we store them in preparation for future usage.</p>
+<p>We now collect all the calibrated parameter values into a dataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;u_bar&#39;</span><span class="p">:</span><span class="n">u_bar</span><span class="p">,</span> <span class="s1">&#39;x_bar&#39;</span><span class="p">:</span><span class="n">x_bar</span><span class="p">,</span> <span class="s1">&#39;GC_bar&#39;</span><span class="p">:</span><span class="n">GC_bar</span><span class="p">,</span> 
@@ -837,7 +838,122 @@ and Pissarides (<a class="reference external" href="https://doi.org/10.1257/jel.
           <span class="s1">&#39;epsilon&#39;</span><span class="p">:</span><span class="n">epsilon</span><span class="p">,</span> <span class="s1">&#39;epsilon_h&#39;</span><span class="p">:</span><span class="n">epsilon_h</span><span class="p">,</span> <span class="s1">&#39;epsilon_l&#39;</span><span class="p">:</span><span class="n">epsilon_l</span><span class="p">,</span>
           <span class="s1">&#39;eta&#39;</span><span class="p">:</span><span class="n">eta</span><span class="p">,</span> <span class="s1">&#39;eta_l&#39;</span><span class="p">:</span><span class="n">eta_l</span><span class="p">,</span> <span class="s1">&#39;eta_h&#39;</span><span class="p">:</span><span class="n">eta_h</span><span class="p">,</span>
           <span class="s1">&#39;omega&#39;</span><span class="p">:</span><span class="n">omega</span><span class="p">,</span> <span class="s1">&#39;rho&#39;</span><span class="p">:</span><span class="n">rho</span><span class="p">,</span> <span class="s1">&#39;tau&#39;</span><span class="p">:</span><span class="n">tau</span><span class="p">,</span> <span class="s1">&#39;m_bar&#39;</span><span class="p">:</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;z0&#39;</span><span class="p">:</span><span class="n">z0</span><span class="p">,</span> <span class="s1">&#39;z1&#39;</span><span class="p">:</span><span class="n">z1</span><span class="p">,</span> <span class="s1">&#39;GY_bar&#39;</span><span class="p">:</span><span class="n">GY_bar</span><span class="p">}</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span><span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">()})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>s</th>
+      <td>0.035579</td>
+    </tr>
+    <tr>
+      <th>u_bar</th>
+      <td>0.059750</td>
+    </tr>
+    <tr>
+      <th>x_bar</th>
+      <td>0.557752</td>
+    </tr>
+    <tr>
+      <th>GC_bar</th>
+      <td>0.191917</td>
+    </tr>
+    <tr>
+      <th>M_bar</th>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>M_bar_l</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>M_bar_h</th>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>epsilon</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>epsilon_h</th>
+      <td>1.500000</td>
+    </tr>
+    <tr>
+      <th>epsilon_l</th>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>eta</th>
+      <td>0.600000</td>
+    </tr>
+    <tr>
+      <th>eta_l</th>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>eta_h</th>
+      <td>0.700000</td>
+    </tr>
+    <tr>
+      <th>omega</th>
+      <td>0.707167</td>
+    </tr>
+    <tr>
+      <th>rho</th>
+      <td>1.080805</td>
+    </tr>
+    <tr>
+      <th>tau</th>
+      <td>0.038732</td>
+    </tr>
+    <tr>
+      <th>m_bar</th>
+      <td>0.510053</td>
+    </tr>
+    <tr>
+      <th>z0</th>
+      <td>2.827830</td>
+    </tr>
+    <tr>
+      <th>z1</th>
+      <td>2.260914</td>
+    </tr>
+    <tr>
+      <th>GY_bar</th>
+      <td>0.161016</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We now store the dataframe as a csv file in the <code class="docutils literal notranslate"><span class="pre">notebooks/output</span></code> folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/params_suffstat.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
