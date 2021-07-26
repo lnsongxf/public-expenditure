@@ -1,4 +1,4 @@
-# A Quick User Guide
+# User Guide
 
 ```{Welcome!}
 Welcome to our executable book! Before you start reading the book, here is a quick walkthrough of the structure of this book and how to use it. Hope this can help you make the most out of it.
