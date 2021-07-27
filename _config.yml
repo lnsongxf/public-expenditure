@@ -3,13 +3,10 @@
 
 title: An Interactive Guide for Optimal Policies
 author: Pascal Michaillat and Haoyu Sheng
-copyright: "2021"  # Copyright year to be placed in the footer
-
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 #execute:
 #  execute_notebooks:  'off'
-
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -20,6 +17,7 @@ sphinx:
   config:
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    html_show_copyright: false
 
 # Information about where the book exists on the web
 repository:
@@ -38,4 +36,5 @@ html:
   use_edit_page_button        : false
   use_issues_button           : true
   use_repository_button       : true
+  extra_footer: <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 

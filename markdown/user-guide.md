@@ -1,4 +1,4 @@
-# User Guide
+#  User Guide
 
 ```{admonition} Welcome
 :class: tip
