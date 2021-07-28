@@ -29,5 +29,5 @@ As shown above, `SDMX`, which stands for Statistical Data and Metadata Exchange,
 ```
 
 ```{note}
-This list of references is by no means exhaustive. If you have any recommendation on additional data sources and their corresponding API references and would like to share them with us, feel free to write to us using the **open issue** option under the Github icon in the top right corner. Thanks a lot in advance! 
+This list of references is by no means exhaustive. If you have any recommendation on additional data sources and their corresponding API references and would like to share them with us, feel free to write to us using the **open issue** option under the Github icon in the top right corner or [contribute](https://github.com/pascalmichaillat/public-expenditure/wiki/A-Guide-for-How-to-Contribute) to our repository directly. Thanks a lot in advance! 
 ```

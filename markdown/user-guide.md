@@ -59,5 +59,5 @@ You can also contribute to the book!
 
 
 ```{seealso}
-If you are interested in contributing to the book, checkout [here](https://github.com/MarcDiethelm/contributing/blob/master/README.md) for a guide on how to contribute to Github projects and [this Wiki page](https://github.com/pascalmichaillat/public-expenditure/wiki/Jupyter-Book-Work-Flow-and-Tricks) for some useful Jupyter book tricks. We would love to have your input!
+If you are interested in contributing to the book, click [here](https://github.com/pascalmichaillat/public-expenditure/wiki/A-Guide-for-How-to-Contribute) for more information on how to contirbute. We would love to have your input!
 ```
