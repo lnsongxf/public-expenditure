@@ -1,4 +1,4 @@
-# A Quick User Guide
+#  User Guide
 
 ```{admonition} Welcome
 :class: tip
@@ -38,7 +38,11 @@ If you find something wrong with the code, or are confused about certain impleme
 It might be useful for you to change the inputs of the model using our interactive tools and download the new set of policy recommendations. Fortunately, Binder allows us to do that. You can download outputs of the model by following these steps: 
 
 1. Click on the **Binder** option  under the ![rocket](../images/rocket_logo.png) button. 
+
 1. Run the notebooks with the Binder kernel, modify the parameters you want tochange, and write your output onto your binder kernel in your desired format. We will put in place code segments that help you store your outputs, but feel free to change them to suit your needs. 
+    ```{warning}
+    Only write your output when you are in **Binder** mode. If you run this under the **Live Code** option, saving to this directory will throw an error message. 
+    ```
 1. After you write the outputs in Binder, click on the `Jupyter` logo on the top left corner of your Binder page. This redirects you to the file directory. You can now find the newly created output files under the output directory that you set and download them onto your computer!
 
 ```{note}
@@ -55,5 +59,5 @@ You can also contribute to the book!
 
 
 ```{seealso}
-If you are interested in contributing to the book, checkout [here](https://github.com/MarcDiethelm/contributing/blob/master/README.md) for a guide on how to contribute to Github projects and [this Wiki page](https://github.com/pascalmichaillat/public-expenditure/wiki/Jupyter-Book-Work-Flow-and-Tricks) for some useful Jupyter book tricks. We would love to have your input!
+If you are interested in contributing to the book, click [here](https://github.com/pascalmichaillat/public-expenditure/wiki/A-Guide-for-How-to-Contribute) for more information on how to contirbute. We would love to have your input!
 ```

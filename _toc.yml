@@ -5,6 +5,7 @@ parts:
   - caption: BEFORE YOU START
     chapters:
     - file: markdown/user-guide
+    - file: markdown/data-guide
   - caption: PUBLIC EXPENDITURE
     chapters:
     - file: markdown/optimal-stimulus
