@@ -27,3 +27,7 @@ In this Jupyter book, we calibrate our models to US data and use `FRED` to get o
 ```{tip}
 As shown above, `SDMX`, which stands for Statistical Data and Metadata Exchange, is an API protocol that is widely used internationally. [pandasdmx](https://pandasdmx.readthedocs.io/en/v1.0/) is a useful Python package for data retrieval under the SDMX API format. [Here](https://pandasdmx.readthedocs.io/en/v1.0/example.html) is an example of how you can retrieve data with the `pandasdmx` package from Eurostat. 
 ```
+
+```{note}
+This list of references is by no means exhaustive. If you have any recommendation on additional data sources and their corresponding API references and would like to share them with us, feel free to write to us using the **open issue** option under the Github icon in the top right corner. Thanks a lot in advance! 
+```

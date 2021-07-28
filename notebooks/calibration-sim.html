@@ -404,6 +404,10 @@
 <div class="section" id="storing-calibrated-parameters">
 <h2>Storing Calibrated Parameters<a class="headerlink" href="#storing-calibrated-parameters" title="Permalink to this headline">¶</a></h2>
 <p>We now store the newly calibrated parameters and proceed to business cycle simulations.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only run the <code class="docutils literal notranslate"><span class="pre">to_csv</span></code> function when you are in <strong>Binder</strong> mode. If you run this under the <strong>Live Code</strong> option, saving to this directory will throw an error message.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;Y_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;CY_bar&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;p0&#39;</span><span class="p">],</span>
